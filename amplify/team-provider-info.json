@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ticocat-staging-140509-authRole",
+      "UnauthRoleArn": "arn:aws:iam::443361239887:role/amplify-ticocat-staging-140509-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::443361239887:role/amplify-ticocat-staging-140509-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-ticocat-staging-140509-deployment",
+      "UnauthRoleName": "amplify-ticocat-staging-140509-unauthRole",
+      "StackName": "amplify-ticocat-staging-140509",
+      "StackId": "arn:aws:cloudformation:eu-west-3:443361239887:stack/amplify-ticocat-staging-140509/951379c0-3111-11ed-98d3-0a0dfcaa9cd4",
+      "AmplifyAppId": "ds5uc2tkp9911"
+    },
+    "categories": {
+      "auth": {
+        "TICOCAT": {}
+      }
+    }
+  }
+}
