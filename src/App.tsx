@@ -1,8 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { 
-  CommentCard
-} from './ui-components';
+import React from 'react';
 
 function App() {
   return (
