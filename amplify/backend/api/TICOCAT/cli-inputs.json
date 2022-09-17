@@ -5,8 +5,9 @@
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "keyDescription": "api key description",
-      "expirationTime": 30
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-09-17T20:22:16.093Z",
+      "keyDescription": "To access GraphQL"
     },
     "additionalAuthTypes": [
       {
