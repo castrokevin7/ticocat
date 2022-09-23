@@ -3,8 +3,8 @@ import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
 const BoardPosition = {
-  "PRECIDENCIA": "PRECIDENCIA",
-  "VICEPRECIDENCIA": "VICEPRECIDENCIA",
+  "PRESIDENCIA": "PRESIDENCIA",
+  "VICEPRESIDENCIA": "VICEPRESIDENCIA",
   "TESORERIA": "TESORERIA",
   "SECRETARIADO": "SECRETARIADO",
   "VOCAL": "VOCAL"

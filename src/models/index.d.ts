@@ -1,8 +1,8 @@
 import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 
 export enum BoardPosition {
-  PRECIDENCIA = "PRECIDENCIA",
-  VICEPRECIDENCIA = "VICEPRECIDENCIA",
+  PRESIDENCIA = "PRESIDENCIA",
+  VICEPRESIDENCIA = "VICEPRESIDENCIA",
   TESORERIA = "TESORERIA",
   SECRETARIADO = "SECRETARIADO",
   VOCAL = "VOCAL"
