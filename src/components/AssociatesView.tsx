@@ -150,17 +150,17 @@ function AssociatesView() {
           <Box sx={modalStyle}>
             <CloseIcon id='close-view-associate' onClick={() => setOpenViewAssociate(false)} />
             <p>Nombre: {associate.name}</p>
+            <p>Tipo de Identificación: {associate.identification_type}</p>
+            <p>Identificación: {associate.identification}</p>
+            <p>Correo: {associate.email}</p>
+            <p>Teléfono: {associate.phone}</p>
             {associate.board_position ?
              <p>Posición: {capitalizeFirst(associate.board_position)}</p>
              : null}
             <p>Fecha de inscripción: {associate.inscription_date}</p>
             <p>Fecha de nacimiento: {associate.birthday}</p>
             <p>Dirección: {associate.address}</p>
-            <p>Correo: {associate.email}</p>
-            <p>Teléfono: {associate.phone}</p>
             <p>Nacionalidad: {associate.nationality}</p>
-            <p>Tipo de Identificación: {associate.identification_type}</p>
-            <p>Identificación: {associate.identification}</p>
           </Box>
         </Modal>
       ) : null }
