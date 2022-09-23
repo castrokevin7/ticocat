@@ -23,3 +23,9 @@
 .associate {
   display: flex;
 }
+
+#close-view-associate {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
