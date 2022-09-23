@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Associate } from '../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -23,6 +23,13 @@ const modalStyle = {
   p: 4,
   color: 'black',
 };
+
+const useConstructor = (callBack = () => {}) => {
+  const [hasBeenCalled, setHasBeenCalled] = useState(false);
+  if (hasBeenCalled) return;
+  callBack();
+  setHasBeenCalled(true);
+}
 
 function AssociatesView() {
   const [state, setState] = useState('');
@@ -63,17 +70,10 @@ function AssociatesView() {
     }
   }
 
-  useEffect(() => {
+  useConstructor(() => {
     setState('loading');
-
-    const subscription = DataStore.observe(Associate).subscribe((msg) => {
-      console.log(msg.model, msg.opType, msg.element);
-    });
-
     fetchAssociates();
-
-    return () => subscription.unsubscribe();
-  }, []);
+  });
   
   if (state === 'error')
     return (
@@ -90,11 +90,11 @@ function AssociatesView() {
         ) : (
           <div>
             <div className='search-associates'>
-              <select defaultValue={searchBy} id='search-options' onChange={(event) => {
-                setSearchBy(event.target.value);  
+              <select defaultValue={searchBy} id='search-options' onChange={(event) => {  
                 if (searchValue) {
-                  fetchAssociates(searchBy, searchValue);
+                  fetchAssociates(event.target.value, searchValue);
                 }
+                setSearchBy(event.target.value);
               }}>
                 <option value='name'>Nombre</option>
                 <option value='identification'>Identificación</option>
@@ -102,12 +102,12 @@ function AssociatesView() {
                 <option value='email'>Correo</option>
               </select>
               <input type='text' id='search-input' placeholder='Comienza con..' onChange={(event) => {
-                setSearchValue(event.target.value);
-                if (searchValue) {
-                  fetchAssociates(searchBy, searchValue);
+                if (event.target.value) {
+                  fetchAssociates(searchBy, event.target.value);
                 } else {
                   fetchAssociates();
                 }
+                setSearchValue(event.target.value);
               }}></input>
             </div>
 
@@ -127,7 +127,7 @@ function AssociatesView() {
                     <span 
                       className='delete-associate'
                       onClick={async () => {
-                        if (window.confirm('¿Confirma la eliminación del Socio (irreversible)?')) {
+                        if (window.confirm(`¿Confirma la eliminación del Socio: ${a.name}?`)) {
                           await DataStore.delete(a);
                           fetchAssociates();
                         }
