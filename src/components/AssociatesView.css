@@ -1,0 +1,17 @@
+.search-associates {
+  margin-bottom: 25px;
+}
+
+#search-options {
+  width: 25%;
+  height: 30px;
+}
+
+#search-input {
+  width: 50%;
+  height: 30px;
+}
+
+.delete-associate {
+  margin-right: 10px;
+}
