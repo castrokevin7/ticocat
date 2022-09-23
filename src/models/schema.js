@@ -129,7 +129,7 @@ export const schema = {
         "BoardPosition": {
             "name": "BoardPosition",
             "values": [
-                "PRECIDENCIA",
+                "PRESIDENCIA",
                 "VICEPRECIDENCIA",
                 "TESORERIA",
                 "SECRETARIADO",
