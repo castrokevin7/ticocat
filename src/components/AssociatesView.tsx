@@ -6,16 +6,9 @@ function AssociatesView() {
   const [state, setState] = useState('');
   const [associates, setAssociates] = useState<Associate[]>([]);
 
-  useEffect(() => {
-    setState('loading');
-
-    const subscription = DataStore.observe(Associate).subscribe((msg) => {
-      console.log(msg.model, msg.opType, msg.element);
-    });
-
+  const fetchAssociates = () => {
     DataStore.query(Associate)
     .then((response) => {
-      console.log(response);
       setAssociates(response);
       setState('success');
     })
@@ -23,6 +16,16 @@ function AssociatesView() {
       console.error('Error:', err);
       setState('error');
     });
+  }
+
+  useEffect(() => {
+    setState('loading');
+
+    const subscription = DataStore.observe(Associate).subscribe((msg) => {
+      console.log(msg.model, msg.opType, msg.element);
+    });
+
+    fetchAssociates();
 
     return () => subscription.unsubscribe();
   }, []);
@@ -41,7 +44,23 @@ function AssociatesView() {
         ) : (
           <div>
             <h3>Socios:</h3>
-            {associates.map((a: Associate, i) => <p key={i}>{a.name}</p>)}
+            {associates.map((a: Associate, i) => {
+              return (
+                <div key={i} className='associate'>
+                  <input
+                    type="button"
+                    value="Delete"
+                    onClick={async () => {
+                      if (window.confirm('¿Confirma la eliminación del Socio (irreversible)?')) {
+                        await DataStore.delete(a);
+                        fetchAssociates();
+                      }
+                    }}
+                  />
+                  <p>{a.name}</p>
+                </div>
+              )
+            })}
           </div>
         )}
       </div>
