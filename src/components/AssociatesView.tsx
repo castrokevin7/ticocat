@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Associate } from '../models';
 import { DataStore } from 'aws-amplify';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './AssociatesView.css';
 
 type QueryExpressionsMap = { 
@@ -97,17 +98,16 @@ function AssociatesView() {
               {associates.map((a: Associate, i) => {
                 return (
                   <div key={i} className='associate'>
-                    <input
+                    <span 
                       className='delete-associate'
-                      type='button'
-                      value='Eliminar'
                       onClick={async () => {
                         if (window.confirm('¿Confirma la eliminación del Socio (irreversible)?')) {
                           await DataStore.delete(a);
                           fetchAssociates();
                         }
-                      }}
-                    />
+                      }}>
+                      <DeleteIcon />
+                    </span>
                     <span>{a.name}</span>
                   </div>
                 )

@@ -15,3 +15,11 @@
 .delete-associate {
   margin-right: 10px;
 }
+
+#delete-associate {
+  cursor: pointer;
+}
+
+.associate {
+  display: flex;
+}
