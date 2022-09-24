@@ -3,13 +3,15 @@
 }
 
 #search-options {
-  width: 25%;
-  height: 30px;
+  width: 100px;
 }
 
 #search-input {
-  width: 50%;
-  height: 30px;
+  width: 250px;
+}
+
+#separate-search-form-item {
+  margin: 5px;
 }
 
 .delete-associate {

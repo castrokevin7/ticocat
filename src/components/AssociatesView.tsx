@@ -3,7 +3,7 @@ import { Associate } from '../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './AssociatesView.css';
-import { Box, Modal } from '@mui/material';
+import { Box, MenuItem, Modal, Select, TextField } from '@mui/material';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -70,6 +70,112 @@ function AssociatesView() {
     }
   }
 
+  const associatesSearch = () => {
+    return (
+      <div className='search-associates'>
+        <Select
+          sx={
+            {
+              bgcolor: 'background.paper'
+            }
+          }
+          className='search-form-item'
+          id="search-options"
+          value={searchBy}
+          onChange={(event) => {  
+            if (searchValue) {
+              fetchAssociates(event.target.value, searchValue);
+            }
+            setSearchBy(event.target.value);
+          }}
+        >
+          <MenuItem value='name'>Nombre</MenuItem>
+          <MenuItem value='identification'>Identificación</MenuItem>
+          <MenuItem value='phone'>Teléfono</MenuItem>
+          <MenuItem value='email'>Correo</MenuItem>
+        </Select>
+        <span id='separate-search-form-item' />
+        <TextField 
+          sx={
+            {
+              bgcolor: 'background.paper',
+              borderRadius: 1
+            }
+          }
+          className='search-form-item' 
+          id='search-input' 
+          label="Comienza con:" 
+          variant="outlined" 
+          onChange={(event) => {
+            if (event.target.value) {
+              fetchAssociates(searchBy, event.target.value);
+            } else {
+              fetchAssociates();
+            }
+            setSearchValue(event.target.value);
+          }}
+        />
+      </div>
+    )
+  };
+
+  const associatesResult = () => {
+    return (
+      <div className='associates'>
+        {associates.length === 0 ? <span>Sin resultados</span> 
+         : associates.map((a: Associate, i) => {
+          return (
+            <div key={i} className='associate'>
+              <span 
+                className='view-associate'
+                onClick={() => {
+                  setAssociate(a);
+                  setOpenViewAssociate(true);
+                }}>
+                <PageviewIcon />
+              </span>
+              <span 
+                className='delete-associate'
+                onClick={async () => {
+                  if (window.confirm(`¿Confirma la eliminación del Socio: ${a.name}?`)) {
+                    await DataStore.delete(a);
+                    fetchAssociates();
+                  }
+                }}>
+                <DeleteIcon />
+              </span>
+              <span>{a.name}</span>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+
+  const associateDisplay = (associate: Associate) => {
+    return (
+      <Modal
+        open={openViewAssociate}
+        onClose={() => setOpenViewAssociate(false)}
+      >
+        <Box sx={modalStyle}>
+          <CloseIcon id='close-view-associate' onClick={() => setOpenViewAssociate(false)} />
+          <p>Nombre: {associate.name}</p>
+          <p>Identificación ({associate.identification_type}): {associate.identification}</p>
+          <p>Correo: {associate.email}</p>
+          <p>Teléfono: {associate.phone}</p>
+          {associate.board_position ?
+          <p>Posición: {capitalizeFirst(associate.board_position)}</p>
+          : null}
+          <p>Fecha de inscripción: {associate.inscription_date}</p>
+          <p>Fecha de nacimiento: {associate.birthday}</p>
+          <p>Dirección: {associate.address}</p>
+          <p>Nacionalidad: {associate.nationality}</p>
+        </Box>
+      </Modal>
+    )
+  }
+
   useConstructor(() => {
     setState('loading');
     fetchAssociates();
@@ -84,86 +190,16 @@ function AssociatesView() {
   return (
     <div>
       <div>
-        <h3>Socios:</h3>
         {state === 'loading' ? (
           <p>Cargando...</p>
         ) : (
           <div>
-            <div className='search-associates'>
-              <select defaultValue={searchBy} id='search-options' onChange={(event) => {  
-                if (searchValue) {
-                  fetchAssociates(event.target.value, searchValue);
-                }
-                setSearchBy(event.target.value);
-              }}>
-                <option value='name'>Nombre</option>
-                <option value='identification'>Identificación</option>
-                <option value='phone'>Teléfono</option>
-                <option value='email'>Correo</option>
-              </select>
-              <input type='text' id='search-input' placeholder='Comienza con..' onChange={(event) => {
-                if (event.target.value) {
-                  fetchAssociates(searchBy, event.target.value);
-                } else {
-                  fetchAssociates();
-                }
-                setSearchValue(event.target.value);
-              }}></input>
-            </div>
-
-            <h4>Resultados:</h4>
-            <div className='associates'>
-              {associates.map((a: Associate, i) => {
-                return (
-                  <div key={i} className='associate'>
-                    <span 
-                      className='view-associate'
-                      onClick={() => {
-                        setAssociate(a);
-                        setOpenViewAssociate(true);
-                      }}>
-                      <PageviewIcon />
-                    </span>
-                    <span 
-                      className='delete-associate'
-                      onClick={async () => {
-                        if (window.confirm(`¿Confirma la eliminación del Socio: ${a.name}?`)) {
-                          await DataStore.delete(a);
-                          fetchAssociates();
-                        }
-                      }}>
-                      <DeleteIcon />
-                    </span>
-                    <span>{a.name}</span>
-                  </div>
-                )
-              })}
-            </div>
+            {associatesSearch()}
+            {associatesResult()}
           </div>
         )}
       </div>
-      { associate ? (
-        <Modal
-          open={openViewAssociate}
-          onClose={() => setOpenViewAssociate(false)}
-        >
-          <Box sx={modalStyle}>
-            <CloseIcon id='close-view-associate' onClick={() => setOpenViewAssociate(false)} />
-            <p>Nombre: {associate.name}</p>
-            <p>Tipo de Identificación: {associate.identification_type}</p>
-            <p>Identificación: {associate.identification}</p>
-            <p>Correo: {associate.email}</p>
-            <p>Teléfono: {associate.phone}</p>
-            {associate.board_position ?
-             <p>Posición: {capitalizeFirst(associate.board_position)}</p>
-             : null}
-            <p>Fecha de inscripción: {associate.inscription_date}</p>
-            <p>Fecha de nacimiento: {associate.birthday}</p>
-            <p>Dirección: {associate.address}</p>
-            <p>Nacionalidad: {associate.nationality}</p>
-          </Box>
-        </Modal>
-      ) : null }
+      { associate ? associateDisplay(associate) : null }
 
     </div>
   );
