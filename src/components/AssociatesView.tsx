@@ -16,12 +16,13 @@ const modalStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 600,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
   color: 'black',
+  '& .MuiTextField-root': { m: 1.5, width: '35ch' },
 };
 
 const useConstructor = (callBack = () => {}) => {
@@ -40,10 +41,10 @@ function AssociatesView() {
   const [openViewAssociate, setOpenViewAssociate] = React.useState(false);
 
   const QUERY_EXPRESSIONS: QueryExpressionsMap = {
-    'name': (searchValue: string) => DataStore.query(Associate, a => a.name("contains", searchValue)),
-    'identification': (searchValue: string) => DataStore.query(Associate, a => a.identification("contains", searchValue)),
-    'phone': (searchValue: string) => DataStore.query(Associate, a => a.phone("contains", searchValue)),
-    'email': (searchValue: string) => DataStore.query(Associate, a => a.email("contains", searchValue)),
+    'name': (searchValue: string) => DataStore.query(Associate, a => a.name('contains', searchValue)),
+    'identification': (searchValue: string) => DataStore.query(Associate, a => a.identification('contains', searchValue)),
+    'phone': (searchValue: string) => DataStore.query(Associate, a => a.phone('contains', searchValue)),
+    'email': (searchValue: string) => DataStore.query(Associate, a => a.email('contains', searchValue)),
   };
 
   const fetchAssociates = (searchBy?: string, searchValue?: string) => {
@@ -80,7 +81,7 @@ function AssociatesView() {
             }
           }
           className='search-form-item'
-          id="search-options"
+          id='search-options'
           value={searchBy}
           onChange={(event) => {  
             if (searchValue) {
@@ -104,8 +105,8 @@ function AssociatesView() {
           }
           className='search-form-item' 
           id='search-input' 
-          label="Comienza con:" 
-          variant="outlined" 
+          label='Comienza con:' 
+          variant='outlined' 
           onChange={(event) => {
             if (event.target.value) {
               fetchAssociates(searchBy, event.target.value);
@@ -158,19 +159,71 @@ function AssociatesView() {
         open={openViewAssociate}
         onClose={() => setOpenViewAssociate(false)}
       >
-        <Box sx={modalStyle}>
-          <CloseIcon id='close-view-associate' onClick={() => setOpenViewAssociate(false)} />
-          <p>Nombre: {associate.name}</p>
-          <p>Identificación ({associate.identification_type}): {associate.identification}</p>
-          <p>Correo: {associate.email}</p>
-          <p>Teléfono: {associate.phone}</p>
-          {associate.board_position ?
-          <p>Posición: {capitalizeFirst(associate.board_position)}</p>
-          : null}
-          <p>Fecha de inscripción: {associate.inscription_date}</p>
-          <p>Fecha de nacimiento: {associate.birthday}</p>
-          <p>Dirección: {associate.address}</p>
-          <p>Nacionalidad: {associate.nationality}</p>
+        <Box 
+          component='form'
+          noValidate
+          autoComplete="off"    
+          sx={modalStyle}
+          >
+            <CloseIcon id='close-view-associate' onClick={() => setOpenViewAssociate(false)} />
+            <div>
+              <TextField
+                required
+                id="outlined-required"
+                label="Nombre"
+                defaultValue={associate.name}
+              />
+              <TextField
+                required
+                id="outlined-required"
+                label={`Identificación (${associate.identification_type})`}
+                defaultValue={associate.identification}
+              />
+              <TextField
+                required
+                id="outlined-required"
+                label="Correo"
+                defaultValue={associate.email}
+              />
+              <TextField
+                required
+                id="outlined-required"
+                label="Teléfono"
+                defaultValue={associate.phone}
+              />
+              {associate.board_position ?
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Posición"
+                  defaultValue={capitalizeFirst(associate.board_position)}
+                />
+                : null}
+              <TextField
+                required
+                id="outlined-required"
+                label="Fecha de inscripción"
+                defaultValue={associate.inscription_date}
+              />
+              <TextField
+                required
+                id="outlined-required"
+                label="Fecha de nacimiento"
+                defaultValue={associate.birthday}
+              />
+              <TextField
+                required
+                id="outlined-required"
+                label="Dirección"
+                defaultValue={associate.address}
+              />
+              <TextField
+                required
+                id="outlined-required"
+                label="Nacionalidad"
+                defaultValue={associate.nationality}
+              />
+            </div>
         </Box>
       </Modal>
     )
