@@ -3,7 +3,7 @@ import { Associate, BoardPosition } from '../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './AssociatesView.css';
-import { Box, Button, Divider, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
 import { Search } from '@mui/icons-material';
@@ -49,6 +49,7 @@ function AssociatesView() {
   };
 
   const fetchAssociates = (searchBy?: string, searchValue?: string) => {
+    setState('loading');
     if (searchBy && searchValue) {
       QUERY_EXPRESSIONS[searchBy](searchValue)
       .then((response) => {
@@ -75,16 +76,18 @@ function AssociatesView() {
   const associatesSearch = () => {
     return (
       <div className='search-associates'>
-        <FormControl>
+        <FormControl size='small' sx={
+          {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'left',
+          }
+        }>
           <Select
-            sx={
-              {
-                bgcolor: 'background.paper'
-              }
-            }
             className='search-form-item'
             id='search-options'
             value={searchBy}
+            sx={{bgcolor: 'background.paper'}}
             onChange={(event) => {  
               if (searchValue) {
                 fetchAssociates(event.target.value, searchValue);
@@ -97,24 +100,22 @@ function AssociatesView() {
             <MenuItem value='phone'>Teléfono</MenuItem>
             <MenuItem value='email'>Correo</MenuItem>
           </Select>
-          <Divider />
-          <TextField 
-            sx={
-              {
-                bgcolor: 'background.paper',
-                borderRadius: 1
-              }
-            }
+          <TextField        
+            sx={{
+              bgcolor: 'background.paper',
+              borderRadius: 1,
+            }}
             className='search-form-item' 
             id='search-input' 
             InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
+              endAdornment: (
+                <InputAdornment position='end'>
                   <Search />
                 </InputAdornment>
               ),
             }} 
             variant='outlined' 
+            size='small'
             onChange={(event) => {
               if (event.target.value) {
                 fetchAssociates(searchBy, event.target.value);
@@ -183,15 +184,15 @@ function AssociatesView() {
         <Box 
           component='form'
           noValidate
-          autoComplete="off"    
+          autoComplete='off'    
           sx={modalStyle}
           >
             <CloseIcon id='close-view-associate' onClick={() => setOpenViewAssociate(false)} />
             <div>
               <TextField
                 required
-                id="outlined-required"
-                label="Nombre"
+                id='outlined-required'
+                label='Nombre'
                 defaultValue={associate.name}
                 onChange={(event) => {
                   associateToUpdate.name = event.target.value;
@@ -199,7 +200,7 @@ function AssociatesView() {
               />
               <TextField
                 required
-                id="outlined-required"
+                id='outlined-required'
                 label={`Identificación (${associate.identification_type})`}
                 defaultValue={associate.identification}
                 onChange={(event) => {
@@ -208,8 +209,8 @@ function AssociatesView() {
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Correo"
+                id='outlined-required'
+                label='Correo'
                 defaultValue={associate.email}
                 onChange={(event) => {
                   associateToUpdate.email = event.target.value;
@@ -217,8 +218,8 @@ function AssociatesView() {
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Teléfono"
+                id='outlined-required'
+                label='Teléfono'
                 defaultValue={associate.phone}
                 onChange={(event) => {
                   associateToUpdate.phone = event.target.value;
@@ -227,8 +228,8 @@ function AssociatesView() {
               {associate.board_position ?
                 <TextField
                   required
-                  id="outlined-required"
-                  label="Posición"
+                  id='outlined-required'
+                  label='Posición'
                   defaultValue={capitalizeFirst(associate.board_position)}
                   onChange={(event) => {
                     const indexOf = Object.values(BoardPosition).indexOf(event.target.value.toUpperCase() as unknown as BoardPosition);
@@ -238,8 +239,8 @@ function AssociatesView() {
                 : null}
               <TextField
                 required
-                id="outlined-required"
-                label="Fecha de inscripción"
+                id='outlined-required'
+                label='Fecha de inscripción'
                 defaultValue={associate.inscription_date}
                 onChange={(event) => {
                   associateToUpdate.inscription_date = event.target.value;
@@ -247,8 +248,8 @@ function AssociatesView() {
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Fecha de nacimiento"
+                id='outlined-required'
+                label='Fecha de nacimiento'
                 defaultValue={associate.birthday}
                 onChange={(event) => {
                   associateToUpdate.birthday = event.target.value;
@@ -256,8 +257,8 @@ function AssociatesView() {
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Dirección"
+                id='outlined-required'
+                label='Dirección'
                 defaultValue={associate.address}
                 onChange={(event) => {
                   associateToUpdate.address = event.target.value;
@@ -265,8 +266,8 @@ function AssociatesView() {
               />
               <TextField
                 required
-                id="outlined-required"
-                label="Nacionalidad"
+                id='outlined-required'
+                label='Nacionalidad'
                 defaultValue={associate.nationality}
                 onChange={(event) => {
                   associateToUpdate.nationality = event.target.value;
@@ -275,7 +276,7 @@ function AssociatesView() {
             </div>
             <Button 
               sx={{float: 'right'}} 
-              variant="outlined"
+              variant='outlined'
               onClick={async () => {
                 if (window.confirm(`¿Confirma la actualización del Socio: ${associate.name}?`)) {
                   await DataStore.save(
@@ -318,11 +319,16 @@ function AssociatesView() {
   return (
     <div>
       <div>
+        {associatesSearch()}
         {state === 'loading' ? (
-          <p>Cargando...</p>
+          <div style={{display: 'flex'}}>
+            <div className="spinner-container">
+              <div className="loading-spinner" />
+            </div>
+            Cargando
+          </div>
         ) : (
           <div>
-            {associatesSearch()}
             {associatesResult()}
           </div>
         )}
