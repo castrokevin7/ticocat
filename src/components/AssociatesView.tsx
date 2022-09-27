@@ -3,9 +3,10 @@ import { Associate } from '../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './AssociatesView.css';
-import { Box, MenuItem, Modal, Select, TextField } from '@mui/material';
+import { Box, Divider, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
+import { Search } from '@mui/icons-material';
 
 type QueryExpressionsMap = { 
   [searchKey: string]: (searchValue: string) => Promise<Associate[]>; 
@@ -16,7 +17,7 @@ const modalStyle = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 600,
+  width: '95%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -74,48 +75,56 @@ function AssociatesView() {
   const associatesSearch = () => {
     return (
       <div className='search-associates'>
-        <Select
-          sx={
-            {
-              bgcolor: 'background.paper'
+        <FormControl>
+          <Select
+            sx={
+              {
+                bgcolor: 'background.paper'
+              }
             }
-          }
-          className='search-form-item'
-          id='search-options'
-          value={searchBy}
-          onChange={(event) => {  
-            if (searchValue) {
-              fetchAssociates(event.target.value, searchValue);
+            className='search-form-item'
+            id='search-options'
+            value={searchBy}
+            onChange={(event) => {  
+              if (searchValue) {
+                fetchAssociates(event.target.value, searchValue);
+              }
+              setSearchBy(event.target.value);
+            }}
+          >
+            <MenuItem value='name'>Nombre</MenuItem>
+            <MenuItem value='identification'>Identificación</MenuItem>
+            <MenuItem value='phone'>Teléfono</MenuItem>
+            <MenuItem value='email'>Correo</MenuItem>
+          </Select>
+          <Divider />
+          <TextField 
+            sx={
+              {
+                bgcolor: 'background.paper',
+                borderRadius: 1
+              }
             }
-            setSearchBy(event.target.value);
-          }}
-        >
-          <MenuItem value='name'>Nombre</MenuItem>
-          <MenuItem value='identification'>Identificación</MenuItem>
-          <MenuItem value='phone'>Teléfono</MenuItem>
-          <MenuItem value='email'>Correo</MenuItem>
-        </Select>
-        <span id='separate-search-form-item' />
-        <TextField 
-          sx={
-            {
-              bgcolor: 'background.paper',
-              borderRadius: 1
-            }
-          }
-          className='search-form-item' 
-          id='search-input' 
-          label='Comienza con:' 
-          variant='outlined' 
-          onChange={(event) => {
-            if (event.target.value) {
-              fetchAssociates(searchBy, event.target.value);
-            } else {
-              fetchAssociates();
-            }
-            setSearchValue(event.target.value);
-          }}
-        />
+            className='search-form-item' 
+            id='search-input' 
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }} 
+            variant='outlined' 
+            onChange={(event) => {
+              if (event.target.value) {
+                fetchAssociates(searchBy, event.target.value);
+              } else {
+                fetchAssociates();
+              }
+              setSearchValue(event.target.value);
+            }}
+          />
+        </FormControl>
       </div>
     )
   };
