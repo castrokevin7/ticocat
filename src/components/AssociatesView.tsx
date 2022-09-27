@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Associate, BoardPosition } from '../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 import './AssociatesView.css';
 import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import PageviewIcon from '@mui/icons-material/Pageview';
@@ -40,6 +41,7 @@ function AssociatesView() {
   const [associates, setAssociates] = useState<Associate[]>([]);
   const [associate, setAssociate] = useState<Associate>();
   const [openViewAssociate, setOpenViewAssociate] = React.useState(false);
+  const [openCreateAssociate, setOpenCreateAssociate] = React.useState(false);
 
   const QUERY_EXPRESSIONS: QueryExpressionsMap = {
     'name': (searchValue: string) => DataStore.query(Associate, a => a.name('contains', searchValue)),
@@ -83,6 +85,13 @@ function AssociatesView() {
             justifyContent: 'left',
           }
         }>
+          <Button 
+            id='add-associate' 
+            variant='contained'
+            onClick={() => setOpenCreateAssociate(true)}
+          >
+            <AddIcon />
+          </Button>
           <Select
             className='search-form-item'
             id='search-options'
@@ -187,7 +196,7 @@ function AssociatesView() {
           autoComplete='off'    
           sx={modalStyle}
           >
-            <CloseIcon id='close-view-associate' onClick={() => setOpenViewAssociate(false)} />
+            <CloseIcon className='close-modal' onClick={() => setOpenViewAssociate(false)} />
             <div>
               <TextField
                 required
@@ -305,6 +314,127 @@ function AssociatesView() {
     )
   }
 
+  const associateCreate = () => {
+    let associateToCreate = {
+      name: '',
+      birthday: '',
+      address: '',
+      email: '',
+      inscription_date: '',
+      phone: '',
+      nationality: '',
+      identification: '',
+      identification_type: '',
+      board_position: '',
+    };
+    return (
+      <Modal
+        open={openCreateAssociate}
+        onClose={() => setOpenCreateAssociate(false)}
+      >
+        <Box 
+          component='form'
+          noValidate
+          autoComplete='off'    
+          sx={modalStyle}
+          >
+            <CloseIcon className='close-modal' onClick={() => setOpenCreateAssociate(false)} />
+            <div>
+              <TextField
+                required
+                id='outlined-required'
+                label='Nombre'
+                onChange={(event) => {
+                  associateToCreate.name = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Identificación'
+                onChange={(event) => {
+                  associateToCreate.identification = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Correo'
+                onChange={(event) => {
+                  associateToCreate.email = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Teléfono'
+                onChange={(event) => {
+                  associateToCreate.phone = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Fecha de inscripción'
+                onChange={(event) => {
+                  associateToCreate.inscription_date = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Fecha de nacimiento'
+                onChange={(event) => {
+                  associateToCreate.birthday = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Dirección'
+                onChange={(event) => {
+                  associateToCreate.address = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Nacionalidad'
+                onChange={(event) => {
+                  associateToCreate.nationality = event.target.value;
+                }}
+              />
+            </div>
+            <Button 
+              sx={{float: 'right'}} 
+              variant='outlined'
+              onClick={async () => {
+                if (window.confirm(`¿Confirma la creación del Socio: ${associateToCreate.name}?`)) {
+                  await DataStore.save(
+                    new Associate({
+                      name: associateToCreate.name,
+                      birthday: associateToCreate.birthday,
+                      address: associateToCreate.address,
+                      email: associateToCreate.email,
+                      inscription_date: associateToCreate.inscription_date,
+                      phone: associateToCreate.phone,
+                      nationality: associateToCreate.nationality,
+                      identification: associateToCreate.identification,
+                      identification_type: associateToCreate.identification_type,
+                    })
+                  );
+                  fetchAssociates();
+                  setOpenCreateAssociate(false);
+                }
+              }}
+            >
+              Actualizar
+            </Button>
+        </Box>
+      </Modal>
+    )
+  }
+
   useConstructor(() => {
     setState('loading');
     fetchAssociates();
@@ -334,6 +464,7 @@ function AssociatesView() {
         )}
       </div>
       { associate ? associateDisplay(associate) : null }
+      { associateCreate() }
 
     </div>
   );

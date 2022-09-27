@@ -22,7 +22,7 @@
   display: flex;
 }
 
-#close-view-associate {
+.close-modal {
   position: absolute;
   top: 3%;
   right: 3%;
@@ -44,4 +44,8 @@
   border-top: 5px solid #383636; /* Black */
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
+}
+
+#add-associate {
+  margin-right: 10px;
 }
