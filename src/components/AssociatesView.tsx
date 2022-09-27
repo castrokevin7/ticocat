@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Associate } from '../models';
+import { Associate, BoardPosition } from '../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './AssociatesView.css';
-import { Box, Divider, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
+import { Box, Button, Divider, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
 import { Search } from '@mui/icons-material';
@@ -163,6 +163,18 @@ function AssociatesView() {
   }
 
   const associateDisplay = (associate: Associate) => {
+    let associateToUpdate = {
+      name: associate.name,
+      birthday: associate.birthday,
+      address: associate.address,
+      email: associate.email,
+      inscription_date: associate.inscription_date,
+      phone: associate.phone,
+      nationality: associate.nationality,
+      identification: associate.identification,
+      identification_type: associate.identification_type,
+      board_position: associate.board_position,
+    };
     return (
       <Modal
         open={openViewAssociate}
@@ -181,24 +193,36 @@ function AssociatesView() {
                 id="outlined-required"
                 label="Nombre"
                 defaultValue={associate.name}
+                onChange={(event) => {
+                  associateToUpdate.name = event.target.value;
+                }}
               />
               <TextField
                 required
                 id="outlined-required"
                 label={`Identificación (${associate.identification_type})`}
                 defaultValue={associate.identification}
+                onChange={(event) => {
+                  associateToUpdate.identification = event.target.value;
+                }}
               />
               <TextField
                 required
                 id="outlined-required"
                 label="Correo"
                 defaultValue={associate.email}
+                onChange={(event) => {
+                  associateToUpdate.email = event.target.value;
+                }}
               />
               <TextField
                 required
                 id="outlined-required"
                 label="Teléfono"
                 defaultValue={associate.phone}
+                onChange={(event) => {
+                  associateToUpdate.phone = event.target.value;
+                }}
               />
               {associate.board_position ?
                 <TextField
@@ -206,6 +230,10 @@ function AssociatesView() {
                   id="outlined-required"
                   label="Posición"
                   defaultValue={capitalizeFirst(associate.board_position)}
+                  onChange={(event) => {
+                    const indexOf = Object.values(BoardPosition).indexOf(event.target.value.toUpperCase() as unknown as BoardPosition);
+                    associateToUpdate.board_position = Object.keys(BoardPosition)[indexOf] as BoardPosition;
+                  }}
                 />
                 : null}
               <TextField
@@ -213,26 +241,64 @@ function AssociatesView() {
                 id="outlined-required"
                 label="Fecha de inscripción"
                 defaultValue={associate.inscription_date}
+                onChange={(event) => {
+                  associateToUpdate.inscription_date = event.target.value;
+                }}
               />
               <TextField
                 required
                 id="outlined-required"
                 label="Fecha de nacimiento"
                 defaultValue={associate.birthday}
+                onChange={(event) => {
+                  associateToUpdate.birthday = event.target.value;
+                }}
               />
               <TextField
                 required
                 id="outlined-required"
                 label="Dirección"
                 defaultValue={associate.address}
+                onChange={(event) => {
+                  associateToUpdate.address = event.target.value;
+                }}
               />
               <TextField
                 required
                 id="outlined-required"
                 label="Nacionalidad"
                 defaultValue={associate.nationality}
+                onChange={(event) => {
+                  associateToUpdate.nationality = event.target.value;
+                }}
               />
             </div>
+            <Button 
+              sx={{float: 'right'}} 
+              variant="outlined"
+              onClick={async () => {
+                if (window.confirm(`¿Confirma la actualización del Socio: ${associate.name}?`)) {
+                  await DataStore.save(
+                    Associate.copyOf(associate, updated => {
+                      updated.name = associateToUpdate.name;
+                      updated.birthday = associateToUpdate.birthday;
+                      updated.address = associateToUpdate.address;
+                      updated.email = associateToUpdate.email;
+                      updated.inscription_date = associateToUpdate.inscription_date;
+                      updated.phone = associateToUpdate.phone;
+                      updated.nationality = associateToUpdate.nationality;
+                      updated.identification = associateToUpdate.identification;
+                      updated.identification_type = associateToUpdate.identification_type;
+                      updated.board_position = associateToUpdate.board_position;
+                    })
+                  );
+                  fetchAssociates();
+                  setOpenViewAssociate(false);
+                }
+              }}
+            >
+              Actualizar
+            </Button>
         </Box>
       </Modal>
     )
