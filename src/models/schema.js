@@ -69,7 +69,9 @@ export const schema = {
                 "identification_type": {
                     "name": "identification_type",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "enum": "IdentificationType"
+                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -126,6 +128,14 @@ export const schema = {
         }
     },
     "enums": {
+        "IdentificationType": {
+            "name": "IdentificationType",
+            "values": [
+                "NIE",
+                "DNI",
+                "PASAPORTE"
+            ]
+        },
         "BoardPosition": {
             "name": "BoardPosition",
             "values": [
@@ -138,5 +148,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "bb5dadfb7e47c81eab4e010732c1ec4f"
+    "version": "66216e278097e7fc963c3bbc4afdf6b5"
 };

@@ -2,6 +2,12 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const IdentificationType = {
+  "NIE": "NIE",
+  "DNI": "DNI",
+  "PASAPORTE": "PASAPORTE"
+};
+
 const BoardPosition = {
   "PRESIDENCIA": "PRESIDENCIA",
   "VICEPRESIDENCIA": "VICEPRESIDENCIA",
@@ -14,5 +20,6 @@ const { Associate } = initSchema(schema);
 
 export {
   Associate,
+  IdentificationType,
   BoardPosition
 };

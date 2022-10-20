@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Associate, BoardPosition } from '../models';
+import { Associate, BoardPosition, IdentificationType } from '../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -210,7 +210,7 @@ function AssociatesView() {
               <TextField
                 required
                 id='outlined-required'
-                label={`Identificación (${associate.identification_type})`}
+                label={`Identificación (${displayIdType(associate.identification_type)})`}
                 defaultValue={associate.identification}
                 onChange={(event) => {
                   associateToUpdate.identification = event.target.value;
@@ -351,6 +351,15 @@ function AssociatesView() {
               <TextField
                 required
                 id='outlined-required'
+                label='Tipo de Identificación'
+                onChange={(event) => {
+                  const indexOf = Object.values(IdentificationType).indexOf(event.target.value.toUpperCase() as unknown as IdentificationType);
+                  associateToCreate.identification_type = Object.keys(IdentificationType)[indexOf] as IdentificationType;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
                 label='Identificación'
                 onChange={(event) => {
                   associateToCreate.identification = event.target.value;
@@ -420,7 +429,7 @@ function AssociatesView() {
                       phone: associateToCreate.phone,
                       nationality: associateToCreate.nationality,
                       identification: associateToCreate.identification,
-                      identification_type: associateToCreate.identification_type,
+                      identification_type: associateToCreate.identification_type as IdentificationType,
                     })
                   );
                   fetchAssociates();
@@ -428,7 +437,7 @@ function AssociatesView() {
                 }
               }}
             >
-              Actualizar
+              Agregar
             </Button>
         </Box>
       </Modal>
@@ -475,5 +484,9 @@ export default AssociatesView;
 function capitalizeFirst(arg: string): string {
   const lower = arg.toLowerCase();
   return arg[0] + lower.slice(1);
+}
+
+function displayIdType(id: any): string {
+  return id === IdentificationType.PASAPORTE ? capitalizeFirst(id) : id;
 }
 

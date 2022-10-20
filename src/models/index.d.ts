@@ -1,5 +1,11 @@
 import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 
+export enum IdentificationType {
+  NIE = "NIE",
+  DNI = "DNI",
+  PASAPORTE = "PASAPORTE"
+}
+
 export enum BoardPosition {
   PRESIDENCIA = "PRESIDENCIA",
   VICEPRESIDENCIA = "VICEPRESIDENCIA",
@@ -22,7 +28,7 @@ export declare class Associate {
   readonly phone?: string | null;
   readonly nationality?: string | null;
   readonly identification?: string | null;
-  readonly identification_type?: string | null;
+  readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
   readonly board_position?: BoardPosition | keyof typeof BoardPosition | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

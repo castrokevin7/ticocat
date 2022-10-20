@@ -1,3 +1,9 @@
+enum IdentificationType {
+  NIE
+  DNI
+  PASAPORTE
+}
+
 enum BoardPosition {
   PRESIDENCIA
   VICEPRESIDENCIA
@@ -16,7 +22,7 @@ type Associate @model @auth(rules: [{allow: public}]) {
   phone: AWSPhone
   nationality: String
   identification: String
-  identification_type: String
+  identification_type: IdentificationType
   board_position: BoardPosition
 }
  
