@@ -55,6 +55,7 @@ function AssociatesView() {
     if (searchBy && searchValue) {
       QUERY_EXPRESSIONS[searchBy](searchValue)
       .then((response) => {
+        console.log(response);
         setAssociates(response);
         setState('success');
       })
@@ -65,6 +66,7 @@ function AssociatesView() {
     } else {
       DataStore.query(Associate)
       .then((response) => {
+        console.log(response);
         setAssociates(response);
         setState('success');
       })
@@ -220,6 +222,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Correo'
+                placeholder="correo@ejemplo.com"
                 defaultValue={associate.email}
                 onChange={(event) => {
                   associateToUpdate.email = event.target.value;
@@ -229,6 +232,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Teléfono'
+                placeholder="+34661121759"
                 defaultValue={associate.phone}
                 onChange={(event) => {
                   associateToUpdate.phone = event.target.value;
@@ -239,6 +243,7 @@ function AssociatesView() {
                   required
                   id='outlined-required'
                   label='Posición'
+                  disabled={true}
                   defaultValue={capitalizeFirst(associate.board_position)}
                   onChange={(event) => {
                     const indexOf = Object.values(BoardPosition).indexOf(event.target.value.toUpperCase() as unknown as BoardPosition);
@@ -250,6 +255,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Fecha de inscripción'
+                placeholder="1970-01-01"
                 defaultValue={associate.inscription_date}
                 onChange={(event) => {
                   associateToUpdate.inscription_date = event.target.value;
@@ -259,6 +265,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Fecha de nacimiento'
+                placeholder="1970-01-01"
                 defaultValue={associate.birthday}
                 onChange={(event) => {
                   associateToUpdate.birthday = event.target.value;
@@ -268,6 +275,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Dirección'
+                placeholder="Carrer de Provençals, 231, 1º, 3º"
                 defaultValue={associate.address}
                 onChange={(event) => {
                   associateToUpdate.address = event.target.value;
@@ -277,6 +285,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Nacionalidad'
+                placeholder="CRI"
                 defaultValue={associate.nationality}
                 onChange={(event) => {
                   associateToUpdate.nationality = event.target.value;
@@ -369,6 +378,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Correo'
+                placeholder="correo@ejemplo.com"
                 onChange={(event) => {
                   associateToCreate.email = event.target.value;
                 }}
@@ -377,6 +387,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Teléfono'
+                placeholder="+34661121759"
                 onChange={(event) => {
                   associateToCreate.phone = event.target.value;
                 }}
@@ -385,6 +396,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Fecha de inscripción'
+                placeholder="1970-01-01"
                 onChange={(event) => {
                   associateToCreate.inscription_date = event.target.value;
                 }}
@@ -393,6 +405,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Fecha de nacimiento'
+                placeholder="1970-01-01"
                 onChange={(event) => {
                   associateToCreate.birthday = event.target.value;
                 }}
@@ -401,6 +414,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Dirección'
+                placeholder="Carrer de Provençals, 231, 1º, 3º"
                 onChange={(event) => {
                   associateToCreate.address = event.target.value;
                 }}
@@ -409,6 +423,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Nacionalidad'
+                placeholder="CRI"
                 onChange={(event) => {
                   associateToCreate.nationality = event.target.value;
                 }}
