@@ -361,6 +361,7 @@ function AssociatesView() {
                 required
                 id='outlined-required'
                 label='Tipo de Identificación'
+                placeholder="NIE, DNI o Pasaporte"
                 onChange={(event) => {
                   const indexOf = Object.values(IdentificationType).indexOf(event.target.value.toUpperCase() as unknown as IdentificationType);
                   associateToCreate.identification_type = Object.keys(IdentificationType)[indexOf] as IdentificationType;
