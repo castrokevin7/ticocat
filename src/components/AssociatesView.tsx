@@ -212,63 +212,41 @@ function AssociatesView() {
               <TextField
                 required
                 id='outlined-required'
-                label={`Identificación (${displayIdType(associate.identification_type)})`}
-                defaultValue={associate.identification}
-                onChange={(event) => {
-                  associateToUpdate.identification = event.target.value;
-                }}
-              />
-              <TextField
-                required
-                id='outlined-required'
-                label='Correo'
-                placeholder="correo@ejemplo.com"
-                defaultValue={associate.email}
-                onChange={(event) => {
-                  associateToUpdate.email = event.target.value;
-                }}
-              />
-              <TextField
-                required
-                id='outlined-required'
-                label='Teléfono'
-                placeholder="+34661121759"
-                defaultValue={associate.phone}
-                onChange={(event) => {
-                  associateToUpdate.phone = event.target.value;
-                }}
-              />
-              {associate.board_position ?
-                <TextField
-                  required
-                  id='outlined-required'
-                  label='Posición'
-                  disabled={true}
-                  defaultValue={capitalizeFirst(associate.board_position)}
-                  onChange={(event) => {
-                    const indexOf = Object.values(BoardPosition).indexOf(event.target.value.toUpperCase() as unknown as BoardPosition);
-                    associateToUpdate.board_position = Object.keys(BoardPosition)[indexOf] as BoardPosition;
-                  }}
-                />
-                : null}
-              <TextField
-                required
-                id='outlined-required'
-                label='Fecha de inscripción'
-                placeholder="1970-01-01"
-                defaultValue={associate.inscription_date}
-                onChange={(event) => {
-                  associateToUpdate.inscription_date = event.target.value;
-                }}
-              />
-              <TextField
-                required
-                id='outlined-required'
                 label='Fecha de nacimiento'
                 placeholder="1970-01-01"
                 defaultValue={associate.birthday}
                 onChange={(event) => {
                   associateToUpdate.birthday = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Nacionalidad'
+                placeholder="CRI"
+                defaultValue={associate.nationality}
+                onChange={(event) => {
+                  associateToUpdate.nationality = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Tipo de Identificación'
+                placeholder="NIE, DNI o Pasaporte"
+                defaultValue={displayIdType(associate.identification_type)}
+                onChange={(event) => {
+                  const indexOf = Object.values(IdentificationType).indexOf(event.target.value.toUpperCase() as unknown as IdentificationType);
+                  associateToUpdate.identification_type = Object.keys(IdentificationType)[indexOf] as IdentificationType;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Identificación'
+                defaultValue={associate.identification}
+                onChange={(event) => {
+                  associateToUpdate.identification = event.target.value;
                 }}
               />
               <TextField
@@ -284,13 +262,46 @@ function AssociatesView() {
               <TextField
                 required
                 id='outlined-required'
-                label='Nacionalidad'
-                placeholder="CRI"
-                defaultValue={associate.nationality}
+                label='Teléfono'
+                placeholder="+34661121759"
+                defaultValue={associate.phone}
                 onChange={(event) => {
-                  associateToUpdate.nationality = event.target.value;
+                  associateToUpdate.phone = event.target.value;
                 }}
               />
+              <TextField
+                required
+                id='outlined-required'
+                label='Correo'
+                placeholder="correo@ejemplo.com"
+                defaultValue={associate.email}
+                onChange={(event) => {
+                  associateToUpdate.email = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Fecha de inscripción'
+                placeholder="1970-01-01"
+                defaultValue={associate.inscription_date}
+                onChange={(event) => {
+                  associateToUpdate.inscription_date = event.target.value;
+                }}
+              />
+              {associate.board_position ?
+                <TextField
+                  required
+                  id='outlined-required'
+                  label='Posición'
+                  disabled={true}
+                  defaultValue={capitalizeFirst(associate.board_position)}
+                  onChange={(event) => {
+                    const indexOf = Object.values(BoardPosition).indexOf(event.target.value.toUpperCase() as unknown as BoardPosition);
+                    associateToUpdate.board_position = Object.keys(BoardPosition)[indexOf] as BoardPosition;
+                  }}
+                />
+                : null}
             </div>
             <Button 
               sx={{float: 'right'}} 
@@ -360,6 +371,24 @@ function AssociatesView() {
               <TextField
                 required
                 id='outlined-required'
+                label='Fecha de nacimiento'
+                placeholder="1970-01-01"
+                onChange={(event) => {
+                  associateToCreate.birthday = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
+                label='Nacionalidad'
+                placeholder="CRI"
+                onChange={(event) => {
+                  associateToCreate.nationality = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
                 label='Tipo de Identificación'
                 placeholder="NIE, DNI o Pasaporte"
                 onChange={(event) => {
@@ -378,10 +407,10 @@ function AssociatesView() {
               <TextField
                 required
                 id='outlined-required'
-                label='Correo'
-                placeholder="correo@ejemplo.com"
+                label='Dirección'
+                placeholder="Carrer de Provençals, 231, 1º, 3º"
                 onChange={(event) => {
-                  associateToCreate.email = event.target.value;
+                  associateToCreate.address = event.target.value;
                 }}
               />
               <TextField
@@ -396,37 +425,19 @@ function AssociatesView() {
               <TextField
                 required
                 id='outlined-required'
+                label='Correo'
+                placeholder="correo@ejemplo.com"
+                onChange={(event) => {
+                  associateToCreate.email = event.target.value;
+                }}
+              />
+              <TextField
+                required
+                id='outlined-required'
                 label='Fecha de inscripción'
                 placeholder="1970-01-01"
                 onChange={(event) => {
                   associateToCreate.inscription_date = event.target.value;
-                }}
-              />
-              <TextField
-                required
-                id='outlined-required'
-                label='Fecha de nacimiento'
-                placeholder="1970-01-01"
-                onChange={(event) => {
-                  associateToCreate.birthday = event.target.value;
-                }}
-              />
-              <TextField
-                required
-                id='outlined-required'
-                label='Dirección'
-                placeholder="Carrer de Provençals, 231, 1º, 3º"
-                onChange={(event) => {
-                  associateToCreate.address = event.target.value;
-                }}
-              />
-              <TextField
-                required
-                id='outlined-required'
-                label='Nacionalidad'
-                placeholder="CRI"
-                onChange={(event) => {
-                  associateToCreate.nationality = event.target.value;
                 }}
               />
             </div>
