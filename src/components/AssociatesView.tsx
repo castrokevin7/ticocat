@@ -144,6 +144,7 @@ function AssociatesView() {
   const associatesResult = () => {
     return (
       <div className='associates'>
+        <h3>Socios ({associates.length})</h3>
         {associates.length === 0 ? <span>Sin resultados</span> 
          : associates.map((a: Associate, i) => {
           return (
