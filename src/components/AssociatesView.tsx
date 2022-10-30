@@ -448,15 +448,15 @@ function AssociatesView() {
                 if (window.confirm(`¿Confirma la creación del Socio: ${associateToCreate.name}?`)) {
                   await DataStore.save(
                     new Associate({
-                      name: associateToCreate.name,
-                      birthday: associateToCreate.birthday,
-                      address: associateToCreate.address,
-                      email: associateToCreate.email,
-                      inscription_date: associateToCreate.inscription_date,
-                      phone: associateToCreate.phone,
-                      nationality: associateToCreate.nationality,
-                      identification: associateToCreate.identification,
-                      identification_type: associateToCreate.identification_type as IdentificationType,
+                      name: associateToCreate.name ? associateToCreate.name : null,
+                      birthday: associateToCreate.birthday ? associateToCreate.birthday : null,
+                      address: associateToCreate.address ? associateToCreate.address : null,
+                      email: associateToCreate.email ? associateToCreate.email : null,
+                      inscription_date: associateToCreate.inscription_date ? associateToCreate.inscription_date : null,
+                      phone: associateToCreate.phone ? associateToCreate.phone : null,
+                      nationality: associateToCreate.nationality ? associateToCreate.nationality : null,
+                      identification: associateToCreate.identification ? associateToCreate.identification : null,
+                      identification_type: associateToCreate.identification_type ? associateToCreate.identification_type as IdentificationType  : null,
                     })
                   );
                   fetchAssociates();
