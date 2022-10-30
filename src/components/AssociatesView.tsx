@@ -8,6 +8,7 @@ import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, Text
 import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
 import { Search } from '@mui/icons-material';
+import DownloadForOfflineRoundedIcon from '@mui/icons-material/DownloadForOfflineRounded';
 
 type QueryExpressionsMap = { 
   [searchKey: string]: (searchValue: string) => Promise<Associate[]>; 
@@ -144,7 +145,17 @@ function AssociatesView() {
   const associatesResult = () => {
     return (
       <div className='associates'>
-        <h3>Socios ({associates.length})</h3>
+        <div className='associates-header'>
+          <a
+            className='download-associates'
+            target='_blank'
+            rel="noreferrer"
+            href={getDownloadAssociatesLink(associates)}
+          >
+            <DownloadForOfflineRoundedIcon />
+          </a>
+          <h3>Socios ({associates.length})</h3>
+        </div>
         {associates.length === 0 ? <span>Sin resultados</span> 
          : associates.map((a: Associate, i) => {
           return (
@@ -516,5 +527,14 @@ function capitalizeFirst(arg: string): string {
 
 function displayIdType(id: any): string {
   return id === IdentificationType.PASAPORTE ? capitalizeFirst(id) : id;
+}
+
+function getDownloadAssociatesLink(associates: Associate[]): string {
+  const emails = associates
+    .map((a) => a.email)
+    .join('\n');
+
+  var data = new Blob([emails], {type: 'text/plain'});
+  return window.URL.createObjectURL(data);
 }
 

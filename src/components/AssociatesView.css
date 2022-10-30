@@ -49,3 +49,17 @@
 #add-associate {
   margin-right: 10px;
 }
+
+.associates-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.download-associates {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  margin: 4px;
+  color: white;
+}
