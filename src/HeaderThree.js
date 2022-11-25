@@ -73,7 +73,7 @@ function HeaderThree() {
               </MKTypography>
               <MKTypography
                 component={Link}
-                href="asoticocat@gmail.com"
+                href="mailto:asoticocat@gmail.com"
                 target="_blank"
                 variant="body2"
               >
