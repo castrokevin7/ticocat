@@ -11,7 +11,7 @@ import MKTypography from "components/MKTypography";
 // Images
 import bgImage from "assets/images/bg-cr.jpg";
 
-function HeaderThree() {
+function Header() {
   return (
     <MKBox component="header" position="relative">
       <MKBox
@@ -87,4 +87,4 @@ function HeaderThree() {
   );
 }
 
-export default HeaderThree;
+export default Header;
