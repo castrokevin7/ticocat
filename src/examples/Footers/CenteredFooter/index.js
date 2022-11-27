@@ -63,6 +63,7 @@ function CenteredFooter({ company, links, socials, light }) {
         component={Link}
         href={social.link}
         variant="body2"
+        target="_blank"
         color={light ? "white" : "secondary"}
         fontWeight="regular"
       >
@@ -92,7 +93,7 @@ function CenteredFooter({ company, links, socials, light }) {
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <MKTypography variant="body2" color={light ? "white" : "secondary"}>
-            Copyright &copy; {year} Material by{" "}
+            Copyright &copy; {year} by{" "}
             <MKTypography
               component={Link}
               href={href}

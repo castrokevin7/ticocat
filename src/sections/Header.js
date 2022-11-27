@@ -13,7 +13,7 @@ import bgImage from "assets/images/bg-cr.jpg";
 
 function Header() {
   return (
-    <MKBox component="header" position="relative">
+    <MKBox id="#" component="header" position="relative">
       <MKBox
         display="flex"
         alignItems="center"

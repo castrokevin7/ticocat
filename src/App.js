@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from 'assets/theme';
 import Header from 'sections/Header';
 import Team from 'sections/Team';
+import Footer from 'sections/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <CssBaseline />
       <Header />
       <Team />
+      <Footer />
     </ThemeProvider>
   );
 }
