@@ -21,7 +21,7 @@ import alePhoto from "assets/images/team/ale.png";
 function Team() {
 
   return (
-    <MKBox component="section" py={6}>
+    <MKBox id="equipo" component="section" py={6}>
       <Container>
         <Grid container item flexDirection="column" xs={12} lg={7} mb={6}>
           <MKBox
