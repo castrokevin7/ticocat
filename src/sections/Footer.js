@@ -13,6 +13,7 @@ function Footer() {
   };
   const links = [
     { href: "/#", name: "Inicio" },
+    { href: "/#acerca", name: "Acerca" },
     { href: "/#equipo", name: "Equipo" },
   ];
   const socials = [

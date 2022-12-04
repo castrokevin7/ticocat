@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from 'assets/theme';
 import Navbar from 'sections/Navbar';
 import Header from 'sections/Header';
+import About from 'sections/About';
 import Team from 'sections/Team';
 import Footer from 'sections/Footer';
 
@@ -14,6 +15,7 @@ function App() {
       <CssBaseline />
       <Navbar />
       <Header />
+      <About />
       <Team />
       <Footer />
     </ThemeProvider>

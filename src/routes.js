@@ -46,6 +46,11 @@ const routes = [
     href: "#" 
   },
   {
+    name: "Acerca",
+    icon: <Icon>info_rounded</Icon>,
+    href: "#acerca" 
+  },
+  {
     name: "Equipo",
     icon: <Icon>supervisor_account</Icon>,
     href: "#equipo" 
