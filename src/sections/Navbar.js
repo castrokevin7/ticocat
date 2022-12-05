@@ -9,7 +9,7 @@ function Navbar() {
       routes={routes}
       center
       sticky
-      brand={null}
+      brand="asoticocat"
     />
   );
 }
