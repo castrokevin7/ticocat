@@ -10,6 +10,8 @@ import MKTypography from "components/MKTypography";
 // Coworking page component
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 
+import Divider from "@mui/material/Divider";
+
 function About() {
   return (
     <MKBox id="acerca" component="section" py={6} pt={12}>
@@ -20,7 +22,7 @@ function About() {
                 Contexto
             </MKTypography>
             <MKTypography variant="body2" color="text" mb={2}>
-                TICO-CAT es una asociación sin ánimos de lucro, creada en diciembre de 2019, 
+                TicoCat es una asociación sin ánimos de lucro, creada en diciembre de 2019, 
                 como respuesta a una necesidad detectada de falta de espacios y actividades para la vinculación 
                 de los y las costarricenses residentes en Cataluña, así como el contacto con su cultura y la promoción 
                 de esta dentro de la sociedad Catalana. 
@@ -35,7 +37,7 @@ function About() {
                     title="Visión"
                     description="Ser el principal punto de contacto entre Costa Rica y la comunidad de costarricenses en Cataluña a través de actividades culturales, sociales y de desarrollo económico."
                 />
-                <br />
+                <Divider sx={{ my: { xs: 2, sm: 8 }, mx: 12 }} />
                 <FilledInfoCard
                     variant="gradient"
                     color="info"
