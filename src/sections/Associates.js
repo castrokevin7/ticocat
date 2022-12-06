@@ -104,8 +104,8 @@ function Associates() {
           <MKTypography variant="h3" mt={3}>
             Nuestra Comunidad
           </MKTypography>
-          <MKTypography variant="body2" color="text">
-            Aso TicoCat busca organizar la comunidad de costarricenses residentes en Cataluña.
+          <MKTypography variant="body2" color="text" mt={1}>
+            Aso TicoCat ofrece múltiples beneficios para miembros.
           </MKTypography>
         </Grid>
         <Grid container spacing={3} alignItems="center" sx={{ mt: 6 }}>
@@ -113,15 +113,15 @@ function Associates() {
             <AssociatesCounter />
           </Grid>
           <Grid item xs={12} md={5} sx={{ mr: "auto", ml: { xs: 0, md: 6 } }}>
-            <ListItem title="1. Crear una comunidad organizada de costarricenses en Cataluña ">
+            <ListItem title="1. Comunidad organizada de costarricenses en Cataluña ">
             </ListItem>
-            <ListItem title="2. Fomentar actividades socio-culturales entre sus miembros y la comunidad">
+            <ListItem title="2. Actividades socio-culturales entre sus miembros y la comunidad">
             </ListItem>
-            <ListItem title="3. Facilitar la inserción de los costarricense dentro de la Comunidad Catalana">
+            <ListItem title="3. Inserción de los costarricense dentro de la Comunidad Catalana">
             </ListItem>
-            <ListItem title="4. Promover el acercamiento intercultural">
+            <ListItem title="4. Acercamiento intercultural">
             </ListItem>
-            <ListItem title="5. Mediar la colaboración, apoyo e información entre sus miembros">
+            <ListItem title="5. Colaboración, apoyo e información entre sus miembros">
             </ListItem>
           </Grid>
         </Grid>
