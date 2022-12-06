@@ -91,7 +91,7 @@ function Associates() {
             Nuestra Comunidad
           </MKTypography>
           <MKTypography variant="body2" color="text">
-            Aso TicoCat buscar organizar la comunidad de costarricenses residentes en Cataluña.
+            Aso TicoCat busca organizar la comunidad de costarricenses residentes en Cataluña.
           </MKTypography>
         </Grid>
         <Grid container spacing={3} alignItems="center" sx={{ mt: 6 }}>
@@ -105,9 +105,9 @@ function Associates() {
             </ListItem>
             <ListItem title="3. Facilitar la inserción de los costarricense dentro de la Comunidad Catalana">
             </ListItem>
-            <ListItem title="2. Promover el acercamiento intercultural">
+            <ListItem title="4. Promover el acercamiento intercultural">
             </ListItem>
-            <ListItem title="3. Mediar la colaboración, apoyo e información entre sus miembros">
+            <ListItem title="5. Mediar la colaboración, apoyo e información entre sus miembros">
             </ListItem>
           </Grid>
         </Grid>
