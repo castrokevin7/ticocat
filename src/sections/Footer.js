@@ -15,6 +15,7 @@ function Footer() {
     { href: "/#", name: "Inicio" },
     { href: "/#acerca", name: "Acerca" },
     { href: "/#equipo", name: "Equipo" },
+    { href: "/#socios", name: "Socios" },
   ];
   const socials = [
     {

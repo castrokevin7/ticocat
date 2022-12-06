@@ -7,6 +7,7 @@ import Navbar from 'sections/Navbar';
 import Header from 'sections/Header';
 import About from 'sections/About';
 import Team from 'sections/Team';
+import Associates from 'sections/Associates';
 import Footer from 'sections/Footer';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <About />
       <Team />
+      <Associates />
       <Footer />
     </ThemeProvider>
   );

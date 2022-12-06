@@ -55,6 +55,11 @@ const routes = [
     icon: <Icon>supervisor_account</Icon>,
     href: "#equipo" 
   },
+  {
+    name: "Socios",
+    icon: <Icon>volunteer_activism</Icon>,
+    href: "#socios" 
+  },
 ];
 
 export default routes;
