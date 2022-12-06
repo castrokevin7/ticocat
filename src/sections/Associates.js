@@ -1,3 +1,7 @@
+import React, { useState, useEffect } from 'react';
+import { DataStore } from '@aws-amplify/datastore';
+import { Associate } from 'models';
+
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -18,6 +22,16 @@ import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
 import bgImage1 from "assets/images/examples/comunidad-ticos.png";
 
 function AssociatesCounter() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+      async function fetchData() {
+        const models = await DataStore.query(Associate);
+        setCount(models.length);
+      }
+      fetchData();
+    }, []);
+
     return (
       <Card
         sx={({
@@ -36,7 +50,7 @@ function AssociatesCounter() {
       >
         <MKBox textAlign="center" pt={12} pb={3} px={3}>
           <DefaultCounterCard
-                count={59}
+                count={count}
                 title="Socios"
                 description={`¿Y vos, te animás?`}
             />
