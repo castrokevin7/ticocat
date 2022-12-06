@@ -22,7 +22,7 @@ import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
 import bgImage1 from "assets/images/examples/comunidad-ticos.png";
 
 function AssociatesCounter() {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(null);
 
     useEffect(() => {
       async function fetchData() {
