@@ -52,7 +52,7 @@ function Team() {
               <HorizontalTeamCard
                 image={jordiPhoto}
                 name="Jordi Parés"
-                position={{ color: "info", label: "Presidente" }}
+                position={{ color: "gray", label: "Presidente" }}
                 description="📍 Desde: Guadalupe⁣, San José.
                 ⏱️ Llegada a Cataluña: Octubre 2013.⁣
                 👩🏼‍💻 Ocupación: Cinematografía y Música. ⁣
@@ -66,7 +66,7 @@ function Team() {
               <HorizontalTeamCard
                 image={gloPhoto}
                 name="Gloriana Sánchez"
-                position={{ color: "info", label: "Vicepresidenta" }}
+                position={{ color: "gray", label: "Vicepresidenta" }}
                 description="📍 Desde: San Pablo, Heredia.
                 ⏱️ Llegada a Cataluña: Septiembre 2019.
                 👩🏼‍💻 Ocupación: Gestora cultural.
@@ -81,7 +81,7 @@ function Team() {
               <HorizontalTeamCard
                 image={kevinPhoto}
                 name="Kevin Castro"
-                position={{ color: "info", label: "Secretario" }}
+                position={{ color: "gray", label: "Secretario" }}
                 description="📍 Desde: Pococí, Limón.
                 ⏱️ Llegada a Cataluña: Julio 2021.
                 👩🏼‍💻 Ocupación: Ing. En Computación.
@@ -95,7 +95,7 @@ function Team() {
               <HorizontalTeamCard
                 image={raquePhoto}
                 name="Raquel Sáenz"
-                position={{ color: "info", label: "Tesorera" }}
+                position={{ color: "gray", label: "Tesorera" }}
                 description="📍 Desde: Curridabat, San José⁣.
                 ⏱️ Llegada a Cataluña: Septiembre 2016⁣.
                 👩🏼‍💻 Ocupación: Analista de Datos.
@@ -109,7 +109,7 @@ function Team() {
               <HorizontalTeamCard
                 image={alePhoto}
                 name="Alejandra Sandino"
-                position={{ color: "info", label: "Vocal" }}
+                position={{ color: "gray", label: "Vocal" }}
                 description="📍 Desde: Moravia, San José⁣.
                 ⏱️ Llegada a Cataluña: Febrero 2017⁣.
                 👩🏼‍💻 Ocupación: UX Designer⁣.
