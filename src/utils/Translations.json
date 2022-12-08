@@ -26,5 +26,29 @@
     "home_text": {
         "www.asoticocat.com": "conecta con nosotros en",
         "cat.asoticocat.com": "conect amb nosaltres a"
-    }
+    },
+    "about_context_title": {
+        "www.asoticocat.com": "Contexto",
+        "cat.asoticocat.com": "Context"
+    },
+    "about_context_description": {
+        "www.asoticocat.com": "TicoCat es una asociación sin ánimos de lucro, creada en diciembre de 2019, como respuesta a una necesidad detectada de falta de espacios y actividades para la vinculación de los y las costarricenses residentes en Cataluña, así como el contacto con su cultura y la promoción de esta dentro de la sociedad Catalana.",
+        "cat.asoticocat.com": "Context"
+    },
+    "about_vision_title": {
+        "www.asoticocat.com": "Visión",
+        "cat.asoticocat.com": "Visió"
+    },
+    "about_vision_description": {
+        "www.asoticocat.com": "Ser el principal punto de contacto entre Costa Rica y la comunidad de costarricenses en Cataluña a través de actividades culturales, sociales y de desarrollo económico.",
+        "cat.asoticocat.com": "Ser el principal punt de contacte entre Costa Rica i la comunitat de costarricencs a Catalunya mitjançant activitats culturals, socials i de desenvolupament econòmic."
+    },
+    "about_mission_title": {
+        "www.asoticocat.com": "Misión",
+        "cat.asoticocat.com": "Visió"
+    },
+    "about_mission_description": {
+        "www.asoticocat.com": "Promover el acercamiento de costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el “pura vida” que nos caracteriza.",
+        "cat.asoticocat.com": "Promoure l'acostament de costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el “pura vida” que ens caracteritza."
+    }                
 }

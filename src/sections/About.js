@@ -12,20 +12,19 @@ import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 
 import Divider from "@mui/material/Divider";
 
+import Translator from 'utils/Translator';
+
 function About() {
   return (
     <MKBox id="acerca" component="section" py={6} pt={12}>
       <Container>
         <Grid container alignItems="center">
           <Grid item xs={12} lg={5}>
-            <MKTypography variant="h3" my={1}>
-                Contexto
+            <MKTypography variant="h3" my={1}>                
+                {Translator.instance.translate("about_context_title")}
             </MKTypography>
             <MKTypography variant="body2" color="text" mb={2}>
-                TicoCat es una asociación sin ánimos de lucro, creada en diciembre de 2019, 
-                como respuesta a una necesidad detectada de falta de espacios y actividades para la vinculación 
-                de los y las costarricenses residentes en Cataluña, así como el contacto con su cultura y la promoción 
-                de esta dentro de la sociedad Catalana. 
+                {Translator.instance.translate("about_context_description")}
             </MKTypography>
           </Grid>
           <Grid item xs={12} lg={6} sx={{ ml: { lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
@@ -34,16 +33,16 @@ function About() {
                     variant="gradient"
                     color="info"
                     icon="notes_rounded"
-                    title="Visión"
-                    description="Ser el principal punto de contacto entre Costa Rica y la comunidad de costarricenses en Cataluña a través de actividades culturales, sociales y de desarrollo económico."
-                />
+                    title={Translator.instance.translate("about_vision_title")}
+                    description={Translator.instance.translate("about_vision_description")}
+                  />
                 <Divider sx={{ my: { xs: 2, sm: 8 }, mx: 12 }} />
                 <FilledInfoCard
                     variant="gradient"
                     color="info"
                     icon="notes_rounded"
-                    title="Misión"
-                    description="Promover el acercamiento de costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el “pura vida” que nos caracteriza."
+                    title={Translator.instance.translate("about_mission_title")}
+                    description={Translator.instance.translate("about_mission_description")}
                 />
             </Stack>
           </Grid>
