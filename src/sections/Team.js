@@ -50,7 +50,7 @@ function Team() {
               <TicoCatTeamMemberCard
                 image={jordiPhoto}
                 name="Jordi Parés"
-                position={{ color: "gray", label: "Presidente" }}
+                position={{ color: "dark", label: "Presidente" }}
                 from="Guadalupe⁣, San José"
                 arrivalTime="Octubre, 2013"
                 ocupation="Cinematografía y Música"
@@ -64,7 +64,7 @@ function Team() {
               <TicoCatTeamMemberCard
                 image={gloPhoto}
                 name="Gloriana Sánchez"
-                position={{ color: "gray", label: "Vicepresidenta" }}
+                position={{ color: "dark", label: "Vicepresidenta" }}
                 from="San Pablo, Heredia"
                 arrivalTime="Septiembre, 2019"
                 ocupation="Gestora Cultural"
@@ -79,7 +79,7 @@ function Team() {
               <TicoCatTeamMemberCard
                 image={kevinPhoto}
                 name="Kevin Castro"
-                position={{ color: "gray", label: "Secretario" }}
+                position={{ color: "dark", label: "Secretario" }}
                 from="Pococí, Limón"
                 arrivalTime="Julio, 2021"
                 ocupation="Ing. En Computación"
@@ -93,7 +93,7 @@ function Team() {
               <TicoCatTeamMemberCard
                 image={raquePhoto}
                 name="Raquel Sáenz"
-                position={{ color: "gray", label: "Tesorera" }}
+                position={{ color: "dark", label: "Tesorera" }}
                 from="Curridabat, San José⁣"
                 arrivalTime="Septiembre, 2016⁣"
                 ocupation="Analista de Datos"
@@ -107,7 +107,7 @@ function Team() {
               <TicoCatTeamMemberCard
                 image={alePhoto}
                 name="Alejandra Sandino"
-                position={{ color: "gray", label: "Vocal" }}
+                position={{ color: "dark", label: "Vocal" }}
                 from="Moravia, San José⁣"
                 arrivalTime="Febrero, 2017⁣"
                 ocupation="UX Designer⁣"
