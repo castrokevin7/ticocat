@@ -24,13 +24,15 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
+import Translator from 'utils/Translator';
+
 function TicoCatTeamMemberCard({ 
   image, 
   name, 
   position, 
   from,
   arrivalTime,
-  ocupation,
+  occupation,
   reasonOfParticipation,
   contributions 
 }) {
@@ -53,22 +55,22 @@ function TicoCatTeamMemberCard({
           <MKBox pt={{ xs: 1, lg: 2.5 }} pb={2.5} pr={4} pl={{ xs: 4, lg: 1 }} lineHeight={1}>
             <MKTypography variant="h5">{name}</MKTypography>
             <MKTypography variant="h6" color={position.color} mb={1}>
-              {position.label}
+              {Translator.instance.translate(position.label)}
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              📍 De: {from}.
+              📍 {Translator.instance.translate("team_from_prefix")}: {from}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              ⏱️ Llegada a Cataluña: {arrivalTime}.
+              ⏱️ {Translator.instance.translate("team_arrival_prefix")}: {arrivalTime}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              👩🏼‍💻 Ocupación: {ocupation}.
+              👩🏼‍💻 {Translator.instance.translate("team_occupation_prefix")}: {occupation}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              💡 Aportes en la ASO: {contributions}.
+              💡 {Translator.instance.translate("team_contributions_prefix")}: {contributions}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              🎟️ Motivo para entrar a la ASO: {reasonOfParticipation}.
+              🎟️ {Translator.instance.translate("team_reasons_prefix")}: {reasonOfParticipation}.
             </MKTypography>
           </MKBox>
         </Grid>
@@ -96,7 +98,7 @@ TicoCatTeamMemberCard.propTypes = {
   }).isRequired,
   from: PropTypes.string.isRequired,
   arrivalTime: PropTypes.string.isRequired,
-  ocupation: PropTypes.string.isRequired,
+  occupation: PropTypes.string.isRequired,
   reasonOfParticipation: PropTypes.string.isRequired,
   contributions: PropTypes.string.isRequired,
 };

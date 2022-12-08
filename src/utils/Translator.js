@@ -9,7 +9,7 @@ export default class Translator {
     translate(key) {
         let domain = window.location.hostname;
         if (domain === "localhost") {
-            domain = "www.asoticocat.com"
+            domain = "cat.asoticocat.com"
         }
 
         return this.data[key][domain];

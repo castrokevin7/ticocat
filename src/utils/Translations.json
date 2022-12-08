@@ -32,8 +32,8 @@
         "cat.asoticocat.com": "Context"
     },
     "about_context_description": {
-        "www.asoticocat.com": "TicoCat es una asociación sin ánimos de lucro, creada en diciembre de 2019, como respuesta a una necesidad detectada de falta de espacios y actividades para la vinculación de los y las costarricenses residentes en Cataluña, así como el contacto con su cultura y la promoción de esta dentro de la sociedad Catalana.",
-        "cat.asoticocat.com": "Context"
+        "www.asoticocat.com": "TicoCat es una asociación sin ánimo de lucro, creada en diciembre de 2019, como respuesta a una falta de espacios y actividades para la vinculación de los y las costarricenses residentes en Cataluña, así como el contacto con su cultura y la promoción de esta dentro de la sociedad Catalana.",
+        "cat.asoticocat.com": "TicoCat és una associació sense ànim de lucre, creada el desembre de 2019, com a resposta a una manca d'espais i activitats per a la vinculació dels i les costarricenses residents a Catalunya, així com el contacte amb la seva cultura i la promoció d'aquesta dins de la societat Catalana."
     },
     "about_vision_title": {
         "www.asoticocat.com": "Visión",
@@ -45,11 +45,11 @@
     },
     "about_mission_title": {
         "www.asoticocat.com": "Misión",
-        "cat.asoticocat.com": "Visió"
+        "cat.asoticocat.com": "Missió"
     },
     "about_mission_description": {
-        "www.asoticocat.com": "Promover el acercamiento de costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el “pura vida” que nos caracteriza.",
-        "cat.asoticocat.com": "Promoure l'acostament de costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el “pura vida” que ens caracteritza."
+        "www.asoticocat.com": "Promover el acercamiento de los costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el “pura vida” que nos caracteriza.",
+        "cat.asoticocat.com": "Promoure l'acostament dels costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el “pura vida” que ens caracteritza."
     },
     "associates_counter_title": {
         "www.asoticocat.com": "Socios",
@@ -57,7 +57,7 @@
     },
     "associates_counter_description": {
         "www.asoticocat.com": "¿Y vos, te animás?",
-        "cat.asoticocat.com": "¿Y tú, t'animas?"
+        "cat.asoticocat.com": "¿Y tú, t'animes?"
     },
     "associates_counter_action": {
         "www.asoticocat.com": "Quiero asociarme",
@@ -90,5 +90,53 @@
     "associates_benefit_5": {
         "www.asoticocat.com": "5. Colaboración, apoyo e información entre sus miembros",
         "cat.asoticocat.com": "5. Col·laboració, suport i informació entre els seus membres"
+    },
+    "team_from_prefix": {
+        "www.asoticocat.com": "De",
+        "cat.asoticocat.com": "De"
+    },
+    "team_arrival_prefix": {
+        "www.asoticocat.com": "Llegada a Cataluña",
+        "cat.asoticocat.com": "Arribada a Catalunya"
+    },
+    "team_occupation_prefix": {
+        "www.asoticocat.com": "Ocupación",
+        "cat.asoticocat.com": "Ocupació"
+    },
+    "team_contributions_prefix": {
+        "www.asoticocat.com": "Aportes en la Aso",
+        "cat.asoticocat.com": "Aportacions a l'Aso"
+    },
+    "team_reasons_prefix": {
+        "www.asoticocat.com": "Motivo para entrar a la Aso",
+        "cat.asoticocat.com": "Motiu per entrar a l'Aso"
+    },
+    "team_president_position": {
+        "www.asoticocat.com": "Presidencia",
+        "cat.asoticocat.com": "Presidencia"
+    },
+    "team_vicepresident_position": {
+        "www.asoticocat.com": "Vicepresidencia",
+        "cat.asoticocat.com": "Vicepresidencia"
+    },
+    "team_secretary_position": {
+        "www.asoticocat.com": "Secretariado",
+        "cat.asoticocat.com": "Secretariat"
+    },
+    "team_treasurer_position": {
+        "www.asoticocat.com": "Tesorería",
+        "cat.asoticocat.com": "Tresoreria"
+    },
+    "team_vocal_position": {
+        "www.asoticocat.com": "Vocal",
+        "cat.asoticocat.com": "Vocal"
+    },
+    "team_title": {
+        "www.asoticocat.com": "El Equipo",
+        "cat.asoticocat.com": "L'Equip"
+    },
+    "team_description": {
+        "www.asoticocat.com": "Junta directiva de la asociación período 2022-2023",
+        "cat.asoticocat.com": "Junta directiva de l'associació període 2022-2023"
     }
 }
