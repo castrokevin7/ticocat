@@ -1,6 +1,30 @@
 {
-    "header_title": {
+    "route_home": {
+        "www.asoticocat.com": "Inicio",
+        "cat.asoticocat.com": "Inici"
+    },
+    "route_about": {
+        "www.asoticocat.com": "Acerca",
+        "cat.asoticocat.com": "Sobre"
+    },
+    "route_team": {
+        "www.asoticocat.com": "Equipo",
+        "cat.asoticocat.com": "Equip"
+    },
+    "route_associates": {
+        "www.asoticocat.com": "Socios",
+        "cat.asoticocat.com": "Socis"
+    },
+    "home_main_title": {
         "www.asoticocat.com": "Asociación Cultural Costarricense Catalana",
-        "www.asoticocat.cat": "Asociació Cultural Costarricense Catalana"
+        "cat.asoticocat.com": "Asociació Cultural Costarricense Catalana"
+    },
+    "home_mini_title": {
+        "www.asoticocat.com": "La Aso TicoCat",
+        "cat.asoticocat.com": "L'Aso TicoCat"
+    },
+    "home_text": {
+        "www.asoticocat.com": "conecta con nosotros en",
+        "cat.asoticocat.com": "conect amb nosaltres a"
     }
 }

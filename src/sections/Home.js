@@ -11,9 +11,9 @@ import MKTypography from "components/MKTypography";
 // Images
 import bgImage from "assets/images/bg-cr.jpg";
 
-import Translator from 'utils/Translator'
+import Translator from 'utils/Translator';
 
-function Header() {
+function Home() {
   return (
     <MKBox id="#" component="header" position="relative">
       <MKBox
@@ -48,13 +48,13 @@ function Header() {
               })}
               mb={3}
             >
-              La Aso TicoCat
+              {Translator.instance.translate("home_mini_title")}
             </MKTypography>
             <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
-              {Translator.instance.translate("header_title")}
+              {Translator.instance.translate("home_main_title")}
             </MKTypography>
             <MKTypography variant="h6" color="white" textTransform="uppercase" mb={3}>
-              conecta con nosotros en:
+              {Translator.instance.translate("home_text")}:
             </MKTypography>
             <Stack direction="row" spacing={6} mx="auto">
               <MKTypography
@@ -89,4 +89,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Home;

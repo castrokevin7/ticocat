@@ -4,7 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from 'assets/theme';
 import Navbar from 'sections/Navbar';
-import Header from 'sections/Header';
+import Home from 'sections/Home';
 import About from 'sections/About';
 import Team from 'sections/Team';
 import Associates from 'sections/Associates';
@@ -15,7 +15,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
-      <Header />
+      <Home />
       <About />
       <Team />
       <Associates />

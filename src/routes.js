@@ -39,24 +39,26 @@ Coded by www.creative-tim.com
 // @mui material components
 import Icon from "@mui/material/Icon";
 
+import Translator from 'utils/Translator';
+
 const routes = [
   {
-    name: "Inicio",
+    name: Translator.instance.translate("route_home"),
     icon: <Icon>home</Icon>,
     href: "#" 
   },
   {
-    name: "Acerca",
+    name: Translator.instance.translate("route_about"),
     icon: <Icon>info_rounded</Icon>,
     href: "#acerca" 
   },
   {
-    name: "Equipo",
+    name: Translator.instance.translate("route_team"),
     icon: <Icon>supervisor_account</Icon>,
     href: "#equipo" 
   },
   {
-    name: "Socios",
+    name: Translator.instance.translate("route_associates"),
     icon: <Icon>volunteer_activism</Icon>,
     href: "#socios" 
   },
