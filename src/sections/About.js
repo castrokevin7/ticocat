@@ -28,7 +28,7 @@ function About() {
                 de esta dentro de la sociedad Catalana. 
             </MKTypography>
           </Grid>
-          <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
+          <Grid item xs={12} lg={6} sx={{ ml: { lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
             <Stack>
                 <FilledInfoCard
                     variant="gradient"
