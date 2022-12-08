@@ -21,6 +21,8 @@ import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
 // Images
 import bgImage1 from "assets/images/examples/comunidad-ticos.png";
 
+import Translator from 'utils/Translator';
+
 function AssociatesCounter() {
     const [count, setCount] = useState(null);
 
@@ -51,8 +53,8 @@ function AssociatesCounter() {
         <MKBox textAlign="center" pt={12} pb={3} px={3}>
           <DefaultCounterCard
                 count={count}
-                title="Socios"
-                description={`¿Y vos, te animás?`}
+                title={Translator.instance.translate("associates_counter_title")}
+                description={Translator.instance.translate("associates_counter_description")}
             />
 
           <MKButton
@@ -64,7 +66,7 @@ function AssociatesCounter() {
             size="small"
             sx={{ my: 2 }}
           >
-            Quiero asociarme
+            {Translator.instance.translate("associates_counter_action")}
           </MKButton>
         </MKBox>
       </Card>
@@ -102,10 +104,10 @@ function Associates() {
             </Icon>
           </MKBox>
           <MKTypography variant="h3" mt={3}>
-            Nuestra Comunidad
+            {Translator.instance.translate("associates_main_title")}
           </MKTypography>
           <MKTypography variant="body2" color="text" mt={1}>
-            Aso TicoCat ofrece múltiples beneficios para miembros.
+            {Translator.instance.translate("associates_main_description")}
           </MKTypography>
         </Grid>
         <Grid container spacing={3} alignItems="center" sx={{ mt: 6 }}>
@@ -113,15 +115,15 @@ function Associates() {
             <AssociatesCounter />
           </Grid>
           <Grid item xs={12} md={5} sx={{ mr: "auto", ml: { xs: 0, md: 6 } }}>
-            <ListItem title="1. Comunidad organizada de costarricenses en Cataluña ">
+            <ListItem title={Translator.instance.translate("associates_benefit_1")}>
             </ListItem>
-            <ListItem title="2. Actividades socio-culturales entre sus miembros y la comunidad">
+            <ListItem title={Translator.instance.translate("associates_benefit_2")}>
             </ListItem>
-            <ListItem title="3. Inserción de los costarricense dentro de la Comunidad Catalana">
+            <ListItem title={Translator.instance.translate("associates_benefit_3")}>
             </ListItem>
-            <ListItem title="4. Acercamiento intercultural">
+            <ListItem title={Translator.instance.translate("associates_benefit_4")}>
             </ListItem>
-            <ListItem title="5. Colaboración, apoyo e información entre sus miembros">
+            <ListItem title={Translator.instance.translate("associates_benefit_5")}>
             </ListItem>
           </Grid>
         </Grid>

@@ -50,5 +50,45 @@
     "about_mission_description": {
         "www.asoticocat.com": "Promover el acercamiento de costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el “pura vida” que nos caracteriza.",
         "cat.asoticocat.com": "Promoure l'acostament de costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el “pura vida” que ens caracteritza."
-    }                
+    },
+    "associates_counter_title": {
+        "www.asoticocat.com": "Socios",
+        "cat.asoticocat.com": "Socis"
+    },
+    "associates_counter_description": {
+        "www.asoticocat.com": "¿Y vos, te animás?",
+        "cat.asoticocat.com": "¿Y tú, t'animas?"
+    },
+    "associates_counter_action": {
+        "www.asoticocat.com": "Quiero asociarme",
+        "cat.asoticocat.com": "Vull associar-me"
+    },
+    "associates_main_title": {
+        "www.asoticocat.com": "Nuestra Comunidad",
+        "cat.asoticocat.com": "La Nostra Comunitat"
+    },
+    "associates_main_description": {
+        "www.asoticocat.com": "Aso TicoCat ofrece múltiples beneficios para miembros.",
+        "cat.asoticocat.com": "L'Aso TicoCat ofereix múltiples beneficis per a membres."
+    },
+    "associates_benefit_1": {
+        "www.asoticocat.com": "1. Comunidad organizada de costarricenses en Cataluña",
+        "cat.asoticocat.com": "1. Comunitat organitzada de costarricencs a Catalunya"
+    },
+    "associates_benefit_2": {
+        "www.asoticocat.com": "2. Actividades socio-culturales entre sus miembros y la comunidad",
+        "cat.asoticocat.com": "2. Activitats socioculturals entre els seus membres i la comunitat"
+    },
+    "associates_benefit_3": {
+        "www.asoticocat.com": "3. Inserción de los costarricenses dentro de la Comunidad Catalana",
+        "cat.asoticocat.com": "3. Inserció dels costarricencs dins de la Comunitat Catalana"
+    },
+    "associates_benefit_4": {
+        "www.asoticocat.com": "4. Acercamiento intercultural",
+        "cat.asoticocat.com": "4. Apropament intercultural"
+    },
+    "associates_benefit_5": {
+        "www.asoticocat.com": "5. Colaboración, apoyo e información entre sus miembros",
+        "cat.asoticocat.com": "5. Col·laboració, suport i informació entre els seus membres"
+    }
 }
