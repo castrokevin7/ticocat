@@ -494,37 +494,19 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           </MKBox>
           <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
-              (action.type === "internal" ? (
-                <MKButton
-                  component={Link}
-                  to={action.route}
-                  variant={
-                    action.color === "white" || action.color === "default"
-                      ? "contained"
-                      : "gradient"
-                  }
-                  color={action.color ? action.color : "info"}
-                  size="small"
-                >
-                  {action.label}
-                </MKButton>
-              ) : (
                 <MKButton
                   component="a"
                   href={action.route}
-                  target="_blank"
+                  target="_self"
                   rel="noreferrer"
-                  variant={
-                    action.color === "white" || action.color === "default"
-                      ? "contained"
-                      : "gradient"
-                  }
+                  variant="outlined"
                   color={action.color ? action.color : "info"}
                   size="small"
                 >
+                  <Icon>translate_rounded</Icon>&nbsp;
                   {action.label}
                 </MKButton>
-              ))}
+            }
           </MKBox>
           <MKBox
             display={{ xs: "inline-block", lg: "none" }}
@@ -573,7 +555,6 @@ DefaultNavbar.propTypes = {
   action: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
-      type: PropTypes.oneOf(["external", "internal"]).isRequired,
       route: PropTypes.string.isRequired,
       color: PropTypes.oneOf([
         "primary",
