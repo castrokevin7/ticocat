@@ -43,6 +43,8 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 // Otis Kit PRO base styles
 import breakpoints from "assets/theme/base/breakpoints";
 
+import logo from "assets/images/logo-asoticocat.png";
+
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
@@ -474,15 +476,18 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
           >
-            <MKTypography 
-              variant="button" 
-              fontWeight="bold" 
-              color={light ? "white" : "dark"}
+            <MKBox 
               component={MuiLink}
               href="#"
+              p={0}
             >
-              {brand}
-            </MKTypography>
+              <MKBox
+                component="img"
+                src={logo}
+                alt="AsoTicoCat Logo"
+                width="30px"
+              />
+            </MKBox>
           </MKBox>
           <MKBox
             color="inherit"
