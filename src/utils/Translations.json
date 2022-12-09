@@ -48,8 +48,8 @@
         "cat.asoticocat.com": "Missió"
     },
     "about_mission_description": {
-        "www.asoticocat.com": "Promover el acercamiento de los costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el “pura vida” que nos caracteriza.",
-        "cat.asoticocat.com": "Promoure l'acostament dels costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el “pura vida” que ens caracteritza."
+        "www.asoticocat.com": "Promover el acercamiento de los costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el Pura Vida que nos caracteriza.",
+        "cat.asoticocat.com": "Promoure l'acostament dels costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el Pura Vida que ens caracteritza."
     },
     "associates_counter_title": {
         "www.asoticocat.com": "Socios",
@@ -138,5 +138,85 @@
     "team_description": {
         "www.asoticocat.com": "Junta directiva de la asociación período 2022-2023",
         "cat.asoticocat.com": "Junta directiva de l'associació període 2022-2023"
+    },
+    "team_jordi_arribada": {
+        "www.asoticocat.com": "Octubre, 2013",
+        "cat.asoticocat.com": "Octubre, 2013"
+    },
+    "team_jordi_occupation": {
+        "www.asoticocat.com": "Cinematografía y Música",
+        "cat.asoticocat.com": "Cinematografia i Música"
+    },
+    "team_jordi_contributions": {
+        "www.asoticocat.com": "Creatividad, entusiasmo y... Comida!",
+        "cat.asoticocat.com": "Creativitat, entusiasme i... Menjar!"
+    },
+    "team_jordi_reasons": {
+        "www.asoticocat.com": "Después de, por casualidad, haber heredado el grupo de Facebook de \"Ticos en Barcelona\", me encontré con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los Ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo",
+        "cat.asoticocat.com": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, seguim unint forces per aconseguir-ho"
+    },
+    "team_glo_arribada": {
+        "www.asoticocat.com": "Septiembre, 2019",
+        "cat.asoticocat.com": "Setembre, 2019"
+    },
+    "team_glo_occupation": {
+        "www.asoticocat.com": "Gestora Cultural",
+        "cat.asoticocat.com": "Gestora Cultural"
+    },
+    "team_glo_contributions": {
+        "www.asoticocat.com": "Gestión de proyectos culturales y financiamiento",
+        "cat.asoticocat.com": "Gestió de projectes culturals i finançament"
+    },
+    "team_glo_reasons": {
+        "www.asoticocat.com": "Llegué para estudiar, quedarme un tiempo corto y conocer otras culturas. Pronto ya estaba buscando productos que me hicieran sentir un poco más cerca de casa. Estar lejos es una oportunidad de crecimiento que te transforma la vida. Pero siempre queda un pliegue en el corazón que recuerda lo que se deja atrás. Cuando supe de la Aso, y que estaban armando nuevo equipo, decidí participar. Quería apoyar con actividades que nos hicieran sentir que somos varios y que no estamos solos. Pero también mostrar a nuestros nuevos vecinos lo que significa ser Tico y compartir toda esa riqueza cultural que portamos a donde sea que vayamos",
+        "cat.asoticocat.com": "Vaig arribar per estudiar, quedar-me un temps curt i conèixer altres cultures. Aviat ja estava buscant productes que em fessin sentir una mica més a prop de casa. Estar lluny és una oportunitat de creixement que transforma la vida. Però sempre queda un plec al cor que recorda el que es deixa enrere. Quan vaig adonar-me de l'Aso, i que estaven armant nou equip, vaig decidir participar-hi. Volia donar suport a activitats que ens fessin sentir que som diversos i que no estem sols. Però també mostrar als nostres nous veïns el que significa ser Tico i compartir tota aquesta riquesa cultural que portem on sigui que anem"
+    },
+    "team_kevin_arribada": {
+        "www.asoticocat.com": "Julio, 2021",
+        "cat.asoticocat.com": "Juliol, 2021"
+    },
+    "team_kevin_occupation": {
+        "www.asoticocat.com": "Ing. En Computación",
+        "cat.asoticocat.com": "Ing. En Computació"
+    },
+    "team_kevin_contributions": {
+        "www.asoticocat.com": "Secretariado, eventos y desarrollo web",
+        "cat.asoticocat.com": "Secretariat, esdeveniments i desenvolupament web"
+    },
+    "team_kevin_reasons": {
+        "www.asoticocat.com": "Como manera de agradecimiento por estar aquí me interesa ayudar a la comunidad. Además cuando comparto con Ticos soy feliz y me teletransporto por un momento a nuestra patria que quiero y extraño tanto",
+        "cat.asoticocat.com": "Com a agraïment per ser aquí, m'interessa ajudar la comunitat. A més quan comparteixo amb Ticos sóc feliç i em teletransporto per un moment a la nostra pàtria que estimo i tant trobo a faltar"
+    },
+    "team_raque_arribada": {
+        "www.asoticocat.com": "Septiembre, 2016⁣",
+        "cat.asoticocat.com": "Setembre, 2019"
+    },
+    "team_raque_occupation": {
+        "www.asoticocat.com": "Analista de Datos",
+        "cat.asoticocat.com": "Analista de Dades"
+    },
+    "team_raque_contributions": {
+        "www.asoticocat.com": "Finanzas y eventos",
+        "cat.asoticocat.com": "Finances i esdeveniments"
+    },
+    "team_raque_reasons": {
+        "www.asoticocat.com": "Cuando llegué a Barcelona no conocía nadie y me hacía falta ese sabor Tico. Luego de un año y medio que conocí otros Ticos, además de disfrutar a lo Tico, ¡nos ayudábamos para hacer desde trámites hasta el gallo pinto! ¡Y cuando me hicieron la propuesta de formar la Aso, no dude en decir que sí! Poder ayudar a otros Ticos y unirnos en comunidad es una linda forma de mostrar al mundo lo que es ser Pura Vida",
+        "cat.asoticocat.com": "Quan vaig arribar a Barcelona no coneixia ningú i em feia falta aquest sabor Tico. Després d'un any i mig que vaig conèixer altres tics, a més de gaudir a l'estil Tico, ens ajudàvem per fer des de tràmits fins al gall pinto! I quan em van fer la proposta de formar l'Aso, no vaig dubtar a dir que sí! Poder ajudar altres tics i unir-nos en comunitat és una bonica forma de mostrar al món el que és ser Pura Vida"
+    },
+    "team_ale_arribada": {
+        "www.asoticocat.com": "Febrero, 2017⁣",
+        "cat.asoticocat.com": "Febrer, 2017"
+    },
+    "team_ale_occupation": {
+        "www.asoticocat.com": "Diseñadora UX",
+        "cat.asoticocat.com": "Dissenyadora UX"
+    },
+    "team_ale_contributions": {
+        "www.asoticocat.com": "Comunicación, patriotismo, iniciativa y diseño",
+        "cat.asoticocat.com": "Comunicació, patriotisme, iniciativa i disseny"
+    },
+    "team_ale_reasons": {
+        "www.asoticocat.com": "Recuerdo que antes de venirme a Barcelona, tenía muchas preguntas y necesitaba de alguien que me ayudara a contestarlas. En aquel momento tuve un angel que no dudo en responderlas. Cuando llegue me propuse a ser ese ángel para alguien más y desde entonces he estado trabajando para la comunidad aportando mi granito de arena. Para que otros tengan la misma posibilidad de cumplir el sueño de estudiar o vivir en Barcelona",
+        "cat.asoticocat.com": "Recordo que abans de venir a Barcelona tenia moltes preguntes i necessitava algú que m'ajudés a contestar-les. En aquell moment vaig tenir un àngel que no va dubtar a respondre-les. Quan vaig arribar em vaig proposar de ser aquest àngel per a algú més i des de llavors he estat treballant per a la comunitat aportant el meu granet de sorra. Perquè els altres tinguin la mateixa possibilitat de complir el somni d'estudiar o viure a Barcelona"
     }
 }

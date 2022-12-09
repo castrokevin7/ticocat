@@ -54,10 +54,10 @@ function Team() {
                 name="Jordi Parés"
                 position={{ color: "dark", label: "team_president_position" }}
                 from="Guadalupe⁣, San José"
-                arrivalTime="Octubre, 2013"
-                occupation="Cinematografía y Música"
-                contributions="Creatividad, entusiasmo y... Comida!"
-                reasonOfParticipation="Después de, por casualidad, haber heredado el grupo de Facebook de #ticos en #Barcelona, me topé con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo"
+                arrivalTime={Translator.instance.translate("team_jordi_arribada")}
+                occupation={Translator.instance.translate("team_jordi_occupation")}
+                contributions={Translator.instance.translate("team_jordi_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_jordi_reasons")}
               />
             </MKBox>
           </Grid>
@@ -68,11 +68,10 @@ function Team() {
                 name="Gloriana Sánchez"
                 position={{ color: "dark", label: "team_vicepresident_position" }}
                 from="San Pablo, Heredia"
-                arrivalTime="Septiembre, 2019"
-                occupation="Gestora Cultural"
-                contributions="Gestión de proyectos culturales, financiamiento"
-                reasonOfParticipation="Llegué para estudiar, quedarme un tiempo corto y conocer otras #culturas. Pronto ya estaba buscando productos que me hicieran sentir un poco más cerca de casa. Estar lejos es una oportunidad de crecimiento que te transforma la vida. Pero siempre queda un pliegue en el corazón que recuerda lo que se deja atrás.
-                Cuando supe de la #asociación, y que estaban armando nuevo equipo, decidí participar. Quería apoyar con actividades que nos hicieran sentir que somos varios y que no estamos solos. Pero también mostrar a nuestros nuevos vecinos lo que significa ser #tico y compartir toda esa riqueza cultural que portamos a donde sea que vayamos"
+                arrivalTime={Translator.instance.translate("team_glo_arribada")}
+                occupation={Translator.instance.translate("team_glo_occupation")}
+                contributions={Translator.instance.translate("team_glo_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_glo_reasons")}
               />
             </MKBox>
           </Grid>
@@ -83,10 +82,10 @@ function Team() {
                 name="Kevin Castro"
                 position={{ color: "dark", label: "team_secretary_position" }}
                 from="Pococí, Limón"
-                arrivalTime="Julio, 2021"
-                occupation="Ing. En Computación"
-                contributions="Secretariado, eventos y desarrollo web"
-                reasonOfParticipation="Como manera de agradecimiento por estar aquí me interesa ayudar a la #comunidad. Además cuando comparto con #ticos soy feliz y me teletransporto por un momento a nuestra #patria que quiero y extraño tanto"
+                arrivalTime={Translator.instance.translate("team_kevin_arribada")}
+                occupation={Translator.instance.translate("team_kevin_occupation")}
+                contributions={Translator.instance.translate("team_kevin_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_kevin_reasons")}
               />
             </MKBox>
           </Grid>
@@ -97,10 +96,10 @@ function Team() {
                 name="Raquel Sáenz"
                 position={{ color: "dark", label: "team_treasurer_position" }}
                 from="Curridabat, San José⁣"
-                arrivalTime="Septiembre, 2016⁣"
-                occupation="Analista de Datos"
-                contributions="Finanzas y eventos"
-                reasonOfParticipation="Cuando llegue a BCN no conocía nadie y me hacía falta ese sabor tico, luego de 1 año y medio que conocí otros #ticos, además de disfrutar a lo tico, nos ayudábamos para hacer desde #trámites hasta el gallo pinto! Y cuando me hicieron la propuesta de formar la ASO, no dude en decir que si! Poder ayudar a otros ticos y unirnos en comunidad es una linda forma de mostrar al mundo lo que es ser #PURAVIDA⁣"
+                arrivalTime={Translator.instance.translate("team_raque_arribada")}
+                occupation={Translator.instance.translate("team_raque_occupation")}
+                contributions={Translator.instance.translate("team_raque_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_raque_reasons")}
               />
             </MKBox>
           </Grid>
@@ -111,10 +110,10 @@ function Team() {
                 name="Alejandra Sandino"
                 position={{ color: "dark", label: "team_vocal_position" }}
                 from="Moravia, San José⁣"
-                arrivalTime="Febrero, 2017⁣"
-                occupation="UX Designer⁣"
-                contributions="Comunicación, patriotismo, iniciativa y diseño"
-                reasonOfParticipation="Recuerdo que antes de venirme a Barcelona, tenía muchas preguntas y necesitaba de alguien que me ayudara a contestarlas. En aquel momento tuve un angel que no dudo en responderlas. Cuando llegue me propuse a ser ese ángel para alguien más y desde entonces he estado trabajando para la comunidad aportando mi granito de arena. Para que otros tengan la misma posibilidad de cumplir el sueño de estudiar o vivir en Barcelona"
+                arrivalTime={Translator.instance.translate("team_ale_arribada")}
+                occupation={Translator.instance.translate("team_ale_occupation")}
+                contributions={Translator.instance.translate("team_ale_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_ale_reasons")}
               />
             </MKBox>
           </Grid>
