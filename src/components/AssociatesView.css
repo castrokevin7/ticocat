@@ -63,3 +63,8 @@
   margin: 4px;
   color: white;
 }
+
+.associates-container {
+    height: 500px;
+    overflow: auto;
+}

@@ -157,7 +157,8 @@ function AssociatesView() {
           <h3>Socios ({associates.length})</h3>
         </div>
         {associates.length === 0 ? <span>Sin resultados</span> 
-         : associates.map((a: Associate, i) => {
+         : <div className='associates-container'>
+          {associates.map((a: Associate, i) => {
           return (
             <div key={i} className='associate'>
               <span 
@@ -181,7 +182,8 @@ function AssociatesView() {
               <span>{a.name}</span>
             </div>
           )
-        })}
+        })}  
+        </div>}
       </div>
     )
   }
