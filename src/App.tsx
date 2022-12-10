@@ -4,7 +4,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import './App.css';
-import AssociatesView from './components/AssociatesView';
+import AssociatesView from './components/associates/AssociatesView';
+import EventsView from './components/events/EventsView';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,8 +53,8 @@ export default function App() {
       <h2 id='header'>Asociación Cultural Costarricense Catalana</h2>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="application tabs">
-          <Tab label="Socios" {...a11yProps(0)} />
-          <Tab label="Eventos" {...a11yProps(1)} />
+          <Tab sx={{color: 'gray'}} label="Socios" {...a11yProps(0)} />
+          <Tab sx={{color: 'gray'}} label="Eventos" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -62,6 +63,7 @@ export default function App() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <h3>Administración de Eventos</h3>
+        <EventsView/>
       </TabPanel>
     </Box>
   );

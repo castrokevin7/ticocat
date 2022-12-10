@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Associate, BoardPosition, IdentificationType } from '../models';
+import { Associate, BoardPosition, IdentificationType } from '../../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
