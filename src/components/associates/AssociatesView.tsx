@@ -213,7 +213,6 @@ function AssociatesView() {
             <CloseIcon className='close-modal' onClick={() => setOpenViewAssociate(false)} />
             <div>
               <TextField
-                required
                 id='outlined-required'
                 label='Nombre'
                 defaultValue={associate.name}
@@ -222,7 +221,6 @@ function AssociatesView() {
                 }}
               />
               <TextField
-                required
                 id='outlined-required'
                 label='Fecha de nacimiento'
                 placeholder="1970-01-01"
@@ -232,7 +230,6 @@ function AssociatesView() {
                 }}
               />
               <TextField
-                required
                 id='outlined-required'
                 label='Nacionalidad'
                 placeholder="CRI"
@@ -242,7 +239,6 @@ function AssociatesView() {
                 }}
               />
               <TextField
-                required
                 id='outlined-required'
                 label='Tipo de Identificación'
                 placeholder="NIE, DNI o Pasaporte"
@@ -253,7 +249,6 @@ function AssociatesView() {
                 }}
               />
               <TextField
-                required
                 id='outlined-required'
                 label='Identificación'
                 defaultValue={associate.identification}
@@ -262,7 +257,6 @@ function AssociatesView() {
                 }}
               />
               <TextField
-                required
                 id='outlined-required'
                 label='Dirección'
                 placeholder="Carrer de Provençals, 231, 1º, 3º"
@@ -272,7 +266,6 @@ function AssociatesView() {
                 }}
               />
               <TextField
-                required
                 id='outlined-required'
                 label='Teléfono'
                 placeholder="+34661121759"
@@ -292,7 +285,6 @@ function AssociatesView() {
                 }}
               />
               <TextField
-                required
                 id='outlined-required'
                 label='Fecha de inscripción'
                 placeholder="1970-01-01"
@@ -303,7 +295,6 @@ function AssociatesView() {
               />
               {associate.board_position ?
                 <TextField
-                  required
                   id='outlined-required'
                   label='Posición'
                   disabled={true}
