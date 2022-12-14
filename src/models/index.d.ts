@@ -16,7 +16,7 @@ export enum BoardPosition {
   VOCAL = "VOCAL"
 }
 
-type EventsMetaData = {
+type EventMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -24,34 +24,34 @@ type AssociateMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type EagerEvents = {
+type EagerEvent = {
   readonly id: string;
   readonly event_id?: string | null;
   readonly title?: string | null;
   readonly description?: string | null;
+  readonly image?: string | null;
+  readonly gallery?: (string | null)[] | null;
   readonly date?: string | null;
-  readonly main_picture?: string | null;
-  readonly pictures?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-type LazyEvents = {
+type LazyEvent = {
   readonly id: string;
   readonly event_id?: string | null;
   readonly title?: string | null;
   readonly description?: string | null;
+  readonly image?: string | null;
+  readonly gallery?: (string | null)[] | null;
   readonly date?: string | null;
-  readonly main_picture?: string | null;
-  readonly pictures?: (string | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
-export declare type Events = LazyLoading extends LazyLoadingDisabled ? EagerEvents : LazyEvents
+export declare type Event = LazyLoading extends LazyLoadingDisabled ? EagerEvent : LazyEvent
 
-export declare const Events: (new (init: ModelInit<Events, EventsMetaData>) => Events) & {
-  copyOf(source: Events, mutator: (draft: MutableModel<Events, EventsMetaData>) => MutableModel<Events, EventsMetaData> | void): Events;
+export declare const Event: (new (init: ModelInit<Event, EventMetaData>) => Event) & {
+  copyOf(source: Event, mutator: (draft: MutableModel<Event, EventMetaData>) => MutableModel<Event, EventMetaData> | void): Event;
 }
 
 type EagerAssociate = {

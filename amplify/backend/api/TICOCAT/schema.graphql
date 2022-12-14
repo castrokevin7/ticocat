@@ -1,11 +1,11 @@
-type Events @model @auth(rules: [{allow: public}]) {
+type Event @model @auth(rules: [{allow: public}]) {
   id: ID!
   event_id: String
   title: String
   description: String
+  image: AWSURL
+  gallery: [AWSURL]
   date: AWSDate
-  main_picture: AWSURL
-  pictures: [AWSURL]
 }
 
 enum IdentificationType {

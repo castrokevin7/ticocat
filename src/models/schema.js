@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Events": {
-            "name": "Events",
+        "Event": {
+            "name": "Event",
             "fields": {
                 "id": {
                     "name": "id",
@@ -31,27 +31,27 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "image": {
+                    "name": "image",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "gallery": {
+                    "name": "gallery",
+                    "isArray": true,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
                 "date": {
                     "name": "date",
                     "isArray": false,
                     "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
-                },
-                "main_picture": {
-                    "name": "main_picture",
-                    "isArray": false,
-                    "type": "AWSURL",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "pictures": {
-                    "name": "pictures",
-                    "isArray": true,
-                    "type": "AWSURL",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -244,5 +244,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "13d06db1519606d4885565b927edea3c"
+    "version": "ba6f9510831973680ca511817f605020"
 };
