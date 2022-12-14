@@ -9,24 +9,11 @@ import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
 import { Search } from '@mui/icons-material';
 import DownloadForOfflineRoundedIcon from '@mui/icons-material/DownloadForOfflineRounded';
+import { modalStyle } from '../modalStyle';
 
 type QueryExpressionsMap = { 
   [searchKey: string]: (searchValue: string) => Promise<Associate[]>; 
 }
-
-const modalStyle = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '95%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-  color: 'black',
-  '& .MuiTextField-root': { m: 1.5, width: '35ch' },
-};
 
 const useConstructor = (callBack = () => {}) => {
   const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -78,7 +65,7 @@ function AssociatesView() {
 
   const associatesSearch = () => {
     return (
-      <div className='search-associates'>
+      <div className='search-container'>
         <FormControl size='small' sx={
           {
             display: 'flex',
@@ -87,7 +74,7 @@ function AssociatesView() {
           }
         }>
           <Button 
-            id='add-associate' 
+            className='add-item' 
             variant='contained'
             onClick={() => setOpenCreateAssociate(true)}
           >
@@ -95,7 +82,7 @@ function AssociatesView() {
           </Button>
           <Select
             className='search-form-item'
-            id='search-options'
+            id='associates-search-options'
             value={searchBy}
             sx={{bgcolor: 'background.paper'}}
             onChange={(event) => {  
@@ -116,7 +103,7 @@ function AssociatesView() {
               borderRadius: 1,
             }}
             className='search-form-item' 
-            id='search-input' 
+            id='associates-search-input'
             InputProps={{
               endAdornment: (
                 <InputAdornment position='end'>
@@ -143,7 +130,7 @@ function AssociatesView() {
   const associatesResult = () => {
     return (
       <div className='associates'>
-        <div className='associates-header'>
+        <div className='items-header'>
           <a
             className='download-associates'
             target='_blank'
@@ -155,10 +142,10 @@ function AssociatesView() {
           <h3>Socios ({associates.length})</h3>
         </div>
         {associates.length === 0 ? <span>Sin resultados</span> 
-         : <div className='associates-container'>
+         : <div className='items-container'>
           {associates.map((a: Associate, i) => {
           return (
-            <div key={i} className='associate'>
+            <div key={i} className='item'>
               <span 
                 className='view-associate'
                 onClick={() => {
@@ -168,7 +155,7 @@ function AssociatesView() {
                 <PageviewIcon />
               </span>
               <span 
-                className='delete-associate'
+                className='delete-item'
                 onClick={async () => {
                   if (window.confirm(`¿Confirma la eliminación del Socio: ${a.name || a.email}?`)) {
                     await DataStore.delete(a);

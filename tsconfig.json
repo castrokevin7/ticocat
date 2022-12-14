@@ -10,7 +10,6 @@
         "skipLibCheck": true, /* skip type checking of all declaration files */
         "esModuleInterop": true, /* disables namespace imports (import * as fs from "fs") and enables CJS/AMD/UMD style imports (import fs from "fs") */
         "allowSyntheticDefaultImports": true, /* allows default imports from modules with no default export */
-        "strict": true, /* enables all strict type checking options */
         "module": "esnext", /* specifies module code generation */
         "moduleResolution": "node", /* resolves modules using Node engine */
         "isolatedModules": true, /* unconditionally emits imports for unresolved files */

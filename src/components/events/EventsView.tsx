@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { Event } from '../../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, FormControl, InputAdornment, MenuItem, Select, TextField } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Search } from '@mui/icons-material';
+import './EventsView.css';
+
+type QueryExpressionsMap = { 
+  [searchKey: string]: (searchValue: string) => Promise<Event[]>; 
+}
 
 const useConstructor = (callBack = () => {}) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -13,33 +21,132 @@ const useConstructor = (callBack = () => {}) => {
 function EventsView() {
     const [state, setState] = useState('');
     const [events, setEvents] = useState<Event[]>([]);
+    const [searchBy, setSearchBy] = useState('title');
+    const [searchValue, setSearchValue] = useState('');
+    const [openCreateEvent, setOpenCreateEvent] = React.useState(false);
+/*     const [event, setEvent] = useState<Event>();
+    const [openViewEvent, setOpenViewEvent] = React.useState(false);
+    const [openCreateEvent, setOpenCreateEvent] = React.useState(false);
+    const [galleryImages, setGalleryImages] = useState([]); */
 
-    const fetchEvents = () => {
-        setState('loading');
-        DataStore.query(Event)
+/*     const handleGalleryImagesChange = (event: any) => {
+      const newGalleryImages = [...galleryImages];
+      newGalleryImages.push(event.target.files[0]);
+      setGalleryImages(newGalleryImages);
+    }
+  
+    const handleRemoveGalleryImage = (index: any) => {
+      const newGalleryImages = [...galleryImages];
+      newGalleryImages.splice(index, 1);
+      setGalleryImages(newGalleryImages);
+    } */
+
+    const QUERY_EXPRESSIONS: QueryExpressionsMap = {
+      'title': (searchValue: string) => DataStore.query(Event, e => e.title('contains', searchValue)),
+      'date': (searchValue: string) => DataStore.query(Event, e => e.date('contains', searchValue)),
+    };
+
+    const fetchEvents = (searchBy?: string, searchValue?: string) => {
+      console.log(openCreateEvent);
+      setState('loading');
+      if (searchBy && searchValue) {
+        QUERY_EXPRESSIONS[searchBy](searchValue)
         .then((response) => {
-            setEvents(response);
-            setState('success');
+          setEvents(response);
+          setState('success');
         })
         .catch((err) => {
-            console.error('Error:', err);
-            setState('error');
+          console.error('Error:', err);
+          setState('error');
         });
+      } else {
+        DataStore.query(Event)
+        .then((response) => {
+          setEvents(response);
+          setState('success');
+        })
+        .catch((err) => {
+          console.error('Error:', err);
+          setState('error');
+        });
+      }
     }
+
+    const eventsSearch = () => {
+      return (
+        <div className='search-container'>
+          <FormControl size='small' sx={
+            {
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'left',
+            }
+          }>
+            <Button 
+              className='add-item' 
+              variant='contained'
+              onClick={() => setOpenCreateEvent(true)}
+            >
+              <AddIcon />
+            </Button>
+            <Select
+              className='search-form-item'
+              id='events-search-options'
+              value={searchBy}
+              sx={{bgcolor: 'background.paper'}}
+              onChange={(event) => {  
+                if (searchValue) {
+                  fetchEvents(event.target.value, searchValue);
+                }
+                setSearchBy(event.target.value);
+              }}
+            >
+              <MenuItem value='title'>Título</MenuItem>
+              <MenuItem value='date'>Fecha</MenuItem>
+            </Select>
+            <TextField        
+              sx={{
+                bgcolor: 'background.paper',
+                borderRadius: 1,
+              }}
+              className='search-form-item' 
+              id='events-search-input'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <Search />
+                  </InputAdornment>
+                ),
+              }} 
+              variant='outlined' 
+              size='small'
+              onChange={(event) => {
+                if (event.target.value) {
+                  fetchEvents(searchBy, event.target.value);
+                } else {
+                  fetchEvents();
+                }
+                setSearchValue(event.target.value);
+              }}
+            />
+          </FormControl>
+        </div>
+      )
+    };
 
     const eventsResult = () => {
         return (
           <div className='events'>
-            <div className='events-header'>
+            <div className='items-header'>
               <h3>Eventos ({events.length})</h3>
             </div>
             {events.length === 0 ? <span>Sin resultados</span> 
-             : <div className='events-container'>
+             : <div className='items-container'>
               {events.map((e: Event, i) => {
               return (
-                <div key={i} className='event'>
+                <div key={i} className='itemm'>
                   <span 
-                    className='delete-event'
+                    className='delete-item'
                     onClick={async () => {
                       if (window.confirm(`¿Confirma la eliminación del Evento: ${e.title}?`)) {
                         await DataStore.delete(e);
@@ -70,6 +177,7 @@ function EventsView() {
         );
     return (
         <div>
+            {eventsSearch()}
             {state === 'loading' ? (
             <div style={{display: 'flex'}}>
                 <div className="spinner-container">
