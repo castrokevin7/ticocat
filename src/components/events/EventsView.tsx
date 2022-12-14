@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Event } from '../../models';
 import { DataStore } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Button, FormControl, InputAdornment, MenuItem, Select, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { Search } from '@mui/icons-material';
 import './EventsView.css';
+import { modalStyle } from '../modalStyle';
+import CloseIcon from '@mui/icons-material/Close';
 
 type QueryExpressionsMap = { 
   [searchKey: string]: (searchValue: string) => Promise<Event[]>; 
@@ -144,7 +146,7 @@ function EventsView() {
              : <div className='items-container'>
               {events.map((e: Event, i) => {
               return (
-                <div key={i} className='itemm'>
+                <div key={i} className='item'>
                   <span 
                     className='delete-item'
                     onClick={async () => {
@@ -164,6 +166,77 @@ function EventsView() {
         )
     }
 
+    const eventCreate = () => {
+      let eventToCreate = {
+        title: '',
+        description: '',
+        date: ''
+      };
+      return (
+        <Modal
+          open={openCreateEvent}
+          onClose={() => setOpenCreateEvent(false)}
+        >
+          <Box 
+            component='form'
+            noValidate
+            autoComplete='off'       
+            sx={modalStyle}
+            >
+              <CloseIcon className='close-modal' onClick={() => setOpenCreateEvent(false)} />
+              <div>
+                <TextField
+                  id='outlined-required'
+                  label='Título'
+                  onChange={(event) => {
+                    eventToCreate.title = event.target.value;
+                  }}
+                />
+                <TextField
+                  id='outlined-required'
+                  label='Descripción'
+                  onChange={(event) => {
+                    eventToCreate.description = event.target.value;
+                  }}          
+                  multiline
+                  rows={4}
+                />
+                <TextField
+                  id='outlined-required'
+                  label='Fecha'
+                  onChange={(event) => {
+                    eventToCreate.date = event.target.value;
+                  }}
+                />
+              </div>
+              <Button 
+                sx={{float: 'right'}} 
+                variant='outlined'
+                onClick={async () => {
+                  if (window.confirm(`¿Confirma la creación del Evento: ${eventToCreate.title}?`)) {
+                    try {
+                      await DataStore.save(
+                        new Event({
+                          title: eventToCreate.title ? eventToCreate.title : null,
+                          description: eventToCreate.description ? eventToCreate.description : null,
+                          date: eventToCreate.date ? eventToCreate.date : null
+                        })
+                      );
+                      fetchEvents();
+                      setOpenCreateEvent(false);                  
+                    } catch (e) {
+                      alert(e); 
+                    }
+                  }
+                }}
+              >
+                Agregar
+              </Button>
+          </Box>
+        </Modal>
+      )
+    }
+
     useConstructor(() => {
         setState('loading');
         fetchEvents();
@@ -177,19 +250,22 @@ function EventsView() {
         );
     return (
         <div>
-            {eventsSearch()}
-            {state === 'loading' ? (
-            <div style={{display: 'flex'}}>
-                <div className="spinner-container">
-                <div className="loading-spinner" />
-                </div>
-                Cargando
-            </div>
-            ) : (
             <div>
-                {eventsResult()}
+              {eventsSearch()}
+              {state === 'loading' ? (
+              <div style={{display: 'flex'}}>
+                  <div className="spinner-container">
+                  <div className="loading-spinner" />
+                  </div>
+                  Cargando
+              </div>
+              ) : (
+              <div>
+                  {eventsResult()}
+              </div>
+              )}
             </div>
-            )}
+            { eventCreate() }
         </div>
     );
 }
