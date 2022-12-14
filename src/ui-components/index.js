@@ -33,3 +33,7 @@ export { default as HeroLayout1 } from "./HeroLayout1";
 export { default as HeroLayout4 } from "./HeroLayout4";
 export { default as TallCard } from "./TallCard";
 export { default as studioTheme } from "./studioTheme";
+export { default as EventsCreateForm } from "./EventsCreateForm";
+export { default as EventsUpdateForm } from "./EventsUpdateForm";
+export { default as AssociateCreateForm } from "./AssociateCreateForm";
+export { default as AssociateUpdateForm } from "./AssociateUpdateForm";

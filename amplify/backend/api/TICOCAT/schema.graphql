@@ -1,3 +1,13 @@
+type Events @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  event_id: String
+  title: String
+  description: String
+  date: AWSDate
+  main_picture: AWSURL
+  pictures: [AWSURL]
+}
+
 enum IdentificationType {
   NIE
   DNI

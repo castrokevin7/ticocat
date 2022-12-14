@@ -5,7 +5,7 @@
  **************************************************************************/
 
 /* eslint-disable */
-import React from "react";
+import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Badge, Flex, Text } from "@aws-amplify/ui-react";
 export default function ItemCard(props) {
@@ -15,6 +15,9 @@ export default function ItemCard(props) {
       gap="16px"
       direction="column"
       width="320px"
+      height="unset"
+      justifyContent="flex-start"
+      alignItems="flex-start"
       position="relative"
       padding="16px 16px 16px 16px"
       backgroundColor="rgba(255,255,255,1)"
@@ -22,10 +25,12 @@ export default function ItemCard(props) {
       {...getOverrideProps(overrides, "ItemCard")}
     >
       <Badge
-        display="flex"
+        display="block"
         gap="0"
-        width="fit-content"
-        justifyContent="flex-start"
+        direction="column"
+        width="unset"
+        height="unset"
+        justifyContent="unset"
         alignItems="center"
         shrink="0"
         position="relative"
@@ -34,10 +39,9 @@ export default function ItemCard(props) {
         fontSize="12px"
         lineHeight="12px"
         fontFamily="Inter"
-        fontWeight="400"
+        fontWeight="600"
         color="rgba(13,26,38,1)"
         textAlign="left"
-        direction="column"
         size="small"
         variation="default"
         children="New"
@@ -45,11 +49,13 @@ export default function ItemCard(props) {
       ></Badge>
       <Flex
         gap="0"
+        direction="row"
+        width="unset"
+        height="unset"
         justifyContent="space-between"
         alignItems="center"
         shrink="0"
         alignSelf="stretch"
-        objectFit="cover"
         position="relative"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 417")}
@@ -57,8 +63,11 @@ export default function ItemCard(props) {
         <Flex
           gap="0"
           direction="column"
+          width="unset"
+          height="unset"
+          justifyContent="flex-start"
+          alignItems="flex-start"
           shrink="0"
-          height="44px"
           position="relative"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Product Title")}
@@ -70,9 +79,13 @@ export default function ItemCard(props) {
             color="rgba(13,26,38,1)"
             lineHeight="20px"
             textAlign="left"
-            display="flex"
+            display="block"
             direction="column"
-            justifyContent="flex-start"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
@@ -87,10 +100,14 @@ export default function ItemCard(props) {
             color="rgba(48,64,80,1)"
             lineHeight="24px"
             textAlign="left"
-            display="flex"
+            display="block"
             direction="column"
-            justifyContent="flex-start"
+            justifyContent="unset"
             letterSpacing="0.01px"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
@@ -102,13 +119,17 @@ export default function ItemCard(props) {
         <Text
           fontFamily="Inter"
           fontSize="16px"
-          fontWeight="400"
+          fontWeight="800"
           color="rgba(13,26,38,1)"
           lineHeight="20px"
           textAlign="right"
-          display="flex"
+          display="block"
           direction="column"
-          justifyContent="flex-start"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
           shrink="0"
           position="relative"
           padding="0px 0px 0px 0px"
