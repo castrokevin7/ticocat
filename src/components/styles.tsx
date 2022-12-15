@@ -23,17 +23,16 @@ export const modalStyle = {
 export const formStyle = {
     display: 'flex',
     flexDirection: 'column',
-    margin: '20px',
-    '& .MuiTextField-root': { 
+    '& *': { 
         width: '100%', 
-        margin: '10px 0 0 10px' 
+    },
+    '& .MuiTextField-root': { 
+        margin: '5px 0 5px 0' 
     },    
     '& .MuiInput-root': { 
-        width: '100%', 
-        margin: '10px 0 20px 10px' 
+        margin: '5px 0 20px 0' 
     },    
     '& .MuiButton-root': { 
-        width: '100%', 
-        margin: '20px 10px 0 10px'  
+        margin: '20px 0 5px 0'  
     },
 };
