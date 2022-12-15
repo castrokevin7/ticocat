@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Event } from '../../models';
-import { DataStore } from 'aws-amplify';
+import { DataStore, Storage } from 'aws-amplify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -21,6 +21,8 @@ const useConstructor = (callBack = () => {}) => {
     callBack();
     setHasBeenCalled(true);
 }
+
+const bucketUrl = "https://ticocat-storage-e14d41c6140509-staging.s3.eu-west-3.amazonaws.com/public"
 
 function EventsView() {
     const [state, setState] = useState('');
@@ -177,6 +179,14 @@ function EventsView() {
       ));
     }
 
+    const uploadImage = async (location, image) => {
+      try {
+        await Storage.put(location, image);
+      } catch (error) {
+        console.log("Error uploading file: ", error);
+      }
+    }
+
     const eventCreate = () => {
       let eventToCreate = {
         event_id: uuidv4(),
@@ -217,7 +227,7 @@ function EventsView() {
                     eventToCreate.description = event.target.value;
                   }}          
                   multiline
-                  rows={4}
+                  rows={8}
                 />
                 <TextField
                   id='outlined-required'
@@ -236,13 +246,20 @@ function EventsView() {
                   size='large'
                   onClick={async () => {
                     if (window.confirm(`¿Confirma la creación del Evento: ${eventToCreate.title}?`)) {
+                      const mainImageLocation = `${eventToCreate.event_id}/main/${mainImage.name}`;
+                      const gallery = galleryImages.map((image) => {
+                        const imageLocation = `${eventToCreate.event_id}/gallery/${image.name}`;
+                        return `${bucketUrl}/${imageLocation}`;
+                      });
                       try {
                         await DataStore.save(
                           new Event({
                             event_id: eventToCreate.event_id,
                             title: eventToCreate.title ? eventToCreate.title : null,
                             description: eventToCreate.description ? eventToCreate.description : null,
-                            date: eventToCreate.date ? eventToCreate.date : null
+                            date: eventToCreate.date ? eventToCreate.date : null,
+                            image: `${bucketUrl}/${mainImageLocation}`,
+                            gallery
                           })
                         );
                         fetchEvents();
@@ -250,6 +267,12 @@ function EventsView() {
                       } catch (e) {
                         alert(e); 
                       }
+
+                      uploadImage(mainImageLocation, mainImage);
+                      galleryImages.forEach((image) => {
+                        const imageLocation = `${eventToCreate.event_id}/gallery/${image.name}`;
+                        uploadImage(imageLocation, image);
+                      });
                     }
                   }}
                 >
@@ -279,7 +302,7 @@ function EventsView() {
               {state === 'loading' ? (
               <div style={{display: 'flex'}}>
                   <div className="spinner-container">
-                  <div className="loading-spinner" />
+                    <div className="loading-spinner" />
                   </div>
                   Cargando
               </div>
