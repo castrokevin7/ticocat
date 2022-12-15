@@ -6,8 +6,9 @@ import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, Text
 import AddIcon from '@mui/icons-material/Add';
 import { Search } from '@mui/icons-material';
 import './EventsView.css';
-import { modalStyle } from '../modalStyle';
+import { modalStyle, formStyle } from '../styles';
 import CloseIcon from '@mui/icons-material/Close';
+import {v4 as uuidv4} from 'uuid';
 
 type QueryExpressionsMap = { 
   [searchKey: string]: (searchValue: string) => Promise<Event[]>; 
@@ -26,12 +27,9 @@ function EventsView() {
     const [searchBy, setSearchBy] = useState('title');
     const [searchValue, setSearchValue] = useState('');
     const [openCreateEvent, setOpenCreateEvent] = React.useState(false);
-/*     const [event, setEvent] = useState<Event>();
-    const [openViewEvent, setOpenViewEvent] = React.useState(false);
-    const [openCreateEvent, setOpenCreateEvent] = React.useState(false);
-    const [galleryImages, setGalleryImages] = useState([]); */
+    const [galleryImages, setGalleryImages] = useState([]);
 
-/*     const handleGalleryImagesChange = (event: any) => {
+    const handleGalleryImagesChange = (event: any) => {
       const newGalleryImages = [...galleryImages];
       newGalleryImages.push(event.target.files[0]);
       setGalleryImages(newGalleryImages);
@@ -41,7 +39,7 @@ function EventsView() {
       const newGalleryImages = [...galleryImages];
       newGalleryImages.splice(index, 1);
       setGalleryImages(newGalleryImages);
-    } */
+    }
 
     const QUERY_EXPRESSIONS: QueryExpressionsMap = {
       'title': (searchValue: string) => DataStore.query(Event, e => e.title('contains', searchValue)),
@@ -49,7 +47,6 @@ function EventsView() {
     };
 
     const fetchEvents = (searchBy?: string, searchValue?: string) => {
-      console.log(openCreateEvent);
       setState('loading');
       if (searchBy && searchValue) {
         QUERY_EXPRESSIONS[searchBy](searchValue)
@@ -87,7 +84,10 @@ function EventsView() {
             <Button 
               className='add-item' 
               variant='contained'
-              onClick={() => setOpenCreateEvent(true)}
+              onClick={() => {
+                setGalleryImages([]);
+                setOpenCreateEvent(true);
+              }}
             >
               <AddIcon />
             </Button>
@@ -168,6 +168,7 @@ function EventsView() {
 
     const eventCreate = () => {
       let eventToCreate = {
+        event_id: uuidv4(),
         title: '',
         description: '',
         date: ''
@@ -177,14 +178,14 @@ function EventsView() {
           open={openCreateEvent}
           onClose={() => setOpenCreateEvent(false)}
         >
-          <Box 
-            component='form'
-            noValidate
-            autoComplete='off'       
+          <Box       
             sx={modalStyle}
             >
               <CloseIcon className='close-modal' onClick={() => setOpenCreateEvent(false)} />
-              <div>
+              <Box
+                component="form"
+                sx={formStyle}
+              >
                 <TextField
                   id='outlined-required'
                   label='Título'
@@ -208,7 +209,18 @@ function EventsView() {
                     eventToCreate.date = event.target.value;
                   }}
                 />
-              </div>
+                <div>
+                  <input type="file" onChange={handleGalleryImagesChange} />
+                  <div>
+                    {galleryImages.map((image, index) => (
+                      <div key={index}>
+                        <img src={URL.createObjectURL(image)} alt={image.name} />
+                        <button onClick={() => handleRemoveGalleryImage(index)}>Remove</button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Box>
               <Button 
                 sx={{float: 'right'}} 
                 variant='outlined'
@@ -217,6 +229,7 @@ function EventsView() {
                     try {
                       await DataStore.save(
                         new Event({
+                          event_id: eventToCreate.event_id,
                           title: eventToCreate.title ? eventToCreate.title : null,
                           description: eventToCreate.description ? eventToCreate.description : null,
                           date: eventToCreate.date ? eventToCreate.date : null

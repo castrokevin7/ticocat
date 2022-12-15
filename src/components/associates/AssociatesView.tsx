@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Associate, BoardPosition, IdentificationType } from '../../models';
 import { DataStore } from 'aws-amplify';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import './AssociatesView.css';
 import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
@@ -9,7 +8,7 @@ import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
 import { Search } from '@mui/icons-material';
 import DownloadForOfflineRoundedIcon from '@mui/icons-material/DownloadForOfflineRounded';
-import { modalStyle } from '../modalStyle';
+import { modalStyle, formStyle } from '../styles';
 
 type QueryExpressionsMap = { 
   [searchKey: string]: (searchValue: string) => Promise<Associate[]>; 
@@ -154,16 +153,6 @@ function AssociatesView() {
                 }}>
                 <PageviewIcon />
               </span>
-              <span 
-                className='delete-item'
-                onClick={async () => {
-                  if (window.confirm(`¿Confirma la eliminación del Socio: ${a.name || a.email}?`)) {
-                    await DataStore.delete(a);
-                    fetchAssociates();
-                  }
-                }}>
-                <DeleteIcon />
-              </span>
               <span>{a.name || a.email}</span>
             </div>
           )
@@ -191,14 +180,14 @@ function AssociatesView() {
         open={openViewAssociate}
         onClose={() => setOpenViewAssociate(false)}
       >
-        <Box 
-          component='form'
-          noValidate
-          autoComplete='off'    
+        <Box   
           sx={modalStyle}
           >
             <CloseIcon className='close-modal' onClick={() => setOpenViewAssociate(false)} />
-            <div>
+            <Box
+                component="form"
+                sx={formStyle}
+              >
               <TextField
                 id='outlined-required'
                 label='Nombre'
@@ -292,41 +281,54 @@ function AssociatesView() {
                   }}
                 />
                 : null}
-            </div>
-            <Button 
-              sx={{float: 'right'}} 
-              variant='outlined'
-              onClick={async () => {
-                if (!associate.email) {
-                  alert("Error: Correo es requerido.")
-                } else {
-                  if (window.confirm(`¿Confirma la actualización del Socio: ${associate.name || associate.email}?`)) {
-                    try {
-                      await DataStore.save(
-                        Associate.copyOf(associate, updated => {
-                          updated.name = associateToUpdate.name;
-                          updated.birthday = associateToUpdate.birthday;
-                          updated.address = associateToUpdate.address;
-                          updated.email = associateToUpdate.email;
-                          updated.inscription_date = associateToUpdate.inscription_date;
-                          updated.phone = associateToUpdate.phone;
-                          updated.nationality = associateToUpdate.nationality;
-                          updated.identification = associateToUpdate.identification;
-                          updated.identification_type = associateToUpdate.identification_type;
-                          updated.board_position = associateToUpdate.board_position;
-                        })
-                      );
-                      fetchAssociates();
-                      setOpenViewAssociate(false);
-                    } catch (e) {
-                      alert(e); 
+              <Button  
+                variant='contained'
+                size='large'
+                onClick={async () => {
+                  if (!associate.email) {
+                    alert("Error: Correo es requerido.")
+                  } else {
+                    if (window.confirm(`¿Confirma la actualización del Socio: ${associate.name || associate.email}?`)) {
+                      try {
+                        await DataStore.save(
+                          Associate.copyOf(associate, updated => {
+                            updated.name = associateToUpdate.name;
+                            updated.birthday = associateToUpdate.birthday;
+                            updated.address = associateToUpdate.address;
+                            updated.email = associateToUpdate.email;
+                            updated.inscription_date = associateToUpdate.inscription_date;
+                            updated.phone = associateToUpdate.phone;
+                            updated.nationality = associateToUpdate.nationality;
+                            updated.identification = associateToUpdate.identification;
+                            updated.identification_type = associateToUpdate.identification_type;
+                            updated.board_position = associateToUpdate.board_position;
+                          })
+                        );
+                        fetchAssociates();
+                        setOpenViewAssociate(false);
+                      } catch (e) {
+                        alert(e); 
+                      }
                     }
                   }
-                }
-              }}
-            >
-              Actualizar
-            </Button>
+                }}
+              >
+                Actualizar
+              </Button>
+              <Button  
+                variant='contained'
+                size='large'
+                color='error'
+                onClick={async () => {
+                  if (window.confirm(`¿Confirma la eliminación del Socio: ${associate.name || associate.email}?`)) {
+                    await DataStore.delete(associate);
+                    fetchAssociates();
+                  }
+                }}
+              >
+                Eliminar
+              </Button>
+            </Box>
         </Box>
       </Modal>
     )
@@ -351,13 +353,15 @@ function AssociatesView() {
         onClose={() => setOpenCreateAssociate(false)}
       >
         <Box 
-          component='form'
-          noValidate
-          autoComplete='off'    
           sx={modalStyle}
           >
             <CloseIcon className='close-modal' onClick={() => setOpenCreateAssociate(false)} />
-            <div>
+            <Box
+                component='form'
+                noValidate
+                autoComplete='off'    
+                sx={formStyle}
+              >
               <TextField
                 id='outlined-required'
                 label='Nombre'
@@ -430,40 +434,40 @@ function AssociatesView() {
                   associateToCreate.inscription_date = event.target.value;
                 }}
               />
-            </div>
-            <Button 
-              sx={{float: 'right'}} 
-              variant='outlined'
-              onClick={async () => {
-                if (!associateToCreate.email) {
-                  alert("Error: Correo es requerido.")
-                } else {
-                  if (window.confirm(`¿Confirma la creación del Socio: ${associateToCreate.name || associateToCreate.email}?`)) {
-                    try {
-                      await DataStore.save(
-                        new Associate({
-                          name: associateToCreate.name ? associateToCreate.name : null,
-                          birthday: associateToCreate.birthday ? associateToCreate.birthday : null,
-                          address: associateToCreate.address ? associateToCreate.address : null,
-                          email: associateToCreate.email,
-                          inscription_date: associateToCreate.inscription_date ? associateToCreate.inscription_date : null,
-                          phone: associateToCreate.phone ? associateToCreate.phone : null,
-                          nationality: associateToCreate.nationality ? associateToCreate.nationality : null,
-                          identification: associateToCreate.identification ? associateToCreate.identification : null,
-                          identification_type: associateToCreate.identification_type ? associateToCreate.identification_type as IdentificationType  : null,
-                        })
-                      );
-                      fetchAssociates();
-                      setOpenCreateAssociate(false);                  
-                    } catch (e) {
-                      alert(e); 
+              <Button  
+                variant='contained'
+                size='large'
+                onClick={async () => {
+                  if (!associateToCreate.email) {
+                    alert("Error: Correo es requerido.")
+                  } else {
+                    if (window.confirm(`¿Confirma la creación del Socio: ${associateToCreate.name || associateToCreate.email}?`)) {
+                      try {
+                        await DataStore.save(
+                          new Associate({
+                            name: associateToCreate.name ? associateToCreate.name : null,
+                            birthday: associateToCreate.birthday ? associateToCreate.birthday : null,
+                            address: associateToCreate.address ? associateToCreate.address : null,
+                            email: associateToCreate.email,
+                            inscription_date: associateToCreate.inscription_date ? associateToCreate.inscription_date : null,
+                            phone: associateToCreate.phone ? associateToCreate.phone : null,
+                            nationality: associateToCreate.nationality ? associateToCreate.nationality : null,
+                            identification: associateToCreate.identification ? associateToCreate.identification : null,
+                            identification_type: associateToCreate.identification_type ? associateToCreate.identification_type as IdentificationType  : null,
+                          })
+                        );
+                        fetchAssociates();
+                        setOpenCreateAssociate(false);                  
+                      } catch (e) {
+                        alert(e); 
+                      }
                     }
                   }
-                }
-              }}
-            >
-              Agregar
-            </Button>
+                }}
+              >
+                Agregar
+              </Button>
+            </Box>
         </Box>
       </Modal>
     )
