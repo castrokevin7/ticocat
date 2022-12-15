@@ -9,6 +9,7 @@ import './EventsView.css';
 import { modalStyle, formStyle } from '../styles';
 import CloseIcon from '@mui/icons-material/Close';
 import {v4 as uuidv4} from 'uuid';
+import Input from '@mui/material/Input';
 
 type QueryExpressionsMap = { 
   [searchKey: string]: (searchValue: string) => Promise<Event[]>; 
@@ -189,6 +190,7 @@ function EventsView() {
                 <TextField
                   id='outlined-required'
                   label='Título'
+                  placeholder='Lorem ipsum dolor sit amet'
                   onChange={(event) => {
                     eventToCreate.title = event.target.value;
                   }}
@@ -196,6 +198,7 @@ function EventsView() {
                 <TextField
                   id='outlined-required'
                   label='Descripción'
+                  placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                   onChange={(event) => {
                     eventToCreate.description = event.target.value;
                   }}          
@@ -204,47 +207,46 @@ function EventsView() {
                 />
                 <TextField
                   id='outlined-required'
-                  label='Fecha'
+                  label='Fecha'        
+                  placeholder="1970-01-01"
                   onChange={(event) => {
                     eventToCreate.date = event.target.value;
                   }}
                 />
+                <Input type="file" onChange={handleGalleryImagesChange} />
                 <div>
-                  <input type="file" onChange={handleGalleryImagesChange} />
-                  <div>
-                    {galleryImages.map((image, index) => (
-                      <div key={index}>
-                        <img src={URL.createObjectURL(image)} alt={image.name} />
-                        <button onClick={() => handleRemoveGalleryImage(index)}>Remove</button>
-                      </div>
-                    ))}
-                  </div>
+                  {galleryImages.map((image, index) => (
+                    <div key={index}>
+                      <img src={URL.createObjectURL(image)} alt={image.name} />
+                      <button onClick={() => handleRemoveGalleryImage(index)}>Remove</button>
+                    </div>
+                  ))}
                 </div>
-              </Box>
-              <Button 
-                sx={{float: 'right'}} 
-                variant='outlined'
-                onClick={async () => {
-                  if (window.confirm(`¿Confirma la creación del Evento: ${eventToCreate.title}?`)) {
-                    try {
-                      await DataStore.save(
-                        new Event({
-                          event_id: eventToCreate.event_id,
-                          title: eventToCreate.title ? eventToCreate.title : null,
-                          description: eventToCreate.description ? eventToCreate.description : null,
-                          date: eventToCreate.date ? eventToCreate.date : null
-                        })
-                      );
-                      fetchEvents();
-                      setOpenCreateEvent(false);                  
-                    } catch (e) {
-                      alert(e); 
+                <Button 
+                  variant='contained'
+                  size='large'
+                  onClick={async () => {
+                    if (window.confirm(`¿Confirma la creación del Evento: ${eventToCreate.title}?`)) {
+                      try {
+                        await DataStore.save(
+                          new Event({
+                            event_id: eventToCreate.event_id,
+                            title: eventToCreate.title ? eventToCreate.title : null,
+                            description: eventToCreate.description ? eventToCreate.description : null,
+                            date: eventToCreate.date ? eventToCreate.date : null
+                          })
+                        );
+                        fetchEvents();
+                        setOpenCreateEvent(false);                  
+                      } catch (e) {
+                        alert(e); 
+                      }
                     }
-                  }
-                }}
-              >
-                Agregar
-              </Button>
+                  }}
+                >
+                  Agregar
+                </Button>
+              </Box>
           </Box>
         </Modal>
       )

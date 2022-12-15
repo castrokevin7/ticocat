@@ -316,7 +316,7 @@ function AssociatesView() {
                 Actualizar
               </Button>
               <Button  
-                variant='contained'
+                variant='outlined'
                 size='large'
                 color='error'
                 onClick={async () => {
