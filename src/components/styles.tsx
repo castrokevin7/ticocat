@@ -30,7 +30,7 @@ export const formStyle = {
     },    
     '& .MuiInput-root': { 
         width: '100%', 
-        margin: '40px 0 20px 10px' 
+        margin: '10px 0 20px 10px' 
     },    
     '& .MuiButton-root': { 
         width: '100%', 

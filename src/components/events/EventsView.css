@@ -5,3 +5,45 @@
 #events-search-input {
     width: 250px;
 }
+
+.gallery-thumbnails-container {
+    border: 1px solid gray;    
+    height: 200px;
+    margin: 30px 0 0 10px;
+    padding: 10px;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+}
+
+.empty-gallery-container {
+    border: 1px solid gray;    
+    height: 200px;
+    margin: 30px 0 0 10px;
+    padding: 10px;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-image-container {
+    border: 1px solid gray;    
+    height: 200px;
+    margin: 30px 0 0 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-gallery-label {
+    color: gray;
+}
+
+.gallery-image-thumbnail {
+    width: 100px;
+    height: 100%;
+    margin: 2px;
+}

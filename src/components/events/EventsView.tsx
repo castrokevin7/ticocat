@@ -29,17 +29,16 @@ function EventsView() {
     const [searchValue, setSearchValue] = useState('');
     const [openCreateEvent, setOpenCreateEvent] = React.useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
+    const [mainImage, setMainImage] = useState(null);
 
     const handleGalleryImagesChange = (event: any) => {
       const newGalleryImages = [...galleryImages];
       newGalleryImages.push(event.target.files[0]);
       setGalleryImages(newGalleryImages);
     }
-  
-    const handleRemoveGalleryImage = (index: any) => {
-      const newGalleryImages = [...galleryImages];
-      newGalleryImages.splice(index, 1);
-      setGalleryImages(newGalleryImages);
+
+    const handleMainImageChange = (event: any) => {
+      setMainImage(event.target.files[0]);
     }
 
     const QUERY_EXPRESSIONS: QueryExpressionsMap = {
@@ -87,6 +86,7 @@ function EventsView() {
               variant='contained'
               onClick={() => {
                 setGalleryImages([]);
+                setMainImage(null);
                 setOpenCreateEvent(true);
               }}
             >
@@ -167,6 +167,16 @@ function EventsView() {
         )
     }
 
+    const getMainImage = () => {
+      return <img className='gallery-image-thumbnail' src={URL.createObjectURL(mainImage)} alt={mainImage.name} />;
+    }
+
+    const getGalleryImages = () => {
+      return galleryImages.map((image, index) => (
+        <img className='gallery-image-thumbnail' key={index} src={URL.createObjectURL(image)} alt={image.name} />
+      ));
+    }
+
     const eventCreate = () => {
       let eventToCreate = {
         event_id: uuidv4(),
@@ -195,6 +205,10 @@ function EventsView() {
                     eventToCreate.title = event.target.value;
                   }}
                 />
+                <div className='main-image-container'> 
+                  { mainImage === null ? <span className="empty-gallery-label">Sin imagen de portada</span> : getMainImage()}
+                </div>
+                <Input type="file" onChange={handleMainImageChange} />
                 <TextField
                   id='outlined-required'
                   label='Descripción'
@@ -213,15 +227,10 @@ function EventsView() {
                     eventToCreate.date = event.target.value;
                   }}
                 />
-                <Input type="file" onChange={handleGalleryImagesChange} />
-                <div>
-                  {galleryImages.map((image, index) => (
-                    <div key={index}>
-                      <img src={URL.createObjectURL(image)} alt={image.name} />
-                      <button onClick={() => handleRemoveGalleryImage(index)}>Remove</button>
-                    </div>
-                  ))}
+                <div className={galleryImages.length === 0 ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
+                  { galleryImages.length === 0 ? <span className="empty-gallery-label">Sin galería</span> : getGalleryImages()}
                 </div>
+                <Input type="file" onChange={handleGalleryImagesChange} />
                 <Button 
                   variant='contained'
                   size='large'
