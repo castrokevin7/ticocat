@@ -87,17 +87,16 @@ function EventsView() {
       }
     }
 
-    const loadEventGalleryUrls = (e: Event) => {
+    const loadEventGalleryUrls = async (e: Event) => {
       setEventGalleryUrls([]);
       if (e.gallery) {
-        e.gallery.forEach((image) => {  
-          Storage.get(image)
-          .then((response) => {
-            const newEventGalleryUrls = [...eventGalleryUrls];
-            newEventGalleryUrls.push(response);
-            setEventGalleryUrls(newEventGalleryUrls);
-          });
-        });  
+        const signedUrls = await Promise.all(
+          e.gallery.map(async image => {
+            const signedUrl = await Storage.get(image);
+            return signedUrl;
+          })
+        );
+        setEventGalleryUrls(signedUrls);
       }
     }
 
