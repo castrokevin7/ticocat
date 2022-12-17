@@ -8,7 +8,7 @@ import { Search } from '@mui/icons-material';
 import './EventsView.css';
 import { modalStyle, formStyle } from '../styles';
 import CloseIcon from '@mui/icons-material/Close';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import Input from '@mui/material/Input';
 
 type QueryExpressionsMap = { 
@@ -217,6 +217,7 @@ function EventsView() {
                       updated.title = event.target.value;
                       updated.description = eventToUpdate.description;
                       updated.date = eventToUpdate.date;
+                      updated.contact = eventToUpdate.contact;
                     }));
                   }}
                 />
@@ -233,9 +234,10 @@ function EventsView() {
                   onChange={(event) => {
                     setEvent(Event.copyOf(eventToUpdate, updated => {
                       updated.event_id = eventToUpdate.event_id;
-                      updated.title = event.target.value;
-                      updated.description = eventToUpdate.description;
+                      updated.title = eventToUpdate.description;
+                      updated.description = event.target.value;
                       updated.date = eventToUpdate.date;
+                      updated.contact = eventToUpdate.contact;
                     }));
                   }}          
                   multiline
@@ -249,9 +251,25 @@ function EventsView() {
                   onChange={(event) => {
                     setEvent(Event.copyOf(eventToUpdate, updated => {
                       updated.event_id = eventToUpdate.event_id;
-                      updated.title = event.target.value;
+                      updated.title = eventToUpdate.date;
+                      updated.description = eventToUpdate.description;
+                      updated.date = event.target.value;
+                      updated.contact = eventToUpdate.contact;
+                    }));
+                  }}
+                />
+                <TextField
+                  id='outlined-required'
+                  label='Contacto'        
+                  placeholder="+34602040598"
+                  defaultValue={eventToUpdate.contact}
+                  onChange={(event) => {
+                    setEvent(Event.copyOf(eventToUpdate, updated => {
+                      updated.event_id = eventToUpdate.event_id;
+                      updated.title = eventToUpdate.title;
                       updated.description = eventToUpdate.description;
                       updated.date = eventToUpdate.date;
+                      updated.contact = event.target.value;
                     }));
                   }}
                 />
@@ -273,6 +291,7 @@ function EventsView() {
                             updated.title = eventToUpdate.title;
                             updated.description = eventToUpdate.description;
                             updated.date = eventToUpdate.date;
+                            updated.contact = eventToUpdate.contact;
                             updated.image = eventToUpdate.image;
                             updated.gallery = eventToUpdate.gallery;
                           })
@@ -330,6 +349,7 @@ function EventsView() {
                       updated.title = event.target.value;
                       updated.description = eventToCreate.description;
                       updated.date = eventToCreate.date;
+                      updated.contact = eventToCreate.contact;
                     }))
                   }}
                 />
@@ -346,6 +366,7 @@ function EventsView() {
                       updated.title = eventToCreate.title;
                       updated.description = event.target.value;
                       updated.date = eventToCreate.date;
+                      updated.contact = eventToCreate.contact;
                     }))
                   }}          
                   multiline
@@ -361,6 +382,21 @@ function EventsView() {
                       updated.title = eventToCreate.title;
                       updated.description = eventToCreate.description;
                       updated.date = event.target.value;
+                      updated.contact = eventToCreate.contact;
+                    }))                  
+                  }}     
+                />           
+                <TextField
+                  id='outlined-required'
+                  label='Contacto'        
+                  placeholder="+34602040598"
+                  onChange={(event) => {
+                    setEvent(Event.copyOf(eventToCreate, updated => {
+                      updated.event_id = eventToCreate.event_id;
+                      updated.title = eventToCreate.title;
+                      updated.description = eventToCreate.description;
+                      updated.date = eventToCreate.date;
+                      updated.contact = event.target.value;
                     }))                  
                   }}
                 />
@@ -383,6 +419,7 @@ function EventsView() {
                             title: eventToCreate.title ? eventToCreate.title : null,
                             description: eventToCreate.description ? eventToCreate.description : null,
                             date: eventToCreate.date ? eventToCreate.date : null,
+                            contact: eventToCreate.contact ? eventToCreate.contact : null,
                             image: mainImage ? `${eventToCreate.event_id}/main/${mainImage.name}` : null,
                             gallery: galleryImages ? galleryImages.map((image) => `${eventToCreate.event_id}/gallery/${image.name}`) : null,
                           })

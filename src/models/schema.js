@@ -53,6 +53,27 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "location": {
+                    "name": "location",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "contact": {
+                    "name": "contact",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "location_url": {
+                    "name": "location_url",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -244,5 +265,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "dfd65c054aa462fe71049169df0397d7"
+    "version": "b6ec4d3bb3b75abb9a07fba49b54406f"
 };

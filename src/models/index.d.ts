@@ -32,6 +32,9 @@ type EagerEvent = {
   readonly image?: string | null;
   readonly gallery?: (string | null)[] | null;
   readonly date?: string | null;
+  readonly location?: string | null;
+  readonly contact?: string | null;
+  readonly location_url?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -44,6 +47,9 @@ type LazyEvent = {
   readonly image?: string | null;
   readonly gallery?: (string | null)[] | null;
   readonly date?: string | null;
+  readonly location?: string | null;
+  readonly contact?: string | null;
+  readonly location_url?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

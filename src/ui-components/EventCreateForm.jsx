@@ -172,6 +172,9 @@ export default function EventCreateForm(props) {
     image: undefined,
     gallery: [],
     date: undefined,
+    location: undefined,
+    contact: undefined,
+    location_url: undefined,
   };
   const [event_id, setEvent_id] = React.useState(initialValues.event_id);
   const [title, setTitle] = React.useState(initialValues.title);
@@ -181,6 +184,11 @@ export default function EventCreateForm(props) {
   const [image, setImage] = React.useState(initialValues.image);
   const [gallery, setGallery] = React.useState(initialValues.gallery);
   const [date, setDate] = React.useState(initialValues.date);
+  const [location, setLocation] = React.useState(initialValues.location);
+  const [contact, setContact] = React.useState(initialValues.contact);
+  const [location_url, setLocation_url] = React.useState(
+    initialValues.location_url
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setEvent_id(initialValues.event_id);
@@ -190,6 +198,9 @@ export default function EventCreateForm(props) {
     setGallery(initialValues.gallery);
     setCurrentGalleryValue(undefined);
     setDate(initialValues.date);
+    setLocation(initialValues.location);
+    setContact(initialValues.contact);
+    setLocation_url(initialValues.location_url);
     setErrors({});
   };
   const [currentGalleryValue, setCurrentGalleryValue] =
@@ -202,6 +213,9 @@ export default function EventCreateForm(props) {
     image: [],
     gallery: [],
     date: [],
+    location: [],
+    contact: [],
+    location_url: [{ type: "URL" }],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -227,6 +241,9 @@ export default function EventCreateForm(props) {
           image,
           gallery,
           date,
+          location,
+          contact,
+          location_url: location_url || undefined,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -281,6 +298,9 @@ export default function EventCreateForm(props) {
               image,
               gallery,
               date,
+              location,
+              contact,
+              location_url,
             };
             const result = onChange(modelFields);
             value = result?.event_id ?? value;
@@ -309,6 +329,9 @@ export default function EventCreateForm(props) {
               image,
               gallery,
               date,
+              location,
+              contact,
+              location_url,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -337,6 +360,9 @@ export default function EventCreateForm(props) {
               image,
               gallery,
               date,
+              location,
+              contact,
+              location_url,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -365,6 +391,9 @@ export default function EventCreateForm(props) {
               image: value,
               gallery,
               date,
+              location,
+              contact,
+              location_url,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -390,6 +419,9 @@ export default function EventCreateForm(props) {
               image,
               gallery: values,
               date,
+              location,
+              contact,
+              location_url,
             };
             const result = onChange(modelFields);
             values = result?.gallery ?? values;
@@ -439,6 +471,9 @@ export default function EventCreateForm(props) {
               image,
               gallery,
               date: value,
+              location,
+              contact,
+              location_url,
             };
             const result = onChange(modelFields);
             value = result?.date ?? value;
@@ -452,6 +487,99 @@ export default function EventCreateForm(props) {
         errorMessage={errors.date?.errorMessage}
         hasError={errors.date?.hasError}
         {...getOverrideProps(overrides, "date")}
+      ></TextField>
+      <TextField
+        label="Location"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              event_id,
+              title,
+              description,
+              image,
+              gallery,
+              date,
+              location: value,
+              contact,
+              location_url,
+            };
+            const result = onChange(modelFields);
+            value = result?.location ?? value;
+          }
+          if (errors.location?.hasError) {
+            runValidationTasks("location", value);
+          }
+          setLocation(value);
+        }}
+        onBlur={() => runValidationTasks("location", location)}
+        errorMessage={errors.location?.errorMessage}
+        hasError={errors.location?.hasError}
+        {...getOverrideProps(overrides, "location")}
+      ></TextField>
+      <TextField
+        label="Contact"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              event_id,
+              title,
+              description,
+              image,
+              gallery,
+              date,
+              location,
+              contact: value,
+              location_url,
+            };
+            const result = onChange(modelFields);
+            value = result?.contact ?? value;
+          }
+          if (errors.contact?.hasError) {
+            runValidationTasks("contact", value);
+          }
+          setContact(value);
+        }}
+        onBlur={() => runValidationTasks("contact", contact)}
+        errorMessage={errors.contact?.errorMessage}
+        hasError={errors.contact?.hasError}
+        {...getOverrideProps(overrides, "contact")}
+      ></TextField>
+      <TextField
+        label="Location url"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              event_id,
+              title,
+              description,
+              image,
+              gallery,
+              date,
+              location,
+              contact,
+              location_url: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.location_url ?? value;
+          }
+          if (errors.location_url?.hasError) {
+            runValidationTasks("location_url", value);
+          }
+          setLocation_url(value);
+        }}
+        onBlur={() => runValidationTasks("location_url", location_url)}
+        errorMessage={errors.location_url?.errorMessage}
+        hasError={errors.location_url?.hasError}
+        {...getOverrideProps(overrides, "location_url")}
       ></TextField>
       <Flex
         justifyContent="space-between"
