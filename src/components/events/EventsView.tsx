@@ -34,8 +34,8 @@ function EventsView() {
     const [openViewEvent, setOpenViewEvent] = React.useState(false);
     
     /* Event properties */
-    const [eventMainImageUrl, setEventMainImageUrl] = useState<string>();
-    const [eventGalleryUrls, setEventGalleryUrls] = useState<string[]>();
+    const [eventMainImageUrl, setEventMainImageUrl] = useState<string>(null);
+    const [eventGalleryUrls, setEventGalleryUrls] = useState<string[]>([]);
 
     const handleGalleryImagesChange = (event: any) => {
       const newGalleryImages = [...galleryImages];
@@ -78,21 +78,27 @@ function EventsView() {
     }
 
     const loadEventMainImageUrl = (e: Event) => {
-      Storage.get(e.image)
-      .then((response) => {
-        setEventMainImageUrl(response);
-      });  
+      setEventMainImageUrl(null);
+      if (e.image) {
+        Storage.get(e.image)
+        .then((response) => {
+          setEventMainImageUrl(response);
+        });  
+      }
     }
 
     const loadEventGalleryUrls = (e: Event) => {
-      e.gallery.forEach((image) => {  
-        Storage.get(image)
-        .then((response) => {
-          const newEventGalleryUrls = [...eventGalleryUrls];
-          newEventGalleryUrls.push(response);
-          setEventGalleryUrls(newEventGalleryUrls);
-        });
-      })  
+      setEventGalleryUrls([]);
+      if (e.gallery) {
+        e.gallery.forEach((image) => {  
+          Storage.get(image)
+          .then((response) => {
+            const newEventGalleryUrls = [...eventGalleryUrls];
+            newEventGalleryUrls.push(response);
+            setEventGalleryUrls(newEventGalleryUrls);
+          });
+        });  
+      }
     }
 
     const eventsSearch = () => {
@@ -111,6 +117,9 @@ function EventsView() {
               onClick={() => {
                 setGalleryImages([]);
                 setMainImage(null);
+                setEvent(new Event({
+                  event_id: uuidv4()
+                }))
                 setOpenCreateEvent(true);
               }}
             >
@@ -161,36 +170,6 @@ function EventsView() {
       )
     };
 
-    const eventsResult = () => {
-        return (
-          <div className='events'>
-            <div className='items-header'>
-              <h3>Eventos ({events.length})</h3>
-            </div>
-            {events.length === 0 ? <span>Sin resultados</span> 
-             : <div className='items-container'>
-              {events.map((e: Event, i) => {
-              return (
-                <div key={i} className='item'>
-                <span 
-                  className='view-item'
-                  onClick={() => {
-                    setEvent(e);
-                    loadEventMainImageUrl(e);
-                    loadEventGalleryUrls(e);
-                    setOpenViewEvent(true);
-                  }}>
-                  <PageviewIcon />
-                </span>
-                  <span>{e.title}</span>
-                </div>
-              )
-            })}  
-            </div>}
-          </div>
-        )
-    }
-
     const getMainImage = () => {
       return <img className='gallery-image-thumbnail' src={URL.createObjectURL(mainImage)} alt={mainImage.name} />;
     }
@@ -215,12 +194,7 @@ function EventsView() {
       }
     }
 
-    const eventDisplay = (event: Event) => {
-      let eventToUpdate = {
-        title: event.title,
-        description: event.description,
-        date: event.date,
-      };
+    const eventView = (eventToUpdate: Event) => {
       return (
         <Modal
           open={openViewEvent}
@@ -237,9 +211,14 @@ function EventsView() {
                 <TextField
                   id='outlined-required'
                   label='Título'
-                  defaultValue={event.title}
+                  defaultValue={eventToUpdate.title}
                   onChange={(event) => {
-                    eventToUpdate.title = event.target.value;
+                    setEvent(Event.copyOf(eventToUpdate, updated => {
+                      updated.event_id = eventToUpdate.event_id;
+                      updated.title = event.target.value;
+                      updated.description = eventToUpdate.description;
+                      updated.date = eventToUpdate.date;
+                    }));
                   }}
                 />
                 <div className='main-image-container'> 
@@ -251,9 +230,14 @@ function EventsView() {
                 <TextField
                   id='outlined-required'
                   label='Descripción'
-                  defaultValue={event.description}
+                  defaultValue={eventToUpdate.description}
                   onChange={(event) => {
-                    eventToUpdate.description = event.target.value;
+                    setEvent(Event.copyOf(eventToUpdate, updated => {
+                      updated.event_id = eventToUpdate.event_id;
+                      updated.title = event.target.value;
+                      updated.description = eventToUpdate.description;
+                      updated.date = eventToUpdate.date;
+                    }));
                   }}          
                   multiline
                   rows={8}
@@ -262,13 +246,18 @@ function EventsView() {
                   id='outlined-required'
                   label='Fecha'        
                   placeholder='1970-01-01'
-                  defaultValue={event.date}
+                  defaultValue={eventToUpdate.date}
                   onChange={(event) => {
-                    eventToUpdate.date = event.target.value;
+                    setEvent(Event.copyOf(eventToUpdate, updated => {
+                      updated.event_id = eventToUpdate.event_id;
+                      updated.title = event.target.value;
+                      updated.description = eventToUpdate.description;
+                      updated.date = eventToUpdate.date;
+                    }));
                   }}
                 />
-                <div className={event.gallery === null ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
-                  { event.gallery === null ? 
+                <div className={eventGalleryUrls.length === 0 ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
+                  { eventGalleryUrls.length === 0 ? 
                     <span className='empty-gallery-label'>Sin galería</span> 
                     : getEventImages() 
                   }
@@ -280,13 +269,13 @@ function EventsView() {
                     if (window.confirm(`¿Confirma la actualización del Evento: ${eventToUpdate.title}?`)) {
                       try {
                         await DataStore.save(
-                          Event.copyOf(event, updated => {
-                            updated.event_id = event.event_id;
+                          Event.copyOf(eventToUpdate, updated => {
+                            updated.event_id = eventToUpdate.event_id;
                             updated.title = eventToUpdate.title;
                             updated.description = eventToUpdate.description;
                             updated.date = eventToUpdate.date;
-                            updated.image = event.image;
-                            updated.gallery = event.gallery;
+                            updated.image = eventToUpdate.image;
+                            updated.gallery = eventToUpdate.gallery;
                           })
                         );
                         fetchEvents();
@@ -297,15 +286,15 @@ function EventsView() {
                     }
                   }}
                 >
-                  Agregar
+                  Actualizar
                 </Button>
                 <Button  
                   variant='outlined'
                   size='large'
                   color='error'
                   onClick={async () => {
-                    if (window.confirm(`¿Confirma la eliminación del Evento: ${event.title}?`)) {
-                      await DataStore.delete(event);
+                    if (window.confirm(`¿Confirma la eliminación del Evento: ${eventToUpdate.title}?`)) {
+                      await DataStore.delete(eventToUpdate);
                       fetchEvents();
                       setOpenViewEvent(false);
                     }
@@ -319,13 +308,7 @@ function EventsView() {
       )
     }
 
-    const eventCreate = () => {
-      let eventToCreate = {
-        event_id: uuidv4(),
-        title: '',
-        description: '',
-        date: ''
-      };
+    const eventCreate = (eventToCreate: Event) => {
       return (
         <Modal
           open={openCreateEvent}
@@ -343,7 +326,12 @@ function EventsView() {
                   id='outlined-required'
                   label='Título'
                   onChange={(event) => {
-                    eventToCreate.title = event.target.value;
+                    setEvent(Event.copyOf(eventToCreate, updated => {
+                      updated.event_id = eventToCreate.event_id;
+                      updated.title = event.target.value;
+                      updated.description = eventToCreate.description;
+                      updated.date = eventToCreate.date;
+                    }))
                   }}
                 />
                 <div className='main-image-container'> 
@@ -354,7 +342,12 @@ function EventsView() {
                   id='outlined-required'
                   label='Descripción'
                   onChange={(event) => {
-                    eventToCreate.description = event.target.value;
+                    setEvent(Event.copyOf(eventToCreate, updated => {
+                      updated.event_id = eventToCreate.event_id;
+                      updated.title = eventToCreate.title;
+                      updated.description = event.target.value;
+                      updated.date = eventToCreate.date;
+                    }))
                   }}          
                   multiline
                   rows={8}
@@ -364,11 +357,19 @@ function EventsView() {
                   label='Fecha'        
                   placeholder="1970-01-01"
                   onChange={(event) => {
-                    eventToCreate.date = event.target.value;
+                    setEvent(Event.copyOf(eventToCreate, updated => {
+                      updated.event_id = eventToCreate.event_id;
+                      updated.title = eventToCreate.title;
+                      updated.description = eventToCreate.description;
+                      updated.date = event.target.value;
+                    }))                  
                   }}
                 />
                 <div className={galleryImages.length === 0 ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
-                  { galleryImages.length === 0 ? <span className="empty-gallery-label">Sin galería</span> : getGalleryImages()}
+                  { galleryImages.length === 0 ? 
+                    <span className="empty-gallery-label">Sin galería</span> : 
+                    getGalleryImages()
+                  }
                 </div>
                 <Input type="file" onChange={handleGalleryImagesChange} />
                 <Button 
@@ -383,8 +384,8 @@ function EventsView() {
                             title: eventToCreate.title ? eventToCreate.title : null,
                             description: eventToCreate.description ? eventToCreate.description : null,
                             date: eventToCreate.date ? eventToCreate.date : null,
-                            image: `${eventToCreate.event_id}/main/${mainImage.name}`,
-                            gallery: galleryImages.map((image) => `${eventToCreate.event_id}/gallery/${image.name}`),
+                            image: mainImage ? `${eventToCreate.event_id}/main/${mainImage.name}` : null,
+                            gallery: galleryImages ? galleryImages.map((image) => `${eventToCreate.event_id}/gallery/${image.name}`) : null,
                           })
                         );
                         fetchEvents();
@@ -393,11 +394,16 @@ function EventsView() {
                         alert(e); 
                       }
 
-                      uploadImage(`${eventToCreate.event_id}/main/${mainImage.name}`, mainImage);
-                      galleryImages.forEach((image) => {
-                        const imageLocation = `${eventToCreate.event_id}/gallery/${image.name}`;
-                        uploadImage(imageLocation, image);
-                      });
+                      if (mainImage) {
+                        uploadImage(`${eventToCreate.event_id}/main/${mainImage.name}`, mainImage);
+                      }
+
+                      if (galleryImages) {
+                        galleryImages.forEach((image) => {
+                          const imageLocation = `${eventToCreate.event_id}/gallery/${image.name}`;
+                          uploadImage(imageLocation, image);
+                        });
+                      }
                     }
                   }}
                 >
@@ -406,6 +412,36 @@ function EventsView() {
               </Box>
           </Box>
         </Modal>
+      )
+    }
+
+    const eventsResult = () => {
+      return (
+        <div className='events'>
+          <div className='items-header'>
+            <h3>Eventos ({events.length})</h3>
+          </div>
+          {events.length === 0 ? <span>Sin resultados</span> 
+           : <div className='items-container'>
+            {events.map((e: Event, i) => {
+            return (
+              <div key={i} className='item'>
+              <span 
+                className='view-item'
+                onClick={() => {
+                  setEvent(e);
+                  loadEventMainImageUrl(e);
+                  loadEventGalleryUrls(e);
+                  setOpenViewEvent(true);
+                }}>
+                <PageviewIcon />
+              </span>
+                <span>{e.title}</span>
+              </div>
+            )
+          })}  
+          </div>}
+        </div>
       )
     }
 
@@ -437,8 +473,8 @@ function EventsView() {
               </div>
               )}
             </div>
-            { event ? eventDisplay(event) : null }
-            { eventCreate() }
+            { event && openViewEvent ? eventView(event) : null }
+            { event && openCreateEvent ? eventCreate(event) : null }
         </div>
     );
 }
