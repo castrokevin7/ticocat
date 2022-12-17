@@ -22,8 +22,6 @@ const useConstructor = (callBack = () => {}) => {
     setHasBeenCalled(true);
 }
 
-const bucketUrl = "https://ticocat-storage-e14d41c6140509-staging.s3.eu-west-3.amazonaws.com/public"
-
 function EventsView() {
     const [state, setState] = useState('');
     const [events, setEvents] = useState<Event[]>([]);
@@ -34,6 +32,10 @@ function EventsView() {
     const [mainImage, setMainImage] = useState(null);
     const [event, setEvent] = useState<Event>();
     const [openViewEvent, setOpenViewEvent] = React.useState(false);
+    
+    /* Event properties */
+    const [eventMainImageUrl, setEventMainImageUrl] = useState<string>();
+    const [eventGalleryUrls, setEventGalleryUrls] = useState<string[]>();
 
     const handleGalleryImagesChange = (event: any) => {
       const newGalleryImages = [...galleryImages];
@@ -73,6 +75,24 @@ function EventsView() {
           setState('error');
         });
       }
+    }
+
+    const loadEventMainImageUrl = (e: Event) => {
+      Storage.get(e.image)
+      .then((response) => {
+        setEventMainImageUrl(response);
+      });  
+    }
+
+    const loadEventGalleryUrls = (e: Event) => {
+      e.gallery.forEach((image) => {  
+        Storage.get(image)
+        .then((response) => {
+          const newEventGalleryUrls = [...eventGalleryUrls];
+          newEventGalleryUrls.push(response);
+          setEventGalleryUrls(newEventGalleryUrls);
+        });
+      })  
     }
 
     const eventsSearch = () => {
@@ -156,6 +176,8 @@ function EventsView() {
                   className='view-item'
                   onClick={() => {
                     setEvent(e);
+                    loadEventMainImageUrl(e);
+                    loadEventGalleryUrls(e);
                     setOpenViewEvent(true);
                   }}>
                   <PageviewIcon />
@@ -179,8 +201,8 @@ function EventsView() {
       ));
     }
 
-    const getEventImages = (e: Event) => {
-      return e.gallery.map((imageUrl, index) => (
+    const getEventImages = () => {
+      return eventGalleryUrls.map((imageUrl, index) => (
         <img className='gallery-image-thumbnail' key={index} src={imageUrl} alt={`Gallery ${index + 1}`} />
       ));
     }
@@ -221,11 +243,11 @@ function EventsView() {
                   }}
                 />
                 <div className='main-image-container'> 
-                  { event.image === null ? 
+                  { eventMainImageUrl === null ? 
                     <span className='empty-gallery-label'>Sin imagen de portada</span> : 
-                    <img className='gallery-image-thumbnail' src={event.image} alt={event.title} /> }
+                    <img className='gallery-image-thumbnail' src={eventMainImageUrl} alt={event.title} /> 
+                  }
                 </div>
-                <Input type='file' onChange={handleMainImageChange} />
                 <TextField
                   id='outlined-required'
                   label='Descripción'
@@ -248,9 +270,9 @@ function EventsView() {
                 <div className={event.gallery === null ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
                   { event.gallery === null ? 
                     <span className='empty-gallery-label'>Sin galería</span> 
-                    : getEventImages(event) }
+                    : getEventImages() 
+                  }
                 </div>
-                <Input type='file' onChange={handleGalleryImagesChange} />
                 <Button 
                   variant='contained'
                   size='large'
@@ -354,11 +376,6 @@ function EventsView() {
                   size='large'
                   onClick={async () => {
                     if (window.confirm(`¿Confirma la creación del Evento: ${eventToCreate.title}?`)) {
-                      const mainImageLocation = `${eventToCreate.event_id}/main/${mainImage.name}`;
-                      const gallery = galleryImages.map((image) => {
-                        const imageLocation = `${eventToCreate.event_id}/gallery/${image.name}`;
-                        return `${bucketUrl}/${imageLocation}`;
-                      });
                       try {
                         await DataStore.save(
                           new Event({
@@ -366,8 +383,8 @@ function EventsView() {
                             title: eventToCreate.title ? eventToCreate.title : null,
                             description: eventToCreate.description ? eventToCreate.description : null,
                             date: eventToCreate.date ? eventToCreate.date : null,
-                            image: `${bucketUrl}/${mainImageLocation}`,
-                            gallery
+                            image: `${eventToCreate.event_id}/main/${mainImage.name}`,
+                            gallery: galleryImages.map((image) => `${eventToCreate.event_id}/gallery/${image.name}`),
                           })
                         );
                         fetchEvents();
@@ -376,7 +393,7 @@ function EventsView() {
                         alert(e); 
                       }
 
-                      uploadImage(mainImageLocation, mainImage);
+                      uploadImage(`${eventToCreate.event_id}/main/${mainImage.name}`, mainImage);
                       galleryImages.forEach((image) => {
                         const imageLocation = `${eventToCreate.event_id}/gallery/${image.name}`;
                         uploadImage(imageLocation, image);
