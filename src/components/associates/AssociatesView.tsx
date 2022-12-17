@@ -146,7 +146,7 @@ function AssociatesView() {
           return (
             <div key={i} className='item'>
               <span 
-                className='view-associate'
+                className='view-item'
                 onClick={() => {
                   setAssociate(a);
                   setOpenViewAssociate(true);
@@ -323,6 +323,7 @@ function AssociatesView() {
                   if (window.confirm(`¿Confirma la eliminación del Socio: ${associate.name || associate.email}?`)) {
                     await DataStore.delete(associate);
                     fetchAssociates();
+                    setOpenViewAssociate(false);
                   }
                 }}
               >

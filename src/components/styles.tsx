@@ -33,6 +33,6 @@ export const formStyle = {
         margin: '5px 0 20px 0' 
     },    
     '& .MuiButton-root': { 
-        margin: '20px 0 5px 0'  
+        margin: '10px 0 5px 0'  
     },
 };

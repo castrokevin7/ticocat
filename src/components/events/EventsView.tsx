@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Event } from '../../models';
 import { DataStore, Storage } from 'aws-amplify';
-import DeleteIcon from '@mui/icons-material/Delete';
+import PageviewIcon from '@mui/icons-material/Pageview';
 import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { Search } from '@mui/icons-material';
@@ -32,6 +32,8 @@ function EventsView() {
     const [openCreateEvent, setOpenCreateEvent] = React.useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
     const [mainImage, setMainImage] = useState(null);
+    const [event, setEvent] = useState<Event>();
+    const [openViewEvent, setOpenViewEvent] = React.useState(false);
 
     const handleGalleryImagesChange = (event: any) => {
       const newGalleryImages = [...galleryImages];
@@ -150,16 +152,14 @@ function EventsView() {
               {events.map((e: Event, i) => {
               return (
                 <div key={i} className='item'>
-                  <span 
-                    className='delete-item'
-                    onClick={async () => {
-                      if (window.confirm(`¿Confirma la eliminación del Evento: ${e.title}?`)) {
-                        await DataStore.delete(e);
-                        fetchEvents();
-                      }
-                    }}>
-                    <DeleteIcon />
-                  </span>
+                <span 
+                  className='view-item'
+                  onClick={() => {
+                    setEvent(e);
+                    setOpenViewEvent(true);
+                  }}>
+                  <PageviewIcon />
+                </span>
                   <span>{e.title}</span>
                 </div>
               )
@@ -179,12 +179,122 @@ function EventsView() {
       ));
     }
 
+    const getEventImages = (e: Event) => {
+      return e.gallery.map((imageUrl, index) => (
+        <img className='gallery-image-thumbnail' key={index} src={imageUrl} alt={`Gallery ${index + 1}`} />
+      ));
+    }
+
     const uploadImage = async (location, image) => {
       try {
         await Storage.put(location, image);
       } catch (error) {
         console.log("Error uploading file: ", error);
       }
+    }
+
+    const eventDisplay = (event: Event) => {
+      let eventToUpdate = {
+        title: event.title,
+        description: event.description,
+        date: event.date,
+      };
+      return (
+        <Modal
+          open={openViewEvent}
+          onClose={() => setOpenViewEvent(false)}
+        >
+          <Box       
+            sx={modalStyle}
+            >
+              <CloseIcon className='close-modal' onClick={() => setOpenViewEvent(false)} />
+              <Box
+                component='form'
+                sx={formStyle}
+              >
+                <TextField
+                  id='outlined-required'
+                  label='Título'
+                  defaultValue={event.title}
+                  onChange={(event) => {
+                    eventToUpdate.title = event.target.value;
+                  }}
+                />
+                <div className='main-image-container'> 
+                  { event.image === null ? 
+                    <span className='empty-gallery-label'>Sin imagen de portada</span> : 
+                    <img className='gallery-image-thumbnail' src={event.image} alt={event.title} /> }
+                </div>
+                <Input type='file' onChange={handleMainImageChange} />
+                <TextField
+                  id='outlined-required'
+                  label='Descripción'
+                  defaultValue={event.description}
+                  onChange={(event) => {
+                    eventToUpdate.description = event.target.value;
+                  }}          
+                  multiline
+                  rows={8}
+                />
+                <TextField
+                  id='outlined-required'
+                  label='Fecha'        
+                  placeholder='1970-01-01'
+                  defaultValue={event.date}
+                  onChange={(event) => {
+                    eventToUpdate.date = event.target.value;
+                  }}
+                />
+                <div className={event.gallery === null ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
+                  { event.gallery === null ? 
+                    <span className='empty-gallery-label'>Sin galería</span> 
+                    : getEventImages(event) }
+                </div>
+                <Input type='file' onChange={handleGalleryImagesChange} />
+                <Button 
+                  variant='contained'
+                  size='large'
+                  onClick={async () => {
+                    if (window.confirm(`¿Confirma la actualización del Evento: ${eventToUpdate.title}?`)) {
+                      try {
+                        await DataStore.save(
+                          Event.copyOf(event, updated => {
+                            updated.event_id = event.event_id;
+                            updated.title = eventToUpdate.title;
+                            updated.description = eventToUpdate.description;
+                            updated.date = eventToUpdate.date;
+                            updated.image = event.image;
+                            updated.gallery = event.gallery;
+                          })
+                        );
+                        fetchEvents();
+                        setOpenViewEvent(false);                  
+                      } catch (e) {
+                        alert(e); 
+                      }
+                    }
+                  }}
+                >
+                  Agregar
+                </Button>
+                <Button  
+                  variant='outlined'
+                  size='large'
+                  color='error'
+                  onClick={async () => {
+                    if (window.confirm(`¿Confirma la eliminación del Evento: ${event.title}?`)) {
+                      await DataStore.delete(event);
+                      fetchEvents();
+                      setOpenViewEvent(false);
+                    }
+                  }}
+                >
+                  Eliminar
+                </Button>
+              </Box>
+          </Box>
+        </Modal>
+      )
     }
 
     const eventCreate = () => {
@@ -210,7 +320,6 @@ function EventsView() {
                 <TextField
                   id='outlined-required'
                   label='Título'
-                  placeholder='Lorem ipsum dolor sit amet'
                   onChange={(event) => {
                     eventToCreate.title = event.target.value;
                   }}
@@ -222,7 +331,6 @@ function EventsView() {
                 <TextField
                   id='outlined-required'
                   label='Descripción'
-                  placeholder='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
                   onChange={(event) => {
                     eventToCreate.description = event.target.value;
                   }}          
@@ -312,6 +420,7 @@ function EventsView() {
               </div>
               )}
             </div>
+            { event ? eventDisplay(event) : null }
             { eventCreate() }
         </div>
     );
