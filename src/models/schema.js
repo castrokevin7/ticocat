@@ -34,14 +34,14 @@ export const schema = {
                 "image": {
                     "name": "image",
                     "isArray": false,
-                    "type": "AWSURL",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
                 "gallery": {
                     "name": "gallery",
                     "isArray": true,
-                    "type": "AWSURL",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": [],
                     "isArrayNullable": true
@@ -244,5 +244,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "ba6f9510831973680ca511817f605020"
+    "version": "dfd65c054aa462fe71049169df0397d7"
 };

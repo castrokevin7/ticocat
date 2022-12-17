@@ -199,8 +199,8 @@ export default function EventCreateForm(props) {
     event_id: [],
     title: [],
     description: [],
-    image: [{ type: "URL" }],
-    gallery: [{ type: "URL" }],
+    image: [],
+    gallery: [],
     date: [],
   };
   const runValidationTasks = async (fieldName, value) => {
@@ -224,8 +224,8 @@ export default function EventCreateForm(props) {
           event_id,
           title,
           description,
-          image: image || undefined,
-          gallery: gallery || undefined,
+          image,
+          gallery,
           date,
         };
         const validationResponses = await Promise.all(
