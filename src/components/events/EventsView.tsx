@@ -218,6 +218,8 @@ function EventsView() {
                       updated.description = eventToUpdate.description;
                       updated.date = eventToUpdate.date;
                       updated.contact = eventToUpdate.contact;
+                      updated.location = eventToUpdate.location;
+                      updated.location_url = eventToUpdate.location_url;
                     }));
                   }}
                 />
@@ -238,6 +240,8 @@ function EventsView() {
                       updated.description = event.target.value;
                       updated.date = eventToUpdate.date;
                       updated.contact = eventToUpdate.contact;
+                      updated.location = eventToUpdate.location;
+                      updated.location_url = eventToUpdate.location_url;
                     }));
                   }}          
                   multiline
@@ -255,6 +259,8 @@ function EventsView() {
                       updated.description = eventToUpdate.description;
                       updated.date = event.target.value;
                       updated.contact = eventToUpdate.contact;
+                      updated.location = eventToUpdate.location;
+                      updated.location_url = eventToUpdate.location_url;
                     }));
                   }}
                 />
@@ -270,9 +276,47 @@ function EventsView() {
                       updated.description = eventToUpdate.description;
                       updated.date = eventToUpdate.date;
                       updated.contact = event.target.value;
+                      updated.location = eventToUpdate.location;
+                      updated.location_url = eventToUpdate.location_url;
                     }));
                   }}
                 />
+                <div style={{
+                  display: 'flex'
+                }}>
+                  <TextField
+                    id='outlined-required'
+                    label='Ubicación'        
+                    defaultValue={eventToUpdate.location}
+                    onChange={(event) => {
+                      setEvent(Event.copyOf(eventToUpdate, updated => {
+                        updated.event_id = eventToUpdate.event_id;
+                        updated.title = eventToUpdate.title;
+                        updated.description = eventToUpdate.description;
+                        updated.date = eventToUpdate.date;
+                        updated.contact = eventToUpdate.contact;
+                        updated.location = event.target.value;
+                        updated.location_url = eventToUpdate.location_url;
+                      }));
+                    }}
+                  />
+                  <TextField
+                    id='outlined-required'
+                    label='Ubicación URL'        
+                    defaultValue={eventToUpdate.location_url}
+                    onChange={(event) => {
+                      setEvent(Event.copyOf(eventToUpdate, updated => {
+                        updated.event_id = eventToUpdate.event_id;
+                        updated.title = eventToUpdate.title;
+                        updated.description = eventToUpdate.description;
+                        updated.date = eventToUpdate.date;
+                        updated.contact = eventToUpdate.contact;
+                        updated.location = eventToUpdate.location;
+                        updated.location_url = event.target.value;
+                      }));
+                    }}
+                  />
+                </div>
                 <div className={eventGalleryUrls.length === 0 ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
                   { eventGalleryUrls.length === 0 ? 
                     <span className='empty-gallery-label'>Sin galería</span> 
@@ -350,6 +394,8 @@ function EventsView() {
                       updated.description = eventToCreate.description;
                       updated.date = eventToCreate.date;
                       updated.contact = eventToCreate.contact;
+                      updated.location = eventToCreate.location;
+                      updated.location_url = eventToCreate.location_url;
                     }))
                   }}
                 />
@@ -367,6 +413,8 @@ function EventsView() {
                       updated.description = event.target.value;
                       updated.date = eventToCreate.date;
                       updated.contact = eventToCreate.contact;
+                      updated.location = eventToCreate.location;
+                      updated.location_url = eventToCreate.location_url;
                     }))
                   }}          
                   multiline
@@ -383,6 +431,8 @@ function EventsView() {
                       updated.description = eventToCreate.description;
                       updated.date = event.target.value;
                       updated.contact = eventToCreate.contact;
+                      updated.location = eventToCreate.location;
+                      updated.location_url = eventToCreate.location_url;
                     }))                  
                   }}     
                 />           
@@ -397,9 +447,46 @@ function EventsView() {
                       updated.description = eventToCreate.description;
                       updated.date = eventToCreate.date;
                       updated.contact = event.target.value;
+                      updated.location = eventToCreate.location;
+                      updated.location_url = eventToCreate.location_url;
                     }))                  
                   }}
                 />
+                <div style={{
+                  display: 'flex'
+                }}>
+                  <TextField
+                    id='outlined-required'
+                    label='Ubicación'       
+                    className='location-input' 
+                    onChange={(event) => {
+                      setEvent(Event.copyOf(eventToCreate, updated => {
+                        updated.event_id = eventToCreate.event_id;
+                        updated.title = eventToCreate.title;
+                        updated.description = eventToCreate.description;
+                        updated.date = eventToCreate.date;
+                        updated.contact = eventToCreate.contact;
+                        updated.location = event.target.value;
+                        updated.location_url = eventToCreate.location_url;
+                      }));
+                    }}
+                  />
+                  <TextField
+                    id='outlined-required'
+                    label='Ubicación URL'   
+                    onChange={(event) => {
+                      setEvent(Event.copyOf(eventToCreate, updated => {
+                        updated.event_id = eventToCreate.event_id;
+                        updated.title = eventToCreate.title;
+                        updated.description = eventToCreate.description;
+                        updated.date = eventToCreate.date;
+                        updated.contact = eventToCreate.contact;
+                        updated.location = eventToCreate.location;
+                        updated.location_url = event.target.value;
+                      }));
+                    }}
+                  />
+                </div>
                 <div className={galleryImages.length === 0 ? 'empty-gallery-container' : 'gallery-thumbnails-container'}> 
                   { galleryImages.length === 0 ? 
                     <span className="empty-gallery-label">Sin galería</span> : 
@@ -457,7 +544,14 @@ function EventsView() {
           <div className='items-header'>
             <h3>Eventos ({events.length})</h3>
           </div>
-          {events.length === 0 ? <span>Sin resultados</span> 
+          {events.length === 0 ? 
+            <Button  
+              variant='contained'
+              size='large'
+              onClick={async () => fetchEvents()}
+            >
+              Cargar
+            </Button> 
            : <div className='items-container'>
             {events.map((e: Event, i) => {
             return (

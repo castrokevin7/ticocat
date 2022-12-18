@@ -140,7 +140,14 @@ function AssociatesView() {
           </a>
           <h3>Socios ({associates.length})</h3>
         </div>
-        {associates.length === 0 ? <span>Sin resultados</span> 
+        {associates.length === 0 ? 
+          <Button  
+            variant='contained'
+            size='large'
+            onClick={async () => fetchAssociates()}
+          >
+            Cargar
+          </Button> 
          : <div className='items-container'>
           {associates.map((a: Associate, i) => {
           return (
