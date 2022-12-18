@@ -83,12 +83,13 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
 
-  const renderNavbarItems = routes.map(({ name, icon, href, route, collapse }) => (
+  const renderNavbarItems = routes.map(({ name, icon, href, target, route, collapse }) => (
     <DefaultNavbarDropdown
       key={name}
       name={name}
       icon={icon}
       href={href}
+      target={target}
       route={route}
       collapse={Boolean(collapse)}
       onMouseEnter={({ currentTarget }) => {
@@ -148,7 +149,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                         component={item.route ? Link : MuiLink}
                         to={item.route ? item.route : ""}
                         href={item.href ? item.href : (e) => e.preventDefault()}
-                        target={item.href ? "_blank" : ""}
+                        target={item.target ? item.target : "_blank"}
                         rel={item.href ? "noreferrer" : "noreferrer"}
                         minWidth="11.25rem"
                         display="block"
@@ -199,7 +200,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         const linkComponent = {
           component: MuiLink,
           href: item.href,
-          target: "_blank",
+          target: item.target ? item.target : "_blank",
           rel: "noreferrer",
         };
 
@@ -343,7 +344,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 const linkComponent = {
                   component: MuiLink,
                   href: item.href,
-                  target: "_blank",
+                  target: item.href ? item.href : "_blank",
                   rel: "noreferrer",
                 };
 

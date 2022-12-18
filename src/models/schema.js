@@ -1,5 +1,121 @@
 export const schema = {
     "models": {
+        "Event": {
+            "name": "Event",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "event_id": {
+                    "name": "event_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "title": {
+                    "name": "title",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "image": {
+                    "name": "image",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "gallery": {
+                    "name": "gallery",
+                    "isArray": true,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "location": {
+                    "name": "location",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "contact": {
+                    "name": "contact",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "location_url": {
+                    "name": "location_url",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Events",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Associate": {
             "name": "Associate",
             "fields": {
@@ -69,7 +185,9 @@ export const schema = {
                 "identification_type": {
                     "name": "identification_type",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "enum": "IdentificationType"
+                    },
                     "isRequired": false,
                     "attributes": []
                 },
@@ -126,6 +244,14 @@ export const schema = {
         }
     },
     "enums": {
+        "IdentificationType": {
+            "name": "IdentificationType",
+            "values": [
+                "NIE",
+                "DNI",
+                "PASAPORTE"
+            ]
+        },
         "BoardPosition": {
             "name": "BoardPosition",
             "values": [
@@ -138,5 +264,6 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "bb5dadfb7e47c81eab4e010732c1ec4f"
+    "codegenVersion": "3.3.2",
+    "version": "b6ec4d3bb3b75abb9a07fba49b54406f"
 };

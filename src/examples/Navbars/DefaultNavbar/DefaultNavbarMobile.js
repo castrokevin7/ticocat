@@ -38,7 +38,7 @@ function DefaultNavbarMobile({ routes, open }) {
   const handleSetCollapse = (name) => (collapse === name ? setCollapse(false) : setCollapse(name));
 
   const renderNavbarItems = routes.map(
-    ({ name, icon, collapse: routeCollapses, href, route, collapse: navCollapse }) => (
+    ({ name, icon, collapse: routeCollapses, href, target, route, collapse: navCollapse }) => (
       <DefaultNavbarDropdown
         key={name}
         name={name}
@@ -46,6 +46,7 @@ function DefaultNavbarMobile({ routes, open }) {
         collapseStatus={name === collapse}
         onClick={() => { if (Boolean(navCollapse)) handleSetCollapse(name) }}
         href={href}
+        target={target}
         route={route}
         collapse={Boolean(navCollapse)}
       >
@@ -71,7 +72,7 @@ function DefaultNavbarMobile({ routes, open }) {
                         component={el.route ? Link : MuiLink}
                         to={el.route ? el.route : ""}
                         href={el.href ? el.href : ""}
-                        target={el.href ? "_blank" : ""}
+                        target={el.target ? el.target : "_blank"}
                         rel={el.href ? "noreferrer" : "noreferrer"}
                         minWidth="11.25rem"
                         display="block"
@@ -103,7 +104,7 @@ function DefaultNavbarMobile({ routes, open }) {
                     component={item.route ? Link : MuiLink}
                     to={item.route ? item.route : ""}
                     href={item.href ? item.href : ""}
-                    target={item.href ? "_blank" : ""}
+                    target={item.target ? item.target : ""}
                     rel={item.href ? "noreferrer" : "noreferrer"}
                     sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
                       borderRadius: borderRadius.md,

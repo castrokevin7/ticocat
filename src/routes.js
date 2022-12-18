@@ -45,22 +45,26 @@ const routes = [
   {
     name: Translator.instance.translate("route_home"),
     icon: <Icon>home</Icon>,
-    href: "#" 
+    href: "#",
+    target: "_self" 
   },
   {
     name: Translator.instance.translate("route_about"),
     icon: <Icon>info_rounded</Icon>,
-    href: "#acerca" 
+    href: "#acerca",
+    target: "_self" 
   },
   {
     name: Translator.instance.translate("route_team"),
     icon: <Icon>supervisor_account</Icon>,
-    href: "#equipo" 
+    href: "#equipo",
+    target: "_self" 
   },
   {
     name: Translator.instance.translate("route_associates"),
     icon: <Icon>volunteer_activism</Icon>,
-    href: "#socios" 
+    href: "#socios",
+    target: "_self" 
   },
 ];
 

@@ -1,3 +1,22 @@
+type Event @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  event_id: String
+  title: String
+  description: String
+  image: String
+  gallery: [String]
+  date: AWSDate
+  location: String
+  contact: String
+  location_url: AWSURL
+}
+
+enum IdentificationType {
+  NIE
+  DNI
+  PASAPORTE
+}
+
 enum BoardPosition {
   PRESIDENCIA
   VICEPRESIDENCIA
@@ -16,7 +35,7 @@ type Associate @model @auth(rules: [{allow: public}]) {
   phone: AWSPhone
   nationality: String
   identification: String
-  identification_type: String
+  identification_type: IdentificationType
   board_position: BoardPosition
 }
  

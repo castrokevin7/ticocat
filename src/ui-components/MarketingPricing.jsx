@@ -5,7 +5,7 @@
  **************************************************************************/
 
 /* eslint-disable */
-import React from "react";
+import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function MarketingPricing(props) {

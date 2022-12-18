@@ -1,25 +1,32 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from 'assets/theme';
-import Navbar from 'sections/Navbar';
-import Home from 'sections/Home';
-import About from 'sections/About';
-import Team from 'sections/Team';
-import Associates from 'sections/Associates';
-import Footer from 'sections/Footer';
+import Main from 'sections/main/Main';
+
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+
+import routes from "routes";
+
+import EventsPage from 'sections/events/EventsPage';
 
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+  }, [pathname]);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar />
-      <Home />
-      <About />
-      <Team />
-      <Associates />
-      <Footer />
+      <Routes>
+        <Route exact path={"/events"} element={<EventsPage />} />;
+        <Route path="/" element={<Main />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </ThemeProvider>
   );
 }
