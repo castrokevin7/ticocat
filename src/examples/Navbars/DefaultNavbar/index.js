@@ -514,17 +514,20 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 </MKButton>
             }
           </MKBox>
-          <MKBox
-            display={{ xs: "inline-block", lg: "none" }}
-            lineHeight={0}
-            py={1.5}
-            pl={1.5}
-            color={transparent ? "white" : "inherit"}
-            sx={{ cursor: "pointer" }}
-            onClick={openMobileNavbar}
-          >
-            <Icon fontSize="default">{mobileNavbar ? "close" : "menu"}</Icon>
-          </MKBox>
+          {
+            routes.length === 0 ? <></> :
+              <MKBox
+                display={{ xs: "inline-block", lg: "none" }}
+                lineHeight={0}
+                py={1.5}
+                pl={1.5}
+                color={transparent ? "white" : "inherit"}
+                sx={{ cursor: "pointer" }}
+                onClick={openMobileNavbar}
+              >
+                <Icon fontSize="default">{mobileNavbar ? "close" : "menu"}</Icon>
+              </MKBox>
+          }
         </MKBox>
         <MKBox
           bgColor={transparent ? "white" : "transparent"}
