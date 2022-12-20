@@ -479,7 +479,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           >
             <MKBox 
               component={MuiLink}
-              href="#"
+              href="/"
               p={0}
             >
               <MKBox
@@ -501,6 +501,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
                 <MKButton
+                  sx={ action.minimal ? { paddingRight: { xs: 0, s: 0 } } : null }
                   component="a"
                   href={action.route}
                   target="_self"

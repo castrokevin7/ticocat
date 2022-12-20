@@ -36,7 +36,8 @@ function EventsPage() {
             color: "info",
             icon: "arrow_circle_left_rounded",
             variant: "text",
-            size: "large"
+            size: "large",
+            minimal: true
           }}
       />
       <MKBox component="header" position="relative">
@@ -96,7 +97,7 @@ function EventsPage() {
             </Grid>
             <Grid container spacing={3} mt={3}>
               <Grid item xs={12} lg={4}>
-                <Link to="/sections/page-sections/blog-posts">
+                <Link to="/evento/123">
                   <SimpleBackgroundCard
                     image={post1}
                     title="Search and Discovery"
@@ -106,7 +107,7 @@ function EventsPage() {
                 </Link>
               </Grid>
               <Grid item xs={12} lg={4}>
-                <Link to="/sections/page-sections/blog-posts">
+                <Link to="/evento/123">
                   <SimpleBackgroundCard
                     image={post2}
                     title="Last visits in US"
@@ -116,7 +117,7 @@ function EventsPage() {
                 </Link>
               </Grid>
               <Grid item xs={12} lg={4}>
-                <Link to="/sections/page-sections/blog-posts">
+                <Link to="/evento/123">
                   <SimpleBackgroundCard
                     image={post3}
                     title="Grow in a beautiful area"

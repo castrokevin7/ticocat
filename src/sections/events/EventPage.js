@@ -20,6 +20,12 @@ import bg4 from "assets/images/examples/content-3.jpg";
 import bg5 from "assets/images/examples/content-4.jpg";
 import bg6 from "assets/images/examples/content-5.jpg";
 
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+
+// Images
+import bgImage from "assets/images/bg-presentation.jpg";
+
 function EventPage() {
   const { id } = useParams();
 
@@ -35,9 +41,90 @@ function EventPage() {
                 color: "info",
                 icon: "arrow_circle_left_rounded",
                 variant: "text",
-                size: "large"
+                size: "large",
+                minimal: true
             }}
         />
+        <MKBox component="header" position="relative">
+            <MKBox
+                display="flex"
+                alignItems="center"
+                minHeight="100vh"
+                sx={{
+                backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${bgImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                }}
+            >
+                <Container>
+                <Grid
+                    container
+                    item
+                    xs={12}
+                    lg={6}
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    mx="auto"
+                >
+                    <MKTypography
+                    variant="h1"
+                    color="white"
+                    sx={({ breakpoints, typography: { size } }) => ({
+                        [breakpoints.down("md")]: {
+                        fontSize: size["3xl"],
+                        },
+                    })}
+                    mb={3}
+                    >
+                    Work with an amazing
+                    </MKTypography>
+                    <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
+                    We&apos;re constantly trying to express ourselves and actualize our dreams. If you
+                    have the opportunity to play this game. If you have the opportunity to play this game.
+                    </MKTypography>
+                    <MKTypography variant="h6" color="white" textTransform="uppercase" mb={3}>
+                    connect with us on:
+                    </MKTypography>
+                    <Stack direction="row" spacing={6} mx="auto">
+                    <MKTypography
+                        component={Link}
+                        href="#"
+                        variant="body2"
+                        onClick={(e) => e.preventDefault()}
+                    >
+                        <MKBox component="i" color="white" className="fab fa-facebook" />
+                    </MKTypography>
+                    <MKTypography
+                        component={Link}
+                        href="#"
+                        variant="body2"
+                        onClick={(e) => e.preventDefault()}
+                    >
+                        <MKBox component="i" color="white" className="fab fa-instagram" />
+                    </MKTypography>
+                    <MKTypography
+                        component={Link}
+                        href="#"
+                        variant="body2"
+                        onClick={(e) => e.preventDefault()}
+                    >
+                        <MKBox component="i" color="white" className="fab fa-twitter" />
+                    </MKTypography>
+                    <MKTypography
+                        component={Link}
+                        href="#"
+                        variant="body2"
+                        onClick={(e) => e.preventDefault()}
+                    >
+                        <MKBox component="i" color="white" className="fab fa-google-plus" />
+                    </MKTypography>
+                    </Stack>
+                </Grid>
+                </Container>
+            </MKBox>
+        </MKBox>
         <Card
             sx={{
             p: 2,
