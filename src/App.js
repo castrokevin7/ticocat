@@ -8,6 +8,7 @@ import Main from 'sections/main/Main';
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import EventsPage from 'sections/events/EventsPage';
+import EventPage from 'sections/events/EventPage';
 
 function App() {
   const { pathname } = useLocation();
@@ -22,6 +23,7 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route exact path={"/eventos"} element={<EventsPage />} />;
+        <Route exact path={"/evento/:id"} element={<EventPage />} />;
         <Route path="/" element={<Main />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
