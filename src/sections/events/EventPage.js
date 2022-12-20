@@ -31,8 +31,10 @@ function EventPage() {
             brand="asoticocat"
             action={{
                 route: "/eventos",
-                label: "<-",
                 color: "info",
+                icon: "arrow_circle_left_rounded",
+                variant: "text",
+                size: "large"
             }}
         />
         <MKBox component="section" py={6}>

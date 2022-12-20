@@ -10,12 +10,18 @@ function getAction() {
         route: "https://cat.asoticocat.com",
         label: "CAT",
         color: "info",
+        icon: "translate_rounded",
+        variant: "outlined",
+        size: "small"
       }
   }
   return {
     route: "https://www.asoticocat.com",
     label: "ESP",
     color: "info",
+    icon: "translate_rounded",
+    variant: "outlined",
+    size: "small"
   }
 }
 

@@ -19,11 +19,6 @@ import post3 from "assets/images/examples/blog3.jpg";
 
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
-// @mui material components
-import Stack from "@mui/material/Stack";
-
-import MKButton from "components/MKButton";
-
 // Images
 import bgImage from "assets/images/bg-coworking.jpeg";
 
@@ -37,8 +32,10 @@ function EventsPage() {
           brand="asoticocat"
           action={{
             route: "/",
-            label: "<-",
             color: "info",
+            icon: "arrow_circle_left_rounded",
+            variant: "text",
+            size: "large"
           }}
       />
       <MKBox component="header" position="relative">
@@ -70,12 +67,6 @@ function EventsPage() {
                 The time is now for it be okay to be great. People in this world shun people for being
                 nice.
               </MKTypography>
-              <Stack direction="row" spacing={1} mt={3}>
-                <MKButton color="white">Get Started</MKButton>
-                <MKButton variant="text" color="white">
-                  Read more
-                </MKButton>
-              </Stack>
             </Grid>
           </Container>
         </MKBox>

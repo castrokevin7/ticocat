@@ -505,11 +505,11 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   href={action.route}
                   target="_self"
                   rel="noreferrer"
-                  variant="outlined"
+                  variant={action.variant}
                   color={action.color ? action.color : "info"}
-                  size="small"
+                  size={action.size}
                 >
-                  <Icon>translate_rounded</Icon>&nbsp;
+                  <Icon>{action.icon}</Icon>&nbsp;
                   {action.label}
                 </MKButton>
             }
