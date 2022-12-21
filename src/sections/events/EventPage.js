@@ -31,22 +31,22 @@ function EventPage() {
     const fetchEvent = async () => {
         setState('loading');
         try {
-            let eventResponse = await DataStore.query(Event, e => e.event_id('eq', eventId));
-            if (eventResponse.length > 0) {
-                eventResponse = eventResponse[0];
-                if (eventResponse.image) {
-                    const image = await Storage.get(eventResponse.image);
+            let response = await DataStore.query(Event, e => e.event_id('eq', eventId));
+            if (response.length > 0) {
+                response = response[0];
+                if (response.image) {
+                    const image = await Storage.get(response.image);
                     const updateFrom = new Event({
                         image,
-                        event_id: eventResponse.event_id,
-                        title: eventResponse.title,
-                        description: eventResponse.description,
-                        date: eventResponse.date,
-                        location: eventResponse.location,
-                        location_url: eventResponse.location_url,
-                        gallery: eventResponse.gallery
+                        event_id: response.event_id,
+                        title: response.title,
+                        description: response.description,
+                        date: response.date,
+                        location: response.location,
+                        location_url: response.location_url,
+                        gallery: response.gallery
                     });
-                    eventResponse = Event.copyOf(updateFrom, updated => {
+                    response = Event.copyOf(updateFrom, updated => {
                         updated.event_id = updateFrom.event_id;
                         updated.image = updateFrom.image;
                         updated.title = updateFrom.title;
@@ -57,26 +57,25 @@ function EventPage() {
                         updated.gallery = updateFrom.gallery;
                     });
                 }
-                console.log("with image", eventResponse);
 
-                if (eventResponse.gallery) {
+                if (response.gallery) {
                     const gallery = await Promise.all(
-                        eventResponse.gallery.map(async image => {
+                        response.gallery.map(async image => {
                             const signedUrl = await Storage.get(image);
                             return signedUrl;
                         })
                     );
                     const updateFrom = new Event({
                         gallery,
-                        image: eventResponse.image,
-                        event_id: eventResponse.event_id,
-                        title: eventResponse.title,
-                        description: eventResponse.description,
-                        date: eventResponse.date,
-                        location: eventResponse.location,
-                        location_url: eventResponse.location_url
+                        image: response.image,
+                        event_id: response.event_id,
+                        title: response.title,
+                        description: response.description,
+                        date: response.date,
+                        location: response.location,
+                        location_url: response.location_url
                     });
-                    eventResponse = Event.copyOf(updateFrom, updated => {
+                    response = Event.copyOf(updateFrom, updated => {
                         updated.event_id = updateFrom.event_id;
                         updated.image = updateFrom.image;
                         updated.title = updateFrom.title;
@@ -87,10 +86,8 @@ function EventPage() {
                         updated.gallery = updateFrom.gallery;
                     });
                 }
-                console.log("with gallery", eventResponse);
             }
-            console.log(eventResponse);
-            setEvent(eventResponse);
+            setEvent(response);
             setState('success');
         } catch (err) {
             console.error('Error:', err);
