@@ -23,7 +23,7 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route exact path={"/eventos"} element={<EventsPage />} />;
-        <Route exact path={"/evento/:id"} element={<EventPage />} />;
+        <Route exact path={"/evento/:eventId"} element={<EventPage />} />;
         <Route path="/" element={<Main />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

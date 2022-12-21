@@ -1,4 +1,8 @@
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
+
+import { Event } from '../../models';
+import { DataStore, Storage } from 'aws-amplify';
 
 // @mui material components
 import Container from "@mui/material/Container";
@@ -7,241 +11,234 @@ import Card from "@mui/material/Card";
 
 // Otis Kit PRO components
 import MKBox from "components/MKBox";
-import MKBadge from "components/MKBadge";
 import MKTypography from "components/MKTypography";
 
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
-// Images
-import bg1 from "assets/images/bg.jpg";
-import bg2 from "assets/images/examples/content-1.jpg";
-import bg3 from "assets/images/examples/content-2.jpg";
-import bg4 from "assets/images/examples/content-3.jpg";
-import bg5 from "assets/images/examples/content-4.jpg";
-import bg6 from "assets/images/examples/content-5.jpg";
-
-import Link from "@mui/material/Link";
-import Stack from "@mui/material/Stack";
-
-// Images
-import bgImage from "assets/images/bg-presentation.jpg";
+const useConstructor = (callBack = () => { }) => {
+    const [hasBeenCalled, setHasBeenCalled] = useState(false);
+    if (hasBeenCalled) return;
+    callBack();
+    setHasBeenCalled(true);
+}
 
 function EventPage() {
-  const { id } = useParams();
+    const [state, setState] = useState('');
+    const [event, setEvent] = useState(null);
+    const { eventId } = useParams();
 
-  return (
-    <>
-        <DefaultNavbar
-            routes={[]}
-            center
-            sticky
-            brand="asoticocat"
-            action={{
-                route: "/eventos",
-                color: "info",
-                icon: "arrow_circle_left_rounded",
-                variant: "text",
-                size: "large",
-                minimal: true
-            }}
-        />
-        <MKBox component="header" position="relative">
-            <MKBox
-                display="flex"
-                alignItems="center"
-                minHeight="100vh"
-                sx={{
-                backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${bgImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                }}
-            >
-                <Container>
-                <Grid
-                    container
-                    item
-                    xs={12}
-                    lg={6}
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    textAlign="center"
-                    mx="auto"
+
+    const fetchEvent = async () => {
+        setState('loading');
+        try {
+            let eventResponse = await DataStore.query(Event, e => e.event_id('eq', eventId));
+            if (eventResponse.length > 0) {
+                eventResponse = eventResponse[0];
+                if (eventResponse.image) {
+                    const image = await Storage.get(eventResponse.image);
+                    const updateFrom = new Event({
+                        image,
+                        event_id: eventResponse.event_id,
+                        title: eventResponse.title,
+                        description: eventResponse.description,
+                        date: eventResponse.date,
+                        location: eventResponse.location,
+                        location_url: eventResponse.location_url,
+                        gallery: eventResponse.gallery
+                    });
+                    eventResponse = Event.copyOf(updateFrom, updated => {
+                        updated.event_id = updateFrom.event_id;
+                        updated.image = updateFrom.image;
+                        updated.title = updateFrom.title;
+                        updated.description = updateFrom.description;
+                        updated.date = updateFrom.date;
+                        updated.location = updateFrom.location;
+                        updated.location_url = updateFrom.location_url;
+                        updated.gallery = updateFrom.gallery;
+                    });
+                }
+                console.log("with image", eventResponse);
+
+                if (eventResponse.gallery) {
+                    const gallery = await Promise.all(
+                        eventResponse.gallery.map(async image => {
+                            const signedUrl = await Storage.get(image);
+                            return signedUrl;
+                        })
+                    );
+                    const updateFrom = new Event({
+                        gallery,
+                        image: eventResponse.image,
+                        event_id: eventResponse.event_id,
+                        title: eventResponse.title,
+                        description: eventResponse.description,
+                        date: eventResponse.date,
+                        location: eventResponse.location,
+                        location_url: eventResponse.location_url
+                    });
+                    eventResponse = Event.copyOf(updateFrom, updated => {
+                        updated.event_id = updateFrom.event_id;
+                        updated.image = updateFrom.image;
+                        updated.title = updateFrom.title;
+                        updated.description = updateFrom.description;
+                        updated.date = updateFrom.date;
+                        updated.location = updateFrom.location;
+                        updated.location_url = updateFrom.location_url;
+                        updated.gallery = updateFrom.gallery;
+                    });
+                }
+                console.log("with gallery", eventResponse);
+            }
+            console.log(eventResponse);
+            setEvent(eventResponse);
+            setState('success');
+        } catch (err) {
+            console.error('Error:', err);
+            setState('error');
+        }
+    };
+
+    const viewEvent = () => {
+        return (
+            <>
+                <DefaultNavbar
+                    routes={[]}
+                    center
+                    sticky
+                    brand="asoticocat"
+                    action={{
+                        route: "/eventos",
+                        color: "info",
+                        icon: "arrow_circle_left_rounded",
+                        variant: "text",
+                        size: "large",
+                        minimal: true
+                    }}
+                />
+                <MKBox component="header" position="relative">
+                    <MKBox
+                        display="flex"
+                        alignItems="center"
+                        minHeight="100vh"
+                        sx={{
+                            backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${event.image})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                        }}
+                    >
+                        <Container>
+                            <Grid
+                                container
+                                item
+                                xs={12}
+                                lg={6}
+                                flexDirection="column"
+                                justifyContent="center"
+                                alignItems="center"
+                                textAlign="center"
+                                mx="auto"
+                            >
+                                <MKTypography
+                                    variant="h1"
+                                    color="white"
+                                    sx={({ breakpoints, typography: { size } }) => ({
+                                        [breakpoints.down("md")]: {
+                                            fontSize: size["3xl"],
+                                        },
+                                    })}
+                                    mb={3}
+                                >
+                                    {event.title}
+                                </MKTypography>
+                            </Grid>
+                        </Container>
+                    </MKBox>
+                </MKBox>
+                <Card
+                    sx={{
+                        p: 2,
+                        mx: { xs: 2, lg: 3 },
+                        mt: -8,
+                        mb: 4,
+                        backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+                        backdropFilter: "saturate(200%) blur(30px)",
+                        boxShadow: ({ boxShadows: { xxl } }) => xxl,
+                    }}
                 >
-                    <MKTypography
-                    variant="h1"
-                    color="white"
-                    sx={({ breakpoints, typography: { size } }) => ({
-                        [breakpoints.down("md")]: {
-                        fontSize: size["3xl"],
-                        },
-                    })}
-                    mb={3}
-                    >
-                    Work with an amazing
-                    </MKTypography>
-                    <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
-                    We&apos;re constantly trying to express ourselves and actualize our dreams. If you
-                    have the opportunity to play this game. If you have the opportunity to play this game.
-                    </MKTypography>
-                    <MKTypography variant="h6" color="white" textTransform="uppercase" mb={3}>
-                    connect with us on:
-                    </MKTypography>
-                    <Stack direction="row" spacing={6} mx="auto">
-                    <MKTypography
-                        component={Link}
-                        href="#"
-                        variant="body2"
-                        onClick={(e) => e.preventDefault()}
-                    >
-                        <MKBox component="i" color="white" className="fab fa-facebook" />
-                    </MKTypography>
-                    <MKTypography
-                        component={Link}
-                        href="#"
-                        variant="body2"
-                        onClick={(e) => e.preventDefault()}
-                    >
-                        <MKBox component="i" color="white" className="fab fa-instagram" />
-                    </MKTypography>
-                    <MKTypography
-                        component={Link}
-                        href="#"
-                        variant="body2"
-                        onClick={(e) => e.preventDefault()}
-                    >
-                        <MKBox component="i" color="white" className="fab fa-twitter" />
-                    </MKTypography>
-                    <MKTypography
-                        component={Link}
-                        href="#"
-                        variant="body2"
-                        onClick={(e) => e.preventDefault()}
-                    >
-                        <MKBox component="i" color="white" className="fab fa-google-plus" />
-                    </MKTypography>
-                    </Stack>
-                </Grid>
-                </Container>
-            </MKBox>
-        </MKBox>
-        <Card
-            sx={{
-            p: 2,
-            mx: { xs: 2, lg: 3 },
-            mt: -8,
-            mb: 4,
-            backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
-            backdropFilter: "saturate(200%) blur(30px)",
-            boxShadow: ({ boxShadows: { xxl } }) => xxl,
-            }}
-        >
-            <MKBox component="section" py={6}>
-                <Container>
-                    <Grid
-                    container
-                    item
-                    xs={8}
-                    flexDirection="column"
-                    alignItems="center"
-                    mx="auto"
-                    textAlign="center"
-                    mb={6}
-                    >
-                    <MKBadge
-                        badgeContent="co-working"
-                        variant="contained"
-                        color="info"
-                        container
-                        sx={{ mb: 1 }}
-                    />
-                    <MKTypography variant="h2" mb={1}>
-                        Event {id}
-                    </MKTypography>
-                    <MKTypography variant="body2" color="text">
-                        If you can&apos;t decide, the answer is no. If two equally difficult paths, choose the
-                        one more painful in the short term (pain avoidance is creating an illusion of equality).
-                    </MKTypography>
-                    </Grid>
-                    <Grid container spacing={3} minHeight="40vh">
-                    <Grid item xs={5} sm={4}>
-                        <MKBox
-                        width="100%"
-                        height="100%"
-                        borderRadius="lg"
-                        shadow="md"
-                        sx={{
-                            backgroundImage: `url(${bg1})`,
-                            backgroundSize: "cover",
-                        }}
-                        />
-                    </Grid>
-                    <Grid item xs={7} sm={3}>
-                        <MKBox
-                        width="100%"
-                        height="100%"
-                        borderRadius="lg"
-                        shadow="md"
-                        sx={{
-                            backgroundImage: `url(${bg2})`,
-                            backgroundSize: "cover",
-                        }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={5}>
-                        <MKBox
-                        width="100%"
-                        height="100%"
-                        borderRadius="lg"
-                        shadow="md"
-                        sx={{
-                            backgroundImage: `url(${bg3})`,
-                            backgroundSize: "cover",
-                        }}
-                        />
-                    </Grid>
-                    <Grid item xs={7} sm={3}>
-                        <MKBox
-                        width="100%"
-                        height="100%"
-                        borderRadius="lg"
-                        shadow="md"
-                        sx={{
-                            backgroundImage: `url(${bg4})`,
-                            backgroundSize: "cover",
-                        }}
-                        />
-                    </Grid>
-                    <Grid item xs={5}>
-                        <MKBox
-                        width="100%"
-                        height="100%"
-                        borderRadius="lg"
-                        shadow="md"
-                        sx={{
-                            backgroundImage: `url(${bg5})`,
-                            backgroundSize: "cover",
-                        }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <MKBox
-                        width="100%"
-                        height="100%"
-                        borderRadius="lg"
-                        shadow="md"
-                        sx={{
-                            backgroundImage: `url(${bg6})`,
-                            backgroundSize: "cover",
-                        }}
-                        />
-                    </Grid>
-                    </Grid>
-                </Container>
-            </MKBox>
-        </Card>
-    </>
-  );
+                    <MKBox component="section" py={6}>
+                        <Container>
+                            <Grid
+                                container
+                                item
+                                xs={8}
+                                flexDirection="column"
+                                alignItems="center"
+                                mx="auto"
+                                textAlign="center"
+                                mb={6}
+                            >
+                                <MKTypography variant="body2" color="text">
+                                    {event.description}
+                                </MKTypography>
+                            </Grid>
+                            <Grid container spacing={3} minHeight={{
+                                xs: "80vh",
+                                sm: "80vh",
+                                md: "60vh",
+                                lg: "70vh",
+                                xl: "80vh"
+                            }}>
+                                { event.gallery.map((image) => 
+                                    <Grid item xs={12} sm={12} md={4}>
+                                        <MKBox
+                                            width="100%"
+                                            height="100%"
+                                            borderRadius="lg"
+                                            shadow="md"
+                                            sx={{
+                                                backgroundImage: `url(${image})`,
+                                                backgroundSize: "cover",
+                                            }}
+                                        />
+                                    </Grid>
+                                ) }
+                            </Grid>
+                        </Container>
+                    </MKBox>
+                </Card>
+            </>
+        )
+    };
+
+    useConstructor(() => {
+        setState('loading');
+        fetchEvent();
+    });
+
+    if (state === 'error') {
+        return (
+            <h1>
+                Hubo un error...
+            </h1>
+        );
+    }
+
+    return (
+        <>
+            {state === 'loading' ? (
+                <div style={{ padding: '10px', display: 'flex' }}>
+                    <div className="spinner-container">
+                        <div className="loading-spinner" />
+                    </div>
+                    Cargando
+                </div>
+            )
+                :
+                (
+                    event ? viewEvent() : <span style={{ padding: '10px' }}>Evento {eventId} no existe.</span>
+                )}
+        </>
+    )
 }
 
 export default EventPage;
