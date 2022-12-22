@@ -23,7 +23,18 @@ import Card from "@mui/material/Card";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function SimpleBackgroundCard({ image, title, description }) {
+function SimpleBackgroundCard({ image, title, date, description }) {
+  
+  const displayMonth = (month) => {
+    if (month < 10) return `0${month}`;
+    return month;
+  }
+
+  const getFormattedDate = (date) => {
+    const asDate = new Date(date);
+    return `${asDate.getDate()}/${displayMonth(asDate.getMonth() + 1)}/${asDate.getFullYear()}`;
+  }
+
   return (
     <Card
       sx={({
@@ -39,13 +50,16 @@ function SimpleBackgroundCard({ image, title, description }) {
         backgroundPosition: "center",
         borderRadius: borderRadius.xl,
         height: "100%",
-        display: "grid",
-        justifyContent: "end",
+        display: "flex",
+        justifyContent: "center",
       })}
     >
       <MKBox pt={32} pb={3} px={3}>
-        <MKTypography variant="h4" color="white" mb={1}>
+        <MKTypography variant="h3" color="white">
           {title}
+        </MKTypography>
+        <MKTypography variant="h4" color="white" mb={2}>
+          {getFormattedDate(date)}
         </MKTypography>
         <MKTypography variant="body2" color="white" mb={2}>
           {description}
@@ -59,6 +73,7 @@ function SimpleBackgroundCard({ image, title, description }) {
 SimpleBackgroundCard.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   description: PropTypes.node.isRequired,
 };
 

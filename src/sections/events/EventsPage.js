@@ -39,7 +39,6 @@ function EventsPage() {
         setState('loading');
         try {
             let response = await DataStore.query(Event);
-            console.log(response);
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (event, i) => {
                     const image = await Storage.get(event.image);
@@ -54,7 +53,6 @@ function EventsPage() {
                         gallery: event.gallery
                     });
                 }));
-                console.log(response);
                 setEvents(response);
                 setState('success');
             }
@@ -92,6 +90,7 @@ function EventsPage() {
                             <SimpleBackgroundCard
                                 image={event.image}
                                 title={event.title}
+                                date={event.date}
                                 description={event.description.substring(0, 127)}
                             />
                         </Link>
@@ -177,7 +176,7 @@ function EventsPage() {
                             </MKTypography>
                         </Grid>
                         <Grid container spacing={3} mt={3}>
-                            {getEvents()}
+                            { getEvents() }
                         </Grid>
                     </Container>
                 </MKBox>
