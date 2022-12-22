@@ -236,7 +236,7 @@ function EventsView() {
                   onChange={(event) => {
                     setEvent(Event.copyOf(eventToUpdate, updated => {
                       updated.event_id = eventToUpdate.event_id;
-                      updated.title = eventToUpdate.description;
+                      updated.title = eventToUpdate.title;
                       updated.description = event.target.value;
                       updated.date = eventToUpdate.date;
                       updated.contact = eventToUpdate.contact;
@@ -255,7 +255,7 @@ function EventsView() {
                   onChange={(event) => {
                     setEvent(Event.copyOf(eventToUpdate, updated => {
                       updated.event_id = eventToUpdate.event_id;
-                      updated.title = eventToUpdate.date;
+                      updated.title = eventToUpdate.title;
                       updated.description = eventToUpdate.description;
                       updated.date = event.target.value;
                       updated.contact = eventToUpdate.contact;
