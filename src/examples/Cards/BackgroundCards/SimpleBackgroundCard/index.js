@@ -23,17 +23,9 @@ import Card from "@mui/material/Card";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function SimpleBackgroundCard({ image, title, date, description }) {
-  
-  const displayMonth = (month) => {
-    if (month < 10) return `0${month}`;
-    return month;
-  }
+import getFormattedDate from "utils/FormatDate";
 
-  const getFormattedDate = (date) => {
-    const asDate = new Date(date);
-    return `${asDate.getDate()}/${displayMonth(asDate.getMonth() + 1)}/${asDate.getFullYear()}`;
-  }
+function SimpleBackgroundCard({ image, title, date, description }) {
 
   return (
     <Card

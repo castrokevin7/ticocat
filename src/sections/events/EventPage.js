@@ -15,6 +15,8 @@ import MKTypography from "components/MKTypography";
 
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
+import getFormattedDate from "utils/FormatDate";
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -148,7 +150,7 @@ function EventPage() {
                                     {event.title}
                                 </MKTypography>
                                 <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
-                                    {event.date}
+                                    {getFormattedDate(event.date)}
                                 </MKTypography>
                             </Grid>
                         </Container>
