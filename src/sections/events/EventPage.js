@@ -147,6 +147,9 @@ function EventPage() {
                                 >
                                     {event.title}
                                 </MKTypography>
+                                <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
+                                    {event.date}
+                                </MKTypography>
                             </Grid>
                         </Container>
                     </MKBox>
@@ -185,20 +188,20 @@ function EventPage() {
                                 lg: "70vh",
                                 xl: "80vh"
                             }}>
-                                { event.gallery.map((image) => 
+                                {event.gallery.map((image) =>
                                     <Grid item xs={12} sm={12} md={4}>
                                         <MKBox
                                             width="100%"
                                             height="100%"
                                             borderRadius="lg"
-                                            shadow="md"
+                                            shaqdow="md"
                                             sx={{
                                                 backgroundImage: `url(${image})`,
                                                 backgroundSize: "cover",
                                             }}
                                         />
                                     </Grid>
-                                ) }
+                                )}
                             </Grid>
                         </Container>
                     </MKBox>
