@@ -169,7 +169,7 @@ function AssociatesView() {
         )
     }
 
-    const associateDisplay = (associate: Associate) => {
+    const associateView = (associate: Associate) => {
         let associateToUpdate = {
             name: associate.name,
             birthday: associate.birthday,
@@ -383,6 +383,7 @@ function AssociatesView() {
                             id='outlined-required'
                             label='Fecha de nacimiento'
                             type='date'
+                            InputLabelProps={{ shrink: true }}
                             onChange={(event) => {
                                 associateToCreate.birthday = event.target.value;
                             }}
@@ -442,6 +443,7 @@ function AssociatesView() {
                             id='outlined-required'
                             label='Fecha de inscripción'
                             type='date'
+                            InputLabelProps={{ shrink: true }}
                             onChange={(event) => {
                                 associateToCreate.inscription_date = event.target.value;
                             }}
@@ -513,7 +515,7 @@ function AssociatesView() {
                     </div>
                 )}
             </div>
-            {associate ? associateDisplay(associate) : null}
+            {associate ? associateView(associate) : null}
             {associateCreate()}
 
         </div>

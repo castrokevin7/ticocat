@@ -321,6 +321,7 @@ function EventsView() {
                                 required
                                 label='Fecha'
                                 type="date"
+                                InputLabelProps={{ shrink: true }}
                                 defaultValue={eventToUpdate.date}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToUpdate, updated => {
@@ -341,7 +342,8 @@ function EventsView() {
                                 required
                                 type="time"
                                 label="Hora"
-                                defaultValue={eventToUpdate.time || "00:00"}
+                                InputLabelProps={{ shrink: true }}
+                                defaultValue={eventToUpdate.time}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToUpdate, updated => {
                                         updated.event_id = eventToUpdate.event_id;
@@ -558,7 +560,7 @@ function EventsView() {
                                 required
                                 label='Fecha'
                                 type="date"
-                                defaultValue='02/23/2022'
+                                InputLabelProps={{ shrink: true }}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToCreate, updated => {
                                         updated.event_id = eventToCreate.event_id;
@@ -577,7 +579,7 @@ function EventsView() {
                                 id='outlined-required'
                                 type="time"
                                 label="Hora"
-                                defaultValue={"00:00"}
+                                InputLabelProps={{ shrink: true }}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToCreate, updated => {
                                         updated.event_id = eventToCreate.event_id;
