@@ -48,9 +48,12 @@ function EventsPage() {
                         image,
                         event_id: event.event_id,
                         title: event.title,
+                        title_cat: event.title_cat,
                         description: event.description,
+                        description_cat: event.description_cat,
                         date: event.date,
-                        location: event.location,
+                        time: event.time,
+                        contact: event.contact,
                         location_url: event.location_url,
                         gallery: event.gallery
                     });
@@ -93,7 +96,7 @@ function EventsPage() {
                                 image={event.image}
                                 title={getEventTitle(event)}
                                 date={event.date}
-                                description={getEventDescription(event).substring(0, 127)}
+                                description={`${getEventDescription(event).substring(0, 31)} ...Ver más`}
                             />
                         </Link>
                     </Grid>
