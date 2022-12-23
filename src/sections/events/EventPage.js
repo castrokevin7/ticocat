@@ -17,6 +17,14 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 import getFormattedDate from "utils/FormatDate";
 
+
+// @mui material components
+import Icon from "@mui/material/Icon";
+import Stack from "@mui/material/Stack";
+
+// Coworking page component
+import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption";
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -42,9 +50,12 @@ function EventPage() {
                         image,
                         event_id: response.event_id,
                         title: response.title,
+                        title_cat: response.title_cat,
                         description: response.description,
+                        description_cat: response.description_cat,
                         date: response.date,
-                        location: response.location,
+                        time: response.time,
+                        contact: response.contact,
                         location_url: response.location_url,
                         gallery: response.gallery
                     });
@@ -52,9 +63,12 @@ function EventPage() {
                         updated.event_id = updateFrom.event_id;
                         updated.image = updateFrom.image;
                         updated.title = updateFrom.title;
+                        updated.title_cat = updateFrom.title_cat;
                         updated.description = updateFrom.description;
+                        updated.description_cat = updateFrom.description_cat;
                         updated.date = updateFrom.date;
-                        updated.location = updateFrom.location;
+                        updated.time = updateFrom.time;
+                        updated.contact = updateFrom.contact;
                         updated.location_url = updateFrom.location_url;
                         updated.gallery = updateFrom.gallery;
                     });
@@ -72,18 +86,24 @@ function EventPage() {
                         image: response.image,
                         event_id: response.event_id,
                         title: response.title,
+                        title_cat: response.title_cat,
                         description: response.description,
+                        description_cat: response.description_cat,
                         date: response.date,
-                        location: response.location,
+                        time: response.time,
+                        contact: response.contact,
                         location_url: response.location_url
                     });
                     response = Event.copyOf(updateFrom, updated => {
                         updated.event_id = updateFrom.event_id;
                         updated.image = updateFrom.image;
                         updated.title = updateFrom.title;
+                        updated.title_cat = updateFrom.title_cat;
                         updated.description = updateFrom.description;
+                        updated.description_cat = updateFrom.description_cat;
                         updated.date = updateFrom.date;
-                        updated.location = updateFrom.location;
+                        updated.time = updateFrom.time;
+                        updated.contact = updateFrom.contact;
                         updated.location_url = updateFrom.location_url;
                         updated.gallery = updateFrom.gallery;
                     });
@@ -94,6 +114,63 @@ function EventPage() {
         } catch (err) {
             console.error('Error:', err);
             setState('error');
+        }
+    };
+
+    const getEventContent = (event) => {
+        return (
+            <MKBox component="section" py={{ xs: 3, md: 12 }}>
+                <Container>
+                    <Grid container alignItems="center">
+                        <Grid item xs={12} lg={5}>
+                            <MKTypography variant="h3" my={1}>
+                                {event.title}
+                            </MKTypography>
+                            <MKTypography variant="body2" color="text" mb={2}>
+                                {event.description}
+                            </MKTypography>
+                        </Grid>
+                        <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
+                            <Stack>
+                                <AboutUsOption
+                                    icon="date_range"
+                                    content={
+                                        <>
+                                            {getDateTime(event)}
+                                        </>
+                                    }
+                                />
+                                {event.contact && <AboutUsOption
+                                    icon="contact_phone"
+                                    content={
+                                        <>
+                                            {event.contact}
+                                        </>
+                                    }
+                                />}
+                                {event.location_url && <AboutUsOption
+                                    icon="location_on"
+                                    content={
+                                        <>
+                                            <a href={event.location_url} target="_blank">{event.location_url}</a>
+                                        </>
+                                    }
+                                />}
+                            </Stack>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </MKBox>
+        );
+    }
+
+    const getDateTime = (event) => {
+        return `${getFormattedDate(event.date)}  |  ${getTime(event.time)}`
+    }
+
+    const getTime = (time) => {
+        if (time) {
+            return `${time}H`
         }
     };
 
@@ -150,7 +227,7 @@ function EventPage() {
                                     {event.title}
                                 </MKTypography>
                                 <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
-                                    {getFormattedDate(event.date)}
+                                    {getDateTime(event)}
                                 </MKTypography>
                             </Grid>
                         </Container>
@@ -169,20 +246,9 @@ function EventPage() {
                 >
                     <MKBox component="section" py={6}>
                         <Container>
-                            <Grid
-                                container
-                                item
-                                xs={8}
-                                flexDirection="column"
-                                alignItems="center"
-                                mx="auto"
-                                textAlign="center"
-                                mb={6}
-                            >
-                                <MKTypography variant="body2" color="text">
-                                    {event.description}
-                                </MKTypography>
-                            </Grid>
+
+                            {getEventContent(event)}
+                            {/* 
                             <Grid container spacing={3} minHeight={{
                                 xs: "80vh",
                                 sm: "80vh",
@@ -190,8 +256,8 @@ function EventPage() {
                                 lg: "70vh",
                                 xl: "80vh"
                             }}>
-                                {event.gallery.map((image) =>
-                                    <Grid item xs={12} sm={12} md={4}>
+                                {event.gallery.map((image, i) =>
+                                    <Grid key={i} item xs={12} sm={12} md={4}>
                                         <MKBox
                                             width="100%"
                                             height="100%"
@@ -204,7 +270,7 @@ function EventPage() {
                                         />
                                     </Grid>
                                 )}
-                            </Grid>
+                            </Grid> */}
                         </Container>
                     </MKBox>
                 </Card>
