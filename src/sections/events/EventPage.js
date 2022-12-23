@@ -17,9 +17,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 import getFormattedDate from "utils/FormatDate";
 
-
 // @mui material components
-import Icon from "@mui/material/Icon";
 import Stack from "@mui/material/Stack";
 
 // Coworking page component
@@ -108,8 +106,11 @@ function EventPage() {
                         updated.gallery = updateFrom.gallery;
                     });
                 }
+
+                setEvent(response);
+            } else {
+                setEvent(null);
             }
-            setEvent(response);
             setState('success');
         } catch (err) {
             console.error('Error:', err);
@@ -152,7 +153,7 @@ function EventPage() {
                                     icon="location_on"
                                     content={
                                         <>
-                                            <a href={event.location_url} target="_blank">{event.location_url}</a>
+                                            <a rel="noreferrer" href={event.location_url} target="_blank">{event.location_url}</a>
                                         </>
                                     }
                                 />}
