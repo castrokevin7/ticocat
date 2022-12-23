@@ -501,7 +501,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
                 <MKButton
-                  sx={ action.minimal ? { paddingRight: { xs: 0, s: 0 } } : null }
+                  sx={ action.minimal ? { paddingRight: { xs: 0, s: 0 }, paddingLeft: { xs: 0, s: 0 } } : null }
                   component="a"
                   href={action.route}
                   target="_self"
@@ -578,7 +578,10 @@ DefaultNavbar.propTypes = {
         "default",
         "white",
       ]),
-      label: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      variant: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      minimal: PropTypes.bool.isRequired,
     }),
   ]),
   sticky: PropTypes.bool,
