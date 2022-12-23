@@ -16,37 +16,43 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type EventUpdateFormInputValues = {
     event_id?: string;
     title?: string;
-    description?: string;
+    title_cat?: string;
     image?: string;
     gallery?: string[];
     date?: string;
-    location?: string;
     contact?: string;
     location_url?: string;
+    description?: string;
+    description_cat?: string;
+    time?: string;
 };
 export declare type EventUpdateFormValidationValues = {
     event_id?: ValidationFunction<string>;
     title?: ValidationFunction<string>;
-    description?: ValidationFunction<string>;
+    title_cat?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
     gallery?: ValidationFunction<string>;
     date?: ValidationFunction<string>;
-    location?: ValidationFunction<string>;
     contact?: ValidationFunction<string>;
     location_url?: ValidationFunction<string>;
+    description?: ValidationFunction<string>;
+    description_cat?: ValidationFunction<string>;
+    time?: ValidationFunction<string>;
 };
 export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventUpdateFormOverridesProps = {
     EventUpdateFormGrid?: FormProps<GridProps>;
     event_id?: FormProps<TextFieldProps>;
     title?: FormProps<TextFieldProps>;
-    description?: FormProps<TextFieldProps>;
+    title_cat?: FormProps<TextFieldProps>;
     image?: FormProps<TextFieldProps>;
     gallery?: FormProps<TextFieldProps>;
     date?: FormProps<TextFieldProps>;
-    location?: FormProps<TextFieldProps>;
     contact?: FormProps<TextFieldProps>;
     location_url?: FormProps<TextFieldProps>;
+    description?: FormProps<TextFieldProps>;
+    description_cat?: FormProps<TextFieldProps>;
+    time?: FormProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EventUpdateFormProps = React.PropsWithChildren<{
     overrides?: EventUpdateFormOverridesProps | undefined | null;

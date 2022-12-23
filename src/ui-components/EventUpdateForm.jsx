@@ -169,40 +169,48 @@ export default function EventUpdateForm(props) {
   const initialValues = {
     event_id: undefined,
     title: undefined,
-    description: undefined,
+    title_cat: undefined,
     image: undefined,
     gallery: [],
     date: undefined,
-    location: undefined,
     contact: undefined,
     location_url: undefined,
+    description: undefined,
+    description_cat: undefined,
+    time: undefined,
   };
   const [event_id, setEvent_id] = React.useState(initialValues.event_id);
   const [title, setTitle] = React.useState(initialValues.title);
-  const [description, setDescription] = React.useState(
-    initialValues.description
-  );
+  const [title_cat, setTitle_cat] = React.useState(initialValues.title_cat);
   const [image, setImage] = React.useState(initialValues.image);
   const [gallery, setGallery] = React.useState(initialValues.gallery);
   const [date, setDate] = React.useState(initialValues.date);
-  const [location, setLocation] = React.useState(initialValues.location);
   const [contact, setContact] = React.useState(initialValues.contact);
   const [location_url, setLocation_url] = React.useState(
     initialValues.location_url
   );
+  const [description, setDescription] = React.useState(
+    initialValues.description
+  );
+  const [description_cat, setDescription_cat] = React.useState(
+    initialValues.description_cat
+  );
+  const [time, setTime] = React.useState(initialValues.time);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = { ...initialValues, ...eventRecord };
     setEvent_id(cleanValues.event_id);
     setTitle(cleanValues.title);
-    setDescription(cleanValues.description);
+    setTitle_cat(cleanValues.title_cat);
     setImage(cleanValues.image);
     setGallery(cleanValues.gallery ?? []);
     setCurrentGalleryValue(undefined);
     setDate(cleanValues.date);
-    setLocation(cleanValues.location);
     setContact(cleanValues.contact);
     setLocation_url(cleanValues.location_url);
+    setDescription(cleanValues.description);
+    setDescription_cat(cleanValues.description_cat);
+    setTime(cleanValues.time);
     setErrors({});
   };
   const [eventRecord, setEventRecord] = React.useState(event);
@@ -220,13 +228,15 @@ export default function EventUpdateForm(props) {
   const validations = {
     event_id: [],
     title: [],
-    description: [],
+    title_cat: [],
     image: [],
     gallery: [],
     date: [],
-    location: [],
     contact: [],
     location_url: [{ type: "URL" }],
+    description: [],
+    description_cat: [],
+    time: [],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -248,13 +258,15 @@ export default function EventUpdateForm(props) {
         let modelFields = {
           event_id,
           title,
-          description,
+          title_cat,
           image,
           gallery,
           date,
-          location,
           contact,
           location_url: location_url || undefined,
+          description,
+          description_cat,
+          time,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -307,13 +319,15 @@ export default function EventUpdateForm(props) {
             const modelFields = {
               event_id: value,
               title,
-              description,
+              title_cat,
               image,
               gallery,
               date,
-              location,
               contact,
               location_url,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
             value = result?.event_id ?? value;
@@ -339,13 +353,15 @@ export default function EventUpdateForm(props) {
             const modelFields = {
               event_id,
               title: value,
-              description,
+              title_cat,
               image,
               gallery,
               date,
-              location,
               contact,
               location_url,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -361,36 +377,38 @@ export default function EventUpdateForm(props) {
         {...getOverrideProps(overrides, "title")}
       ></TextField>
       <TextField
-        label="Description"
+        label="Title cat"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={description}
+        defaultValue={title_cat}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
               event_id,
               title,
-              description: value,
+              title_cat: value,
               image,
               gallery,
               date,
-              location,
               contact,
               location_url,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
-            value = result?.description ?? value;
+            value = result?.title_cat ?? value;
           }
-          if (errors.description?.hasError) {
-            runValidationTasks("description", value);
+          if (errors.title_cat?.hasError) {
+            runValidationTasks("title_cat", value);
           }
-          setDescription(value);
+          setTitle_cat(value);
         }}
-        onBlur={() => runValidationTasks("description", description)}
-        errorMessage={errors.description?.errorMessage}
-        hasError={errors.description?.hasError}
-        {...getOverrideProps(overrides, "description")}
+        onBlur={() => runValidationTasks("title_cat", title_cat)}
+        errorMessage={errors.title_cat?.errorMessage}
+        hasError={errors.title_cat?.hasError}
+        {...getOverrideProps(overrides, "title_cat")}
       ></TextField>
       <TextField
         label="Image"
@@ -403,13 +421,15 @@ export default function EventUpdateForm(props) {
             const modelFields = {
               event_id,
               title,
-              description,
+              title_cat,
               image: value,
               gallery,
               date,
-              location,
               contact,
               location_url,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -431,13 +451,15 @@ export default function EventUpdateForm(props) {
             const modelFields = {
               event_id,
               title,
-              description,
+              title_cat,
               image,
               gallery: values,
               date,
-              location,
               contact,
               location_url,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
             values = result?.gallery ?? values;
@@ -484,13 +506,15 @@ export default function EventUpdateForm(props) {
             const modelFields = {
               event_id,
               title,
-              description,
+              title_cat,
               image,
               gallery,
               date: value,
-              location,
               contact,
               location_url,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
             value = result?.date ?? value;
@@ -506,38 +530,6 @@ export default function EventUpdateForm(props) {
         {...getOverrideProps(overrides, "date")}
       ></TextField>
       <TextField
-        label="Location"
-        isRequired={false}
-        isReadOnly={false}
-        defaultValue={location}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              event_id,
-              title,
-              description,
-              image,
-              gallery,
-              date,
-              location: value,
-              contact,
-              location_url,
-            };
-            const result = onChange(modelFields);
-            value = result?.location ?? value;
-          }
-          if (errors.location?.hasError) {
-            runValidationTasks("location", value);
-          }
-          setLocation(value);
-        }}
-        onBlur={() => runValidationTasks("location", location)}
-        errorMessage={errors.location?.errorMessage}
-        hasError={errors.location?.hasError}
-        {...getOverrideProps(overrides, "location")}
-      ></TextField>
-      <TextField
         label="Contact"
         isRequired={false}
         isReadOnly={false}
@@ -548,13 +540,15 @@ export default function EventUpdateForm(props) {
             const modelFields = {
               event_id,
               title,
-              description,
+              title_cat,
               image,
               gallery,
               date,
-              location,
               contact: value,
               location_url,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
             value = result?.contact ?? value;
@@ -580,13 +574,15 @@ export default function EventUpdateForm(props) {
             const modelFields = {
               event_id,
               title,
-              description,
+              title_cat,
               image,
               gallery,
               date,
-              location,
               contact,
               location_url: value,
+              description,
+              description_cat,
+              time,
             };
             const result = onChange(modelFields);
             value = result?.location_url ?? value;
@@ -600,6 +596,109 @@ export default function EventUpdateForm(props) {
         errorMessage={errors.location_url?.errorMessage}
         hasError={errors.location_url?.hasError}
         {...getOverrideProps(overrides, "location_url")}
+      ></TextField>
+      <TextField
+        label="Description"
+        isRequired={false}
+        isReadOnly={false}
+        defaultValue={description}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              event_id,
+              title,
+              title_cat,
+              image,
+              gallery,
+              date,
+              contact,
+              location_url,
+              description: value,
+              description_cat,
+              time,
+            };
+            const result = onChange(modelFields);
+            value = result?.description ?? value;
+          }
+          if (errors.description?.hasError) {
+            runValidationTasks("description", value);
+          }
+          setDescription(value);
+        }}
+        onBlur={() => runValidationTasks("description", description)}
+        errorMessage={errors.description?.errorMessage}
+        hasError={errors.description?.hasError}
+        {...getOverrideProps(overrides, "description")}
+      ></TextField>
+      <TextField
+        label="Description cat"
+        isRequired={false}
+        isReadOnly={false}
+        defaultValue={description_cat}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              event_id,
+              title,
+              title_cat,
+              image,
+              gallery,
+              date,
+              contact,
+              location_url,
+              description,
+              description_cat: value,
+              time,
+            };
+            const result = onChange(modelFields);
+            value = result?.description_cat ?? value;
+          }
+          if (errors.description_cat?.hasError) {
+            runValidationTasks("description_cat", value);
+          }
+          setDescription_cat(value);
+        }}
+        onBlur={() => runValidationTasks("description_cat", description_cat)}
+        errorMessage={errors.description_cat?.errorMessage}
+        hasError={errors.description_cat?.hasError}
+        {...getOverrideProps(overrides, "description_cat")}
+      ></TextField>
+      <TextField
+        label="Time"
+        isRequired={false}
+        isReadOnly={false}
+        type="time"
+        defaultValue={time}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              event_id,
+              title,
+              title_cat,
+              image,
+              gallery,
+              date,
+              contact,
+              location_url,
+              description,
+              description_cat,
+              time: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.time ?? value;
+          }
+          if (errors.time?.hasError) {
+            runValidationTasks("time", value);
+          }
+          setTime(value);
+        }}
+        onBlur={() => runValidationTasks("time", time)}
+        errorMessage={errors.time?.errorMessage}
+        hasError={errors.time?.hasError}
+        {...getOverrideProps(overrides, "time")}
       ></TextField>
       <Flex
         justifyContent="space-between"

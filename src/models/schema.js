@@ -24,8 +24,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
+                "title_cat": {
+                    "name": "title_cat",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -53,13 +53,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "location": {
-                    "name": "location",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "contact": {
                     "name": "contact",
                     "isArray": false,
@@ -71,6 +64,27 @@ export const schema = {
                     "name": "location_url",
                     "isArray": false,
                     "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description_cat": {
+                    "name": "description_cat",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": "AWSTime",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -265,5 +279,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "b6ec4d3bb3b75abb9a07fba49b54406f"
+    "version": "a53ce8ffda785ac4785da885eab67711"
 };
