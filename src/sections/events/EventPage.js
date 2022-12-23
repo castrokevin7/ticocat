@@ -155,7 +155,7 @@ function EventPage() {
                                     icon="location_on"
                                     content={
                                         <>
-                                            <a rel="noreferrer" href={event.location_url} target="_blank">{event.location_url}</a>
+                                            <a rel="noreferrer" href={event.location_url} target="_blank">Punto de encuentro</a>
                                         </>
                                     }
                                 />}
