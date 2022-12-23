@@ -151,9 +151,9 @@ function EventsPage() {
                             >
                                 Eventos
                             </MKTypography>
-                            <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
+{/*                             <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
                                 Espacios para la comunidad
-                            </MKTypography>
+                            </MKTypography> */}
                         </Grid>
                     </Container>
                 </MKBox>
@@ -171,7 +171,7 @@ function EventsPage() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
-                        <Grid container item xs={12} lg={6} flexDirection="column">
+{/*                         <Grid container item xs={12} lg={6} flexDirection="column">
                             <MKTypography variant="h3" mt={3} mb={1}>
                                 Build something great
                             </MKTypography>
@@ -179,7 +179,7 @@ function EventsPage() {
                                 We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
                                 the opportunity to play this game of life you need to appreciate every moment.
                             </MKTypography>
-                        </Grid>
+                        </Grid> */}
                         <Grid container spacing={3} mt={3}>
                             { getEvents() }
                         </Grid>
