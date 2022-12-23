@@ -23,6 +23,8 @@ import Stack from "@mui/material/Stack";
 // Coworking page component
 import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption";
 
+import { getEventTitle, getEventDescription } from './Utils';
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -125,10 +127,10 @@ function EventPage() {
                     <Grid container alignItems="center">
                         <Grid item xs={12} lg={5}>
                             <MKTypography variant="h3" my={1}>
-                                {event.title}
+                                {getEventTitle(event)}
                             </MKTypography>
                             <MKTypography variant="body2" color="text" mb={2}>
-                                {event.description}
+                                {getEventDescription(event)}
                             </MKTypography>
                         </Grid>
                         <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
@@ -229,7 +231,7 @@ function EventPage() {
                                     })}
                                     mb={3}
                                 >
-                                    {event.title}
+                                    {getEventTitle(event)}
                                 </MKTypography>
                                 <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
                                     {getDateTime(event)}

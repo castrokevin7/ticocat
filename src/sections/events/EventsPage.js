@@ -24,6 +24,8 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // Images
 import bgImage from "assets/images/bg-coworking.jpeg";
 
+import { getEventTitle, getEventDescription } from './Utils';
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -89,9 +91,9 @@ function EventsPage() {
                         <Link to={`/evento/${event.event_id}`}>
                             <SimpleBackgroundCard
                                 image={event.image}
-                                title={event.title}
+                                title={getEventTitle(event)}
                                 date={event.date}
-                                description={event.description.substring(0, 127)}
+                                description={getEventDescription(event).substring(0, 127)}
                             />
                         </Link>
                     </Grid>
