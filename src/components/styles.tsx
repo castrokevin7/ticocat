@@ -5,7 +5,7 @@ export const modalStyle = {
     transform: 'translate(-50%, -50%)',
     width: {
         xs: '90%',
-        sm: '7z0%',
+        sm: '70%',
         md: '50%',
         lg: '50%',
         xl: '50%',
