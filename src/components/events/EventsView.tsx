@@ -195,27 +195,27 @@ function EventsView() {
 
     const validateEvent = (event: Event, image) => {
         if (!event.title) {
-            alert("Falta el Título (ESP).");
+            alert("Error: Título (ESP) es requerido.");
             return false;
         }
         if (!event.title_cat) {
-            alert("Falta el Título (CAT).");
+            alert("Error: Título (CAT) es requerido.");
             return false;
         }
         if (!event.description) {
-            alert("Falta la Descripción (ESP).");
+            alert("Error: Descripción (ESP) es requerido.");
             return false;
         }
         if (!event.description_cat) {
-            alert("Falta la Descripción (CAT).");
+            alert("Error: Descripción (CAT) es requerido.");
             return false;
         }
         if (!event.date) {
-            alert("Falta la Fecha.");
+            alert("Error: Fecha es requerida.");
             return false;
         }
         if (!image) {
-            alert("Falta la Imagen de Portada.");
+            alert("Error: Imagen de Portada es requerida.");
             return false;
         }
         return true;
