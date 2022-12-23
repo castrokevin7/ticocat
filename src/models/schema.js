@@ -49,7 +49,7 @@ export const schema = {
                 "date": {
                     "name": "date",
                     "isArray": false,
-                    "type": "AWSDate",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -84,7 +84,7 @@ export const schema = {
                 "time": {
                     "name": "time",
                     "isArray": false,
-                    "type": "AWSTime",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -279,5 +279,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "a53ce8ffda785ac4785da885eab67711"
+    "version": "b26d357a9d0ae0bb68285655caadb9f6"
 };

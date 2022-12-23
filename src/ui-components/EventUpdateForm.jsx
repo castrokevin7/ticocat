@@ -498,7 +498,6 @@ export default function EventUpdateForm(props) {
         label="Date"
         isRequired={false}
         isReadOnly={false}
-        type="date"
         defaultValue={date}
         onChange={(e) => {
           let { value } = e.target;
@@ -669,7 +668,6 @@ export default function EventUpdateForm(props) {
         label="Time"
         isRequired={false}
         isReadOnly={false}
-        type="time"
         defaultValue={time}
         onChange={(e) => {
           let { value } = e.target;

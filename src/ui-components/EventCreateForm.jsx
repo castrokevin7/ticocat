@@ -482,7 +482,6 @@ export default function EventCreateForm(props) {
         label="Date"
         isRequired={false}
         isReadOnly={false}
-        type="date"
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -648,7 +647,6 @@ export default function EventCreateForm(props) {
         label="Time"
         isRequired={false}
         isReadOnly={false}
-        type="time"
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
