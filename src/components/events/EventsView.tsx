@@ -248,7 +248,7 @@ function EventsView() {
                                     updated.description = eventToUpdate.description;
                                     updated.description_cat = eventToUpdate.description_cat;
                                     updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.date;
+                                    updated.time = eventToUpdate.time;
                                     updated.contact = eventToUpdate.contact;
                                     updated.location_url = eventToUpdate.location_url;
                                 }));
@@ -267,7 +267,7 @@ function EventsView() {
                                     updated.description = eventToUpdate.description;
                                     updated.description_cat = eventToUpdate.description_cat;
                                     updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.date;
+                                    updated.time = eventToUpdate.time;
                                     updated.contact = eventToUpdate.contact;
                                     updated.location_url = eventToUpdate.location_url;
                                 }));
@@ -286,7 +286,7 @@ function EventsView() {
                                     updated.description = event.target.value;
                                     updated.description_cat = eventToUpdate.description_cat;
                                     updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.date;
+                                    updated.time = eventToUpdate.time;
                                     updated.contact = eventToUpdate.contact;
                                     updated.location_url = eventToUpdate.location_url;
                                 }));
@@ -307,7 +307,7 @@ function EventsView() {
                                     updated.description = eventToUpdate.description;
                                     updated.description_cat = event.target.value;
                                     updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.date;
+                                    updated.time = eventToUpdate.time;
                                     updated.contact = eventToUpdate.contact;
                                     updated.location_url = eventToUpdate.location_url;
                                 }));
@@ -372,7 +372,7 @@ function EventsView() {
                                     updated.description = eventToUpdate.description;
                                     updated.description_cat = eventToUpdate.description_cat;
                                     updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.date;
+                                    updated.time = eventToUpdate.time;
                                     updated.contact = event.target.value;
                                     updated.location_url = eventToUpdate.location_url;
                                 }));
@@ -391,7 +391,7 @@ function EventsView() {
                                     updated.description = eventToUpdate.description;
                                     updated.description_cat = eventToUpdate.description_cat;
                                     updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.date;
+                                    updated.time = eventToUpdate.time;
                                     updated.contact = eventToUpdate.contact;
                                     updated.location_url = event.target.value;
                                 }));
@@ -490,7 +490,7 @@ function EventsView() {
                                     updated.description = eventToCreate.description;
                                     updated.description_cat = eventToCreate.description_cat;
                                     updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.date;
+                                    updated.time = eventToCreate.time;
                                     updated.contact = eventToCreate.contact;
                                     updated.location_url = eventToCreate.location_url;
                                 }))
@@ -508,7 +508,7 @@ function EventsView() {
                                     updated.description = eventToCreate.description;
                                     updated.description_cat = eventToCreate.description_cat;
                                     updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.date;
+                                    updated.time = eventToCreate.time;
                                     updated.contact = eventToCreate.contact;
                                     updated.location_url = eventToCreate.location_url;
                                 }))
@@ -526,7 +526,7 @@ function EventsView() {
                                     updated.description = event.target.value;
                                     updated.description_cat = eventToCreate.description_cat;
                                     updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.date;
+                                    updated.time = eventToCreate.time;
                                     updated.contact = eventToCreate.contact;
                                     updated.location_url = eventToCreate.location_url;
                                 }))
@@ -546,7 +546,7 @@ function EventsView() {
                                     updated.description = eventToCreate.description;
                                     updated.description_cat = event.target.value;
                                     updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.date;
+                                    updated.time = eventToCreate.time;
                                     updated.contact = eventToCreate.contact;
                                     updated.location_url = eventToCreate.location_url;
                                 }))
@@ -607,7 +607,7 @@ function EventsView() {
                                     updated.description = eventToCreate.description;
                                     updated.description_cat = eventToCreate.description_cat;
                                     updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.date;
+                                    updated.time = eventToCreate.time;
                                     updated.contact = event.target.value;
                                     updated.location_url = eventToCreate.location_url;
                                 }))
@@ -625,7 +625,7 @@ function EventsView() {
                                     updated.description = eventToCreate.description;
                                     updated.description_cat = eventToCreate.description_cat;
                                     updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.date;
+                                    updated.time = eventToCreate.time;
                                     updated.contact = eventToCreate.contact;
                                     updated.location_url = event.target.value;
                                 }));
