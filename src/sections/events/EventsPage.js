@@ -26,6 +26,8 @@ import bgImage from "assets/images/bg-coworking.jpeg";
 
 import { getEventTitle, getEventDescription } from './Utils';
 
+import Translator from 'utils/Translator';
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -74,7 +76,7 @@ function EventsPage() {
                     <div className="spinner-container">
                         <div className="loading-spinner" />
                     </div>
-                    Cargando
+                    {Translator.instance.translate("loading_tag")}
                 </div>
             );
         }
@@ -82,7 +84,7 @@ function EventsPage() {
         if (state === 'error') {
             return (
                 <h1>
-                    Hubo un error...
+                    {Translator.instance.translate("error_tag")}
                 </h1>
             );
         }
@@ -149,9 +151,9 @@ function EventsPage() {
                                     },
                                 })}
                             >
-                                Eventos
+                                {Translator.instance.translate("events_title")}
                             </MKTypography>
-{/*                             <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
+                            {/*                             <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
                                 Espacios para la comunidad
                             </MKTypography> */}
                         </Grid>
@@ -171,7 +173,7 @@ function EventsPage() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
-{/*                         <Grid container item xs={12} lg={6} flexDirection="column">
+                        {/*                         <Grid container item xs={12} lg={6} flexDirection="column">
                             <MKTypography variant="h3" mt={3} mb={1}>
                                 Build something great
                             </MKTypography>
@@ -181,7 +183,7 @@ function EventsPage() {
                             </MKTypography>
                         </Grid> */}
                         <Grid container spacing={3} mt={3}>
-                            { getEvents() }
+                            {getEvents()}
                         </Grid>
                     </Container>
                 </MKBox>

@@ -1,5 +1,12 @@
+String.prototype.format = function () {
+    var args = arguments;
+    return this.replace(/{([0-9]+)}/g, function (match, index) {
+        return typeof args[index] == 'undefined' ? match : args[index];
+    });
+};
+
 export default class Translator {
- 
+
     constructor() {
         this.data = require('./Translations.json');
     }
@@ -12,6 +19,9 @@ export default class Translator {
             domain = "cat.asoticocat.com"
         }
 
-        return this.data[key][domain];
+        if (key in this.data && domain in this.data[key]) {
+            return this.data[key][domain];
+        }
+        return key;
     }
 }

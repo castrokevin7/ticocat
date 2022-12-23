@@ -1,4 +1,12 @@
 {
+    "loading_tag": {
+        "www.asoticocat.com": "Cargando",
+        "cat.asoticocat.com": "Carregant"
+    },
+    "error_tag": {
+        "www.asoticocat.com": "Error",
+        "cat.asoticocat.com": "Error"
+    },
     "route_home": {
         "www.asoticocat.com": "Inicio",
         "cat.asoticocat.com": "Inici"
@@ -218,5 +226,13 @@
     "team_ale_reasons": {
         "www.asoticocat.com": "Recuerdo que antes de venirme a Barcelona, tenía muchas preguntas y necesitaba de alguien que me ayudara a contestarlas. En aquel momento tuve un angel que no dudo en responderlas. Cuando llegue me propuse a ser ese ángel para alguien más y desde entonces he estado trabajando para la comunidad aportando mi granito de arena. Para que otros tengan la misma posibilidad de cumplir el sueño de estudiar o vivir en Barcelona",
         "cat.asoticocat.com": "Recordo que abans de arribar a Barcelona tenia moltes preguntes i necessitava algú que m'ajudés a contestar-les. En aquell moment vaig tenir un àngel que no va dubtar a respondre-les. Quan vaig arribar em vaig proposar de ser aquest àngel per a algú més i des de llavors he estat treballant per a la comunitat aportant el meu granet de sorra. Perquè els altres tinguin la mateixa possibilitat de complir el somni d'estudiar o viure a Barcelona"
+    },
+    "events_title": {
+        "www.asoticocat.com": "Eventos",
+        "cat.asoticocat.com": "Esdeveniments"
+    },
+    "event_does_not_exist": {
+        "www.asoticocat.com": "Evento {0} no existe.",
+        "cat.asoticocat.com": "Esdeveniment {0} no existeix."
     }
 }

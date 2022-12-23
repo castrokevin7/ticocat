@@ -25,6 +25,8 @@ import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption
 
 import { getEventTitle, getEventDescription } from './Utils';
 
+import Translator from 'utils/Translator';
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -295,7 +297,7 @@ function EventPage() {
     if (state === 'error') {
         return (
             <h1>
-                Hubo un error...
+                {Translator.instance.translate("error_tag")}
             </h1>
         );
     }
@@ -307,12 +309,12 @@ function EventPage() {
                     <div className="spinner-container">
                         <div className="loading-spinner" />
                     </div>
-                    Cargando
+                    {Translator.instance.translate("loading_tag")}
                 </div>
             )
                 :
                 (
-                    event ? viewEvent() : <span style={{ padding: '10px' }}>Evento {eventId} no existe.</span>
+                    event ? viewEvent() : <span style={{ padding: '10px' }}>{Translator.instance.translate("event_does_not_exist").format(eventId)}</span>
                 )}
         </>
     )
