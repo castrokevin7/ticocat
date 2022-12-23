@@ -191,7 +191,6 @@ export default function AssociateCreateForm(props) {
         label="Birthday"
         isRequired={false}
         isReadOnly={false}
-        type="date"
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -288,7 +287,6 @@ export default function AssociateCreateForm(props) {
         label="Inscription date"
         isRequired={false}
         isReadOnly={false}
-        type="date"
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {

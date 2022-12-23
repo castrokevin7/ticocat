@@ -24,8 +24,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "description": {
-                    "name": "description",
+                "title_cat": {
+                    "name": "title_cat",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -49,13 +49,6 @@ export const schema = {
                 "date": {
                     "name": "date",
                     "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "location": {
-                    "name": "location",
-                    "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
@@ -71,6 +64,27 @@ export const schema = {
                     "name": "location_url",
                     "isArray": false,
                     "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description_cat": {
+                    "name": "description_cat",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -136,7 +150,7 @@ export const schema = {
                 "birthday": {
                     "name": "birthday",
                     "isArray": false,
-                    "type": "AWSDate",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -157,7 +171,7 @@ export const schema = {
                 "inscription_date": {
                     "name": "inscription_date",
                     "isArray": false,
-                    "type": "AWSDate",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -265,5 +279,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.2",
-    "version": "b6ec4d3bb3b75abb9a07fba49b54406f"
+    "version": "790607e2e7826ea67d42118928af09e3"
 };

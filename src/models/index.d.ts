@@ -28,13 +28,15 @@ type EagerEvent = {
   readonly id: string;
   readonly event_id?: string | null;
   readonly title?: string | null;
-  readonly description?: string | null;
+  readonly title_cat?: string | null;
   readonly image?: string | null;
   readonly gallery?: (string | null)[] | null;
   readonly date?: string | null;
-  readonly location?: string | null;
   readonly contact?: string | null;
   readonly location_url?: string | null;
+  readonly description?: string | null;
+  readonly description_cat?: string | null;
+  readonly time?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -43,13 +45,15 @@ type LazyEvent = {
   readonly id: string;
   readonly event_id?: string | null;
   readonly title?: string | null;
-  readonly description?: string | null;
+  readonly title_cat?: string | null;
   readonly image?: string | null;
   readonly gallery?: (string | null)[] | null;
   readonly date?: string | null;
-  readonly location?: string | null;
   readonly contact?: string | null;
   readonly location_url?: string | null;
+  readonly description?: string | null;
+  readonly description_cat?: string | null;
+  readonly time?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
