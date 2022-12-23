@@ -204,7 +204,6 @@ export default function AssociateUpdateForm(props) {
         label="Birthday"
         isRequired={false}
         isReadOnly={false}
-        type="date"
         defaultValue={birthday}
         onChange={(e) => {
           let { value } = e.target;
@@ -304,7 +303,6 @@ export default function AssociateUpdateForm(props) {
         label="Inscription date"
         isRequired={false}
         isReadOnly={false}
-        type="date"
         defaultValue={inscription_date}
         onChange={(e) => {
           let { value } = e.target;
