@@ -166,7 +166,11 @@ function EventPage() {
     }
 
     const getDateTime = (event) => {
-        return `${getFormattedDate(event.date)}  |  ${getTime(event.time)}`
+        if (event.time) {
+            return `${getFormattedDate(event.date)}  |  ${getTime(event.time)}`;
+        } else {
+            return getFormattedDate(event.date);
+        }
     }
 
     const getTime = (time) => {
