@@ -229,11 +229,13 @@ function EventPage() {
                                             fontSize: size["3xl"],
                                         },
                                     })}
-                                    mb={3}
+                                    mb={1}
                                 >
                                     {getEventTitle(event)}
                                 </MKTypography>
-                                <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
+                                <MKTypography variant="body3" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}
+                                    sx={{ fontWeight: 'bold' }}
+                                >
                                     {getDateTime(event)}
                                 </MKTypography>
                             </Grid>
