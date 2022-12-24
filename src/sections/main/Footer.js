@@ -18,6 +18,7 @@ function Footer() {
     { href: "/#acerca", name: Translator.instance.translate("route_about") },
     { href: "/#equipo", name: Translator.instance.translate("route_team") },
     { href: "/#socios", name: Translator.instance.translate("route_associates") },
+    { href: "/#eventos", name: Translator.instance.translate("route_events") },
   ];
   const socials = [
     {

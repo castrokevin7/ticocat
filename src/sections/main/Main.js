@@ -28,7 +28,7 @@ export default function Main() {
                 <About />
                 <Team />
                 <Associates />
-{/*                 <Events /> */}
+                <Events />
             </Card>
             <Footer />
         </>
