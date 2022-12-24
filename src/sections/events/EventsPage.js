@@ -28,6 +28,11 @@ import { getEventTitle, getEventDescription } from './Utils';
 
 import Translator from 'utils/Translator';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -38,6 +43,8 @@ const useConstructor = (callBack = () => { }) => {
 function EventsPage() {
     const [state, setState] = useState('');
     const [events, setEvents] = useState([]);
+    const [filteredEvents, setFilteredEvents] = useState([]);
+    const [selectedFilter, setSelectedFilter] = useState('all');
 
     const fetchEvents = async () => {
         setState('loading');
@@ -61,6 +68,7 @@ function EventsPage() {
                     });
                 }));
                 setEvents(response);
+                setFilteredEvents(response);
                 setState('success');
             }
         } catch (err) {
@@ -91,21 +99,52 @@ function EventsPage() {
 
         return (
             <>
-                {events.map((event, i) =>
-                    <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/evento/${event.event_id}`}>
-                            <SimpleBackgroundCard
-                                image={event.image}
-                                title={getEventTitle(event)}
-                                date={event.date}
-                                description={`${getEventDescription(event).substring(0, 31)} ...Ver más`}
-                            />
-                        </Link>
-                    </Grid>
-                )}
+                {filteredEvents.length === 0 ?
+                    <MKTypography ml={3} mt={2} variant="body2" color="text">
+                        {Translator.instance.translate("events_page_no_events")}
+                    </MKTypography>
+                    :
+                    filteredEvents.map((event, i) =>
+                        <Grid key={i} item xs={12} lg={4}>
+                            <Link to={`/evento/${event.event_id}`}>
+                                <SimpleBackgroundCard
+                                    image={event.image}
+                                    title={getEventTitle(event)}
+                                    date={event.date}
+                                    description={`${getEventDescription(event).substring(0, 31)} ...${Translator.instance.translate("events_page_see_more_from_event")}`}
+                                />
+                            </Link>
+                        </Grid>
+                    )}
             </>
         )
     }
+
+    const filterEventsByDate = (filter) => {
+        if (filter === 'all') {
+            setFilteredEvents([...events]);
+        } else {
+            const today = new Date(new Date().toDateString());
+            if (filter === 'upcoming') {
+                const filtered = events.filter((event) => {
+                    const date = new Date(event.date);
+                    return date >= today;
+                })
+                setFilteredEvents([...filtered]);
+            } else {
+                const filtered = events.filter((event) => {
+                    const date = new Date(event.date);
+                    return date < today;
+                })
+                setFilteredEvents([...filtered]);
+            }
+        }
+    }
+
+    const handleSelectedFilterChange = (event) => {
+        setSelectedFilter(event.target.value);
+        filterEventsByDate(event.target.value);
+    };
 
     useConstructor(() => {
         setState('loading');
@@ -151,11 +190,11 @@ function EventsPage() {
                                     },
                                 })}
                             >
-                                {Translator.instance.translate("events_title")}
+                                {Translator.instance.translate("events_page_title")}
                             </MKTypography>
-                            {/*                             <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
-                                Espacios para la comunidad
-                            </MKTypography> */}
+                            <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
+                                {Translator.instance.translate("events_page_description")}
+                            </MKTypography>
                         </Grid>
                     </Container>
                 </MKBox>
@@ -173,16 +212,24 @@ function EventsPage() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
-                        {/*                         <Grid container item xs={12} lg={6} flexDirection="column">
-                            <MKTypography variant="h3" mt={3} mb={1}>
-                                Build something great
-                            </MKTypography>
+                        <Grid container item xs={12} lg={6} flexDirection="column">
                             <MKTypography variant="body2" color="text" mb={2}>
-                                We&apos;re constantly trying to express ourselves and actualize our dreams. If you have
-                                the opportunity to play this game of life you need to appreciate every moment.
+                                {Translator.instance.translate("events_page_events_header")}
                             </MKTypography>
-                        </Grid> */}
-                        <Grid container spacing={3} mt={3}>
+                            <FormControl sx={{ marginTop: '20px' }}>
+                                <RadioGroup
+                                    row
+                                    name="row-radio-buttons-group"
+                                    value={selectedFilter}
+                                    onChange={handleSelectedFilterChange}
+                                >
+                                    <FormControlLabel value="all" control={<Radio />} label={Translator.instance.translate("events_page_all_filter")} />
+                                    <FormControlLabel value="upcoming" control={<Radio />} label={Translator.instance.translate("events_page_upcoming_filter")} />
+                                    <FormControlLabel value="past" control={<Radio />} label={Translator.instance.translate("events_page_past_filter")} />
+                                </RadioGroup>
+                            </FormControl>
+                        </Grid>
+                        <Grid container spacing={3} mt={0.1}>
                             {getEvents()}
                         </Grid>
                     </Container>
