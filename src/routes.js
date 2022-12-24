@@ -66,6 +66,12 @@ const routes = [
     href: "#socios",
     target: "_self" 
   },
+/*   {
+    name: Translator.instance.translate("route_events"),
+    icon: <Icon>celebration_rounded</Icon>,
+    href: "#eventos",
+    target: "_self" 
+  }, */
 ];
 
 export default routes;

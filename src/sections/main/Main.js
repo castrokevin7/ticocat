@@ -6,6 +6,7 @@ import Home from './Home';
 import About from './About';
 import Team from './Team';
 import Associates from './Associates';
+import Events from './Events';
 import Footer from './Footer';
 
 export default function Main() {
@@ -27,6 +28,7 @@ export default function Main() {
                 <About />
                 <Team />
                 <Associates />
+{/*                 <Events /> */}
             </Card>
             <Footer />
         </>

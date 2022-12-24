@@ -12,7 +12,8 @@ function getAction() {
         color: "info",
         icon: "translate_rounded",
         variant: "outlined",
-        size: "small"
+        size: "small",
+        minimal: false
       }
   }
   return {
@@ -21,7 +22,8 @@ function getAction() {
     color: "info",
     icon: "translate_rounded",
     variant: "outlined",
-    size: "small"
+    size: "small",
+    minimal: false
   }
 }
 

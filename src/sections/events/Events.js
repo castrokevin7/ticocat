@@ -67,6 +67,11 @@ function EventsPage() {
                         gallery: event.gallery
                     });
                 }));
+                response.sort((a, b) => {
+                    let dateA = new Date(a.date);
+                    let dateB = new Date(b.date);
+                    return dateB - dateA;
+                });
                 setEvents(response);
                 setFilteredEvents(response);
                 setState('success');

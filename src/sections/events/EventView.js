@@ -34,7 +34,7 @@ const useConstructor = (callBack = () => { }) => {
     setHasBeenCalled(true);
 }
 
-function EventPage() {
+function EventView() {
     const [state, setState] = useState('');
     const [event, setEvent] = useState(null);
     const { eventId } = useParams();
@@ -320,4 +320,4 @@ function EventPage() {
     )
 }
 
-export default EventPage;
+export default EventView;
