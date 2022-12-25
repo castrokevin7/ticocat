@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { DataStore, Storage, Predicates } from 'aws-amplify';
+import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
 
 import { Event } from '../../models';
 
@@ -37,7 +37,10 @@ function Events() {
     const fetchEvents = async () => {
         setState('loading');
         try {
-            let response = await DataStore.query(Event, Predicates.ALL, { useCache: false });
+            let response = await DataStore.query(Event, Predicates.ALL, {
+                useCache: false,
+                sort: e => e.date(SortDirection.DESCENDING)
+            });
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (event, i) => {
                     const image = await Storage.get(event.image);
@@ -55,11 +58,6 @@ function Events() {
                         gallery: event.gallery
                     });
                 }));
-                response.sort((a, b) => {
-                    let dateA = new Date(a.date);
-                    let dateB = new Date(b.date);
-                    return dateB - dateA;
-                });
                 setEvents(response.slice(0, 3));
                 setState('success');
             }

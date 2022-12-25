@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { DataStore, Storage, Predicates } from 'aws-amplify';
+import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
 
 import { Event } from '../../models';
 
@@ -51,7 +51,10 @@ function EventsPage() {
     const fetchEvents = async () => {
         setState('loading');
         try {
-            let response = await DataStore.query(Event, Predicates.ALL, { useCache: false });
+            let response = await DataStore.query(Event, Predicates.ALL, {
+                useCache: false,
+                sort: e => e.date(SortDirection.DESCENDING)
+            });
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (event, i) => {
                     const image = await Storage.get(event.image);
@@ -69,11 +72,6 @@ function EventsPage() {
                         gallery: event.gallery
                     });
                 }));
-                response.sort((a, b) => {
-                    let dateA = new Date(a.date);
-                    let dateB = new Date(b.date);
-                    return dateB - dateA;
-                });
                 setEvents(response);
                 setFilteredEvents(response);
                 setState('success');
@@ -229,13 +227,15 @@ function EventsPage() {
                                     name="row-radio-buttons-group"
                                     value={selectedFilter}
                                     onChange={handleSelectedFilterChange}
-                                    sx={{ flexDirection: {
-                                        xs: 'column',
-                                        sm: 'row',
-                                        md: 'row',
-                                        lg: 'row',
-                                        xl: 'row',
-                                    } }}
+                                    sx={{
+                                        flexDirection: {
+                                            xs: 'column',
+                                            sm: 'row',
+                                            md: 'row',
+                                            lg: 'row',
+                                            xl: 'row',
+                                        }
+                                    }}
                                 >
                                     <FormControlLabel value="all" control={<Radio />} label={Translator.instance.translate("events_page_all_filter")} />
                                     <FormControlLabel value="upcoming" control={<Radio />} label={Translator.instance.translate("events_page_upcoming_filter")} />
