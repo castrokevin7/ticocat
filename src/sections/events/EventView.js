@@ -27,6 +27,8 @@ import { getEventTitle, getEventDescription } from './Utils';
 
 import Translator from 'utils/Translator';
 
+import { getTranslateAction } from 'sections/main/Navbar';
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -191,7 +193,8 @@ function EventView() {
                     center
                     sticky
                     brand="asoticocat"
-                    action={{
+                    action={getTranslateAction()}
+                    secondaryAction={{
                         route: "/eventos",
                         color: "info",
                         icon: "arrow_circle_left_rounded",

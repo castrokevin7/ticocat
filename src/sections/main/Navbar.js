@@ -3,7 +3,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 import routes from "routes";
 
-function getAction() {
+export function getTranslateAction() {
   let domain = window.location.hostname;
   if (domain === "www.asoticocat.com") {
       return {
@@ -34,7 +34,7 @@ function Navbar() {
       center
       sticky
       brand="asoticocat"
-      action={getAction()}
+      action={getTranslateAction()}
     />
   );
 }

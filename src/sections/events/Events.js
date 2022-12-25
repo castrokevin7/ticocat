@@ -33,6 +33,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
+import { getTranslateAction } from 'sections/main/Navbar';
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;
@@ -163,7 +165,8 @@ function EventsPage() {
                 center
                 sticky
                 brand="asoticocat"
-                action={{
+                action={getTranslateAction()}
+                secondaryAction={{
                     route: "/",
                     color: "info",
                     icon: "arrow_circle_left_rounded",

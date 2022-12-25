@@ -45,7 +45,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 import logo from "assets/images/logo-asoticocat.png";
 
-function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
+function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAction, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
   const [dropdownEl, setDropdownEl] = useState("");
   const [dropdownName, setDropdownName] = useState("");
@@ -335,84 +335,84 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
   const renderNestedRoutes = routes.map(({ collapse, columns }) =>
     collapse && !columns
       ? collapse.map(({ name: parentName, collapse: nestedCollapse }) => {
-          let template;
+        let template;
 
-          if (parentName === nestedDropdownName) {
-            template =
-              nestedCollapse &&
-              nestedCollapse.map((item) => {
-                const linkComponent = {
-                  component: MuiLink,
-                  href: item.href,
-                  target: item.href ? item.href : "_blank",
-                  rel: "noreferrer",
-                };
+        if (parentName === nestedDropdownName) {
+          template =
+            nestedCollapse &&
+            nestedCollapse.map((item) => {
+              const linkComponent = {
+                component: MuiLink,
+                href: item.href,
+                target: item.href ? item.href : "_blank",
+                rel: "noreferrer",
+              };
 
-                const routeComponent = {
-                  component: Link,
-                  to: item.route,
-                };
+              const routeComponent = {
+                component: Link,
+                to: item.route,
+              };
 
-                return (
-                  <MKTypography
-                    key={item.name}
-                    {...(item.route ? routeComponent : linkComponent)}
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    variant="button"
-                    textTransform="capitalize"
-                    minWidth={item.description ? "14rem" : "12rem"}
-                    color={item.description ? "dark" : "text"}
-                    fontWeight={item.description ? "bold" : "regular"}
-                    py={item.description ? 1 : 0.625}
-                    px={2}
-                    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
-                      borderRadius: borderRadius.md,
-                      cursor: "pointer",
-                      transition: "all 300ms linear",
+              return (
+                <MKTypography
+                  key={item.name}
+                  {...(item.route ? routeComponent : linkComponent)}
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  variant="button"
+                  textTransform="capitalize"
+                  minWidth={item.description ? "14rem" : "12rem"}
+                  color={item.description ? "dark" : "text"}
+                  fontWeight={item.description ? "bold" : "regular"}
+                  py={item.description ? 1 : 0.625}
+                  px={2}
+                  sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                    borderRadius: borderRadius.md,
+                    cursor: "pointer",
+                    transition: "all 300ms linear",
 
-                      "&:hover": {
-                        backgroundColor: grey[200],
+                    "&:hover": {
+                      backgroundColor: grey[200],
+                      color: dark.main,
+
+                      "& *": {
                         color: dark.main,
-
-                        "& *": {
-                          color: dark.main,
-                        },
                       },
-                    })}
-                  >
-                    {item.description ? (
-                      <MKBox>
-                        {item.name}
-                        <MKTypography
-                          display="block"
-                          variant="button"
-                          color="text"
-                          fontWeight="regular"
-                          sx={{ transition: "all 300ms linear" }}
-                        >
-                          {item.description}
-                        </MKTypography>
-                      </MKBox>
-                    ) : (
-                      item.name
-                    )}
-                    {item.collapse && (
-                      <Icon
-                        fontSize="small"
-                        sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}
+                    },
+                  })}
+                >
+                  {item.description ? (
+                    <MKBox>
+                      {item.name}
+                      <MKTypography
+                        display="block"
+                        variant="button"
+                        color="text"
+                        fontWeight="regular"
+                        sx={{ transition: "all 300ms linear" }}
                       >
-                        keyboard_arrow_right
-                      </Icon>
-                    )}
-                  </MKTypography>
-                );
-              });
-          }
+                        {item.description}
+                      </MKTypography>
+                    </MKBox>
+                  ) : (
+                    item.name
+                  )}
+                  {item.collapse && (
+                    <Icon
+                      fontSize="small"
+                      sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}
+                    >
+                      keyboard_arrow_right
+                    </Icon>
+                  )}
+                </MKTypography>
+              );
+            });
+        }
 
-          return template;
-        })
+        return template;
+      })
       : null
   );
 
@@ -477,7 +477,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
           >
-            <MKBox 
+            <MKBox
               component={MuiLink}
               href="/"
               p={0}
@@ -500,19 +500,34 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           </MKBox>
           <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
-                <MKButton
-                  sx={ action.minimal ? { paddingRight: { xs: 0, s: 0 }, paddingLeft: { xs: 0, s: 0 } } : null }
-                  component="a"
-                  href={action.route}
-                  target="_self"
-                  rel="noreferrer"
-                  variant={action.variant}
-                  color={action.color ? action.color : "info"}
-                  size={action.size}
-                >
-                  <Icon>{action.icon}</Icon>&nbsp;
-                  {action.label}
-                </MKButton>
+              <MKButton
+                sx={action.minimal ? { paddingRight: { xs: 0, s: 0 }, paddingLeft: { xs: 0, s: 0 } } : null}
+                component="a"
+                href={action.route}
+                target="_self"
+                rel="noreferrer"
+                variant={action.variant}
+                color={action.color ? action.color : "info"}
+                size={action.size}
+              >
+                <Icon>{action.icon}</Icon>&nbsp;
+                {action.label}
+              </MKButton>
+            }
+            {secondaryAction &&
+              <MKButton
+                sx={secondaryAction.minimal ? { paddingRight: { xs: 0, s: 0 }, paddingLeft: { xs: 0, s: 0 } } : null}
+                component="a"
+                href={secondaryAction.route}
+                target="_self"
+                rel="noreferrer"
+                variant={secondaryAction.variant}
+                color={secondaryAction.color ? secondaryAction.color : "info"}
+                size={secondaryAction.size}
+              >
+                <Icon>{secondaryAction.icon}</Icon>&nbsp;
+                {secondaryAction.label}
+              </MKButton>
             }
           </MKBox>
           {
@@ -563,6 +578,28 @@ DefaultNavbar.propTypes = {
   transparent: PropTypes.bool,
   light: PropTypes.bool,
   action: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.shape({
+      route: PropTypes.string.isRequired,
+      color: PropTypes.oneOf([
+        "primary",
+        "secondary",
+        "info",
+        "success",
+        "warning",
+        "error",
+        "dark",
+        "light",
+        "default",
+        "white",
+      ]),
+      icon: PropTypes.string.isRequired,
+      variant: PropTypes.string.isRequired,
+      size: PropTypes.string.isRequired,
+      minimal: PropTypes.bool.isRequired,
+    }),
+  ]),
+  secondaryAction: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
       route: PropTypes.string.isRequired,
