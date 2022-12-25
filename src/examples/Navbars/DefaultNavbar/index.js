@@ -501,7 +501,6 @@ function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAct
           <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
               <MKButton
-                sx={action.minimal ? { paddingRight: { xs: 0, s: 0 }, paddingLeft: { xs: 0, s: 0 } } : null}
                 component="a"
                 href={action.route}
                 target="_self"
@@ -516,7 +515,11 @@ function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAct
             }
             {secondaryAction &&
               <MKButton
-                sx={secondaryAction.minimal ? { paddingRight: { xs: 0, s: 0 }, paddingLeft: { xs: 0, s: 0 } } : null}
+                sx={secondaryAction.minimal ? {
+                  paddingRight: { xs: 0, s: 0 },
+                  paddingLeft: { xs: 0, s: 0 },
+                  minWidth: { xs: 40, s: 40 }
+                } : null}
                 component="a"
                 href={secondaryAction.route}
                 target="_self"
