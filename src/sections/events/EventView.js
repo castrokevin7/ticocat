@@ -34,7 +34,7 @@ function EventView() {
     const fetchEvent = async () => {
         setState('loading');
         try {
-            let response = await DataStore.query(Event, e => e.event_id('eq', eventId));
+            let response = await DataStore.query(Event, e => e.event_id('eq', eventId), { useCache: false });
             if (response.length > 0) {
                 response = response[0];
                 if (response.image) {

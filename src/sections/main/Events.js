@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { DataStore, Storage } from 'aws-amplify';
+import { DataStore, Storage, Predicates } from 'aws-amplify';
 
 import { Event } from '../../models';
 
@@ -37,7 +37,7 @@ function Events() {
     const fetchEvents = async () => {
         setState('loading');
         try {
-            let response = await DataStore.query(Event);
+            let response = await DataStore.query(Event, Predicates.ALL, { useCache: false });
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (event, i) => {
                     const image = await Storage.get(event.image);

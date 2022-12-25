@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DataStore } from '@aws-amplify/datastore';
+import { DataStore, Predicates } from '@aws-amplify/datastore';
 import { Associate } from 'models';
 
 // @mui material components
@@ -28,7 +28,7 @@ function AssociatesCounter() {
 
     useEffect(() => {
         async function fetchData() {
-            const models = await DataStore.query(Associate);
+            const models = await DataStore.query(Associate, Predicates.ALL, { useCache: false });
             setCount(models.length);
         }
         fetchData();
