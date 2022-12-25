@@ -23,6 +23,8 @@ import Translator from 'utils/Translator';
 
 import { getEventTitle, getEventDescription } from '../events/Utils';
 
+DataStore.configure({ cacheExpiration: 30 });
+
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
     if (hasBeenCalled) return;

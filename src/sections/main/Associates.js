@@ -23,6 +23,8 @@ import bgImage1 from "assets/images/examples/comunidad-ticos.png";
 
 import Translator from 'utils/Translator';
 
+DataStore.configure({ cacheExpiration: 30 });
+
 function AssociatesCounter() {
     const [count, setCount] = useState(null);
 

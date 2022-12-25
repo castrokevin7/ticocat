@@ -42,6 +42,8 @@ const useConstructor = (callBack = () => { }) => {
     setHasBeenCalled(true);
 }
 
+DataStore.configure({ cacheExpiration: 30 });
+
 function EventsPage() {
     const [state, setState] = useState('');
     const [events, setEvents] = useState([]);
