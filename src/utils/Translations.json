@@ -236,16 +236,16 @@
         "cat.asoticocat.com": "Esdeveniments"
     },
     "events_page_description": {
-        "www.asoticocat.com": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos. ¡Esperamos verte en uno de nuestros eventos pronto!",
-        "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats en què els nostres membres poden participar. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom. Esperem veure'l en un dels nostres esdeveniments aviat!"
+        "www.asoticocat.com": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
+        "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats en què els nostres membres poden participar. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
     },
     "events_page_see_more_from_event": {
         "www.asoticocat.com": "Ver más",
         "cat.asoticocat.com": "Veure més"
     },
     "events_page_events_header": {
-        "www.asoticocat.com": "Aquí incluimos todos los eventos, tanto registro de los pasados como los que están por venir.",
-        "cat.asoticocat.com": "Aquí incloem tots els esdeveniments, tant registre dels passats com els que han de venir."
+        "www.asoticocat.com": "Todos los eventos, tanto registro de los pasados como los que están por venir.",
+        "cat.asoticocat.com": "Tots els esdeveniments, tant registre dels passats com els que han de venir."
     },
     "events_page_all_filter": {
         "www.asoticocat.com": "Todos",

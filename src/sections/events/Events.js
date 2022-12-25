@@ -226,10 +226,16 @@ function EventsPage() {
                             </MKTypography>
                             <FormControl sx={{ marginTop: '20px' }}>
                                 <RadioGroup
-                                    row
                                     name="row-radio-buttons-group"
                                     value={selectedFilter}
                                     onChange={handleSelectedFilterChange}
+                                    sx={{ flexDirection: {
+                                        xs: 'column',
+                                        sm: 'row',
+                                        md: 'row',
+                                        lg: 'row',
+                                        xl: 'row',
+                                    } }}
                                 >
                                     <FormControlLabel value="all" control={<Radio />} label={Translator.instance.translate("events_page_all_filter")} />
                                     <FormControlLabel value="upcoming" control={<Radio />} label={Translator.instance.translate("events_page_upcoming_filter")} />
