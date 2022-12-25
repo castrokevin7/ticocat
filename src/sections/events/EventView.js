@@ -1,33 +1,22 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router';
-
-import { Event } from '../../models';
-import { DataStore, Storage } from 'aws-amplify';
-
-// @mui material components
+import React, { useState } from "react";
+import { useParams } from "react-router";
+import { Event } from "../../models";
+import { DataStore, Storage } from "aws-amplify";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-
-// Otis Kit PRO components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
-
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-
 import getFormattedDate from "utils/FormatDate";
-
-// @mui material components
 import Stack from "@mui/material/Stack";
-
-// Coworking page component
 import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption";
-
-import { getEventTitle, getEventDescription } from './Utils';
-
-import Translator from 'utils/Translator';
-
-import { getTranslateAction } from 'sections/main/Navbar';
+import { getEventTitle, getEventDescription } from "./Utils";
+import Translator from "utils/Translator";
+import { getTranslateAction } from "sections/main/Navbar";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import Box from "@mui/material/Box";
 
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -37,7 +26,7 @@ const useConstructor = (callBack = () => { }) => {
 }
 
 function EventView() {
-    const [state, setState] = useState('');
+    const [state, setState] = useState("");
     const [event, setEvent] = useState(null);
     const { eventId } = useParams();
 
@@ -50,66 +39,40 @@ function EventView() {
                 response = response[0];
                 if (response.image) {
                     const image = await Storage.get(response.image);
-                    const updateFrom = new Event({
-                        image,
-                        event_id: response.event_id,
-                        title: response.title,
-                        title_cat: response.title_cat,
-                        description: response.description,
-                        description_cat: response.description_cat,
-                        date: response.date,
-                        time: response.time,
-                        contact: response.contact,
-                        location_url: response.location_url,
-                        gallery: response.gallery
-                    });
-                    response = Event.copyOf(updateFrom, updated => {
-                        updated.event_id = updateFrom.event_id;
-                        updated.image = updateFrom.image;
-                        updated.title = updateFrom.title;
-                        updated.title_cat = updateFrom.title_cat;
-                        updated.description = updateFrom.description;
-                        updated.description_cat = updateFrom.description_cat;
-                        updated.date = updateFrom.date;
-                        updated.time = updateFrom.time;
-                        updated.contact = updateFrom.contact;
-                        updated.location_url = updateFrom.location_url;
-                        updated.gallery = updateFrom.gallery;
+                    response = Event.copyOf(response, updated => {
+                        updated.image = image;
+                        updated.event_id = response.event_id;
+                        updated.title = response.title;
+                        updated.title_cat = response.title_cat;
+                        updated.description = response.description;
+                        updated.description_cat = response.description_cat;
+                        updated.date = response.date;
+                        updated.time = response.time;
+                        updated.contact = response.contact;
+                        updated.location_url = response.location_url;
+                        updated.gallery = response.gallery;
                     });
                 }
 
-                if (response.gallery) {
+                if (response.gallery && response.gallery.length > 0) {
                     const gallery = await Promise.all(
                         response.gallery.map(async image => {
                             const signedUrl = await Storage.get(image);
                             return signedUrl;
                         })
                     );
-                    const updateFrom = new Event({
-                        gallery,
-                        image: response.image,
-                        event_id: response.event_id,
-                        title: response.title,
-                        title_cat: response.title_cat,
-                        description: response.description,
-                        description_cat: response.description_cat,
-                        date: response.date,
-                        time: response.time,
-                        contact: response.contact,
-                        location_url: response.location_url
-                    });
-                    response = Event.copyOf(updateFrom, updated => {
-                        updated.event_id = updateFrom.event_id;
-                        updated.image = updateFrom.image;
-                        updated.title = updateFrom.title;
-                        updated.title_cat = updateFrom.title_cat;
-                        updated.description = updateFrom.description;
-                        updated.description_cat = updateFrom.description_cat;
-                        updated.date = updateFrom.date;
-                        updated.time = updateFrom.time;
-                        updated.contact = updateFrom.contact;
-                        updated.location_url = updateFrom.location_url;
-                        updated.gallery = updateFrom.gallery;
+                    response = Event.copyOf(response, updated => {
+                        updated.gallery = gallery;
+                        updated.event_id = response.event_id;
+                        updated.image = response.image;
+                        updated.title = response.title;
+                        updated.title_cat = response.title_cat;
+                        updated.description = response.description;
+                        updated.description_cat = response.description_cat;
+                        updated.date = response.date;
+                        updated.time = response.time;
+                        updated.contact = response.contact;
+                        updated.location_url = response.location_url;
                     });
                 }
 
@@ -124,6 +87,37 @@ function EventView() {
         }
     };
 
+    const getEventDetails = (event) => {
+        return (
+            <Stack>
+                <AboutUsOption
+                    icon="date_range"
+                    content={
+                        <>
+                            {getDateTime(event)}
+                        </>
+                    }
+                />
+                {event.contact && <AboutUsOption
+                    icon="contact_phone"
+                    content={
+                        <>
+                            {event.contact}
+                        </>
+                    }
+                />}
+                {event.location_url && <AboutUsOption
+                    icon="location_on"
+                    content={
+                        <>
+                            <a rel="noreferrer" href={event.location_url} target="_blank">Punto de encuentro</a>
+                        </>
+                    }
+                />}
+            </Stack>
+        );
+    }
+
     const getEventContent = (event) => {
         return (
             <MKBox component="section" py={{ xs: 3, md: 12 }}>
@@ -136,35 +130,16 @@ function EventView() {
                             <MKTypography variant="body2" color="text" mb={2}>
                                 {getEventDescription(event)}
                             </MKTypography>
+                            {
+                                event.gallery && event.gallery.length > 0 && getEventDetails(event)
+                            }
                         </Grid>
-                        <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
-                            <Stack>
-                                <AboutUsOption
-                                    icon="date_range"
-                                    content={
-                                        <>
-                                            {getDateTime(event)}
-                                        </>
-                                    }
-                                />
-                                {event.contact && <AboutUsOption
-                                    icon="contact_phone"
-                                    content={
-                                        <>
-                                            {event.contact}
-                                        </>
-                                    }
-                                />}
-                                {event.location_url && <AboutUsOption
-                                    icon="location_on"
-                                    content={
-                                        <>
-                                            <a rel="noreferrer" href={event.location_url} target="_blank">Punto de encuentro</a>
-                                        </>
-                                    }
-                                />}
-                            </Stack>
-                        </Grid>
+                        {event.gallery && event.gallery.length > 0 ?
+                            getEventGallery(event) :
+                            <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
+                                {getEventDetails(event)}
+                            </Grid>
+                        }
                     </Grid>
                 </Container>
             </MKBox>
@@ -184,6 +159,33 @@ function EventView() {
             return `${time}H`
         }
     };
+
+    const getEventGallery = (event) => {
+        if (event.gallery && event.gallery.length > 0) {
+            return (
+                <Box ml={{
+                    xs: 2,
+                    md: 12,
+                }} mt={{
+                    xs: 6,
+                }} sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
+                    <ImageList variant="masonry" cols={3} gap={8}>
+                        {event.gallery.map((image, i) => (
+                            <ImageListItem key={i}>
+                                <img
+                                    src={`${image}?w=248&fit=crop&auto=format`}
+                                    srcSet={`${image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                    alt={`${i + 1} from ${event.title}`}
+                                    loading="lazy"
+                                />
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
+                </Box>
+            )
+        }
+        return null;
+    }
 
     const viewEvent = () => {
         return (
@@ -260,31 +262,7 @@ function EventView() {
                 >
                     <MKBox component="section" py={6}>
                         <Container>
-
                             {getEventContent(event)}
-                            {/* 
-                            <Grid container spacing={3} minHeight={{
-                                xs: "80vh",
-                                sm: "80vh",
-                                md: "60vh",
-                                lg: "70vh",
-                                xl: "80vh"
-                            }}>
-                                {event.gallery.map((image, i) =>
-                                    <Grid key={i} item xs={12} sm={12} md={4}>
-                                        <MKBox
-                                            width="100%"
-                                            height="100%"
-                                            borderRadius="lg"
-                                            shaqdow="md"
-                                            sx={{
-                                                backgroundImage: `url(${image})`,
-                                                backgroundSize: "cover",
-                                            }}
-                                        />
-                                    </Grid>
-                                )}
-                            </Grid> */}
                         </Container>
                     </MKBox>
                 </Card>
