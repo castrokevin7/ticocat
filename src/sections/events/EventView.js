@@ -169,7 +169,7 @@ function EventView() {
                 }} mt={{
                     xs: 6,
                 }} sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
-                    <ImageList variant="masonry" cols={3} gap={8}>
+                    <ImageList variant="masonry" cols={2} gap={8}>
                         {event.gallery.map((image, i) => (
                             <ImageListItem key={i}>
                                 <img
