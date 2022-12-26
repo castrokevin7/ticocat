@@ -54,6 +54,7 @@ function AssociatesCounter() {
         >
             <MKBox textAlign="center" pt={12} pb={3} px={3}>
                 <DefaultCounterCard
+                    color="light"
                     count={count}
                     title={Translator.instance.translate("associates_counter_title")}
                     description={Translator.instance.translate("associates_counter_description")}

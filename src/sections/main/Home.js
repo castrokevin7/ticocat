@@ -9,9 +9,11 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Images
-import bgImage from "assets/images/bg-cr.jpg";
+import bgImage from "assets/images/bg-cr.png";
 
 import Translator from 'utils/Translator';
+
+import logo from "assets/images/logo-asoticocat-white.png";
 
 function Home() {
   return (
@@ -38,22 +40,20 @@ function Home() {
             textAlign="center"
             mx="auto"
           >
-            <MKTypography
-              variant="h1"
-              color="white"
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-              mb={3}
-            >
-              {Translator.instance.translate("home_mini_title")}
-            </MKTypography>
-            <MKTypography variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
+            <Grid item xs={8} sx={{ mt: -6 }}>
+              <MKBox width="100%" pt={2} pb={1} px={2}>
+                <MKBox
+                  component="img"
+                  src={logo}
+                  alt={"TICOCAT Logo"}
+                  width="100%"
+                />
+              </MKBox>
+            </Grid>
+            <MKTypography fontWeight="bold" variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
               {Translator.instance.translate("home_main_title")}
             </MKTypography>
-            <MKTypography variant="h6" color="white" textTransform="uppercase" mb={3}>
+            <MKTypography fontWeight="bold" variant="body2" color="white" mb={3}>
               {Translator.instance.translate("home_text")}:
             </MKTypography>
             <Stack direction="row" spacing={6} mx="auto">

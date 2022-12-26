@@ -55,8 +55,8 @@ export default {
   },
 
   info: {
-    main: "#1A73E8",
-    focus: "#1662C4",
+    main: "#263977",
+    state: "#263977",
   },
 
   success: {
@@ -108,8 +108,8 @@ export default {
     },
 
     info: {
-      main: "#49a3f1",
-      state: "#1A73E8",
+      main: "#263977",
+      state: "#263977",
     },
 
     success: {
@@ -135,6 +135,16 @@ export default {
     dark: {
       main: "#42424a",
       state: "#191919",
+    },
+
+    ticoblue: {
+      main: "#263977",
+      state: "#263977",
+    },
+
+    ticored: {
+      main: "#CE2430",
+      state: "#CE2430",
     },
   },
 
@@ -212,8 +222,8 @@ export default {
     },
 
     info: {
-      background: "#aecef7",
-      text: "#095bc6",
+      main: "#263977",
+      state: "#263977",
     },
 
     success: {
