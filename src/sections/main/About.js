@@ -13,7 +13,11 @@ import Translator from 'utils/Translator';
 
 function About() {
   return (
-    <MKBox id="acerca" component="section" py={6} pt={12}>
+    <MKBox sx={{
+      backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
+      borderTopRightRadius: '0.75rem', 
+      borderTopLeftRadius: '0.75rem',
+    }} id="acerca" component="section" py={6} pt={12} pb={12}>
       <Container>
         <Grid container display="flex" alignItems="center">
           <Grid container mb={2}>

@@ -148,7 +148,7 @@ function Events() {
     });
 
     return (
-        <MKBox id="eventos" component="section" py={6}>
+        <MKBox id="eventos" component="section" py={6} pt={12} pb={12}>
             <Container>
                 <Grid container item xs={12} lg={6} flexDirection="column">
                     <MKTypography variant="h3" mt={3} mb={1}>

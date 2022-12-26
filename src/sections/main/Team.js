@@ -21,7 +21,7 @@ import Translator from 'utils/Translator';
 function Team() {
 
   return (
-    <MKBox id="equipo" component="section" py={6} pt={10}>
+    <MKBox id="equipo" component="section" py={6} pt={12} pb={12}>
       <Container>
         <Grid container item flexDirection="column" xs={12} lg={7} mb={6}>
           <MKBox

@@ -89,6 +89,11 @@ export default {
     state: "#263977",
   },
 
+  bgcolor1: {
+    main: "#ECECEC",
+    state: "#ECECEC",
+  },
+
   ticored: {
     main: "#CE2430",
     state: "#CE2430",
@@ -150,6 +155,11 @@ export default {
     ticoblue: {
       main: "#263977",
       state: "#263977",
+    },
+
+    ticored: {
+      main: "#CE2430",
+      state: "#CE2430",
     },
 
     ticored: {
@@ -264,6 +274,11 @@ export default {
     ticoblue: {
       main: "#263977",
       state: "#263977",
+    },
+
+    ticored: {
+      main: "#CE2430",
+      state: "#CE2430",
     },
 
     ticored: {
