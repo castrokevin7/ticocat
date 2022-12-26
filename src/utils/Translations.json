@@ -44,8 +44,12 @@
         "cat.asoticocat.com": "Ticocat: promovent la cultura costa-riquenya a Catalunya"
     },
     "about_context_description": {
-        "www.asoticocat.com": "Ticocat es una asociación sin ánimo de lucro, creada en diciembre de 2019, como respuesta a una falta de espacios y actividades para la vinculación de los y las costarricenses residentes en Cataluña, así como el contacto con su cultura y la promoción de esta dentro de la sociedad Catalana.",
-        "cat.asoticocat.com": "Ticocat és una associació sense ànim de lucre, creada el desembre de 2019, com a resposta a una manca d'espais i activitats per a la vinculació dels i les costarricenses residents a Catalunya, així com el contacte amb la seva cultura i la promoció d'aquesta dins de la societat Catalana."
+        "www.asoticocat.com": "Ticocat es una asociación sin ánimo de lucro creada en diciembre de 2019 con el objetivo de brindar espacios y actividades para la conexión de los y las costarricenses residentes en Cataluña con su cultura y promoverla dentro de la sociedad Catalana.",
+        "cat.asoticocat.com": "Ticocat és una associació sense ànim de lucre creada el desembre de 2019 amb l'objectiu de brindar espais i activitats per a la connexió dels costarricencs residents a Catalunya amb la seva cultura i promoure-la dins de la societat Catalana."
+    },
+    "about_context_description_follow": {
+        "www.asoticocat.com": "Queremos que los ticos y ticas que viven en Cataluña no se sientan lejos de casa y puedan disfrutar de la esencia pura de Costa Rica. Somos un lugar de encuentro cuyo objetivo es fomentar comunidad. ¡Unite a nosotros y sentite un poco más cerca de casa!",
+        "cat.asoticocat.com": "Volem que els ticos i ticas que viuen a Catalunya no se sentin lluny de casa i puguin gaudir de l´essència pura de Costa Rica. Som un lloc de trobada que té com a objectiu fomentar comunitat. Uniu-vos a nosaltres i sentiu una mica més a prop de casa!"
     },
     "about_vision_title": {
         "www.asoticocat.com": "Visión",

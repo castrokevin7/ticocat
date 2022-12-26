@@ -27,6 +27,9 @@ function About() {
             <MKTypography variant="body1" color="text" mb={2}>
               {Translator.instance.translate("about_context_description")}
             </MKTypography>
+            <MKTypography variant="body1" color="text" mb={2}>
+              {Translator.instance.translate("about_context_description_follow")}
+            </MKTypography>
           </Grid>
           <Grid container spacing={2}>
             <Grid item xs={12}>
