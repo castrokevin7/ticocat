@@ -84,6 +84,11 @@ export default {
     focus: "#2c3c58",
   },
 
+  ticoblue: {
+    main: "#263977",
+    state: "#263977",
+  },
+
   ticored: {
     main: "#CE2430",
     state: "#CE2430",
@@ -140,6 +145,11 @@ export default {
     dark: {
       main: "#42424a",
       state: "#191919",
+    },
+
+    ticoblue: {
+      main: "#263977",
+      state: "#263977",
     },
 
     ticored: {
@@ -249,6 +259,11 @@ export default {
     dark: {
       background: "#8097bf",
       text: "#1e2e4a",
+    },
+
+    ticoblue: {
+      main: "#263977",
+      state: "#263977",
     },
 
     ticored: {
