@@ -84,6 +84,11 @@ export default {
     focus: "#2c3c58",
   },
 
+  ticored: {
+    main: "#CE2430",
+    state: "#CE2430",
+  },
+
   grey: {
     100: "#f8f9fa",
     200: "#f0f2f5",
@@ -135,11 +140,6 @@ export default {
     dark: {
       main: "#42424a",
       state: "#191919",
-    },
-
-    ticoblue: {
-      main: "#263977",
-      state: "#263977",
     },
 
     ticored: {
@@ -250,6 +250,11 @@ export default {
       background: "#8097bf",
       text: "#1e2e4a",
     },
+
+    ticored: {
+      main: "#CE2430",
+      state: "#CE2430",
+    },
   },
 
   coloredShadows: {
@@ -261,6 +266,7 @@ export default {
     error: "#f44336",
     light: "#adb5bd",
     dark: "#404040",
+    info: "#CE2430",
   },
 
   inputBorderColor: "#d2d6da",
