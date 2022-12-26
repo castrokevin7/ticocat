@@ -92,7 +92,7 @@ function Events() {
         return (
             <>
                 {events.length === 0 ?
-                    <MKTypography ml={3} mt={2} variant="body2" color="text">
+                    <MKTypography ml={3} mt={2} variant="body1" color="text">
                         {Translator.instance.translate("events_page_no_events")}
                     </MKTypography>
                     :
@@ -113,7 +113,7 @@ function Events() {
                             <MKTypography
                                 component="a"
                                 href="/eventos"
-                                variant="body2"
+                                variant="body1"
                                 color="info"
                                 fontWeight="regular"
                                 sx={{
@@ -154,7 +154,7 @@ function Events() {
                     <MKTypography variant="h3" mt={3} mb={1}>
                         {Translator.instance.translate("events_page_title")}
                     </MKTypography>
-                    <MKTypography variant="body2" color="text" mb={2}>
+                    <MKTypography variant="body1" color="text" mb={2}>
                         {Translator.instance.translate("events_page_description")}
                     </MKTypography>
                 </Grid>

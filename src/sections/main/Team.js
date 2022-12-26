@@ -42,7 +42,7 @@ function Team() {
           <MKTypography variant="h3" mb={1}>
               {Translator.instance.translate("team_title")}
           </MKTypography>
-          <MKTypography variant="body2" color="text">
+          <MKTypography variant="body1" color="text">
             {Translator.instance.translate("team_description")}.
           </MKTypography>
         </Grid>

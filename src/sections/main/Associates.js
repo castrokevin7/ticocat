@@ -109,7 +109,7 @@ function Associates() {
                     <MKTypography variant="h3" mt={3}>
                         {Translator.instance.translate("associates_main_title")}
                     </MKTypography>
-                    <MKTypography variant="body2" color="text" mt={1}>
+                    <MKTypography variant="body1" color="text" mt={1}>
                         {Translator.instance.translate("associates_main_description")}
                     </MKTypography>
                 </Grid>

@@ -83,7 +83,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
         </MKTypography>
         <MKTypography
           display="block"
-          variant="body2"
+          variant="body1"
           color={variant === "contained" || color === "light" ? "text" : "white"}
           mb={2}
         >
@@ -95,7 +95,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
             href={action.route}
             target="_blank"
             rel="noreferrer"
-            variant="body2"
+            variant="body1"
             fontWeight="regular"
             color={variant === "contained" ? color : "white"}
             sx={buttonStyles}
@@ -107,7 +107,7 @@ function FilledInfoCard({ variant, color, icon, title, description, action }) {
           <MKTypography
             component={Link}
             to={action.route}
-            variant="body2"
+            variant="body1"
             fontWeight="regular"
             color={variant === "contained" ? color : "white"}
             sx={buttonStyles}

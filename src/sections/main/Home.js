@@ -53,7 +53,7 @@ function Home() {
             <MKTypography fontWeight="bold" variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
               {Translator.instance.translate("home_main_title")}
             </MKTypography>
-            <MKTypography fontWeight="bold" variant="body2" color="white" mb={3}>
+            <MKTypography fontWeight="bold" variant="body1" color="white" mb={3}>
               {Translator.instance.translate("home_text")}:
             </MKTypography>
             <Stack direction="row" spacing={6} mx="auto">
@@ -61,7 +61,7 @@ function Home() {
                 component={Link}
                 href="https://www.facebook.com/ticocat"
                 target="_blank"
-                variant="body2"
+                variant="body1"
               >
                 <MKBox component="i" color="white" className="fa fa-facebook" />
               </MKTypography>
@@ -69,7 +69,7 @@ function Home() {
                 component={Link}
                 href="https://www.instagram.com/asoticocat/"
                 target="_blank"
-                variant="body2"
+                variant="body1"
               >
                 <MKBox component="i" color="white" className="fa fa-instagram" />
               </MKTypography>
@@ -77,7 +77,7 @@ function Home() {
                 component={Link}
                 href="mailto:asoticocat@gmail.com"
                 target="_blank"
-                variant="body2"
+                variant="body1"
               >
                 <MKBox component="i" color="white" className="fa fa-envelope-o" />
               </MKTypography>

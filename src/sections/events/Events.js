@@ -107,7 +107,7 @@ function EventsPage() {
         return (
             <>
                 {filteredEvents.length === 0 ?
-                    <MKTypography ml={3} mt={2} variant="body2" color="text">
+                    <MKTypography ml={3} mt={2} variant="body1" color="text">
                         {Translator.instance.translate("events_page_no_events")}
                     </MKTypography>
                     :
@@ -221,7 +221,7 @@ function EventsPage() {
                 <MKBox component="section" py={6}>
                     <Container>
                         <Grid container item xs={12} lg={6} flexDirection="column">
-                            <MKTypography variant="body2" color="text" mb={2}>
+                            <MKTypography variant="body1" color="text" mb={2}>
                                 {Translator.instance.translate("events_page_events_header")}
                             </MKTypography>
                             <FormControl sx={{ marginTop: '20px' }}>
