@@ -486,7 +486,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAct
                 component="img"
                 src={logo}
                 alt="AsoTicoCat Logo"
-                width="30px"
+                width="50px"
               />
             </MKBox>
           </MKBox>

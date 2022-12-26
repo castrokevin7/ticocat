@@ -73,7 +73,7 @@ function DefaultNavbarDropdown({
           {icon}
         </MKTypography>
         <MKTypography
-          variant="button"
+          variant="body2"
           fontWeight="regular"
           textTransform="capitalize"
           color={light ? "white" : "dark"}
