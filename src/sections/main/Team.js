@@ -23,27 +23,36 @@ function Team() {
   return (
     <MKBox id="equipo" component="section" py={6} pt={12} pb={12}>
       <Container>
-        <Grid container item flexDirection="column" xs={12} lg={7} mb={6}>
+        <Grid
+          container
+          item
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          xs={12}
+          sx={{ mx: "auto", textAlign: "center" }}
+        >
           <MKBox
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
             width="3rem"
             height="3rem"
+            borderRadius="lg"
+            shadow="md"
             variant="gradient"
             bgColor="info"
             color="white"
-            shadow="md"
-            borderRadius="lg"
-            mb={2}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
           >
-            <Icon>supervisor_account</Icon>
+            <Icon fontSize="small" sx={{ opacity: 0.8 }}>
+              supervisor_account
+            </Icon>
           </MKBox>
-          <MKTypography variant="h3" mb={1}>
-              {Translator.instance.translate("team_title")}
+          <MKTypography variant="h3" mt={3}>
+            {Translator.instance.translate("team_title")}
           </MKTypography>
-          <MKTypography variant="body1" color="text">
-            {Translator.instance.translate("team_description")}.
+          <MKTypography variant="body1" color="text" mt={1}>
+            {Translator.instance.translate("team_description")}
           </MKTypography>
         </Grid>
         <Grid container spacing={5} mt={6}>

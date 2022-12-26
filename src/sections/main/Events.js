@@ -150,15 +150,40 @@ function Events() {
     return (
         <MKBox id="eventos" component="section" py={6} pt={12} pb={12}>
             <Container>
-                <Grid container item xs={12} lg={6} flexDirection="column">
-                    <MKTypography variant="h3" mt={3} mb={1}>
+                <Grid
+                    container
+                    item
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    xs={10}
+                    lg={10}
+                    sx={{ mx: "auto", textAlign: "center" }}
+                >
+                    <MKBox
+                        width="3rem"
+                        height="3rem"
+                        borderRadius="lg"
+                        shadow="md"
+                        variant="gradient"
+                        bgColor="info"
+                        color="white"
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <Icon fontSize="small" sx={{ opacity: 0.8 }}>
+                            celebration_rounded
+                        </Icon>
+                    </MKBox>
+                    <MKTypography variant="h3" mt={3}>
                         {Translator.instance.translate("events_page_title")}
                     </MKTypography>
-                    <MKTypography variant="body1" color="text" mb={2}>
+                    <MKTypography variant="body1" color="text" mt={1}>
                         {Translator.instance.translate("events_page_description")}
                     </MKTypography>
                 </Grid>
-                <Grid container spacing={3} mt={0.1}>
+                <Grid container spacing={3} mt={2}>
                     {getEvents()}
                 </Grid>
             </Container>

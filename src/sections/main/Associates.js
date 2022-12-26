@@ -88,8 +88,7 @@ function Associates() {
                     flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
-                    xs={10}
-                    lg={5}
+                    xs={12}
                     sx={{ mx: "auto", textAlign: "center" }}
                 >
                     <MKBox
