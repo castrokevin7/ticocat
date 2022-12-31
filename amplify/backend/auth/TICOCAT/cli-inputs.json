@@ -2,8 +2,8 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "ticocada9b2d3a",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "ticoca193944f4",
     "userPoolName": "TICOCAT",
     "autoVerifiedAttributes": [
       "email"
@@ -30,9 +30,9 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "TICOCAda9b2d3a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "TICOCA193944f4_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "da9b2d3a",
+    "sharedId": "193944f4",
     "resourceName": "TICOCAT",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
@@ -46,20 +46,6 @@
     "thirdPartyAuth": false,
     "authProviders": [],
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true,
-    "authRoleArn": {
-      "Fn::GetAtt": [
-        "AuthRole",
-        "Arn"
-      ]
-    },
-    "unauthRoleArn": {
-      "Fn::GetAtt": [
-        "UnauthRole",
-        "Arn"
-      ]
-    },
-    "breakCircularDependency": true,
-    "dependsOn": []
+    "useEnabledMfas": true
   }
 }
