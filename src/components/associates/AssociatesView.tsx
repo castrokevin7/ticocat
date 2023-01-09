@@ -206,6 +206,7 @@ function AssociatesView() {
                         <TextField
                             id='outlined-required'
                             label='Fecha de nacimiento'
+                            InputLabelProps={{ shrink: true }}
                             type='date'
                             defaultValue={associate.birthday}
                             onChange={(event) => {
