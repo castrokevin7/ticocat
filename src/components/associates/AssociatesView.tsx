@@ -210,6 +210,7 @@ function AssociatesView() {
                         <TextField
                             id='outlined-required'
                             label='Nº de Socio'
+                            disabled={true}
                             defaultValue={associate.associate_id}
                             onChange={(event) => {
                                 associateToUpdate.associate_id = event.target.value;
@@ -317,11 +318,6 @@ function AssociatesView() {
                             onClick={async () => {
                                 if (!associate.email) {
                                     alert("Error: Correo es requerido.")
-                                } else if (!associate.associate_id) {
-                                    alert("Error: Nº de Socio es requerido.")
-                                }
-                                else if (associate.associate_id !== originalAssociateId && associateIdAlreadyExists(associate.associate_id)) {
-                                    alert("Error: Nº de Socio ya existe.")
                                 } else {
                                     if (window.confirm(`¿Confirma la actualización del Socio: ${associate.name || associate.email}?`)) {
                                         try {
@@ -367,7 +363,7 @@ function AssociatesView() {
                         </Button>
                     </Box>
                 </Box>
-            </Modal >
+            </Modal>
         )
     }
 
@@ -379,19 +375,7 @@ function AssociatesView() {
             }
         });
         return nextId + 1;
-    }
-
-    const associateIdAlreadyExists = (id: string) => {
-        let exists = false;
-        associates.forEach(associate => {
-            console.log(associate.associate_id, id);
-            if (associate.associate_id === id) {
-                exists = true;
-            }
-        });
-        console.log(exists);
-        return exists;
-    }
+    }º
 
     const associateCreate = () => {
         let associateToCreate = {
@@ -426,6 +410,7 @@ function AssociatesView() {
                             id='outlined-required'
                             label='Nº de Socio'
                             value={getNextAssociateId()}
+                            disabled={true}
                             onChange={(event) => {
                                 associateToCreate.associate_id = event.target.value;
                             }}
@@ -512,12 +497,6 @@ function AssociatesView() {
                             onClick={async () => {
                                 if (!associateToCreate.email) {
                                     alert("Error: Correo es requerido.")
-                                }
-                                else if (!associateToCreate.associate_id) {
-                                    alert("Error: Nº de Socio es requerido.")
-                                }
-                                else if (associateIdAlreadyExists(associateToCreate.associate_id)) {
-                                    alert("Error: Nº de Socio ya existe.")
                                 } else {
                                     if (window.confirm(`¿Confirma la creación del Socio: ${associateToCreate.name || associateToCreate.email}?`)) {
                                         try {
