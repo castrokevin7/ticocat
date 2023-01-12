@@ -39,5 +39,6 @@ type Associate @model @auth(rules: [{allow: public}]) {
   identification: String
   identification_type: IdentificationType
   board_position: BoardPosition
+  associate_id: String
 }
  

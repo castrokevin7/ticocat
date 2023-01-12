@@ -40,6 +40,7 @@ export default function AssociateCreateForm(props) {
     identification: undefined,
     identification_type: undefined,
     board_position: undefined,
+    associate_id: undefined,
   };
   const [name, setName] = React.useState(initialValues.name);
   const [birthday, setBirthday] = React.useState(initialValues.birthday);
@@ -61,6 +62,9 @@ export default function AssociateCreateForm(props) {
   const [board_position, setBoard_position] = React.useState(
     initialValues.board_position
   );
+  const [associate_id, setAssociate_id] = React.useState(
+    initialValues.associate_id
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
@@ -73,6 +77,7 @@ export default function AssociateCreateForm(props) {
     setIdentification(initialValues.identification);
     setIdentification_type(initialValues.identification_type);
     setBoard_position(initialValues.board_position);
+    setAssociate_id(initialValues.associate_id);
     setErrors({});
   };
   const validations = {
@@ -86,6 +91,7 @@ export default function AssociateCreateForm(props) {
     identification: [],
     identification_type: [],
     board_position: [],
+    associate_id: [],
   };
   const runValidationTasks = async (fieldName, value) => {
     let validationResponse = validateField(value, validations[fieldName]);
@@ -115,6 +121,7 @@ export default function AssociateCreateForm(props) {
           identification,
           identification_type,
           board_position,
+          associate_id,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -173,6 +180,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -205,6 +213,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.birthday ?? value;
@@ -237,6 +246,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.address ?? value;
@@ -269,6 +279,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -301,6 +312,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.inscription_date ?? value;
@@ -334,6 +346,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.phone ?? value;
@@ -366,6 +379,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.nationality ?? value;
@@ -398,6 +412,7 @@ export default function AssociateCreateForm(props) {
               identification: value,
               identification_type,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.identification ?? value;
@@ -431,6 +446,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type: value,
               board_position,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.identification_type ?? value;
@@ -482,6 +498,7 @@ export default function AssociateCreateForm(props) {
               identification,
               identification_type,
               board_position: value,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.board_position ?? value;
@@ -522,6 +539,39 @@ export default function AssociateCreateForm(props) {
           {...getOverrideProps(overrides, "board_positionoption4")}
         ></option>
       </SelectField>
+      <TextField
+        label="Associate id"
+        isRequired={false}
+        isReadOnly={false}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              birthday,
+              address,
+              email,
+              inscription_date,
+              phone,
+              nationality,
+              identification,
+              identification_type,
+              board_position,
+              associate_id: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.associate_id ?? value;
+          }
+          if (errors.associate_id?.hasError) {
+            runValidationTasks("associate_id", value);
+          }
+          setAssociate_id(value);
+        }}
+        onBlur={() => runValidationTasks("associate_id", associate_id)}
+        errorMessage={errors.associate_id?.errorMessage}
+        hasError={errors.associate_id?.hasError}
+        {...getOverrideProps(overrides, "associate_id")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

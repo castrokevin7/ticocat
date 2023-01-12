@@ -76,6 +76,7 @@ type EagerAssociate = {
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
   readonly board_position?: BoardPosition | keyof typeof BoardPosition | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -92,6 +93,7 @@ type LazyAssociate = {
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
   readonly board_position?: BoardPosition | keyof typeof BoardPosition | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

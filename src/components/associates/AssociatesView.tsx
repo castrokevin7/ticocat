@@ -171,6 +171,7 @@ function AssociatesView() {
 
     const associateView = (associate: Associate) => {
         let associateToUpdate = {
+            associate_id: associate.associate_id,
             name: associate.name,
             birthday: associate.birthday,
             address: associate.address,
@@ -195,6 +196,14 @@ function AssociatesView() {
                         component="form"
                         sx={formStyle}
                     >
+                        <TextField
+                            id='outlined-required'
+                            label='Nº de Socio'
+                            defaultValue={associate.associate_id}
+                            onChange={(event) => {
+                                associateToUpdate.associate_id = event.target.value;
+                            }}
+                        />
                         <TextField
                             id='outlined-required'
                             label='Nombre'
@@ -302,6 +311,7 @@ function AssociatesView() {
                                         try {
                                             await DataStore.save(
                                                 Associate.copyOf(associate, updated => {
+                                                    updated.associate_id = associateToUpdate.associate_id;
                                                     updated.name = associateToUpdate.name;
                                                     updated.birthday = associateToUpdate.birthday;
                                                     updated.address = associateToUpdate.address;
@@ -345,8 +355,19 @@ function AssociatesView() {
         )
     }
 
+    const getNextAssociateId = () => {
+        let nextId = 0;
+        associates.forEach(associate => {
+            if (parseInt(associate.associate_id) > nextId) {
+                nextId = parseInt(associate.associate_id);
+            }
+        });
+        return nextId + 1;
+    }
+
     const associateCreate = () => {
         let associateToCreate = {
+            associate_id: '',
             name: '',
             birthday: '',
             address: '',
@@ -373,6 +394,14 @@ function AssociatesView() {
                         autoComplete='off'
                         sx={formStyle}
                     >
+                        <TextField
+                            id='outlined-required'
+                            label='Nº de Socio'
+                            value={getNextAssociateId()}
+                            onChange={(event) => {
+                                associateToCreate.associate_id = event.target.value;
+                            }}
+                        />
                         <TextField
                             id='outlined-required'
                             label='Nombre'
@@ -460,6 +489,7 @@ function AssociatesView() {
                                         try {
                                             await DataStore.save(
                                                 new Associate({
+                                                    associate_id: associateToCreate.associate_id ? associateToCreate.associate_id : null,
                                                     name: associateToCreate.name ? associateToCreate.name : null,
                                                     birthday: associateToCreate.birthday ? associateToCreate.birthday : null,
                                                     address: associateToCreate.address ? associateToCreate.address : null,

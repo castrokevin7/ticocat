@@ -23,6 +23,7 @@ export declare type AssociateCreateFormInputValues = {
     identification?: string;
     identification_type?: string;
     board_position?: string;
+    associate_id?: string;
 };
 export declare type AssociateCreateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -35,6 +36,7 @@ export declare type AssociateCreateFormValidationValues = {
     identification?: ValidationFunction<string>;
     identification_type?: ValidationFunction<string>;
     board_position?: ValidationFunction<string>;
+    associate_id?: ValidationFunction<string>;
 };
 export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AssociateCreateFormOverridesProps = {
@@ -49,6 +51,7 @@ export declare type AssociateCreateFormOverridesProps = {
     identification?: FormProps<TextFieldProps>;
     identification_type?: FormProps<SelectFieldProps>;
     board_position?: FormProps<SelectFieldProps>;
+    associate_id?: FormProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AssociateCreateFormProps = React.PropsWithChildren<{
     overrides?: AssociateCreateFormOverridesProps | undefined | null;
