@@ -317,8 +317,11 @@ function AssociatesView() {
                             onClick={async () => {
                                 if (!associate.email) {
                                     alert("Error: Correo es requerido.")
-                                } else if (associate.associate_id !== originalAssociateId && associateIdAlreadyExists(associate.associate_id)) {
-                                    alert("Error: Identificación es requerida.")
+                                } else if (!associate.associate_id) {
+                                    alert("Error: Nº de Socio es requerido.")
+                                }
+                                else if (associate.associate_id !== originalAssociateId && associateIdAlreadyExists(associate.associate_id)) {
+                                    alert("Error: Nº de Socio ya existe.")
                                 } else {
                                     if (window.confirm(`¿Confirma la actualización del Socio: ${associate.name || associate.email}?`)) {
                                         try {
@@ -364,7 +367,7 @@ function AssociatesView() {
                         </Button>
                     </Box>
                 </Box>
-            </Modal>
+            </Modal >
         )
     }
 
@@ -381,10 +384,12 @@ function AssociatesView() {
     const associateIdAlreadyExists = (id: string) => {
         let exists = false;
         associates.forEach(associate => {
+            console.log(associate.associate_id, id);
             if (associate.associate_id === id) {
                 exists = true;
             }
         });
+        console.log(exists);
         return exists;
     }
 
@@ -508,8 +513,11 @@ function AssociatesView() {
                                 if (!associateToCreate.email) {
                                     alert("Error: Correo es requerido.")
                                 }
+                                else if (!associateToCreate.associate_id) {
+                                    alert("Error: Nº de Socio es requerido.")
+                                }
                                 else if (associateIdAlreadyExists(associateToCreate.associate_id)) {
-                                    alert("Error: Identificación es requerida.")
+                                    alert("Error: Nº de Socio ya existe.")
                                 } else {
                                     if (window.confirm(`¿Confirma la creación del Socio: ${associateToCreate.name || associateToCreate.email}?`)) {
                                         try {
