@@ -183,6 +183,7 @@ function AssociatesView() {
             identification_type: associate.identification_type,
             board_position: associate.board_position,
         };
+        const originalAssociateId = associate.associate_id;
         return (
             <Modal
                 open={openViewAssociate}
@@ -306,6 +307,8 @@ function AssociatesView() {
                             onClick={async () => {
                                 if (!associate.email) {
                                     alert("Error: Correo es requerido.")
+                                } else if (associate.associate_id !== originalAssociateId && associateIdAlreadyExists(associate.associate_id)) {
+                                    alert("Error: Identificación es requerida.")
                                 } else {
                                     if (window.confirm(`¿Confirma la actualización del Socio: ${associate.name || associate.email}?`)) {
                                         try {
@@ -363,6 +366,16 @@ function AssociatesView() {
             }
         });
         return nextId + 1;
+    }
+
+    const associateIdAlreadyExists = (id: string) => {
+        let exists = false;
+        associates.forEach(associate => {
+            if (associate.associate_id === id) {
+                exists = true;
+            }
+        });
+        return exists;
     }
 
     const associateCreate = () => {
@@ -484,6 +497,9 @@ function AssociatesView() {
                             onClick={async () => {
                                 if (!associateToCreate.email) {
                                     alert("Error: Correo es requerido.")
+                                }
+                                else if (associateIdAlreadyExists(associateToCreate.associate_id)) {
+                                    alert("Error: Identificación es requerida.")
                                 } else {
                                     if (window.confirm(`¿Confirma la creación del Socio: ${associateToCreate.name || associateToCreate.email}?`)) {
                                         try {
