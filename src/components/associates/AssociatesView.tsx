@@ -193,7 +193,6 @@ function AssociatesView() {
             identification_type: associate.identification_type,
             board_position: associate.board_position,
         };
-        const originalAssociateId = associate.associate_id;
         return (
             <Modal
                 open={openViewAssociate}
@@ -375,7 +374,7 @@ function AssociatesView() {
             }
         });
         return nextId + 1;
-    }º
+    }
 
     const associateCreate = () => {
         let associateToCreate = {
