@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Event } from '../../models';
-import { DataStore, Storage } from 'aws-amplify';
+import { DataStore, Predicates, SortDirection, Storage } from 'aws-amplify';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -48,8 +48,12 @@ function EventsView() {
     }
 
     const QUERY_EXPRESSIONS: QueryExpressionsMap = {
-        'title': (searchValue: string) => DataStore.query(Event, e => e.title('contains', searchValue)),
-        'date': (searchValue: string) => DataStore.query(Event, e => e.date('contains', searchValue)),
+        'title': (searchValue: string) => DataStore.query(Event, e => e.title('contains', searchValue), {
+            sort: e => e.createdAt(SortDirection.ASCENDING)
+        }),
+        'date': (searchValue: string) => DataStore.query(Event, e => e.date('contains', searchValue), {
+            sort: e => e.createdAt(SortDirection.ASCENDING)
+        }),
     };
 
     const fetchEvents = (searchBy?: string, searchValue?: string) => {
@@ -65,7 +69,9 @@ function EventsView() {
                     setState('error');
                 });
         } else {
-            DataStore.query(Event)
+            DataStore.query(Event, Predicates.ALL, {
+                sort: e => e.createdAt(SortDirection.ASCENDING)
+            })
                 .then((response) => {
                     setEvents(response);
                     setState('success');

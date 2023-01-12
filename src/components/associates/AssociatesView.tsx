@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Associate, BoardPosition, IdentificationType } from '../../models';
-import { DataStore } from 'aws-amplify';
+import { DataStore, Predicates, SortDirection } from 'aws-amplify';
 import AddIcon from '@mui/icons-material/Add';
 import './AssociatesView.css';
 import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
@@ -31,10 +31,18 @@ function AssociatesView() {
     const [openCreateAssociate, setOpenCreateAssociate] = React.useState(false);
 
     const QUERY_EXPRESSIONS: QueryExpressionsMap = {
-        'name': (searchValue: string) => DataStore.query(Associate, a => a.name('contains', searchValue)),
-        'identification': (searchValue: string) => DataStore.query(Associate, a => a.identification('contains', searchValue)),
-        'phone': (searchValue: string) => DataStore.query(Associate, a => a.phone('contains', searchValue)),
-        'email': (searchValue: string) => DataStore.query(Associate, a => a.email('contains', searchValue)),
+        'name': (searchValue: string) => DataStore.query(Associate, a => a.name('contains', searchValue), {
+            sort: a => a.createdAt(SortDirection.ASCENDING)
+        }),
+        'identification': (searchValue: string) => DataStore.query(Associate, a => a.identification('contains', searchValue), {
+            sort: a => a.createdAt(SortDirection.ASCENDING)
+        }),
+        'phone': (searchValue: string) => DataStore.query(Associate, a => a.phone('contains', searchValue), {
+            sort: a => a.createdAt(SortDirection.ASCENDING)
+        }),
+        'email': (searchValue: string) => DataStore.query(Associate, a => a.email('contains', searchValue), {
+            sort: a => a.createdAt(SortDirection.ASCENDING)
+        }),
     };
 
     const fetchAssociates = (searchBy?: string, searchValue?: string) => {
@@ -50,7 +58,9 @@ function AssociatesView() {
                     setState('error');
                 });
         } else {
-            DataStore.query(Associate)
+            DataStore.query(Associate, Predicates.ALL, {
+                sort: a => a.createdAt(SortDirection.ASCENDING)
+            })
                 .then((response) => {
                     setAssociates(response);
                     setState('success');
