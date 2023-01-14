@@ -245,7 +245,7 @@
     },
     "events_page_description": {
         "www.asoticocat.com": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
-        "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats en què els nostres membres poden participar. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
+        "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar-hi. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
     },
     "events_page_see_more_from_event": {
         "www.asoticocat.com": "Ver más",
@@ -277,6 +277,6 @@
     },
     "events_see_all": {
         "www.asoticocat.com": "Ver todos",
-        "cat.asoticocat.com": "Veure tots"
+        "cat.asoticocat.com": "Veure'ls tots"
     }
 }
