@@ -275,6 +275,10 @@
         "www.asoticocat.com": "Evento {0} no existe.",
         "cat.asoticocat.com": "Esdeveniment {0} no existeix."
     },
+    "event_location": {
+        "www.asoticocat.com": "Punto de encuentro",
+        "cat.asoticocat.com": "Punt de trobada"
+    },
     "events_see_all": {
         "www.asoticocat.com": "Ver todos",
         "cat.asoticocat.com": "Veure'ls tots"

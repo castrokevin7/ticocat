@@ -112,7 +112,7 @@ function EventView() {
                     icon="location_on"
                     content={
                         <>
-                            <a rel="noreferrer" href={event.location_url} target="_blank">Punto de encuentro</a>
+                            <a rel="noreferrer" href={event.location_url} target="_blank">{Translator.instance.translate("event_location")}</a>
                         </>
                     }
                 />}
