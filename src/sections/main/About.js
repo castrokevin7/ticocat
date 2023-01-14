@@ -11,11 +11,26 @@ import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 
 import Translator from 'utils/Translator';
 
+import { Storage } from 'aws-amplify';
+
+import { useEffect, useState } from 'react';
+
 function About() {
+  const [statutesUrl, setStatutesUrl] = useState(null);
+
+  useEffect(() => {
+    getStatutesUrl().then(url => setStatutesUrl(url));
+  }, []);
+
+  const getStatutesUrl = async () => {
+    const url = await Storage.get('Estatutos.pdf', { expires: 60 });
+    return url;
+  }
+
   return (
     <MKBox sx={{
       backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
-      borderTopRightRadius: '0.75rem', 
+      borderTopRightRadius: '0.75rem',
       borderTopLeftRadius: '0.75rem',
     }} id="acerca" component="section" py={6} pt={12} pb={12}>
       <Container>
@@ -49,6 +64,9 @@ function About() {
                 title={Translator.instance.translate("about_mission_title")}
                 description={Translator.instance.translate("about_mission_description")}
               />
+            </Grid>
+            <Grid item xs={12}>
+              <a style={{ float: 'right', marginTop: '10px' }} href={statutesUrl} target="_blank" rel="noreferrer">{Translator.instance.translate("about_download_statutes")}</a>
             </Grid>
           </Grid>
         </Grid>
