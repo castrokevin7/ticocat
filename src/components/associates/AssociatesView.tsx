@@ -378,7 +378,7 @@ function AssociatesView() {
 
     const associateCreate = () => {
         let associateToCreate = {
-            associate_id: '',
+            associate_id: '' + getNextAssociateId(),
             name: '',
             birthday: '',
             address: '',
@@ -408,7 +408,7 @@ function AssociatesView() {
                         <TextField
                             id='outlined-required'
                             label='Nº de Socio'
-                            value={getNextAssociateId()}
+                            value={associateToCreate.associate_id}
                             disabled={true}
                             onChange={(event) => {
                                 associateToCreate.associate_id = event.target.value;
