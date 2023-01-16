@@ -211,9 +211,6 @@ function AssociatesView() {
                             label='Nº de Socio'
                             disabled={true}
                             defaultValue={associate.associate_id}
-                            onChange={(event) => {
-                                associateToUpdate.associate_id = event.target.value;
-                            }}
                         />
                         <TextField
                             id='outlined-required'
@@ -408,11 +405,8 @@ function AssociatesView() {
                         <TextField
                             id='outlined-required'
                             label='Nº de Socio'
-                            value={associateToCreate.associate_id}
+                            defaultValue={associateToCreate.associate_id}
                             disabled={true}
-                            onChange={(event) => {
-                                associateToCreate.associate_id = event.target.value;
-                            }}
                         />
                         <TextField
                             id='outlined-required'
@@ -501,7 +495,7 @@ function AssociatesView() {
                                         try {
                                             await DataStore.save(
                                                 new Associate({
-                                                    associate_id: associateToCreate.associate_id ? associateToCreate.associate_id : null,
+                                                    associate_id: associateToCreate.associate_id,
                                                     name: associateToCreate.name ? associateToCreate.name : null,
                                                     birthday: associateToCreate.birthday ? associateToCreate.birthday : null,
                                                     address: associateToCreate.address ? associateToCreate.address : null,
