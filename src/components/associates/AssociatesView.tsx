@@ -292,6 +292,7 @@ function AssociatesView() {
                             label='Fecha de inscripción'
                             type='date'
                             defaultValue={associate.inscription_date}
+                            InputLabelProps={{ shrink: true }}
                             onChange={(event) => {
                                 associateToUpdate.inscription_date = event.target.value;
                             }}
