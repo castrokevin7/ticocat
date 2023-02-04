@@ -15,7 +15,7 @@ export default class Translator {
 
     translate(key) {
         let domain = window.location.hostname;
-        if (domain === "localhost") {
+        if (domain === "localhost" || domain === "dev.asoticocat.com") {
             domain = "cat.asoticocat.com"
         }
 
