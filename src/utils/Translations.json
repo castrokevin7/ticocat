@@ -75,6 +75,10 @@
         "www.asoticocat.com": "Cargar Socios",
         "cat.asoticocat.com": "Carregar Socis"
     },
+    "associates_count_zero": {
+        "www.asoticocat.com": "No hay",
+        "cat.asoticocat.com": "No hi ha"
+    },
     "associates_counter_title": {
         "www.asoticocat.com": "Socios",
         "cat.asoticocat.com": "Socis"

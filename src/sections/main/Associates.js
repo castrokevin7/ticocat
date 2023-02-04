@@ -30,7 +30,7 @@ function AssociatesCounter() {
 
     const fetchData = async () => {
         const models = await DataStore.query(Associate, Predicates.ALL, { useCache: false });
-        setCount(models.length);
+        setCount(0);
     }
 
     useEffect(() => {

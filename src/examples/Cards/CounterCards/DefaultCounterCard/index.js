@@ -23,16 +23,22 @@ import CountUp from "react-countup";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
+import Translator from 'utils/Translator';
+
 function DefaultCounterCard({ color, count, title, description, ...rest }) {
   return (
     <MKBox mb={4} p={2} textAlign="center" lineHeight={1}>
-      {count && (
-      <MKTypography variant="h1" color={color} textGradient>
-        <CountUp end={count} duration={1} {...rest} />
-      </MKTypography>
-      )}
+      {count === 0 ?
+        <MKTypography variant="h3" color="white">
+          {Translator.instance.translate("associates_count_zero")}
+        </MKTypography>
+        :
+        <MKTypography variant="h1" color={color} textGradient>
+          <CountUp end={count} duration={1} {...rest} />
+        </MKTypography>
+      }
       {title && (
-        <MKTypography variant="h3" mt={1} mb={1} color="white">
+        <MKTypography variant="h3" mt={count !== 0 ? 1 : 0} mb={1} color="white">
           {title}
         </MKTypography>
       )}
