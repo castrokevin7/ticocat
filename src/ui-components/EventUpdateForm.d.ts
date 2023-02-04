@@ -5,9 +5,9 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Event } from "../models";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { Event } from "../models";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -39,20 +39,20 @@ export declare type EventUpdateFormValidationValues = {
     description_cat?: ValidationFunction<string>;
     time?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventUpdateFormOverridesProps = {
-    EventUpdateFormGrid?: FormProps<GridProps>;
-    event_id?: FormProps<TextFieldProps>;
-    title?: FormProps<TextFieldProps>;
-    title_cat?: FormProps<TextFieldProps>;
-    image?: FormProps<TextFieldProps>;
-    gallery?: FormProps<TextFieldProps>;
-    date?: FormProps<TextFieldProps>;
-    contact?: FormProps<TextFieldProps>;
-    location_url?: FormProps<TextFieldProps>;
-    description?: FormProps<TextFieldProps>;
-    description_cat?: FormProps<TextFieldProps>;
-    time?: FormProps<TextFieldProps>;
+    EventUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    event_id?: PrimitiveOverrideProps<TextFieldProps>;
+    title?: PrimitiveOverrideProps<TextFieldProps>;
+    title_cat?: PrimitiveOverrideProps<TextFieldProps>;
+    image?: PrimitiveOverrideProps<TextFieldProps>;
+    gallery?: PrimitiveOverrideProps<TextFieldProps>;
+    date?: PrimitiveOverrideProps<TextFieldProps>;
+    contact?: PrimitiveOverrideProps<TextFieldProps>;
+    location_url?: PrimitiveOverrideProps<TextFieldProps>;
+    description?: PrimitiveOverrideProps<TextFieldProps>;
+    description_cat?: PrimitiveOverrideProps<TextFieldProps>;
+    time?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EventUpdateFormProps = React.PropsWithChildren<{
     overrides?: EventUpdateFormOverridesProps | undefined | null;
@@ -62,7 +62,6 @@ export declare type EventUpdateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: EventUpdateFormInputValues) => EventUpdateFormInputValues;
     onSuccess?: (fields: EventUpdateFormInputValues) => void;
     onError?: (fields: EventUpdateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: EventUpdateFormInputValues) => EventUpdateFormInputValues;
     onValidate?: EventUpdateFormValidationValues;
 } & React.CSSProperties>;

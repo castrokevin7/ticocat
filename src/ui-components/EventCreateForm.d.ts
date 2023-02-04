@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -38,20 +38,20 @@ export declare type EventCreateFormValidationValues = {
     description_cat?: ValidationFunction<string>;
     time?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventCreateFormOverridesProps = {
-    EventCreateFormGrid?: FormProps<GridProps>;
-    event_id?: FormProps<TextFieldProps>;
-    title?: FormProps<TextFieldProps>;
-    title_cat?: FormProps<TextFieldProps>;
-    image?: FormProps<TextFieldProps>;
-    gallery?: FormProps<TextFieldProps>;
-    date?: FormProps<TextFieldProps>;
-    contact?: FormProps<TextFieldProps>;
-    location_url?: FormProps<TextFieldProps>;
-    description?: FormProps<TextFieldProps>;
-    description_cat?: FormProps<TextFieldProps>;
-    time?: FormProps<TextFieldProps>;
+    EventCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    event_id?: PrimitiveOverrideProps<TextFieldProps>;
+    title?: PrimitiveOverrideProps<TextFieldProps>;
+    title_cat?: PrimitiveOverrideProps<TextFieldProps>;
+    image?: PrimitiveOverrideProps<TextFieldProps>;
+    gallery?: PrimitiveOverrideProps<TextFieldProps>;
+    date?: PrimitiveOverrideProps<TextFieldProps>;
+    contact?: PrimitiveOverrideProps<TextFieldProps>;
+    location_url?: PrimitiveOverrideProps<TextFieldProps>;
+    description?: PrimitiveOverrideProps<TextFieldProps>;
+    description_cat?: PrimitiveOverrideProps<TextFieldProps>;
+    time?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EventCreateFormProps = React.PropsWithChildren<{
     overrides?: EventCreateFormOverridesProps | undefined | null;
@@ -60,7 +60,6 @@ export declare type EventCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: EventCreateFormInputValues) => EventCreateFormInputValues;
     onSuccess?: (fields: EventCreateFormInputValues) => void;
     onError?: (fields: EventCreateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: EventCreateFormInputValues) => EventCreateFormInputValues;
     onValidate?: EventCreateFormValidationValues;
 } & React.CSSProperties>;

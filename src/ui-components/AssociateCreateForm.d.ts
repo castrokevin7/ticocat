@@ -5,8 +5,8 @@
  **************************************************************************/
 
 import * as React from "react";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -36,19 +36,19 @@ export declare type AssociateCreateFormValidationValues = {
     identification_type?: ValidationFunction<string>;
     board_position?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AssociateCreateFormOverridesProps = {
-    AssociateCreateFormGrid?: FormProps<GridProps>;
-    name?: FormProps<TextFieldProps>;
-    birthday?: FormProps<TextFieldProps>;
-    address?: FormProps<TextFieldProps>;
-    email?: FormProps<TextFieldProps>;
-    inscription_date?: FormProps<TextFieldProps>;
-    phone?: FormProps<TextFieldProps>;
-    nationality?: FormProps<TextFieldProps>;
-    identification?: FormProps<TextFieldProps>;
-    identification_type?: FormProps<SelectFieldProps>;
-    board_position?: FormProps<SelectFieldProps>;
+    AssociateCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    name?: PrimitiveOverrideProps<TextFieldProps>;
+    birthday?: PrimitiveOverrideProps<TextFieldProps>;
+    address?: PrimitiveOverrideProps<TextFieldProps>;
+    email?: PrimitiveOverrideProps<TextFieldProps>;
+    inscription_date?: PrimitiveOverrideProps<TextFieldProps>;
+    phone?: PrimitiveOverrideProps<TextFieldProps>;
+    nationality?: PrimitiveOverrideProps<TextFieldProps>;
+    identification?: PrimitiveOverrideProps<TextFieldProps>;
+    identification_type?: PrimitiveOverrideProps<SelectFieldProps>;
+    board_position?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type AssociateCreateFormProps = React.PropsWithChildren<{
     overrides?: AssociateCreateFormOverridesProps | undefined | null;
@@ -57,7 +57,6 @@ export declare type AssociateCreateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: AssociateCreateFormInputValues) => AssociateCreateFormInputValues;
     onSuccess?: (fields: AssociateCreateFormInputValues) => void;
     onError?: (fields: AssociateCreateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: AssociateCreateFormInputValues) => AssociateCreateFormInputValues;
     onValidate?: AssociateCreateFormValidationValues;
 } & React.CSSProperties>;

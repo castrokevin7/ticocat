@@ -6,9 +6,6 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { Event } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import {
   Badge,
   Button,
@@ -21,6 +18,9 @@ import {
   TextField,
   useTheme,
 } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { Event } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 function ArrayField({
   items = [],
@@ -32,7 +32,10 @@ function ArrayField({
   setFieldValue,
   currentFieldValue,
   defaultFieldValue,
+  lengthLimit,
+  getBadgeText,
 }) {
+  const labelElement = <Text>{label}</Text>;
   const { tokens } = useTheme();
   const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
   const [isEditing, setIsEditing] = React.useState();
@@ -48,9 +51,9 @@ function ArrayField({
   };
   const addItem = async () => {
     if (
-      (currentFieldValue !== undefined ||
-        currentFieldValue !== null ||
-        currentFieldValue !== "") &&
+      currentFieldValue !== undefined &&
+      currentFieldValue !== null &&
+      currentFieldValue !== "" &&
       !hasError
     ) {
       const newItems = [...items];
@@ -64,12 +67,71 @@ function ArrayField({
       setIsEditing(false);
     }
   };
+  const arraySection = (
+    <React.Fragment>
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {getBadgeText ? getBadgeText(value) : value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
+    return (
+      <React.Fragment>
+        {labelElement}
+        {arraySection}
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
+      {labelElement}
       {isEditing && children}
       {!isEditing ? (
         <>
-          <Text>{label}</Text>
           <Button
             onClick={() => {
               setIsEditing(true);
@@ -103,81 +165,34 @@ function ArrayField({
           </Button>
         </Flex>
       )}
-      {!!items?.length && (
-        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
-          {items.map((value, index) => {
-            return (
-              <Badge
-                key={index}
-                style={{
-                  cursor: "pointer",
-                  alignItems: "center",
-                  marginRight: 3,
-                  marginTop: 3,
-                  backgroundColor:
-                    index === selectedBadgeIndex ? "#B8CEF9" : "",
-                }}
-                onClick={() => {
-                  setSelectedBadgeIndex(index);
-                  setFieldValue(items[index]);
-                  setIsEditing(true);
-                }}
-              >
-                {value.toString()}
-                <Icon
-                  style={{
-                    cursor: "pointer",
-                    paddingLeft: 3,
-                    width: 20,
-                    height: 20,
-                  }}
-                  viewBox={{ width: 20, height: 20 }}
-                  paths={[
-                    {
-                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
-                      stroke: "black",
-                    },
-                  ]}
-                  ariaLabel="button"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    removeItem(index);
-                  }}
-                />
-              </Badge>
-            );
-          })}
-        </ScrollView>
-      )}
-      <Divider orientation="horizontal" marginTop={5} />
+      {arraySection}
     </React.Fragment>
   );
 }
 export default function EventUpdateForm(props) {
   const {
-    id,
+    id: idProp,
     event,
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    event_id: undefined,
-    title: undefined,
-    title_cat: undefined,
-    image: undefined,
+    event_id: "",
+    title: "",
+    title_cat: "",
+    image: "",
     gallery: [],
-    date: undefined,
-    contact: undefined,
-    location_url: undefined,
-    description: undefined,
-    description_cat: undefined,
-    time: undefined,
+    date: "",
+    contact: "",
+    location_url: "",
+    description: "",
+    description_cat: "",
+    time: "",
   };
   const [event_id, setEvent_id] = React.useState(initialValues.event_id);
   const [title, setTitle] = React.useState(initialValues.title);
@@ -198,13 +213,15 @@ export default function EventUpdateForm(props) {
   const [time, setTime] = React.useState(initialValues.time);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = { ...initialValues, ...eventRecord };
+    const cleanValues = eventRecord
+      ? { ...initialValues, ...eventRecord }
+      : initialValues;
     setEvent_id(cleanValues.event_id);
     setTitle(cleanValues.title);
     setTitle_cat(cleanValues.title_cat);
     setImage(cleanValues.image);
     setGallery(cleanValues.gallery ?? []);
-    setCurrentGalleryValue(undefined);
+    setCurrentGalleryValue("");
     setDate(cleanValues.date);
     setContact(cleanValues.contact);
     setLocation_url(cleanValues.location_url);
@@ -216,14 +233,13 @@ export default function EventUpdateForm(props) {
   const [eventRecord, setEventRecord] = React.useState(event);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = id ? await DataStore.query(Event, id) : event;
+      const record = idProp ? await DataStore.query(Event, idProp) : event;
       setEventRecord(record);
     };
     queryData();
-  }, [id, event]);
+  }, [idProp, event]);
   React.useEffect(resetStateValues, [eventRecord]);
-  const [currentGalleryValue, setCurrentGalleryValue] =
-    React.useState(undefined);
+  const [currentGalleryValue, setCurrentGalleryValue] = React.useState("");
   const galleryRef = React.createRef();
   const validations = {
     event_id: [],
@@ -238,7 +254,14 @@ export default function EventUpdateForm(props) {
     description_cat: [],
     time: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -263,7 +286,7 @@ export default function EventUpdateForm(props) {
           gallery,
           date,
           contact,
-          location_url: location_url || undefined,
+          location_url,
           description,
           description_cat,
           time,
@@ -291,6 +314,11 @@ export default function EventUpdateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(
             Event.copyOf(eventRecord, (updated) => {
               Object.assign(updated, modelFields);
@@ -305,14 +333,14 @@ export default function EventUpdateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "EventUpdateForm")}
+      {...rest}
     >
       <TextField
         label="Event id"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={event_id}
+        value={event_id}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -346,7 +374,7 @@ export default function EventUpdateForm(props) {
         label="Title"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={title}
+        value={title}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -380,7 +408,7 @@ export default function EventUpdateForm(props) {
         label="Title cat"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={title_cat}
+        value={title_cat}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -414,7 +442,7 @@ export default function EventUpdateForm(props) {
         label="Image"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={image}
+        value={image}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -465,7 +493,7 @@ export default function EventUpdateForm(props) {
             values = result?.gallery ?? values;
           }
           setGallery(values);
-          setCurrentGalleryValue(undefined);
+          setCurrentGalleryValue("");
         }}
         currentFieldValue={currentGalleryValue}
         label={"Gallery"}
@@ -473,7 +501,7 @@ export default function EventUpdateForm(props) {
         hasError={errors.gallery?.hasError}
         setFieldValue={setCurrentGalleryValue}
         inputFieldRef={galleryRef}
-        defaultFieldValue={undefined}
+        defaultFieldValue={""}
       >
         <TextField
           label="Gallery"
@@ -491,6 +519,7 @@ export default function EventUpdateForm(props) {
           errorMessage={errors.gallery?.errorMessage}
           hasError={errors.gallery?.hasError}
           ref={galleryRef}
+          labelHidden={true}
           {...getOverrideProps(overrides, "gallery")}
         ></TextField>
       </ArrayField>
@@ -498,7 +527,7 @@ export default function EventUpdateForm(props) {
         label="Date"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={date}
+        value={date}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -532,7 +561,7 @@ export default function EventUpdateForm(props) {
         label="Contact"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={contact}
+        value={contact}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -566,7 +595,7 @@ export default function EventUpdateForm(props) {
         label="Location url"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={location_url}
+        value={location_url}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -600,7 +629,7 @@ export default function EventUpdateForm(props) {
         label="Description"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={description}
+        value={description}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -634,7 +663,7 @@ export default function EventUpdateForm(props) {
         label="Description cat"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={description_cat}
+        value={description_cat}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -668,7 +697,7 @@ export default function EventUpdateForm(props) {
         label="Time"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={time}
+        value={time}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -705,7 +734,11 @@ export default function EventUpdateForm(props) {
         <Button
           children="Reset"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          isDisabled={!(idProp || event)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -713,18 +746,13 @@ export default function EventUpdateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
-          <Button
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || event) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>
