@@ -71,6 +71,10 @@
         "www.asoticocat.com": "Descargar estatutos",
         "cat.asoticocat.com": "Descarregar estatuts"
     },
+    "associates_count_load": {
+        "www.asoticocat.com": "Cargar Socios",
+        "cat.asoticocat.com": "Carregar Socis"
+    },
     "associates_counter_title": {
         "www.asoticocat.com": "Socios",
         "cat.asoticocat.com": "Socis"

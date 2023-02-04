@@ -28,11 +28,12 @@ DataStore.configure({ cacheExpiration: 30 });
 function AssociatesCounter() {
     const [count, setCount] = useState(null);
 
+    async function fetchData() {
+        const models = await DataStore.query(Associate, Predicates.ALL, { useCache: false });
+        setCount(models.length);
+    }
+
     useEffect(() => {
-        async function fetchData() {
-            const models = await DataStore.query(Associate, Predicates.ALL, { useCache: false });
-            setCount(models.length);
-        }
         fetchData();
     }, []);
 
@@ -53,6 +54,17 @@ function AssociatesCounter() {
             })}
         >
             <MKBox textAlign="center" pt={12} pb={3} px={3}>
+                {
+                    count === null ?
+                        <MKButton
+                            variant="outlined"
+                            color="white"
+                            onClick={() => { fetchData() }}
+                        >
+                            {Translator.instance.translate("associates_count_load")}
+                        </MKButton>
+                        : null
+                }
                 <DefaultCounterCard
                     color="light"
                     count={count}
