@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Event } from "../../models";
 import { DataStore, Storage } from "aws-amplify";
@@ -17,21 +17,14 @@ import { getTranslateAction } from "sections/main/Navbar";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Box from "@mui/material/Box";
+import MKButton from "components/MKButton";
 
 DataStore.configure({ cacheExpiration: 30 });
-
-const useConstructor = (callBack = () => { }) => {
-    const [hasBeenCalled, setHasBeenCalled] = useState(false);
-    if (hasBeenCalled) return;
-    callBack();
-    setHasBeenCalled(true);
-}
 
 function EventView() {
     const [state, setState] = useState("");
     const [event, setEvent] = useState(null);
     const { eventId } = useParams();
-
 
     const fetchEvent = async () => {
         setState('loading');
@@ -88,6 +81,10 @@ function EventView() {
             setState('error');
         }
     };
+
+    useEffect(() => {
+        fetchEvent();
+    }, [eventId]);
 
     const getEventDetails = (event) => {
         return (
@@ -272,10 +269,19 @@ function EventView() {
         )
     };
 
-    useConstructor(() => {
-        setState('loading');
-        fetchEvent();
-    });
+    const eventNotFound = () => {
+        return <div>
+            <p style={{ padding: '10px' }}>{Translator.instance.translate("event_not_found").format(eventId)}</p>
+            <MKButton
+                sx={{ ml: '7px' }}
+                variant="outlined"
+                color="info"
+                onClick={() => { fetchEvent() }}
+            >
+                {Translator.instance.translate("retry_event_load")}
+            </MKButton>
+        </div>
+    }
 
     if (state === 'error') {
         return (
@@ -297,7 +303,7 @@ function EventView() {
             )
                 :
                 (
-                    event ? viewEvent() : <span style={{ padding: '10px' }}>{Translator.instance.translate("event_does_not_exist").format(eventId)}</span>
+                    event ? viewEvent() : eventNotFound()
                 )}
         </>
     )

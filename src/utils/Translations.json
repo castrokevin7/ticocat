@@ -283,9 +283,13 @@
         "www.asoticocat.com": "Cargar Eventos",
         "cat.asoticocat.com": "Carregar Esdeveniments"
     },
-    "event_does_not_exist": {
-        "www.asoticocat.com": "Evento {0} no existe.",
-        "cat.asoticocat.com": "Esdeveniment {0} no existeix."
+    "retry_event_load": {
+        "www.asoticocat.com": "Reintentar",
+        "cat.asoticocat.com": "Reintentar"
+    },
+    "event_not_found": {
+        "www.asoticocat.com": "Evento '{0}' no encontrado.",
+        "cat.asoticocat.com": "Esdeveniment '{0}' no trobat."
     },
     "event_location": {
         "www.asoticocat.com": "Punto de encuentro",
