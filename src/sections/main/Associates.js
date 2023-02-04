@@ -55,7 +55,7 @@ function AssociatesCounter() {
         >
             <MKBox textAlign="center" pt={12} pb={3} px={3}>
                 {
-                    count === null || count.length === 0 ?
+                    count === null || count === 0 ?
                         <MKButton
                             variant="outlined"
                             color="white"
