@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
 
@@ -15,6 +15,7 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import Icon from "@mui/material/Icon";
+import MKButton from "components/MKButton";
 
 // Otis Kit PRO examples
 import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroundCard";
@@ -25,16 +26,9 @@ import { getEventTitle, getEventDescription } from '../events/Utils';
 
 DataStore.configure({ cacheExpiration: 30 });
 
-const useConstructor = (callBack = () => { }) => {
-    const [hasBeenCalled, setHasBeenCalled] = useState(false);
-    if (hasBeenCalled) return;
-    callBack();
-    setHasBeenCalled(true);
-}
-
 function Events() {
     const [state, setState] = useState('');
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState(null);
 
     const fetchEvents = async () => {
         setState('loading');
@@ -61,13 +55,17 @@ function Events() {
                     });
                 }));
                 setEvents(response.slice(0, 3));
-                setState('success');
             }
+            setState('success');
         } catch (err) {
             console.error('Error:', err);
             setState('error');
         }
     }
+
+    useEffect(() => {
+        fetchEvents();
+    }, []);
 
     const getEvents = () => {
         if (state === 'loading') {
@@ -87,6 +85,17 @@ function Events() {
                     {Translator.instance.translate("error_tag")}
                 </h1>
             );
+        }
+
+        if (events === null) {
+            return <MKButton
+                    sx={{ m: 'auto' }}
+                    variant="outlined"
+                    color="info"
+                    onClick={() => { fetchEvents() }}
+                >
+                    {Translator.instance.translate("associates_count_load")}
+                </MKButton>;
         }
 
         return (
@@ -141,11 +150,6 @@ function Events() {
             </>
         )
     }
-
-    useConstructor(() => {
-        setState('loading');
-        fetchEvents();
-    });
 
     return (
         <MKBox id="eventos" component="section" py={6} pt={12} pb={12}>

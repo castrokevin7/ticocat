@@ -28,7 +28,7 @@ DataStore.configure({ cacheExpiration: 30 });
 function AssociatesCounter() {
     const [count, setCount] = useState(null);
 
-    async function fetchData() {
+    const fetchData = async () => {
         const models = await DataStore.query(Associate, Predicates.ALL, { useCache: false });
         setCount(models.length);
     }
