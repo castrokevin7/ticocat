@@ -52,7 +52,6 @@ function EventsPage() {
                 useCache: false,
                 sort: e => e.date(SortDirection.DESCENDING)
             });
-            response = [];
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (event, i) => {
                     const image = await Storage.get(event.image);
