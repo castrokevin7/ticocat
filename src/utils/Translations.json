@@ -279,6 +279,10 @@
         "www.asoticocat.com": "Ningún evento",
         "cat.asoticocat.com": "Cap esdeveniment"
     },
+    "events_load": {
+        "www.asoticocat.com": "Cargar Eventos",
+        "cat.asoticocat.com": "Carregar Esdeveniments"
+    },
     "event_does_not_exist": {
         "www.asoticocat.com": "Evento {0} no existe.",
         "cat.asoticocat.com": "Esdeveniment {0} no existeix."

@@ -94,7 +94,7 @@ function Events() {
                     color="info"
                     onClick={() => { fetchEvents() }}
                 >
-                    {Translator.instance.translate("associates_count_load")}
+                    {Translator.instance.translate("events_load")}
                 </MKButton>;
         }
 
