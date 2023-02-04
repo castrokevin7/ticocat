@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
 
@@ -35,19 +35,14 @@ import FormControl from '@mui/material/FormControl';
 
 import { getTranslateAction } from 'sections/main/Navbar';
 
-const useConstructor = (callBack = () => { }) => {
-    const [hasBeenCalled, setHasBeenCalled] = useState(false);
-    if (hasBeenCalled) return;
-    callBack();
-    setHasBeenCalled(true);
-}
+import MKButton from "components/MKButton";
 
 DataStore.configure({ cacheExpiration: 30 });
 
 function EventsPage() {
     const [state, setState] = useState('');
-    const [events, setEvents] = useState([]);
-    const [filteredEvents, setFilteredEvents] = useState([]);
+    const [events, setEvents] = useState(null);
+    const [filteredEvents, setFilteredEvents] = useState(null);
     const [selectedFilter, setSelectedFilter] = useState('all');
 
     const fetchEvents = async () => {
@@ -57,6 +52,7 @@ function EventsPage() {
                 useCache: false,
                 sort: e => e.date(SortDirection.DESCENDING)
             });
+            response = [];
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (event, i) => {
                     const image = await Storage.get(event.image);
@@ -76,13 +72,17 @@ function EventsPage() {
                 }));
                 setEvents(response);
                 setFilteredEvents(response);
-                setState('success');
             }
+            setState('success');
         } catch (err) {
             console.error('Error:', err);
             setState('error');
         }
     }
+
+    useEffect(() => {
+        fetchEvents();
+    }, []);
 
     const getEvents = () => {
         if (state === 'loading') {
@@ -102,6 +102,18 @@ function EventsPage() {
                     {Translator.instance.translate("error_tag")}
                 </h1>
             );
+        }
+
+        
+        if (filteredEvents === null) {
+            return <MKButton
+                    sx={{ m: 'auto' }}
+                    variant="outlined"
+                    color="info"
+                    onClick={() => { fetchEvents() }}
+                >
+                    {Translator.instance.translate("events_load")}
+                </MKButton>;
         }
 
         return (
@@ -152,11 +164,6 @@ function EventsPage() {
         setSelectedFilter(event.target.value);
         filterEventsByDate(event.target.value);
     };
-
-    useConstructor(() => {
-        setState('loading');
-        fetchEvents();
-    });
 
     return (
         <>
