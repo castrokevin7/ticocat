@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Event } from "../../models";
-import { DataStore, Storage } from "aws-amplify";
+import { DataStore, Storage, Hub } from "aws-amplify";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -27,7 +27,6 @@ function EventView() {
     const { eventId } = useParams();
 
     const fetchEvent = async () => {
-        setState('loading');
         try {
             let response = await DataStore.query(Event, e => e.event_id('eq', eventId), { useCache: false });
             if (response.length > 0) {
@@ -83,7 +82,21 @@ function EventView() {
     };
 
     useEffect(() => {
-        fetchEvent();
+        setState('loading');
+        const removeListener = Hub.listen("datastore", async (capsule) => {
+            const {
+                payload: { event },
+            } = capsule;
+
+            if (event === "ready") {
+                fetchEvent();
+            }
+        });
+        DataStore.start();
+
+        return () => {
+            removeListener();
+        };
     }, [eventId]);
 
     const getEventDetails = (event) => {
@@ -186,101 +199,15 @@ function EventView() {
         return null;
     }
 
-    const viewEvent = () => {
+    if (state === 'loading') {
         return (
-            <>
-                <DefaultNavbar
-                    routes={[]}
-                    center
-                    sticky
-                    brand="asoticocat"
-                    action={getTranslateAction()}
-                    secondaryAction={{
-                        route: "/eventos",
-                        color: "info",
-                        icon: "arrow_circle_left_rounded",
-                        variant: "text",
-                        size: "large",
-                        minimal: true
-                    }}
-                />
-                <MKBox component="header" position="relative">
-                    <MKBox
-                        display="flex"
-                        alignItems="center"
-                        minHeight="100vh"
-                        sx={{
-                            backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${event.image})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                        }}
-                    >
-                        <Container>
-                            <Grid
-                                container
-                                item
-                                xs={12}
-                                lg={6}
-                                flexDirection="column"
-                                justifyContent="center"
-                                alignItems="center"
-                                textAlign="center"
-                                mx="auto"
-                            >
-                                <MKTypography
-                                    variant="h1"
-                                    color="white"
-                                    sx={({ breakpoints, typography: { size } }) => ({
-                                        [breakpoints.down("md")]: {
-                                            fontSize: size["3xl"],
-                                        },
-                                    })}
-                                    mb={1}
-                                >
-                                    {getEventTitle(event)}
-                                </MKTypography>
-                                <MKTypography variant="body3" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}
-                                    sx={{ fontWeight: 'bold' }}
-                                >
-                                    {getDateTime(event)}
-                                </MKTypography>
-                            </Grid>
-                        </Container>
-                    </MKBox>
-                </MKBox>
-                <Card
-                    sx={{
-                        p: 2,
-                        mx: { xs: 2, lg: 3 },
-                        mt: -8,
-                        mb: 4,
-                        backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
-                        backdropFilter: "saturate(200%) blur(30px)",
-                        boxShadow: ({ boxShadows: { xxl } }) => xxl,
-                    }}
-                >
-                    <MKBox component="section" py={6}>
-                        <Container>
-                            {getEventContent(event)}
-                        </Container>
-                    </MKBox>
-                </Card>
-            </>
+            <div style={{ padding: '10px', display: 'flex' }}>
+                <div className="spinner-container">
+                    <div className="loading-spinner" />
+                </div>
+                {Translator.instance.translate("loading_tag")}
+            </div>
         )
-    };
-
-    const eventNotFound = () => {
-        return <div>
-            <p style={{ padding: '10px' }}>{Translator.instance.translate("event_not_found").format(eventId)}</p>
-            <MKButton
-                sx={{ ml: '7px' }}
-                variant="outlined"
-                color="info"
-                onClick={() => { fetchEvent() }}
-            >
-                {Translator.instance.translate("retry_event_load")}
-            </MKButton>
-        </div>
     }
 
     if (state === 'error') {
@@ -291,20 +218,92 @@ function EventView() {
         );
     }
 
+    if (event === null) {
+        return (
+            <h1>
+                {Translator.instance.translate("event_not_found")}
+            </h1>
+        );
+    }
+
     return (
         <>
-            {state === 'loading' ? (
-                <div style={{ padding: '10px', display: 'flex' }}>
-                    <div className="spinner-container">
-                        <div className="loading-spinner" />
-                    </div>
-                    {Translator.instance.translate("loading_tag")}
-                </div>
-            )
-                :
-                (
-                    event ? viewEvent() : eventNotFound()
-                )}
+            <DefaultNavbar
+                routes={[]}
+                center
+                sticky
+                brand="asoticocat"
+                action={getTranslateAction()}
+                secondaryAction={{
+                    route: "/eventos",
+                    color: "info",
+                    icon: "arrow_circle_left_rounded",
+                    variant: "text",
+                    size: "large",
+                    minimal: true
+                }}
+            />
+            <MKBox component="header" position="relative">
+                <MKBox
+                    display="flex"
+                    alignItems="center"
+                    minHeight="100vh"
+                    sx={{
+                        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${event.image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
+                >
+                    <Container>
+                        <Grid
+                            container
+                            item
+                            xs={12}
+                            lg={6}
+                            flexDirection="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            textAlign="center"
+                            mx="auto"
+                        >
+                            <MKTypography
+                                variant="h1"
+                                color="white"
+                                sx={({ breakpoints, typography: { size } }) => ({
+                                    [breakpoints.down("md")]: {
+                                        fontSize: size["3xl"],
+                                    },
+                                })}
+                                mb={1}
+                            >
+                                {getEventTitle(event)}
+                            </MKTypography>
+                            <MKTypography variant="body3" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}
+                                sx={{ fontWeight: 'bold' }}
+                            >
+                                {getDateTime(event)}
+                            </MKTypography>
+                        </Grid>
+                    </Container>
+                </MKBox>
+            </MKBox>
+            <Card
+                sx={{
+                    p: 2,
+                    mx: { xs: 2, lg: 3 },
+                    mt: -8,
+                    mb: 4,
+                    backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+                    backdropFilter: "saturate(200%) blur(30px)",
+                    boxShadow: ({ boxShadows: { xxl } }) => xxl,
+                }}
+            >
+                <MKBox component="section" py={6}>
+                    <Container>
+                        {getEventContent(event)}
+                    </Container>
+                </MKBox>
+            </Card>
         </>
     )
 }

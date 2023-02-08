@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
+import { DataStore, Storage, Predicates, SortDirection, Hub } from 'aws-amplify';
 
 import { Event } from '../../models';
 
@@ -46,7 +46,6 @@ function EventsPage() {
     const [selectedFilter, setSelectedFilter] = useState('all');
 
     const fetchEvents = async () => {
-        setState('loading');
         try {
             let response = await DataStore.query(Event, Predicates.ALL, {
                 useCache: false,
@@ -80,7 +79,21 @@ function EventsPage() {
     }
 
     useEffect(() => {
-        fetchEvents();
+        setState('loading');
+        const removeListener = Hub.listen("datastore", async (capsule) => {
+            const {
+                payload: { event },
+            } = capsule;
+
+            if (event === "ready") {
+                fetchEvents();
+            }
+        });
+        DataStore.start();
+
+        return () => {
+            removeListener();
+        };
     }, []);
 
     const getEvents = () => {
@@ -103,25 +116,16 @@ function EventsPage() {
             );
         }
 
-        
-        if (filteredEvents === null) {
-            return <MKButton
-                    sx={{ m: 'auto' }}
-                    variant="outlined"
-                    color="info"
-                    onClick={() => { fetchEvents() }}
-                >
-                    {Translator.instance.translate("events_load")}
-                </MKButton>;
+
+        if (filteredEvents === null || filteredEvents.length === 0) {
+            return <MKTypography ml={3} mt={2} variant="body1" color="text">
+                {Translator.instance.translate("events_page_no_events")}
+            </MKTypography>
         }
 
         return (
             <>
-                {filteredEvents.length === 0 ?
-                    <MKTypography ml={3} mt={2} variant="body1" color="text">
-                        {Translator.instance.translate("events_page_no_events")}
-                    </MKTypography>
-                    :
+                {
                     filteredEvents.map((event, i) =>
                         <Grid key={i} item xs={12} lg={4}>
                             <Link to={`/evento/${event.event_id}`}>
