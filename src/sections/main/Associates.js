@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
+import { Hub } from 'aws-amplify';
 import { Associate } from 'models';
 
 // @mui material components
@@ -23,8 +24,6 @@ import bgImage1 from "assets/images/examples/comunidad-ticos.png";
 
 import Translator from 'utils/Translator';
 
-DataStore.configure({ cacheExpiration: 30 });
-
 function AssociatesCounter() {
     const [count, setCount] = useState(null);
 
@@ -33,8 +32,21 @@ function AssociatesCounter() {
         setCount(associates.length);
     }
 
-    useEffect(() => {
-        fetchData();
+    useEffect(() => {        
+        const removeListener = Hub.listen("datastore", async (capsule) => {
+            const {
+                payload: { event },
+            } = capsule;
+
+            if (event === "ready") {
+                fetchData();
+            }
+        });
+        DataStore.start();
+
+        return () => {
+            removeListener();
+        };
     }, []);
 
     return (
@@ -54,17 +66,6 @@ function AssociatesCounter() {
             })}
         >
             <MKBox textAlign="center" pt={12} pb={3} px={3}>
-                {
-                    count === null || count === 0 ?
-                        <MKButton
-                            variant="outlined"
-                            color="white"
-                            onClick={() => { fetchData() }}
-                        >
-                            {Translator.instance.translate("associates_count_load")}
-                        </MKButton>
-                        : null
-                }
                 <DefaultCounterCard
                     color="light"
                     count={count}

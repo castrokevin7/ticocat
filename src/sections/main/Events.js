@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
+import { DataStore, Storage, Predicates, SortDirection, Hub } from 'aws-amplify';
 
 import { Event } from '../../models';
 
@@ -15,7 +15,6 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import Icon from "@mui/material/Icon";
-import MKButton from "components/MKButton";
 
 // Otis Kit PRO examples
 import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroundCard";
@@ -24,14 +23,11 @@ import Translator from 'utils/Translator';
 
 import { getEventTitle, getEventDescription } from '../events/Utils';
 
-DataStore.configure({ cacheExpiration: 30 });
-
 function Events() {
     const [state, setState] = useState('');
     const [events, setEvents] = useState(null);
 
     const fetchEvents = async () => {
-        setState('loading');
         try {
             let response = await DataStore.query(Event, Predicates.ALL, {
                 useCache: false,
@@ -56,7 +52,7 @@ function Events() {
                 }));
                 setEvents(response.slice(0, 3));
             }
-            setState('success');
+            setState('');
         } catch (err) {
             console.error('Error:', err);
             setState('error');
@@ -64,7 +60,21 @@ function Events() {
     }
 
     useEffect(() => {
-        fetchEvents();
+        setState('loading');
+        const removeListener = Hub.listen("datastore", async (capsule) => {
+            const {
+                payload: { event },
+            } = capsule;
+
+            if (event === "ready") {
+                fetchEvents();
+            }
+        });
+        DataStore.start();
+
+        return () => {
+            removeListener();
+        };
     }, []);
 
     const getEvents = () => {
@@ -87,66 +97,55 @@ function Events() {
             );
         }
 
-        if (events === null) {
-            return <MKButton
-                    sx={{ m: 'auto' }}
-                    variant="outlined"
-                    color="info"
-                    onClick={() => { fetchEvents() }}
-                >
-                    {Translator.instance.translate("events_load")}
-                </MKButton>;
+        if (events === null || events.length === 0) {
+            return (
+                <h1>
+                    {Translator.instance.translate("events_page_no_events")}
+                </h1>
+            );
         }
 
         return (
             <>
-                {events.length === 0 ?
-                    <MKTypography ml={3} mt={2} variant="body1" color="text">
-                        {Translator.instance.translate("events_page_no_events")}
+                {events.map((event, i) =>
+                    <Grid key={i} item xs={12} lg={4}>
+                        <Link to={`/evento/${event.event_id}`}>
+                            <SimpleBackgroundCard
+                                image={event.image}
+                                title={getEventTitle(event)}
+                                date={event.date}
+                                description={`${getEventDescription(event).substring(0, 31)} ...${Translator.instance.translate("events_page_see_more_from_event")}`}
+                            />
+                        </Link>
+                    </Grid>
+                )}
+                <Grid p={3} xs={12} item>
+                    <MKTypography
+                        component="a"
+                        href="/eventos"
+                        variant="body1"
+                        color="info"
+                        fontWeight="regular"
+                        sx={{
+                            width: "max-content",
+                            display: "flex",
+                            alignItems: "center",
+
+                            "& .material-icons-round": {
+                                fontSize: "1.125rem",
+                                transform: "translateX(3px)",
+                                transition: "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
+                            },
+
+                            "&:hover .material-icons-round, &:focus .material-icons-round": {
+                                transform: "translateX(6px)",
+                            },
+                        }}
+                    >
+                        {Translator.instance.translate("events_see_all")}
+                        <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
                     </MKTypography>
-                    :
-                    <>
-                        {events.map((event, i) =>
-                            <Grid key={i} item xs={12} lg={4}>
-                                <Link to={`/evento/${event.event_id}`}>
-                                    <SimpleBackgroundCard
-                                        image={event.image}
-                                        title={getEventTitle(event)}
-                                        date={event.date}
-                                        description={`${getEventDescription(event).substring(0, 31)} ...${Translator.instance.translate("events_page_see_more_from_event")}`}
-                                    />
-                                </Link>
-                            </Grid>
-                        )}
-                        <Grid p={3} xs={12} item>
-                            <MKTypography
-                                component="a"
-                                href="/eventos"
-                                variant="body1"
-                                color="info"
-                                fontWeight="regular"
-                                sx={{
-                                    width: "max-content",
-                                    display: "flex",
-                                    alignItems: "center",
-
-                                    "& .material-icons-round": {
-                                        fontSize: "1.125rem",
-                                        transform: "translateX(3px)",
-                                        transition: "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
-                                    },
-
-                                    "&:hover .material-icons-round, &:focus .material-icons-round": {
-                                        transform: "translateX(6px)",
-                                    },
-                                }}
-                            >
-                                {Translator.instance.translate("events_see_all")}
-                                <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
-                            </MKTypography>
-                        </Grid>
-                    </>
-                }
+                </Grid>
             </>
         )
     }
