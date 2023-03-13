@@ -6,9 +6,6 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { Associate } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import {
   Button,
   Flex,
@@ -16,6 +13,9 @@ import {
   SelectField,
   TextField,
 } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { Associate } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function AssociateCreateForm(props) {
   const {
@@ -23,24 +23,23 @@ export default function AssociateCreateForm(props) {
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    name: undefined,
-    birthday: undefined,
-    address: undefined,
-    email: undefined,
-    inscription_date: undefined,
-    phone: undefined,
-    nationality: undefined,
-    identification: undefined,
+    name: "",
+    birthday: "",
+    address: "",
+    email: "",
+    inscription_date: "",
+    phone: "",
+    nationality: "",
+    identification: "",
     identification_type: undefined,
     board_position: undefined,
-    associate_id: undefined,
+    associate_id: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [birthday, setBirthday] = React.useState(initialValues.birthday);
@@ -93,7 +92,14 @@ export default function AssociateCreateForm(props) {
     board_position: [],
     associate_id: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -146,6 +152,11 @@ export default function AssociateCreateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(new Associate(modelFields));
           if (onSuccess) {
             onSuccess(modelFields);
@@ -159,13 +170,14 @@ export default function AssociateCreateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "AssociateCreateForm")}
+      {...rest}
     >
       <TextField
         label="Name"
         isRequired={false}
         isReadOnly={false}
+        value={name}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -199,6 +211,7 @@ export default function AssociateCreateForm(props) {
         label="Birthday"
         isRequired={false}
         isReadOnly={false}
+        value={birthday}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -232,6 +245,7 @@ export default function AssociateCreateForm(props) {
         label="Address"
         isRequired={false}
         isReadOnly={false}
+        value={address}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -265,6 +279,7 @@ export default function AssociateCreateForm(props) {
         label="Email"
         isRequired={false}
         isReadOnly={false}
+        value={email}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -298,6 +313,7 @@ export default function AssociateCreateForm(props) {
         label="Inscription date"
         isRequired={false}
         isReadOnly={false}
+        value={inscription_date}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -332,6 +348,7 @@ export default function AssociateCreateForm(props) {
         isRequired={false}
         isReadOnly={false}
         type="tel"
+        value={phone}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -365,6 +382,7 @@ export default function AssociateCreateForm(props) {
         label="Nationality"
         isRequired={false}
         isReadOnly={false}
+        value={nationality}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -398,6 +416,7 @@ export default function AssociateCreateForm(props) {
         label="Identification"
         isRequired={false}
         isReadOnly={false}
+        value={identification}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -543,6 +562,7 @@ export default function AssociateCreateForm(props) {
         label="Associate id"
         isRequired={false}
         isReadOnly={false}
+        value={associate_id}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -579,21 +599,16 @@ export default function AssociateCreateForm(props) {
         <Button
           children="Clear"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
           {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
-          <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
           <Button
             children="Submit"
             type="submit"

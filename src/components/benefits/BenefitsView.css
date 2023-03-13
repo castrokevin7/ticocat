@@ -1,0 +1,25 @@
+#benefits-search-options {
+    width: 100px;
+}
+
+#benefits-search-input {
+    width: 250px;
+}
+
+.main-image-container {
+    border: 1px solid lightgray;  
+    border-radius: 2%;  
+    height: 200px;
+    margin: 5px 0 5px 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.gallery-image-thumbnail {
+    width: 100px;
+    height: 100%;
+    margin: 2px;
+}

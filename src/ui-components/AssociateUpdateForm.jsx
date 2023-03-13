@@ -6,9 +6,6 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { fetchByPath, validateField } from "./utils";
-import { Associate } from "../models";
-import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import {
   Button,
   Flex,
@@ -16,32 +13,34 @@ import {
   SelectField,
   TextField,
 } from "@aws-amplify/ui-react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
+import { Associate } from "../models";
+import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
 export default function AssociateUpdateForm(props) {
   const {
-    id,
+    id: idProp,
     associate,
     onSuccess,
     onError,
     onSubmit,
-    onCancel,
     onValidate,
     onChange,
     overrides,
     ...rest
   } = props;
   const initialValues = {
-    name: undefined,
-    birthday: undefined,
-    address: undefined,
-    email: undefined,
-    inscription_date: undefined,
-    phone: undefined,
-    nationality: undefined,
-    identification: undefined,
+    name: "",
+    birthday: "",
+    address: "",
+    email: "",
+    inscription_date: "",
+    phone: "",
+    nationality: "",
+    identification: "",
     identification_type: undefined,
     board_position: undefined,
-    associate_id: undefined,
+    associate_id: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [birthday, setBirthday] = React.useState(initialValues.birthday);
@@ -68,7 +67,9 @@ export default function AssociateUpdateForm(props) {
   );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = { ...initialValues, ...associateRecord };
+    const cleanValues = associateRecord
+      ? { ...initialValues, ...associateRecord }
+      : initialValues;
     setName(cleanValues.name);
     setBirthday(cleanValues.birthday);
     setAddress(cleanValues.address);
@@ -85,11 +86,13 @@ export default function AssociateUpdateForm(props) {
   const [associateRecord, setAssociateRecord] = React.useState(associate);
   React.useEffect(() => {
     const queryData = async () => {
-      const record = id ? await DataStore.query(Associate, id) : associate;
+      const record = idProp
+        ? await DataStore.query(Associate, idProp)
+        : associate;
       setAssociateRecord(record);
     };
     queryData();
-  }, [id, associate]);
+  }, [idProp, associate]);
   React.useEffect(resetStateValues, [associateRecord]);
   const validations = {
     name: [],
@@ -104,7 +107,14 @@ export default function AssociateUpdateForm(props) {
     board_position: [],
     associate_id: [],
   };
-  const runValidationTasks = async (fieldName, value) => {
+  const runValidationTasks = async (
+    fieldName,
+    currentValue,
+    getDisplayValue
+  ) => {
+    const value = getDisplayValue
+      ? getDisplayValue(currentValue)
+      : currentValue;
     let validationResponse = validateField(value, validations[fieldName]);
     const customValidator = fetchByPath(onValidate, fieldName);
     if (customValidator) {
@@ -157,6 +167,11 @@ export default function AssociateUpdateForm(props) {
           modelFields = onSubmit(modelFields);
         }
         try {
+          Object.entries(modelFields).forEach(([key, value]) => {
+            if (typeof value === "string" && value.trim() === "") {
+              modelFields[key] = undefined;
+            }
+          });
           await DataStore.save(
             Associate.copyOf(associateRecord, (updated) => {
               Object.assign(updated, modelFields);
@@ -171,14 +186,14 @@ export default function AssociateUpdateForm(props) {
           }
         }
       }}
-      {...rest}
       {...getOverrideProps(overrides, "AssociateUpdateForm")}
+      {...rest}
     >
       <TextField
         label="Name"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={name}
+        value={name}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -212,7 +227,7 @@ export default function AssociateUpdateForm(props) {
         label="Birthday"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={birthday}
+        value={birthday}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -246,7 +261,7 @@ export default function AssociateUpdateForm(props) {
         label="Address"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={address}
+        value={address}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -280,7 +295,7 @@ export default function AssociateUpdateForm(props) {
         label="Email"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={email}
+        value={email}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -314,7 +329,7 @@ export default function AssociateUpdateForm(props) {
         label="Inscription date"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={inscription_date}
+        value={inscription_date}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -349,7 +364,7 @@ export default function AssociateUpdateForm(props) {
         isRequired={false}
         isReadOnly={false}
         type="tel"
-        defaultValue={phone}
+        value={phone}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -383,7 +398,7 @@ export default function AssociateUpdateForm(props) {
         label="Nationality"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={nationality}
+        value={nationality}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -417,7 +432,7 @@ export default function AssociateUpdateForm(props) {
         label="Identification"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={identification}
+        value={identification}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -563,7 +578,7 @@ export default function AssociateUpdateForm(props) {
         label="Associate id"
         isRequired={false}
         isReadOnly={false}
-        defaultValue={associate_id}
+        value={associate_id}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -600,7 +615,11 @@ export default function AssociateUpdateForm(props) {
         <Button
           children="Reset"
           type="reset"
-          onClick={resetStateValues}
+          onClick={(event) => {
+            event.preventDefault();
+            resetStateValues();
+          }}
+          isDisabled={!(idProp || associate)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -608,18 +627,13 @@ export default function AssociateUpdateForm(props) {
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}
         >
           <Button
-            children="Cancel"
-            type="button"
-            onClick={() => {
-              onCancel && onCancel();
-            }}
-            {...getOverrideProps(overrides, "CancelButton")}
-          ></Button>
-          <Button
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={Object.values(errors).some((e) => e?.hasError)}
+            isDisabled={
+              !(idProp || associate) ||
+              Object.values(errors).some((e) => e?.hasError)
+            }
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

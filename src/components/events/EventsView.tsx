@@ -142,7 +142,7 @@ function EventsView() {
                             setSearchBy(event.target.value);
                         }}
                     >
-                        <MenuItem value='title'>Título</MenuItem>
+                        <MenuItem value='title'>Nombre</MenuItem>
                         <MenuItem value='date'>Fecha</MenuItem>
                     </Select>
                     <TextField

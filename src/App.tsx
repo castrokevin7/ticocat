@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import './App.css';
 import AssociatesView from './components/associates/AssociatesView';
 import EventsView from './components/events/EventsView';
+import BenefitsView from './components/benefits/BenefitsView';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -55,6 +56,7 @@ export default function App() {
         <Tabs value={value} onChange={handleChange} aria-label="application tabs">
           <Tab sx={{color: 'gray'}} label="Socios" {...a11yProps(0)} />
           <Tab sx={{color: 'gray'}} label="Eventos" {...a11yProps(1)} />
+          <Tab sx={{color: 'gray'}} label="Beneficios" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -64,6 +66,10 @@ export default function App() {
       <TabPanel value={value} index={1}>
         <h3>Administración de Eventos</h3>
         <EventsView/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <h3>Administración de Beneficios</h3>
+        <BenefitsView/>
       </TabPanel>
     </Box>
   );

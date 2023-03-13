@@ -7,62 +7,53 @@
 import * as React from "react";
 import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { Event } from "../models";
+import { Benefit } from "../models";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type EventUpdateFormInputValues = {
-    event_id?: string;
+export declare type BenefitUpdateFormInputValues = {
+    benefit_id?: string;
     title?: string;
     title_cat?: string;
     image?: string;
-    gallery?: string[];
-    date?: string;
-    contact?: string;
-    location_url?: string;
     description?: string;
     description_cat?: string;
-    time?: string;
+    url?: string;
+    contact?: string;
 };
-export declare type EventUpdateFormValidationValues = {
-    event_id?: ValidationFunction<string>;
+export declare type BenefitUpdateFormValidationValues = {
+    benefit_id?: ValidationFunction<string>;
     title?: ValidationFunction<string>;
     title_cat?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
-    gallery?: ValidationFunction<string>;
-    date?: ValidationFunction<string>;
-    contact?: ValidationFunction<string>;
-    location_url?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     description_cat?: ValidationFunction<string>;
-    time?: ValidationFunction<string>;
+    url?: ValidationFunction<string>;
+    contact?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type EventUpdateFormOverridesProps = {
-    EventUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    event_id?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type BenefitUpdateFormOverridesProps = {
+    BenefitUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    benefit_id?: PrimitiveOverrideProps<TextFieldProps>;
     title?: PrimitiveOverrideProps<TextFieldProps>;
     title_cat?: PrimitiveOverrideProps<TextFieldProps>;
     image?: PrimitiveOverrideProps<TextFieldProps>;
-    gallery?: PrimitiveOverrideProps<TextFieldProps>;
-    date?: PrimitiveOverrideProps<TextFieldProps>;
-    contact?: PrimitiveOverrideProps<TextFieldProps>;
-    location_url?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
     description_cat?: PrimitiveOverrideProps<TextFieldProps>;
-    time?: PrimitiveOverrideProps<TextFieldProps>;
+    url?: PrimitiveOverrideProps<TextFieldProps>;
+    contact?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type EventUpdateFormProps = React.PropsWithChildren<{
-    overrides?: EventUpdateFormOverridesProps | undefined | null;
+export declare type BenefitUpdateFormProps = React.PropsWithChildren<{
+    overrides?: BenefitUpdateFormOverridesProps | undefined | null;
 } & {
     id?: string;
-    event?: Event;
-    onSubmit?: (fields: EventUpdateFormInputValues) => EventUpdateFormInputValues;
-    onSuccess?: (fields: EventUpdateFormInputValues) => void;
-    onError?: (fields: EventUpdateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: EventUpdateFormInputValues) => EventUpdateFormInputValues;
-    onValidate?: EventUpdateFormValidationValues;
+    benefit?: Benefit;
+    onSubmit?: (fields: BenefitUpdateFormInputValues) => BenefitUpdateFormInputValues;
+    onSuccess?: (fields: BenefitUpdateFormInputValues) => void;
+    onError?: (fields: BenefitUpdateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: BenefitUpdateFormInputValues) => BenefitUpdateFormInputValues;
+    onValidate?: BenefitUpdateFormValidationValues;
 } & React.CSSProperties>;
-export default function EventUpdateForm(props: EventUpdateFormProps): React.ReactElement;
+export default function BenefitUpdateForm(props: BenefitUpdateFormProps): React.ReactElement;

@@ -5,9 +5,9 @@
  **************************************************************************/
 
 import * as React from "react";
-import { Associate } from "../models";
-import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
+import { Associate } from "../models";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
@@ -39,20 +39,20 @@ export declare type AssociateUpdateFormValidationValues = {
     board_position?: ValidationFunction<string>;
     associate_id?: ValidationFunction<string>;
 };
-export declare type FormProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
+export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AssociateUpdateFormOverridesProps = {
-    AssociateUpdateFormGrid?: FormProps<GridProps>;
-    name?: FormProps<TextFieldProps>;
-    birthday?: FormProps<TextFieldProps>;
-    address?: FormProps<TextFieldProps>;
-    email?: FormProps<TextFieldProps>;
-    inscription_date?: FormProps<TextFieldProps>;
-    phone?: FormProps<TextFieldProps>;
-    nationality?: FormProps<TextFieldProps>;
-    identification?: FormProps<TextFieldProps>;
-    identification_type?: FormProps<SelectFieldProps>;
-    board_position?: FormProps<SelectFieldProps>;
-    associate_id?: FormProps<TextFieldProps>;
+    AssociateUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    name?: PrimitiveOverrideProps<TextFieldProps>;
+    birthday?: PrimitiveOverrideProps<TextFieldProps>;
+    address?: PrimitiveOverrideProps<TextFieldProps>;
+    email?: PrimitiveOverrideProps<TextFieldProps>;
+    inscription_date?: PrimitiveOverrideProps<TextFieldProps>;
+    phone?: PrimitiveOverrideProps<TextFieldProps>;
+    nationality?: PrimitiveOverrideProps<TextFieldProps>;
+    identification?: PrimitiveOverrideProps<TextFieldProps>;
+    identification_type?: PrimitiveOverrideProps<SelectFieldProps>;
+    board_position?: PrimitiveOverrideProps<SelectFieldProps>;
+    associate_id?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AssociateUpdateFormProps = React.PropsWithChildren<{
     overrides?: AssociateUpdateFormOverridesProps | undefined | null;
@@ -62,7 +62,6 @@ export declare type AssociateUpdateFormProps = React.PropsWithChildren<{
     onSubmit?: (fields: AssociateUpdateFormInputValues) => AssociateUpdateFormInputValues;
     onSuccess?: (fields: AssociateUpdateFormInputValues) => void;
     onError?: (fields: AssociateUpdateFormInputValues, errorMessage: string) => void;
-    onCancel?: () => void;
     onChange?: (fields: AssociateUpdateFormInputValues) => AssociateUpdateFormInputValues;
     onValidate?: AssociateUpdateFormValidationValues;
 } & React.CSSProperties>;

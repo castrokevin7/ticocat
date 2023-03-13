@@ -19,5 +19,26 @@
         "s3ticocatstoragee14d41c6": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ticocat-dev-164949-authRole",
+      "UnauthRoleArn": "arn:aws:iam::443361239887:role/amplify-ticocat-dev-164949-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::443361239887:role/amplify-ticocat-dev-164949-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-ticocat-dev-164949-deployment",
+      "UnauthRoleName": "amplify-ticocat-dev-164949-unauthRole",
+      "StackName": "amplify-ticocat-dev-164949",
+      "StackId": "arn:aws:cloudformation:eu-west-3:443361239887:stack/amplify-ticocat-dev-164949/f05cf460-a4ab-11ed-887b-0eb86f989238",
+      "AmplifyAppId": "ds5uc2tkp9911"
+    },
+    "categories": {
+      "auth": {
+        "TICOCAT": {}
+      },
+      "storage": {
+        "s3ticocatstoragee14d41c6": {}
+      }
+    }
   }
 }

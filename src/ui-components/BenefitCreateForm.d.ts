@@ -12,55 +12,46 @@ export declare type ValidationResponse = {
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type EventCreateFormInputValues = {
-    event_id?: string;
+export declare type BenefitCreateFormInputValues = {
+    benefit_id?: string;
     title?: string;
     title_cat?: string;
     image?: string;
-    gallery?: string[];
-    date?: string;
-    contact?: string;
-    location_url?: string;
     description?: string;
     description_cat?: string;
-    time?: string;
+    url?: string;
+    contact?: string;
 };
-export declare type EventCreateFormValidationValues = {
-    event_id?: ValidationFunction<string>;
+export declare type BenefitCreateFormValidationValues = {
+    benefit_id?: ValidationFunction<string>;
     title?: ValidationFunction<string>;
     title_cat?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
-    gallery?: ValidationFunction<string>;
-    date?: ValidationFunction<string>;
-    contact?: ValidationFunction<string>;
-    location_url?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     description_cat?: ValidationFunction<string>;
-    time?: ValidationFunction<string>;
+    url?: ValidationFunction<string>;
+    contact?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type EventCreateFormOverridesProps = {
-    EventCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    event_id?: PrimitiveOverrideProps<TextFieldProps>;
+export declare type BenefitCreateFormOverridesProps = {
+    BenefitCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    benefit_id?: PrimitiveOverrideProps<TextFieldProps>;
     title?: PrimitiveOverrideProps<TextFieldProps>;
     title_cat?: PrimitiveOverrideProps<TextFieldProps>;
     image?: PrimitiveOverrideProps<TextFieldProps>;
-    gallery?: PrimitiveOverrideProps<TextFieldProps>;
-    date?: PrimitiveOverrideProps<TextFieldProps>;
-    contact?: PrimitiveOverrideProps<TextFieldProps>;
-    location_url?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
     description_cat?: PrimitiveOverrideProps<TextFieldProps>;
-    time?: PrimitiveOverrideProps<TextFieldProps>;
+    url?: PrimitiveOverrideProps<TextFieldProps>;
+    contact?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type EventCreateFormProps = React.PropsWithChildren<{
-    overrides?: EventCreateFormOverridesProps | undefined | null;
+export declare type BenefitCreateFormProps = React.PropsWithChildren<{
+    overrides?: BenefitCreateFormOverridesProps | undefined | null;
 } & {
     clearOnSuccess?: boolean;
-    onSubmit?: (fields: EventCreateFormInputValues) => EventCreateFormInputValues;
-    onSuccess?: (fields: EventCreateFormInputValues) => void;
-    onError?: (fields: EventCreateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: EventCreateFormInputValues) => EventCreateFormInputValues;
-    onValidate?: EventCreateFormValidationValues;
+    onSubmit?: (fields: BenefitCreateFormInputValues) => BenefitCreateFormInputValues;
+    onSuccess?: (fields: BenefitCreateFormInputValues) => void;
+    onError?: (fields: BenefitCreateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: BenefitCreateFormInputValues) => BenefitCreateFormInputValues;
+    onValidate?: BenefitCreateFormValidationValues;
 } & React.CSSProperties>;
-export default function EventCreateForm(props: EventCreateFormProps): React.ReactElement;
+export default function BenefitCreateForm(props: BenefitCreateFormProps): React.ReactElement;
