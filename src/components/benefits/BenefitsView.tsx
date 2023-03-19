@@ -178,6 +178,14 @@ function BenefitsView() {
             alert("Error: Descripción (CAT) es requerido.");
             return false;
         }
+        if (!benefit.about_provider) {
+            alert("Error: Sobre el Proveedor (ESP) es requerido.");
+            return false;
+        }
+        if (!benefit.about_provider_cat) {
+            alert("Error: Sobre el Proveedor (CAT) es requerido.");
+            return false;
+        }
         if (!image) {
             alert("Error: Imagen de Portada es requerida.");
             return false;
@@ -211,6 +219,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToUpdate.title_cat;
                                     updated.description = benefitToUpdate.description;
                                     updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
                                     updated.contact = benefitToUpdate.contact;
                                     updated.url = benefitToUpdate.url;
                                 }));
@@ -228,6 +238,8 @@ function BenefitsView() {
                                     updated.title_cat = benefit.target.value;
                                     updated.description = benefitToUpdate.description;
                                     updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
                                     updated.contact = benefitToUpdate.contact;
                                     updated.url = benefitToUpdate.url;
                                 }));
@@ -245,6 +257,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToUpdate.title_cat;
                                     updated.description = benefit.target.value;
                                     updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
                                     updated.contact = benefitToUpdate.contact;
                                     updated.url = benefitToUpdate.url;
                                 }));
@@ -264,6 +278,50 @@ function BenefitsView() {
                                     updated.title_cat = benefitToUpdate.title_cat;
                                     updated.description = benefitToUpdate.description;
                                     updated.description_cat = benefit.target.value;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
+                                    updated.contact = benefitToUpdate.contact;
+                                    updated.url = benefitToUpdate.url;
+                                }));
+                            }}
+                            multiline
+                            rows={4}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            required
+                            label='Sobre el Proveedor (ESP)'
+                            defaultValue={benefitToUpdate.about_provider}
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
+                                    updated.benefit_id = benefitToUpdate.benefit_id;
+                                    updated.title = benefitToUpdate.title;
+                                    updated.title_cat = benefitToUpdate.title_cat;
+                                    updated.description = benefitToUpdate.description;
+                                    updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefit.target.value;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
+                                    updated.contact = benefitToUpdate.contact;
+                                    updated.url = benefitToUpdate.url;
+                                }));
+                            }}
+                            multiline
+                            rows={4}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            required
+                            label='Sobre el Proveedor (CAT)'
+                            defaultValue={benefitToUpdate.about_provider_cat}
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
+                                    updated.benefit_id = benefitToUpdate.benefit_id;
+                                    updated.title = benefitToUpdate.title;
+                                    updated.title_cat = benefitToUpdate.title_cat;
+                                    updated.description = benefitToUpdate.description;
+                                    updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefit.target.value;
                                     updated.contact = benefitToUpdate.contact;
                                     updated.url = benefitToUpdate.url;
                                 }));
@@ -283,6 +341,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToUpdate.title_cat;
                                     updated.description = benefitToUpdate.description;
                                     updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
                                     updated.contact = benefit.target.value;
                                     updated.url = benefitToUpdate.url;
                                 }));
@@ -301,6 +361,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToUpdate.title_cat;
                                     updated.description = benefitToUpdate.description;
                                     updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
                                     updated.contact = benefitToUpdate.contact;
                                     updated.url = benefit.target.value;
                                 }));
@@ -327,6 +389,8 @@ function BenefitsView() {
                                                     updated.title_cat = benefitToUpdate.title_cat;
                                                     updated.description = benefitToUpdate.description;
                                                     updated.description_cat = benefitToUpdate.description_cat;
+                                                    updated.about_provider = benefitToUpdate.about_provider;
+                                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
                                                     updated.contact = benefitToUpdate.contact;
                                                     updated.url = benefitToUpdate.url;
                                                     updated.image = benefitToUpdate.image;
@@ -388,6 +452,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToCreate.title_cat;
                                     updated.description = benefitToCreate.description;
                                     updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
                                     updated.contact = benefitToCreate.contact;
                                     updated.url = benefitToCreate.url;
                                 }))
@@ -404,6 +470,8 @@ function BenefitsView() {
                                     updated.title_cat = benefit.target.value;
                                     updated.description = benefitToCreate.description;
                                     updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
                                     updated.contact = benefitToCreate.contact;
                                     updated.url = benefitToCreate.url;
                                 }))
@@ -420,6 +488,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToCreate.title_cat;
                                     updated.description = benefit.target.value;
                                     updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
                                     updated.contact = benefitToCreate.contact;
                                     updated.url = benefitToCreate.url;
                                 }))
@@ -438,6 +508,48 @@ function BenefitsView() {
                                     updated.title_cat = benefitToCreate.title_cat;
                                     updated.description = benefitToCreate.description;
                                     updated.description_cat = benefit.target.value;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
+                                    updated.contact = benefitToCreate.contact;
+                                    updated.url = benefitToCreate.url;
+                                }))
+                            }}
+                            multiline
+                            rows={4}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            required
+                            label='Sobre el Proveedor (ESP)'
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToCreate, updated => {
+                                    updated.benefit_id = benefitToCreate.benefit_id;
+                                    updated.title = benefitToCreate.title;
+                                    updated.title_cat = benefitToCreate.title_cat;
+                                    updated.description = benefitToCreate.description;
+                                    updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefit.target.value;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
+                                    updated.contact = benefitToCreate.contact;
+                                    updated.url = benefitToCreate.url;
+                                }))
+                            }}
+                            multiline
+                            rows={4}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            required
+                            label='Sobre el Proveedor (CAT)'
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToCreate, updated => {
+                                    updated.benefit_id = benefitToCreate.benefit_id;
+                                    updated.title = benefitToCreate.title;
+                                    updated.title_cat = benefitToCreate.title_cat;
+                                    updated.description = benefitToCreate.description;
+                                    updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefit.target.value;
                                     updated.contact = benefitToCreate.contact;
                                     updated.url = benefitToCreate.url;
                                 }))
@@ -456,6 +568,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToCreate.title_cat;
                                     updated.description = benefitToCreate.description;
                                     updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
                                     updated.contact = benefit.target.value;
                                     updated.url = benefitToCreate.url;
                                 }))
@@ -473,6 +587,8 @@ function BenefitsView() {
                                     updated.title_cat = benefitToCreate.title_cat;
                                     updated.description = benefitToCreate.description;
                                     updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
                                     updated.contact = benefitToCreate.contact;
                                     updated.url = benefit.target.value;
                                 }));
@@ -497,6 +613,8 @@ function BenefitsView() {
                                                     title_cat: benefitToCreate.title_cat,
                                                     description: benefitToCreate.description,
                                                     description_cat: benefitToCreate.description_cat,
+                                                    about_provider: benefitToCreate.about_provider,
+                                                    about_provider_cat: benefitToCreate.about_provider_cat,
                                                     contact: benefitToCreate.contact ? benefitToCreate.contact : null,
                                                     url: benefitToCreate.url ? benefitToCreate.url : null,
                                                     image: mainImage ? `${benefitToCreate.benefit_id}/main/${mainImage.name}` : null,

@@ -32,6 +32,8 @@ export default function BenefitUpdateForm(props) {
     description_cat: "",
     url: "",
     contact: "",
+    about_provider: "",
+    about_provider_cat: "",
   };
   const [benefit_id, setBenefit_id] = React.useState(initialValues.benefit_id);
   const [title, setTitle] = React.useState(initialValues.title);
@@ -45,6 +47,12 @@ export default function BenefitUpdateForm(props) {
   );
   const [url, setUrl] = React.useState(initialValues.url);
   const [contact, setContact] = React.useState(initialValues.contact);
+  const [about_provider, setAbout_provider] = React.useState(
+    initialValues.about_provider
+  );
+  const [about_provider_cat, setAbout_provider_cat] = React.useState(
+    initialValues.about_provider_cat
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = benefitRecord
@@ -58,6 +66,8 @@ export default function BenefitUpdateForm(props) {
     setDescription_cat(cleanValues.description_cat);
     setUrl(cleanValues.url);
     setContact(cleanValues.contact);
+    setAbout_provider(cleanValues.about_provider);
+    setAbout_provider_cat(cleanValues.about_provider_cat);
     setErrors({});
   };
   const [benefitRecord, setBenefitRecord] = React.useState(benefit);
@@ -78,6 +88,8 @@ export default function BenefitUpdateForm(props) {
     description_cat: [],
     url: [{ type: "URL" }],
     contact: [],
+    about_provider: [],
+    about_provider_cat: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -112,6 +124,8 @@ export default function BenefitUpdateForm(props) {
           description_cat,
           url,
           contact,
+          about_provider,
+          about_provider_cat,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -175,6 +189,8 @@ export default function BenefitUpdateForm(props) {
               description_cat,
               url,
               contact,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.benefit_id ?? value;
@@ -206,6 +222,8 @@ export default function BenefitUpdateForm(props) {
               description_cat,
               url,
               contact,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -237,6 +255,8 @@ export default function BenefitUpdateForm(props) {
               description_cat,
               url,
               contact,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.title_cat ?? value;
@@ -268,6 +288,8 @@ export default function BenefitUpdateForm(props) {
               description_cat,
               url,
               contact,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -299,6 +321,8 @@ export default function BenefitUpdateForm(props) {
               description_cat,
               url,
               contact,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -330,6 +354,8 @@ export default function BenefitUpdateForm(props) {
               description_cat: value,
               url,
               contact,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.description_cat ?? value;
@@ -361,6 +387,8 @@ export default function BenefitUpdateForm(props) {
               description_cat,
               url: value,
               contact,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.url ?? value;
@@ -392,6 +420,8 @@ export default function BenefitUpdateForm(props) {
               description_cat,
               url,
               contact: value,
+              about_provider,
+              about_provider_cat,
             };
             const result = onChange(modelFields);
             value = result?.contact ?? value;
@@ -405,6 +435,74 @@ export default function BenefitUpdateForm(props) {
         errorMessage={errors.contact?.errorMessage}
         hasError={errors.contact?.hasError}
         {...getOverrideProps(overrides, "contact")}
+      ></TextField>
+      <TextField
+        label="About provider"
+        isRequired={false}
+        isReadOnly={false}
+        value={about_provider}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              benefit_id,
+              title,
+              title_cat,
+              image,
+              description,
+              description_cat,
+              url,
+              contact,
+              about_provider: value,
+              about_provider_cat,
+            };
+            const result = onChange(modelFields);
+            value = result?.about_provider ?? value;
+          }
+          if (errors.about_provider?.hasError) {
+            runValidationTasks("about_provider", value);
+          }
+          setAbout_provider(value);
+        }}
+        onBlur={() => runValidationTasks("about_provider", about_provider)}
+        errorMessage={errors.about_provider?.errorMessage}
+        hasError={errors.about_provider?.hasError}
+        {...getOverrideProps(overrides, "about_provider")}
+      ></TextField>
+      <TextField
+        label="About provider cat"
+        isRequired={false}
+        isReadOnly={false}
+        value={about_provider_cat}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              benefit_id,
+              title,
+              title_cat,
+              image,
+              description,
+              description_cat,
+              url,
+              contact,
+              about_provider,
+              about_provider_cat: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.about_provider_cat ?? value;
+          }
+          if (errors.about_provider_cat?.hasError) {
+            runValidationTasks("about_provider_cat", value);
+          }
+          setAbout_provider_cat(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("about_provider_cat", about_provider_cat)
+        }
+        errorMessage={errors.about_provider_cat?.errorMessage}
+        hasError={errors.about_provider_cat?.hasError}
+        {...getOverrideProps(overrides, "about_provider_cat")}
       ></TextField>
       <Flex
         justifyContent="space-between"

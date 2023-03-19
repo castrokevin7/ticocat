@@ -21,6 +21,8 @@ export declare type BenefitCreateFormInputValues = {
     description_cat?: string;
     url?: string;
     contact?: string;
+    about_provider?: string;
+    about_provider_cat?: string;
 };
 export declare type BenefitCreateFormValidationValues = {
     benefit_id?: ValidationFunction<string>;
@@ -31,6 +33,8 @@ export declare type BenefitCreateFormValidationValues = {
     description_cat?: ValidationFunction<string>;
     url?: ValidationFunction<string>;
     contact?: ValidationFunction<string>;
+    about_provider?: ValidationFunction<string>;
+    about_provider_cat?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BenefitCreateFormOverridesProps = {
@@ -43,6 +47,8 @@ export declare type BenefitCreateFormOverridesProps = {
     description_cat?: PrimitiveOverrideProps<TextFieldProps>;
     url?: PrimitiveOverrideProps<TextFieldProps>;
     contact?: PrimitiveOverrideProps<TextFieldProps>;
+    about_provider?: PrimitiveOverrideProps<TextFieldProps>;
+    about_provider_cat?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type BenefitCreateFormProps = React.PropsWithChildren<{
     overrides?: BenefitCreateFormOverridesProps | undefined | null;

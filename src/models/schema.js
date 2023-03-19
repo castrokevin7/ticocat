@@ -66,6 +66,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "about_provider": {
+                    "name": "about_provider",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "about_provider_cat": {
+                    "name": "about_provider_cat",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -394,5 +408,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "3c3f5bf33e5a95646a8693a64ea44d7b"
+    "version": "526c28514ebff1a369c3670f7da8886c"
 };

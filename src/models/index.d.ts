@@ -38,6 +38,8 @@ type EagerBenefit = {
   readonly description_cat?: string | null;
   readonly url?: string | null;
   readonly contact?: string | null;
+  readonly about_provider?: string | null;
+  readonly about_provider_cat?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -52,6 +54,8 @@ type LazyBenefit = {
   readonly description_cat?: string | null;
   readonly url?: string | null;
   readonly contact?: string | null;
+  readonly about_provider?: string | null;
+  readonly about_provider_cat?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
