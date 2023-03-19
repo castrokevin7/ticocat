@@ -24,6 +24,7 @@ export declare type AssociateUpdateFormInputValues = {
     identification?: string;
     identification_type?: string;
     board_position?: string;
+    associate_id?: string;
 };
 export declare type AssociateUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -36,6 +37,7 @@ export declare type AssociateUpdateFormValidationValues = {
     identification?: ValidationFunction<string>;
     identification_type?: ValidationFunction<string>;
     board_position?: ValidationFunction<string>;
+    associate_id?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AssociateUpdateFormOverridesProps = {
@@ -50,6 +52,7 @@ export declare type AssociateUpdateFormOverridesProps = {
     identification?: PrimitiveOverrideProps<TextFieldProps>;
     identification_type?: PrimitiveOverrideProps<SelectFieldProps>;
     board_position?: PrimitiveOverrideProps<SelectFieldProps>;
+    associate_id?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AssociateUpdateFormProps = React.PropsWithChildren<{
     overrides?: AssociateUpdateFormOverridesProps | undefined | null;

@@ -8,6 +8,7 @@ import Team from './Team';
 import Associates from './Associates';
 import Events from './Events';
 import Footer from './Footer';
+import Benefits from './Benefits';
 
 export default function Main() {
     return (
@@ -28,6 +29,7 @@ export default function Main() {
                 <Team />
                 <Associates />
                 <Events />
+                <Benefits />
             </Card>
             <Footer />
         </>

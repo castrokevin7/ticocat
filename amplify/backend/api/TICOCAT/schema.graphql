@@ -1,3 +1,17 @@
+type Benefit @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  benefit_id: String
+  title: String
+  title_cat: String
+  image: String
+  description: String
+  description_cat: String
+  url: AWSURL
+  contact: String
+  about_provider: String
+  about_provider_cat: String
+}
+
 type Event @model @auth(rules: [{allow: public}]) {
   id: ID!
   event_id: String
@@ -39,5 +53,6 @@ type Associate @model @auth(rules: [{allow: public}]) {
   identification: String
   identification_type: IdentificationType
   board_position: BoardPosition
+  associate_id: String
 }
  

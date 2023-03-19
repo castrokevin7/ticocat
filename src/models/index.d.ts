@@ -16,12 +16,54 @@ export enum BoardPosition {
   VOCAL = "VOCAL"
 }
 
+type BenefitMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type EventMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
 type AssociateMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type EagerBenefit = {
+  readonly id: string;
+  readonly benefit_id?: string | null;
+  readonly title?: string | null;
+  readonly title_cat?: string | null;
+  readonly image?: string | null;
+  readonly description?: string | null;
+  readonly description_cat?: string | null;
+  readonly url?: string | null;
+  readonly contact?: string | null;
+  readonly about_provider?: string | null;
+  readonly about_provider_cat?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyBenefit = {
+  readonly id: string;
+  readonly benefit_id?: string | null;
+  readonly title?: string | null;
+  readonly title_cat?: string | null;
+  readonly image?: string | null;
+  readonly description?: string | null;
+  readonly description_cat?: string | null;
+  readonly url?: string | null;
+  readonly contact?: string | null;
+  readonly about_provider?: string | null;
+  readonly about_provider_cat?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type Benefit = LazyLoading extends LazyLoadingDisabled ? EagerBenefit : LazyBenefit
+
+export declare const Benefit: (new (init: ModelInit<Benefit, BenefitMetaData>) => Benefit) & {
+  copyOf(source: Benefit, mutator: (draft: MutableModel<Benefit, BenefitMetaData>) => MutableModel<Benefit, BenefitMetaData> | void): Benefit;
 }
 
 type EagerEvent = {
@@ -76,6 +118,7 @@ type EagerAssociate = {
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
   readonly board_position?: BoardPosition | keyof typeof BoardPosition | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -92,6 +135,7 @@ type LazyAssociate = {
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
   readonly board_position?: BoardPosition | keyof typeof BoardPosition | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

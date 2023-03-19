@@ -27,6 +27,10 @@
         "www.asoticocat.com": "Eventos",
         "cat.asoticocat.com": "Esdeveniments"
     },
+    "route_benefits": {
+        "www.asoticocat.com": "Beneficios",
+        "cat.asoticocat.com": "Beneficis"
+    },
     "home_main_title": {
         "www.asoticocat.com": "Asociación Cultural Costarricense Catalana",
         "cat.asoticocat.com": "Associació Cultural Costarricense Catalana"
@@ -251,6 +255,10 @@
         "www.asoticocat.com": "Eventos",
         "cat.asoticocat.com": "Esdeveniments"
     },
+    "benefits_page_title": {
+        "www.asoticocat.com": "Beneficios",
+        "cat.asoticocat.com": "Beneficis"
+    },
     "events_page_description": {
         "www.asoticocat.com": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
         "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar-hi. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
@@ -279,6 +287,10 @@
         "www.asoticocat.com": "Ningún evento",
         "cat.asoticocat.com": "Cap esdeveniment"
     },
+    "benefits_page_no_events": {
+        "www.asoticocat.com": "Ningún beneficio",
+        "cat.asoticocat.com": "Cap benefici"
+    },
     "events_load": {
         "www.asoticocat.com": "Cargar Eventos",
         "cat.asoticocat.com": "Carregar Esdeveniments"
@@ -296,6 +308,10 @@
         "cat.asoticocat.com": "Punt de trobada"
     },
     "events_see_all": {
+        "www.asoticocat.com": "Ver todos",
+        "cat.asoticocat.com": "Veure'ls tots"
+    },
+    "benefits_see_all": {
         "www.asoticocat.com": "Ver todos",
         "cat.asoticocat.com": "Veure'ls tots"
     }

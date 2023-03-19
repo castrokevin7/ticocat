@@ -50,9 +50,12 @@ function SimpleBackgroundCard({ image, title, date, description }) {
         <MKTypography variant="h3" color="white">
           {title}
         </MKTypography>
-        <MKTypography variant="h4" color="white" mb={2}>
-          {getFormattedDate(date)}
-        </MKTypography>
+        {
+          date &&
+          <MKTypography variant="h4" color="white" mb={2}>
+            {getFormattedDate(date)}
+          </MKTypography>
+        }
         <MKTypography variant="body2" color="white" mb={2}>
           {description}
         </MKTypography>
@@ -65,7 +68,7 @@ function SimpleBackgroundCard({ image, title, date, description }) {
 SimpleBackgroundCard.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
   description: PropTypes.node.isRequired,
 };
 

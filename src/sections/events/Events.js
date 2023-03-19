@@ -35,8 +35,6 @@ import FormControl from '@mui/material/FormControl';
 
 import { getTranslateAction } from 'sections/main/Navbar';
 
-import MKButton from "components/MKButton";
-
 DataStore.configure({ cacheExpiration: 30 });
 
 function EventsPage() {

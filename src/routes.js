@@ -72,6 +72,12 @@ const routes = [
     href: "#eventos",
     target: "_self" 
   },
+  {
+    name: Translator.instance.translate("route_benefits"),
+    icon: <Icon>card_giftcard_rounded</Icon>,
+    href: "#beneficios",
+    target: "_self" 
+  },
 ];
 
 export default routes;

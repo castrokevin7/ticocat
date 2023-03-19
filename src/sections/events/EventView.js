@@ -17,7 +17,6 @@ import { getTranslateAction } from "sections/main/Navbar";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Box from "@mui/material/Box";
-import MKButton from "components/MKButton";
 
 DataStore.configure({ cacheExpiration: 30 });
 
