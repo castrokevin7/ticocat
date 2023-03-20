@@ -7,8 +7,10 @@ import Main from 'sections/main/Main';
 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
-import Events from 'sections/events/Events';
+import EventsPage from 'sections/events/EventsPage';
 import EventView from 'sections/events/EventView';
+import BenefitsPage from 'sections/benefits/BenefitsPage';
+import BenefitView from 'sections/benefits/BenefitView';
 
 function App() {
   const { pathname } = useLocation();
@@ -22,8 +24,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-        <Route exact path={"/eventos"} element={<Events />} />;
+        <Route exact path={"/eventos"} element={<EventsPage />} />;
         <Route exact path={"/evento/:eventId"} element={<EventView />} />;
+        <Route exact path={"/beneficios"} element={<BenefitsPage />} />;
+        <Route exact path={"/beneficio/:benefitId"} element={<BenefitView />} />;
         <Route path="/" element={<Main />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

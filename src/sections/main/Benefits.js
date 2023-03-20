@@ -93,7 +93,7 @@ function Benefits() {
             <>
                 {benefits.map((benefit, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/benefit/${benefit.benefit_id}`}>
+                        <Link to={`/beneficio/${benefit.benefit_id}`}>
                             <SimpleBackgroundCard
                                 image={benefit.image}
                                 title={getBenefitTitle(benefit)}
@@ -106,7 +106,7 @@ function Benefits() {
                 <Grid p={3} xs={12} item>
                     <MKTypography
                         component="a"
-                        href="/benefits"
+                        href="/beneficios"
                         variant="body1"
                         color="info"
                         fontWeight="regular"
@@ -161,15 +161,15 @@ function Benefits() {
                         justifyContent="center"
                     >
                         <Icon fontSize="small" sx={{ opacity: 0.8 }}>
-                            celebration_rounded
+                            card_giftcard_rounded
                         </Icon>
                     </MKBox>
                     <MKTypography variant="h3" mt={3}>
                         {Translator.instance.translate("benefits_page_title")}
                     </MKTypography>
-                    {/*                     <MKTypography variant="body1" color="text" mt={1}>
+                    <MKTypography variant="body1" color="text" mt={1}>
                         {Translator.instance.translate("benefits_page_description")}
-                    </MKTypography> */}
+                    </MKTypography>
                 </Grid>
                 <Grid container spacing={3} mt={2}>
                     {getBenefits()}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { Event } from "../../models";
+import { Benefit } from "../../models";
 import { DataStore, Storage } from "aws-amplify";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -8,68 +8,41 @@ import Card from "@mui/material/Card";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import getFormattedDate from "utils/FormatDate";
 import Stack from "@mui/material/Stack";
 import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption";
-import { getEventTitle, getEventDescription } from "./Utils";
+import { getBenefitTitle, getBenefitDescription } from "./Utils";
 import Translator from "utils/Translator";
 import { getTranslateAction } from "sections/main/Navbar";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import Box from "@mui/material/Box";
 
-function EventView() {
+function BenefitView() {
     const [state, setState] = useState("");
-    const [event, setEvent] = useState(null);
-    const { eventId } = useParams();
+    const [benefit, setBenefit] = useState(null);
+    const { benefitId } = useParams();
 
-    const fetchEvent = async () => {
+    const fetchBenefit = async () => {
         try {
-            let response = await DataStore.query(Event, e => e.event_id('eq', eventId), { useCache: false });
+            let response = await DataStore.query(Benefit, e => e.benefit_id('eq', benefitId), { useCache: false });
             if (response.length > 0) {
                 response = response[0];
                 if (response.image) {
                     const image = await Storage.get(response.image);
-                    response = Event.copyOf(response, updated => {
+                    response = Benefit.copyOf(response, updated => {
                         updated.image = image;
-                        updated.event_id = response.event_id;
+                        updated.benefit_id = response.benefit_id;
                         updated.title = response.title;
                         updated.title_cat = response.title_cat;
                         updated.description = response.description;
                         updated.description_cat = response.description_cat;
-                        updated.date = response.date;
-                        updated.time = response.time;
                         updated.contact = response.contact;
-                        updated.location_url = response.location_url;
-                        updated.gallery = response.gallery;
+                        updated.url = response.url;
+                        updated.about_provider = response.about_provider;
+                        updated.about_provider_cat = response.about_provider_cat;
                     });
                 }
 
-                if (response.gallery && response.gallery.length > 0) {
-                    const gallery = await Promise.all(
-                        response.gallery.map(async image => {
-                            const signedUrl = await Storage.get(image);
-                            return signedUrl;
-                        })
-                    );
-                    response = Event.copyOf(response, updated => {
-                        updated.gallery = gallery;
-                        updated.event_id = response.event_id;
-                        updated.image = response.image;
-                        updated.title = response.title;
-                        updated.title_cat = response.title_cat;
-                        updated.description = response.description;
-                        updated.description_cat = response.description_cat;
-                        updated.date = response.date;
-                        updated.time = response.time;
-                        updated.contact = response.contact;
-                        updated.location_url = response.location_url;
-                    });
-                }
-
-                setEvent(response);
+                setBenefit(response);
             } else {
-                setEvent(null);
+                setBenefit(null);
             }
             setState('success');
         } catch (err) {
@@ -80,33 +53,25 @@ function EventView() {
 
     useEffect(() => {
         setState('loading');
-        fetchEvent();
-    }, [eventId]);
+        fetchBenefit();
+    }, [benefitId]);
 
-    const getEventDetails = (event) => {
+    const getBenefitDetails = (benefit) => {
         return (
             <Stack>
-                <AboutUsOption
-                    icon="date_range"
-                    content={
-                        <>
-                            {getDateTime(event)}
-                        </>
-                    }
-                />
-                {event.contact && <AboutUsOption
+                {benefit.contact && <AboutUsOption
                     icon="contact_phone"
                     content={
                         <>
-                            {event.contact}
+                            {benefit.contact}
                         </>
                     }
                 />}
-                {event.location_url && <AboutUsOption
+                {benefit.url && <AboutUsOption
                     icon="location_on"
                     content={
                         <>
-                            <a rel="noreferrer" href={event.location_url} target="_blank">{Translator.instance.translate("event_location")}</a>
+                            <a rel="noreferrer" href={benefit.url} target="_blank">{Translator.instance.translate("benefit_location")}</a>
                         </>
                     }
                 />}
@@ -114,73 +79,24 @@ function EventView() {
         );
     }
 
-    const getEventContent = (event) => {
+    const getBenefitContent = (benefit) => {
         return (
             <MKBox component="section" py={{ xs: 3, md: 12 }}>
                 <Container>
                     <Grid container alignItems="center">
                         <Grid item xs={12} lg={5}>
                             <MKTypography variant="h3" my={1}>
-                                {getEventTitle(event)}
+                                {getBenefitTitle(benefit)}
                             </MKTypography>
                             <MKTypography variant="body1" color="text" mb={2}>
-                                {getEventDescription(event)}
+                                {getBenefitDescription(benefit)}
                             </MKTypography>
-                            {
-                                event.gallery && event.gallery.length > 0 && getEventDetails(event)
-                            }
+                            {/* {getBenefitDetails(benefit)} */}
                         </Grid>
-                        {event.gallery && event.gallery.length > 0 ?
-                            getEventGallery(event) :
-                            <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
-                                {getEventDetails(event)}
-                            </Grid>
-                        }
                     </Grid>
                 </Container>
             </MKBox>
         );
-    }
-
-    const getDateTime = (event) => {
-        if (event.time) {
-            return `${getFormattedDate(event.date)}  |  ${getTime(event.time)}`;
-        } else {
-            return getFormattedDate(event.date);
-        }
-    }
-
-    const getTime = (time) => {
-        if (time) {
-            return `${time}H`
-        }
-    };
-
-    const getEventGallery = (event) => {
-        if (event.gallery && event.gallery.length > 0) {
-            return (
-                <Box ml={{
-                    xs: 2,
-                    md: 12,
-                }} mt={{
-                    xs: 6,
-                }} sx={{ width: 500, height: 450, overflowY: 'scroll' }}>
-                    <ImageList variant="masonry" cols={2} gap={8}>
-                        {event.gallery.map((image, i) => (
-                            <ImageListItem key={i}>
-                                <img
-                                    src={`${image}?w=248&fit=crop&auto=format`}
-                                    srcSet={`${image}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                    alt={`${i + 1} from ${event.title}`}
-                                    loading="lazy"
-                                />
-                            </ImageListItem>
-                        ))}
-                    </ImageList>
-                </Box>
-            )
-        }
-        return null;
     }
 
     if (state === 'loading') {
@@ -202,10 +118,10 @@ function EventView() {
         );
     }
 
-    if (event === null) {
+    if (benefit === null) {
         return (
             <h1>
-                {Translator.instance.translate("event_not_found")}
+                {Translator.instance.translate("benefit_not_found")}
             </h1>
         );
     }
@@ -219,7 +135,7 @@ function EventView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: "/eventos",
+                    route: "/benefitos",
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",
@@ -233,7 +149,7 @@ function EventView() {
                     alignItems="center"
                     minHeight="100vh"
                     sx={{
-                        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${event.image})`,
+                        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${benefit.image})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                     }}
@@ -260,12 +176,7 @@ function EventView() {
                                 })}
                                 mb={1}
                             >
-                                {getEventTitle(event)}
-                            </MKTypography>
-                            <MKTypography variant="body3" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}
-                                sx={{ fontWeight: 'bold' }}
-                            >
-                                {getDateTime(event)}
+                                {getBenefitTitle(benefit)}
                             </MKTypography>
                         </Grid>
                     </Container>
@@ -284,7 +195,7 @@ function EventView() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
-                        {getEventContent(event)}
+                        {getBenefitContent(benefit)}
                     </Container>
                 </MKBox>
             </Card>
@@ -292,4 +203,4 @@ function EventView() {
     )
 }
 
-export default EventView;
+export default BenefitView;

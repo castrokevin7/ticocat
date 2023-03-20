@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage, Predicates, SortDirection, Hub } from 'aws-amplify';
+import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
 
 import { Event } from '../../models';
 
@@ -34,8 +34,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
 import { getTranslateAction } from 'sections/main/Navbar';
-
-DataStore.configure({ cacheExpiration: 30 });
 
 function EventsPage() {
     const [state, setState] = useState('');
@@ -78,20 +76,7 @@ function EventsPage() {
 
     useEffect(() => {
         setState('loading');
-        const removeListener = Hub.listen("datastore", async (capsule) => {
-            const {
-                payload: { event },
-            } = capsule;
-
-            if (event === "ready") {
-                fetchEvents();
-            }
-        });
-        DataStore.start();
-
-        return () => {
-            removeListener();
-        };
+        fetchEvents();
     }, []);
 
     const getEvents = () => {
