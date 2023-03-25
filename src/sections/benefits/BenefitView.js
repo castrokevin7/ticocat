@@ -91,7 +91,7 @@ function BenefitView() {
                             <MKTypography variant="body1" color="text" mb={2}>
                                 {getBenefitDescription(benefit)}
                             </MKTypography>
-                            {/* {getBenefitDetails(benefit)} */}
+                            {getBenefitDetails(benefit)}
                         </Grid>
                     </Grid>
                 </Container>
@@ -135,7 +135,7 @@ function BenefitView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: "/benefitos",
+                    route: "/beneficios",
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

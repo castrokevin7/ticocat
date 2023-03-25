@@ -97,7 +97,6 @@ function Benefits() {
                             <SimpleBackgroundCard
                                 image={benefit.image}
                                 title={getBenefitTitle(benefit)}
-                                date={benefit.date}
                                 description={`${getBenefitDescription(benefit).substring(0, 31)} ...${Translator.instance.translate("benefits_page_see_more_from_benefit")}`}
                             />
                         </Link>
