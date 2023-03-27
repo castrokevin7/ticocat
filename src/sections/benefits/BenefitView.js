@@ -63,15 +63,15 @@ function BenefitView() {
                     icon="contact_phone"
                     content={
                         <>
-                            {benefit.contact}
+                            <a rel="noreferrer" href={benefit.contact} target="_blank">{benefit.contact}</a>
                         </>
                     }
                 />}
                 {benefit.url && <AboutUsOption
-                    icon="location_on"
+                    icon="link_rounded"
                     content={
                         <>
-                            <a rel="noreferrer" href={benefit.url} target="_blank">{Translator.instance.translate("benefit_location")}</a>
+                            <a rel="noreferrer" href={benefit.url} target="_blank">{benefit.url}</a>
                         </>
                     }
                 />}
@@ -91,6 +91,8 @@ function BenefitView() {
                             <MKTypography variant="body1" color="text" mb={2}>
                                 {getBenefitDescription(benefit)}
                             </MKTypography>
+                        </Grid>
+                        <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
                             {getBenefitDetails(benefit)}
                         </Grid>
                     </Grid>
