@@ -13,6 +13,8 @@ import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption
 import { getBenefitTitle, getBenefitDescription } from "./Utils";
 import Translator from "utils/Translator";
 import { getTranslateAction } from "sections/main/Navbar";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
 
 function BenefitView() {
     const [state, setState] = useState("");
@@ -27,16 +29,19 @@ function BenefitView() {
                 if (response.image) {
                     const image = await Storage.get(response.image);
                     response = Benefit.copyOf(response, updated => {
-                        updated.image = image;
                         updated.benefit_id = response.benefit_id;
+                        updated.image = image;
                         updated.title = response.title;
                         updated.title_cat = response.title_cat;
                         updated.description = response.description;
                         updated.description_cat = response.description_cat;
-                        updated.contact = response.contact;
-                        updated.url = response.url;
                         updated.about_provider = response.about_provider;
                         updated.about_provider_cat = response.about_provider_cat;
+                        updated.phone = response.phone;
+                        updated.email = response.email;
+                        updated.websiteUrl = response.websiteUrl;
+                        updated.instagramUrl = response.instagramUrl;
+                        updated.facebookUrl = response.facebookUrl;
                     });
                 }
 
@@ -59,22 +64,34 @@ function BenefitView() {
     const getBenefitDetails = (benefit) => {
         return (
             <Stack>
-                {benefit.contact && <AboutUsOption
+                {benefit.phone && <AboutUsOption
                     icon="contact_phone"
                     content={
                         <>
-                            <a rel="noreferrer" href={benefit.contact} target="_blank">{benefit.contact}</a>
+                            <span>{benefit.phone}</span>
                         </>
                     }
                 />}
-                {benefit.url && <AboutUsOption
+                {benefit.email && <AboutUsOption
+                    icon="alternate_email"
+                    content={
+                        <>
+                            <a rel="noreferrer" href={`mailto:${benefit.email}`} target="_blank">{benefit.email}</a>
+                        </>
+                    }
+                />}
+                {benefit.websiteUrl && <AboutUsOption
                     icon="link_rounded"
                     content={
                         <>
-                            <a rel="noreferrer" href={benefit.url} target="_blank">{benefit.url}</a>
+                            <a rel="noreferrer" href={benefit.websiteUrl} target="_blank">{benefit.websiteUrl}</a>
                         </>
                     }
                 />}
+                {benefit.instagramUrl &&
+                    <a rel="noreferrer" href={benefit.instagramUrl} target="_blank"><InstagramIcon fontSize="large" /></a>}
+                {benefit.facebookUrl &&
+                    <a rel="noreferrer" href={benefit.facebookUrl} target="_blank"><FacebookIcon fontSize="large" /></a>}
             </Stack>
         );
     }
