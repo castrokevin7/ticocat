@@ -676,7 +676,7 @@ function BenefitsView() {
                         />
                         <TextField
                             id='outlined-required'
-                            label='Contacto'
+                            label='Contacto Telefónico'
                             placeholder="+34602040598"
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToCreate, updated => {
@@ -718,7 +718,7 @@ function BenefitsView() {
                         />
                         <TextField
                             id='outlined-required'
-                            label='URL'
+                            label='URL Web'
                             type="url"
                             placeholder="https://www.example.com"
                             onChange={(benefit) => {
