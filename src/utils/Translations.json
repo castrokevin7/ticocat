@@ -27,6 +27,10 @@
         "www.asoticocat.com": "Eventos",
         "cat.asoticocat.com": "Esdeveniments"
     },
+    "route_benefits": {
+        "www.asoticocat.com": "Beneficios",
+        "cat.asoticocat.com": "Beneficis"
+    },
     "home_main_title": {
         "www.asoticocat.com": "Asociación Cultural Costarricense Catalana",
         "cat.asoticocat.com": "Associació Cultural Costarricense Catalana"
@@ -251,17 +255,33 @@
         "www.asoticocat.com": "Eventos",
         "cat.asoticocat.com": "Esdeveniments"
     },
+    "benefits_page_title": {
+        "www.asoticocat.com": "Beneficios",
+        "cat.asoticocat.com": "Beneficis"
+    },
     "events_page_description": {
         "www.asoticocat.com": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
         "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar-hi. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
     },
+    "benefits_page_description": {
+        "www.asoticocat.com": "Beneficios desde descuentos en actividades y eventos hasta acceso a servicios y recursos útiles para la comunidad.",
+        "cat.asoticocat.com": "Beneficis des de descomptes en activitats i esdeveniments fins a accés a serveis i recursos útils per a la comunitat."
+    },
     "events_page_see_more_from_event": {
+        "www.asoticocat.com": "Ver más",
+        "cat.asoticocat.com": "Veure més"
+    },
+    "benefits_page_see_more_from_benefit": {
         "www.asoticocat.com": "Ver más",
         "cat.asoticocat.com": "Veure més"
     },
     "events_page_events_header": {
         "www.asoticocat.com": "Todos los eventos, tanto registro de los pasados como los que están por venir.",
         "cat.asoticocat.com": "Tots els esdeveniments, tant registre dels passats com els que han de venir."
+    },
+    "benefits_page_benefits_header": {
+        "www.asoticocat.com": "Todos los beneficios para nuetros socios. Podés disfrutar de ellos contactando al proveedor y presentando tu carnet de socio.",
+        "cat.asoticocat.com": "Tots els beneficis per a nostre socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
     },
     "events_page_all_filter": {
         "www.asoticocat.com": "Todos",
@@ -279,6 +299,14 @@
         "www.asoticocat.com": "Ningún evento",
         "cat.asoticocat.com": "Cap esdeveniment"
     },
+    "benefits_page_no_benefits": {
+        "www.asoticocat.com": "Ningún beneficio",
+        "cat.asoticocat.com": "Cap benefici"
+    },
+    "benefits_page_no_events": {
+        "www.asoticocat.com": "Ningún beneficio",
+        "cat.asoticocat.com": "Cap benefici"
+    },
     "events_load": {
         "www.asoticocat.com": "Cargar Eventos",
         "cat.asoticocat.com": "Carregar Esdeveniments"
@@ -291,11 +319,23 @@
         "www.asoticocat.com": "Evento '{0}' no encontrado.",
         "cat.asoticocat.com": "Esdeveniment '{0}' no trobat."
     },
+    "benefit_not_found": {
+        "www.asoticocat.com": "Beneficio '{0}' no encontrado.",
+        "cat.asoticocat.com": "Benefici '{0}' no trobat."
+    },
+    "benefit_about_provider": {
+        "www.asoticocat.com": "Sobre el Proveedor",
+        "cat.asoticocat.com": "Sobre el Proveïdor"
+    },
     "event_location": {
         "www.asoticocat.com": "Punto de encuentro",
         "cat.asoticocat.com": "Punt de trobada"
     },
     "events_see_all": {
+        "www.asoticocat.com": "Ver todos",
+        "cat.asoticocat.com": "Veure'ls tots"
+    },
+    "benefits_see_all": {
         "www.asoticocat.com": "Ver todos",
         "cat.asoticocat.com": "Veure'ls tots"
     }

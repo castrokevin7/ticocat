@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage, Predicates, SortDirection, Hub } from 'aws-amplify';
+import { DataStore, Storage } from 'aws-amplify';
 
-import { Event } from '../../models';
+import { Benefit } from '../../models';
 
 // react-router-dom components
 import { Link } from "react-router-dom";
@@ -21,36 +21,33 @@ import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroun
 
 import Translator from 'utils/Translator';
 
-import { getEventTitle, getEventDescription } from '../events/Utils';
+import { getBenefitTitle, getBenefitDescription } from '../benefits/Utils';
 
-function Events() {
+function Benefits() {
     const [state, setState] = useState('');
-    const [events, setEvents] = useState(null);
+    const [benefits, setBenefits] = useState(null);
 
-    const fetchEvents = async () => {
+    const fetchBenefits = async () => {
         try {
-            let response = await DataStore.query(Event, Predicates.ALL, {
-                useCache: false,
-                sort: e => e.date(SortDirection.DESCENDING)
-            });
+            let response = await DataStore.query(Benefit);
+            console.log(response);
             if (response.length > 0) {
-                response = await Promise.all(response.map(async (event, i) => {
-                    const image = await Storage.get(event.image);
-                    return new Event({
+                response = await Promise.all(response.map(async (benefit, i) => {
+                    const image = await Storage.get(benefit.image);
+                    return new Benefit({
                         image,
-                        event_id: event.event_id,
-                        title: event.title,
-                        title_cat: event.title_cat,
-                        description: event.description,
-                        description_cat: event.description_cat,
-                        date: event.date,
-                        time: event.time,
-                        contact: event.contact,
-                        location_url: event.location_url,
-                        gallery: event.gallery
+                        benefit_id: benefit.benefit_id,
+                        title: benefit.title,
+                        title_cat: benefit.title_cat,
+                        description: benefit.description,
+                        description_cat: benefit.description_cat,
+                        about_provider: benefit.about_provider,
+                        about_provider_cat: benefit.about_provider_cat,
+                        contact: benefit.contact,
+                        url: benefit.url
                     });
                 }));
-                setEvents(response.slice(0, 3));
+                setBenefits(response.slice(0, 3));
             }
             setState('');
         } catch (err) {
@@ -61,23 +58,10 @@ function Events() {
 
     useEffect(() => {
         setState('loading');
-        const removeListener = Hub.listen("datastore", async (capsule) => {
-            const {
-                payload: { event },
-            } = capsule;
-
-            if (event === "ready") {
-                fetchEvents();
-            }
-        });
-        DataStore.start();
-
-        return () => {
-            removeListener();
-        };
+        fetchBenefits();
     }, []);
 
-    const getEvents = () => {
+    const getBenefits = () => {
         if (state === 'loading') {
             return (
                 <div style={{ padding: '10px', display: 'flex' }}>
@@ -97,24 +81,23 @@ function Events() {
             );
         }
 
-        if (events === null || events.length === 0) {
+        if (benefits === null || benefits.length === 0) {
             return (
                 <h1>
-                    {Translator.instance.translate("events_page_no_events")}
+                    {Translator.instance.translate("benefits_page_no_benefits")}
                 </h1>
             );
         }
 
         return (
             <>
-                {events.map((event, i) =>
+                {benefits.map((benefit, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/evento/${event.event_id}`}>
+                        <Link to={`/beneficio/${benefit.benefit_id}`}>
                             <SimpleBackgroundCard
-                                image={event.image}
-                                title={getEventTitle(event)}
-                                date={event.date}
-                                description={`${getEventDescription(event).substring(0, 31)}... ${Translator.instance.translate("events_page_see_more_from_event")}`}
+                                image={benefit.image}
+                                title={getBenefitTitle(benefit)}
+                                description={`${getBenefitDescription(benefit).substring(0, 31)}... ${Translator.instance.translate("benefits_page_see_more_from_benefit")}`}
                             />
                         </Link>
                     </Grid>
@@ -122,7 +105,7 @@ function Events() {
                 <Grid p={3} xs={12} item>
                     <MKTypography
                         component="a"
-                        href="/eventos"
+                        href="/beneficios"
                         variant="body1"
                         color="info"
                         fontWeight="regular"
@@ -142,16 +125,17 @@ function Events() {
                             },
                         }}
                     >
-                        {Translator.instance.translate("events_see_all")}
+                        {Translator.instance.translate("benefits_see_all")}
                         <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
                     </MKTypography>
                 </Grid>
             </>
         )
     }
-
     return (
-        <MKBox id="eventos" component="section" py={6} pt={12} pb={12}>
+        <MKBox sx={{
+            backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
+        }} id="beneficios" component="section" py={6} pt={12} pb={12}>
             <Container>
                 <Grid
                     container
@@ -176,22 +160,22 @@ function Events() {
                         justifyContent="center"
                     >
                         <Icon fontSize="small" sx={{ opacity: 0.8 }}>
-                            celebration_rounded
+                            card_giftcard_rounded
                         </Icon>
                     </MKBox>
                     <MKTypography variant="h3" mt={3}>
-                        {Translator.instance.translate("events_page_title")}
+                        {Translator.instance.translate("benefits_page_title")}
                     </MKTypography>
                     <MKTypography variant="body1" color="text" mt={1}>
-                        {Translator.instance.translate("events_page_description")}
+                        {Translator.instance.translate("benefits_page_description")}
                     </MKTypography>
                 </Grid>
                 <Grid container spacing={3} mt={2}>
-                    {getEvents()}
+                    {getBenefits()}
                 </Grid>
             </Container>
         </MKBox>
     );
 }
 
-export default Events;
+export default Benefits;
