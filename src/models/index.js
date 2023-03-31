@@ -16,9 +16,10 @@ const BoardPosition = {
   "VOCAL": "VOCAL"
 };
 
-const { Event, Associate } = initSchema(schema);
+const { Benefit, Event, Associate } = initSchema(schema);
 
 export {
+  Benefit,
   Event,
   Associate,
   IdentificationType,
