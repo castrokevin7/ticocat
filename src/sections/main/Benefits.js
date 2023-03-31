@@ -47,6 +47,7 @@ function Benefits() {
                         url: benefit.url
                     });
                 }));
+                response = response.sort(() => Math.random() - 0.5);
                 setBenefits(response.slice(0, 3));
             }
             setState('');

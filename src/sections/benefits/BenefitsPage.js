@@ -54,6 +54,7 @@ function BenefitsPage() {
                         
                     });
                 }));
+                response = response.sort(() => Math.random() - 0.5);
                 setBenefits(response);
             }
             setState('success');
