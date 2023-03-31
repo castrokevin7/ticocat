@@ -190,6 +190,10 @@ function BenefitsView() {
             alert("Error: Imagen de Portada es requerida.");
             return false;
         }
+        if (!benefit.email && !benefit.phone) {
+            alert("Error: Email o Teléfono es requerido.");
+            return false;
+        } 
         return true;
     }
 
@@ -221,8 +225,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.contact = benefitToUpdate.contact;
-                                    updated.url = benefitToUpdate.url;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -240,8 +247,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.contact = benefitToUpdate.contact;
-                                    updated.url = benefitToUpdate.url;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -259,8 +269,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.contact = benefitToUpdate.contact;
-                                    updated.url = benefitToUpdate.url;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -280,8 +293,11 @@ function BenefitsView() {
                                     updated.description_cat = benefit.target.value;
                                     updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.contact = benefitToUpdate.contact;
-                                    updated.url = benefitToUpdate.url;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -301,8 +317,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefit.target.value;
                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.contact = benefitToUpdate.contact;
-                                    updated.url = benefitToUpdate.url;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -322,8 +341,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefit.target.value;
-                                    updated.contact = benefitToUpdate.contact;
-                                    updated.url = benefitToUpdate.url;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -331,9 +353,9 @@ function BenefitsView() {
                         />
                         <TextField
                             id='outlined-required'
-                            label='Contacto'
+                            label='Teléfono'
                             placeholder="+34602040598"
-                            defaultValue={benefitToUpdate.contact}
+                            defaultValue={benefitToUpdate.phone}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
                                     updated.benefit_id = benefitToUpdate.benefit_id;
@@ -343,17 +365,19 @@ function BenefitsView() {
                                     updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.contact = benefit.target.value;
-                                    updated.url = benefitToUpdate.url;
+                                    updated.phone = benefit.target.value;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
                         <TextField
                             id='outlined-required'
-                            label='URL'
-                            type="url"
-                            placeholder="https://www.example.com"
-                            defaultValue={benefitToUpdate.url}
+                            label='Email'
+                            placeholder="info@correo.com"
+                            defaultValue={benefitToUpdate.email}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
                                     updated.benefit_id = benefitToUpdate.benefit_id;
@@ -363,8 +387,80 @@ function BenefitsView() {
                                     updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.contact = benefitToUpdate.contact;
-                                    updated.url = benefit.target.value;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefit.target.value;
+                                }));
+                            }}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            label='URL Web'
+                            type="url"
+                            placeholder="https://www.example.com"
+                            defaultValue={benefitToUpdate.websiteUrl}
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
+                                    updated.benefit_id = benefitToUpdate.benefit_id;
+                                    updated.title = benefitToUpdate.title;
+                                    updated.title_cat = benefitToUpdate.title_cat;
+                                    updated.description = benefitToUpdate.description;
+                                    updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefit.target.value;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
+                                }));
+                            }}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            label='URL Instagram'
+                            type="url"
+                            placeholder="https://www.instagram.com/perfil_usuario"
+                            defaultValue={benefitToUpdate.instagramUrl}
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
+                                    updated.benefit_id = benefitToUpdate.benefit_id;
+                                    updated.title = benefitToUpdate.title;
+                                    updated.title_cat = benefitToUpdate.title_cat;
+                                    updated.description = benefitToUpdate.description;
+                                    updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefit.target.value;
+                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                    updated.email = benefitToUpdate.email;
+                                }));
+                            }}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            label='URL Facebook'
+                            type="url"
+                            placeholder="https://www.facebook.com/perfil_usuario"
+                            defaultValue={benefitToUpdate.facebookUrl}
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
+                                    updated.benefit_id = benefitToUpdate.benefit_id;
+                                    updated.title = benefitToUpdate.title;
+                                    updated.title_cat = benefitToUpdate.title_cat;
+                                    updated.description = benefitToUpdate.description;
+                                    updated.description_cat = benefitToUpdate.description_cat;
+                                    updated.about_provider = benefitToUpdate.about_provider;
+                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
+                                    updated.phone = benefitToUpdate.phone;
+                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
+                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                    updated.facebookUrl = benefit.target.value;
+                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -391,9 +487,12 @@ function BenefitsView() {
                                                     updated.description_cat = benefitToUpdate.description_cat;
                                                     updated.about_provider = benefitToUpdate.about_provider;
                                                     updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                                    updated.contact = benefitToUpdate.contact;
-                                                    updated.url = benefitToUpdate.url;
+                                                    updated.phone = benefitToUpdate.phone;
+                                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
                                                     updated.image = benefitToUpdate.image;
+                                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
+                                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
+                                                    updated.email = benefitToUpdate.email;
                                                 })
                                             );
                                             fetchBenefits();
@@ -454,8 +553,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToCreate.description_cat;
                                     updated.about_provider = benefitToCreate.about_provider;
                                     updated.about_provider_cat = benefitToCreate.about_provider_cat;
-                                    updated.contact = benefitToCreate.contact;
-                                    updated.url = benefitToCreate.url;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.websiteUrl;
                                 }))
                             }}
                         />
@@ -472,8 +574,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToCreate.description_cat;
                                     updated.about_provider = benefitToCreate.about_provider;
                                     updated.about_provider_cat = benefitToCreate.about_provider_cat;
-                                    updated.contact = benefitToCreate.contact;
-                                    updated.url = benefitToCreate.url;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.websiteUrl;
                                 }))
                             }}
                         />
@@ -490,8 +595,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToCreate.description_cat;
                                     updated.about_provider = benefitToCreate.about_provider;
                                     updated.about_provider_cat = benefitToCreate.about_provider_cat;
-                                    updated.contact = benefitToCreate.contact;
-                                    updated.url = benefitToCreate.url;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.websiteUrl;
                                 }))
                             }}
                             multiline
@@ -510,8 +618,11 @@ function BenefitsView() {
                                     updated.description_cat = benefit.target.value;
                                     updated.about_provider = benefitToCreate.about_provider;
                                     updated.about_provider_cat = benefitToCreate.about_provider_cat;
-                                    updated.contact = benefitToCreate.contact;
-                                    updated.url = benefitToCreate.url;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.websiteUrl;
                                 }))
                             }}
                             multiline
@@ -530,8 +641,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToCreate.description_cat;
                                     updated.about_provider = benefit.target.value;
                                     updated.about_provider_cat = benefitToCreate.about_provider_cat;
-                                    updated.contact = benefitToCreate.contact;
-                                    updated.url = benefitToCreate.url;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.websiteUrl;
                                 }))
                             }}
                             multiline
@@ -550,8 +664,11 @@ function BenefitsView() {
                                     updated.description_cat = benefitToCreate.description_cat;
                                     updated.about_provider = benefitToCreate.about_provider;
                                     updated.about_provider_cat = benefit.target.value;
-                                    updated.contact = benefitToCreate.contact;
-                                    updated.url = benefitToCreate.url;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.websiteUrl;
                                 }))
                             }}
                             multiline
@@ -570,8 +687,32 @@ function BenefitsView() {
                                     updated.description_cat = benefitToCreate.description_cat;
                                     updated.about_provider = benefitToCreate.about_provider;
                                     updated.about_provider_cat = benefitToCreate.about_provider_cat;
-                                    updated.contact = benefit.target.value;
-                                    updated.url = benefitToCreate.url;
+                                    updated.phone = benefit.target.value;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.websiteUrl;
+                                }))
+                            }}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            label='Email'
+                            placeholder="info@correo.com"
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToCreate, updated => {
+                                    updated.benefit_id = benefitToCreate.benefit_id;
+                                    updated.title = benefitToCreate.title;
+                                    updated.title_cat = benefitToCreate.title_cat;
+                                    updated.description = benefitToCreate.description;
+                                    updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefit.target.value;
                                 }))
                             }}
                         />
@@ -589,8 +730,55 @@ function BenefitsView() {
                                     updated.description_cat = benefitToCreate.description_cat;
                                     updated.about_provider = benefitToCreate.about_provider;
                                     updated.about_provider_cat = benefitToCreate.about_provider_cat;
-                                    updated.contact = benefitToCreate.contact;
-                                    updated.url = benefit.target.value;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefit.target.value;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.email;
+                                }));
+                            }}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            label='URL Instagram'
+                            type="url"
+                            placeholder="https://www.instagram.com/perfil_usuario/"
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToCreate, updated => {
+                                    updated.benefit_id = benefitToCreate.benefit_id;
+                                    updated.title = benefitToCreate.title;
+                                    updated.title_cat = benefitToCreate.title_cat;
+                                    updated.description = benefitToCreate.description;
+                                    updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefit.target.value;
+                                    updated.facebookUrl = benefitToCreate.facebookUrl;
+                                    updated.email = benefitToCreate.email;
+                                }));
+                            }}
+                        />
+                        <TextField
+                            id='outlined-required'
+                            label='URL Facebook'
+                            type="url"
+                            placeholder="https://www.facebook.com/perfil_usuario/"
+                            onChange={(benefit) => {
+                                setBenefit(Benefit.copyOf(benefitToCreate, updated => {
+                                    updated.benefit_id = benefitToCreate.benefit_id;
+                                    updated.title = benefitToCreate.title;
+                                    updated.title_cat = benefitToCreate.title_cat;
+                                    updated.description = benefitToCreate.description;
+                                    updated.description_cat = benefitToCreate.description_cat;
+                                    updated.about_provider = benefitToCreate.about_provider;
+                                    updated.about_provider_cat = benefitToCreate.about_provider_cat;
+                                    updated.phone = benefitToCreate.phone;
+                                    updated.websiteUrl = benefitToCreate.websiteUrl;
+                                    updated.instagramUrl = benefitToCreate.instagramUrl;
+                                    updated.facebookUrl = benefit.target.value;
+                                    updated.email = benefitToCreate.email;
                                 }));
                             }}
                         />
@@ -615,9 +803,12 @@ function BenefitsView() {
                                                     description_cat: benefitToCreate.description_cat,
                                                     about_provider: benefitToCreate.about_provider,
                                                     about_provider_cat: benefitToCreate.about_provider_cat,
-                                                    contact: benefitToCreate.contact ? benefitToCreate.contact : null,
-                                                    url: benefitToCreate.url ? benefitToCreate.url : null,
+                                                    phone: benefitToCreate.phone ? benefitToCreate.phone : null,
+                                                    websiteUrl: benefitToCreate.websiteUrl ? benefitToCreate.websiteUrl : null,
                                                     image: mainImage ? `${benefitToCreate.benefit_id}/main/${mainImage.name}` : null,
+                                                    instagramUrl: benefitToCreate.instagramUrl ? benefitToCreate.instagramUrl : null,
+                                                    facebookUrl: benefitToCreate.facebookUrl ? benefitToCreate.facebookUrl : null,
+                                                    email: benefitToCreate.email ? benefitToCreate.email : null,
                                                 })
                                             );
                                             fetchBenefits();

@@ -16,25 +16,31 @@ export declare type BenefitCreateFormInputValues = {
     benefit_id?: string;
     title?: string;
     title_cat?: string;
-    image?: string;
     description?: string;
     description_cat?: string;
-    url?: string;
-    contact?: string;
     about_provider?: string;
     about_provider_cat?: string;
+    image?: string;
+    email?: string;
+    phone?: string;
+    instagramUrl?: string;
+    facebookUrl?: string;
+    websiteUrl?: string;
 };
 export declare type BenefitCreateFormValidationValues = {
     benefit_id?: ValidationFunction<string>;
     title?: ValidationFunction<string>;
     title_cat?: ValidationFunction<string>;
-    image?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     description_cat?: ValidationFunction<string>;
-    url?: ValidationFunction<string>;
-    contact?: ValidationFunction<string>;
     about_provider?: ValidationFunction<string>;
     about_provider_cat?: ValidationFunction<string>;
+    image?: ValidationFunction<string>;
+    email?: ValidationFunction<string>;
+    phone?: ValidationFunction<string>;
+    instagramUrl?: ValidationFunction<string>;
+    facebookUrl?: ValidationFunction<string>;
+    websiteUrl?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BenefitCreateFormOverridesProps = {
@@ -42,13 +48,16 @@ export declare type BenefitCreateFormOverridesProps = {
     benefit_id?: PrimitiveOverrideProps<TextFieldProps>;
     title?: PrimitiveOverrideProps<TextFieldProps>;
     title_cat?: PrimitiveOverrideProps<TextFieldProps>;
-    image?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
     description_cat?: PrimitiveOverrideProps<TextFieldProps>;
-    url?: PrimitiveOverrideProps<TextFieldProps>;
-    contact?: PrimitiveOverrideProps<TextFieldProps>;
     about_provider?: PrimitiveOverrideProps<TextFieldProps>;
     about_provider_cat?: PrimitiveOverrideProps<TextFieldProps>;
+    image?: PrimitiveOverrideProps<TextFieldProps>;
+    email?: PrimitiveOverrideProps<TextFieldProps>;
+    phone?: PrimitiveOverrideProps<TextFieldProps>;
+    instagramUrl?: PrimitiveOverrideProps<TextFieldProps>;
+    facebookUrl?: PrimitiveOverrideProps<TextFieldProps>;
+    websiteUrl?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type BenefitCreateFormProps = React.PropsWithChildren<{
     overrides?: BenefitCreateFormOverridesProps | undefined | null;
