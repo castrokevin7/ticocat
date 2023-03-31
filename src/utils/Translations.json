@@ -271,13 +271,17 @@
         "www.asoticocat.com": "Ver más",
         "cat.asoticocat.com": "Veure més"
     },
+    "benefits_page_see_more_from_benefit": {
+        "www.asoticocat.com": "Ver más",
+        "cat.asoticocat.com": "Veure més"
+    },
     "events_page_events_header": {
         "www.asoticocat.com": "Todos los eventos, tanto registro de los pasados como los que están por venir.",
         "cat.asoticocat.com": "Tots els esdeveniments, tant registre dels passats com els que han de venir."
     },
     "benefits_page_benefits_header": {
-        "www.asoticocat.com": "Todos los beneficios para nuetros socios.",
-        "cat.asoticocat.com": "Tots els beneficis per a nostre socis."
+        "www.asoticocat.com": "Todos los beneficios para nuetros socios. Podés disfrutar de ellos contactando al proveedor y presentando tu carnet de socio.",
+        "cat.asoticocat.com": "Tots els beneficis per a nostre socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
     },
     "events_page_all_filter": {
         "www.asoticocat.com": "Todos",
@@ -295,6 +299,10 @@
         "www.asoticocat.com": "Ningún evento",
         "cat.asoticocat.com": "Cap esdeveniment"
     },
+    "benefits_page_no_benefits": {
+        "www.asoticocat.com": "Ningún beneficio",
+        "cat.asoticocat.com": "Cap benefici"
+    },
     "benefits_page_no_events": {
         "www.asoticocat.com": "Ningún beneficio",
         "cat.asoticocat.com": "Cap benefici"
@@ -310,6 +318,14 @@
     "event_not_found": {
         "www.asoticocat.com": "Evento '{0}' no encontrado.",
         "cat.asoticocat.com": "Esdeveniment '{0}' no trobat."
+    },
+    "benefit_not_found": {
+        "www.asoticocat.com": "Beneficio '{0}' no encontrado.",
+        "cat.asoticocat.com": "Benefici '{0}' no trobat."
+    },
+    "benefit_about_provider": {
+        "www.asoticocat.com": "Sobre el Proveedor",
+        "cat.asoticocat.com": "Sobre el Proveïdor"
     },
     "event_location": {
         "www.asoticocat.com": "Punto de encuentro",

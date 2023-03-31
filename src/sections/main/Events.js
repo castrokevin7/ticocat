@@ -114,7 +114,7 @@ function Events() {
                                 image={event.image}
                                 title={getEventTitle(event)}
                                 date={event.date}
-                                description={`${getEventDescription(event).substring(0, 31)} ...${Translator.instance.translate("events_page_see_more_from_event")}`}
+                                description={`${getEventDescription(event).substring(0, 31)}... ${Translator.instance.translate("events_page_see_more_from_event")}`}
                             />
                         </Link>
                     </Grid>

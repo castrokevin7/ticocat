@@ -10,11 +10,13 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import Stack from "@mui/material/Stack";
 import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption";
-import { getBenefitTitle, getBenefitDescription } from "./Utils";
+import { getBenefitTitle, getBenefitDescription, getBenefitAboutProvider } from "./Utils";
 import Translator from "utils/Translator";
 import { getTranslateAction } from "sections/main/Navbar";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import MuiLink from "@mui/material/Link";
+
 
 function BenefitView() {
     const [state, setState] = useState("");
@@ -81,17 +83,13 @@ function BenefitView() {
                     }
                 />}
                 {benefit.websiteUrl && <AboutUsOption
-                    icon="link_rounded"
+                    icon="language_rounded"
                     content={
                         <>
                             <a rel="noreferrer" href={benefit.websiteUrl} target="_blank">{benefit.websiteUrl}</a>
                         </>
                     }
                 />}
-                {benefit.instagramUrl &&
-                    <a rel="noreferrer" href={benefit.instagramUrl} target="_blank"><InstagramIcon fontSize="large" /></a>}
-                {benefit.facebookUrl &&
-                    <a rel="noreferrer" href={benefit.facebookUrl} target="_blank"><FacebookIcon fontSize="large" /></a>}
             </Stack>
         );
     }
@@ -108,6 +106,24 @@ function BenefitView() {
                             <MKTypography variant="body1" color="text" mb={2}>
                                 {getBenefitDescription(benefit)}
                             </MKTypography>
+                            <MKTypography variant="h3" mt={5} mb={1}>
+                                {Translator.instance.translate("benefit_about_provider")}
+                            </MKTypography>
+                            <MKTypography variant="body1" color="text" mb={2}>
+                                {getBenefitAboutProvider(benefit)}
+                            </MKTypography>
+                            <div>
+                                {benefit.instagramUrl &&
+                                    <MuiLink href={benefit.instagramUrl} target="_blank" rel="noreferrer">
+                                        <InstagramIcon fontSize="large" />
+                                    </MuiLink>
+                                }
+                                {benefit.facebookUrl &&
+                                    <MuiLink href={benefit.facebookUrl} target="_blank" rel="noreferrer">
+                                        <FacebookIcon fontSize="large" />
+                                    </MuiLink>
+                                }
+                            </div>
                         </Grid>
                         <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
                             {getBenefitDetails(benefit)}
