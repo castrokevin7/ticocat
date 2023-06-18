@@ -42,6 +42,7 @@ function AssociatesCounter() {
                 fetchData();
             }
         });
+        
         DataStore.start();
 
         return () => {

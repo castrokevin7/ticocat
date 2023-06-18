@@ -30,7 +30,7 @@ function Benefits() {
     const fetchBenefits = async () => {
         try {
             let response = await DataStore.query(Benefit);
-            console.log(response);
+
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (benefit, i) => {
                     const image = await Storage.get(benefit.image);
@@ -68,6 +68,7 @@ function Benefits() {
                 fetchBenefits();
             }
         });
+
         DataStore.start();
 
         return () => {

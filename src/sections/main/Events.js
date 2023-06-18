@@ -70,6 +70,7 @@ function Events() {
                 fetchEvents();
             }
         });
+        
         DataStore.start();
 
         return () => {
