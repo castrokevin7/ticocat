@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage, Predicates, SortDirection, Hub } from 'aws-amplify';
+import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
 
 import { Event } from '../../models';
 
@@ -61,21 +61,7 @@ function Events() {
 
     useEffect(() => {
         setState('loading');
-        const removeListener = Hub.listen("datastore", async (capsule) => {
-            const {
-                payload: { event },
-            } = capsule;
-
-            if (event === "ready") {
-                fetchEvents();
-            }
-        });
-        
-        DataStore.start();
-
-        return () => {
-            removeListener();
-        };
+        fetchEvents();
     }, []);
 
     const getEvents = () => {

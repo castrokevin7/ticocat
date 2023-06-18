@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { DataStore, Predicates } from '@aws-amplify/datastore';
-import { Hub } from 'aws-amplify';
 import { Associate } from 'models';
 
 // @mui material components
@@ -32,22 +31,8 @@ function AssociatesCounter() {
         setCount(associates.length);
     }
 
-    useEffect(() => {        
-        const removeListener = Hub.listen("datastore", async (capsule) => {
-            const {
-                payload: { event },
-            } = capsule;
-
-            if (event === "ready") {
-                fetchData();
-            }
-        });
-        
-        DataStore.start();
-
-        return () => {
-            removeListener();
-        };
+    useEffect(() => {
+        fetchData();
     }, []);
 
     return (

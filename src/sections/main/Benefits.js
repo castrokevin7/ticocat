@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage, Hub } from 'aws-amplify';
+import { DataStore, Storage } from 'aws-amplify';
 
 import { Benefit } from '../../models';
 
@@ -59,21 +59,7 @@ function Benefits() {
 
     useEffect(() => {
         setState('loading');
-        const removeListener = Hub.listen("datastore", async (capsule) => {
-            const {
-                payload: { event },
-            } = capsule;
-
-            if (event === "ready") {
-                fetchBenefits();
-            }
-        });
-
-        DataStore.start();
-
-        return () => {
-            removeListener();
-        };
+        fetchBenefits();
     }, []);
 
     const getBenefits = () => {
