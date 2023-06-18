@@ -41,6 +41,9 @@
       },
       "storage": {
         "s3ticocatstoragee14d41c6": {}
+      },
+      "api": {
+        "TICOCAT": {}
       }
     }
   }
