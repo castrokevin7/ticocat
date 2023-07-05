@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { Hub, DataStore } from 'aws-amplify';
 import './App.css';
 import AssociatesView from './components/associates/AssociatesView';
 import EventsView from './components/events/EventsView';
@@ -43,11 +44,44 @@ function a11yProps(index: number) {
 
 export default function App() {
   const [value, setValue] = React.useState(0);
+  const [isReady, setIsReady] = React.useState(false);
+
+  React.useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+
+    const removeListener = Hub.listen("datastore", async (capsule) => {
+      const {
+        payload: { event, data },
+      } = capsule;
+
+      console.log("DataStore event", event, data);
+
+      if (event === "ready") {
+        console.log("DataStore is ready!");
+        setIsReady(true);
+      }
+    });
+
+    DataStore.start();
+
+    return () => {
+      removeListener();
+    };
+  }, []);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     console.log(event);
     setValue(newValue);
   };
+
+  if (!isReady) {
+    return (<div style={{ padding: '10px', display: 'flex' }}>
+      <div className="spinner-container">
+        <div className="loading-spinner" />
+      </div>
+    </div>);
+  }
 
   return (
     <Box sx={{ width: '100%' }}>
