@@ -49,10 +49,10 @@ function EventsView() {
 
     const QUERY_EXPRESSIONS: QueryExpressionsMap = {
         'title': (searchValue: string) => DataStore.query(Event, e => e.title('contains', searchValue), {
-            sort: e => e.createdAt(SortDirection.ASCENDING)
+            sort: e => e.createdAt(SortDirection.DESCENDING)
         }),
         'date': (searchValue: string) => DataStore.query(Event, e => e.date('contains', searchValue), {
-            sort: e => e.createdAt(SortDirection.ASCENDING)
+            sort: e => e.createdAt(SortDirection.DESCENDING)
         }),
     };
 
@@ -70,7 +70,7 @@ function EventsView() {
                 });
         } else {
             DataStore.query(Event, Predicates.ALL, {
-                sort: e => e.createdAt(SortDirection.ASCENDING)
+                sort: e => e.createdAt(SortDirection.DESCENDING)
             })
                 .then((response) => {
                     setEvents(response);
