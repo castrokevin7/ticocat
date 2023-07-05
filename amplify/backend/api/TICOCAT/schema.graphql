@@ -1,4 +1,4 @@
-type Benefit @model @auth(rules: [{allow: public}]) {
+type Benefit @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   benefit_id: String
   title: String
@@ -15,7 +15,7 @@ type Benefit @model @auth(rules: [{allow: public}]) {
   websiteUrl: AWSURL
 }
 
-type Event @model @auth(rules: [{allow: public}]) {
+type Event @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   event_id: String
   title: String
@@ -44,7 +44,7 @@ enum BoardPosition {
   VOCAL
 }
 
-type Associate @model @auth(rules: [{allow: public}]) {
+type Associate @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   name: String
   birthday: String
