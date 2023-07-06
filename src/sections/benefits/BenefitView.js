@@ -103,7 +103,7 @@ function BenefitView() {
                             <MKTypography variant="h3" my={1}>
                                 {getBenefitTitle(benefit)}
                             </MKTypography>
-                            <MKTypography variant="body1" color="text" mb={2}>
+                            <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
                                 {getBenefitDescription(benefit)}
                             </MKTypography>
                             <MKTypography variant="h3" mt={5} mb={1}>
