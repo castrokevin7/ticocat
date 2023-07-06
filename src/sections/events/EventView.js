@@ -123,7 +123,7 @@ function EventView() {
                             <MKTypography variant="h3" my={1}>
                                 {getEventTitle(event)}
                             </MKTypography>
-                            <MKTypography variant="body1" color="text" mb={2}>
+                            <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
                                 {getEventDescription(event)}
                             </MKTypography>
                             {
