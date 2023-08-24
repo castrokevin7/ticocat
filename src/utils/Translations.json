@@ -187,21 +187,37 @@
         "www.asoticocat.com": "Después de, por casualidad, haber heredado el grupo de Facebook de \"Ticos en Barcelona\", me encontré con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los Ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo",
         "cat.asoticocat.com": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, seguim unint forces per aconseguir-ho"
     },
-    "team_glo_arribada": {
-        "www.asoticocat.com": "Septiembre, 2019",
-        "cat.asoticocat.com": "Setembre, 2019"
+    "team_cindy_arribada": {
+        "www.asoticocat.com": "Octubre, 2021",
+        "cat.asoticocat.com": "Octubre, 2021"
     },
-    "team_glo_occupation": {
-        "www.asoticocat.com": "Gestora Cultural",
-        "cat.asoticocat.com": "Gestora Cultural"
+    "team_cindy_occupation": {
+        "www.asoticocat.com": "Arquitectura, Interiorismo y Educación",
+        "cat.asoticocat.com": "Arquitectura, Interiorisme i Educació"
     },
-    "team_glo_contributions": {
-        "www.asoticocat.com": "Gestión de proyectos culturales y financiamiento",
-        "cat.asoticocat.com": "Gestió de projectes culturals i finançament"
+    "team_cindy_contributions": {
+        "www.asoticocat.com": "Creatividad, diseño, rigurosidad y organización",
+        "cat.asoticocat.com": "Creativitat, disseny, rigorositat i organització"
     },
-    "team_glo_reasons": {
-        "www.asoticocat.com": "Llegué para estudiar, quedarme un tiempo corto y conocer otras culturas. Pronto ya estaba buscando productos que me hicieran sentir un poco más cerca de casa. Estar lejos es una oportunidad de crecimiento que te transforma la vida. Pero siempre queda un pliegue en el corazón que recuerda lo que se deja atrás. Cuando supe de la Aso, y que estaban armando nuevo equipo, decidí participar. Quería apoyar con actividades que nos hicieran sentir que somos varios y que no estamos solos. Pero también mostrar a nuestros nuevos vecinos lo que significa ser Tico y compartir toda esa riqueza cultural que portamos a donde sea que vayamos",
-        "cat.asoticocat.com": "Vaig arribar per estudiar, quedar-me un temps curt i conèixer altres cultures. Aviat ja estava buscant productes que em fessin sentir una mica més a prop de casa. Estar lluny és una oportunitat de creixement que transforma la vida. Però sempre queda un plec al cor que recorda el que es deixa enrere. Quan vaig adonar-me de l'Aso, i que estaven construint nou equip, vaig decidir participar-hi. Volia donar suport a activitats que ens fessin sentir que som diversos i que no estem sols. Però també mostrar als nostres nous veïns el que significa ser Tico i compartir tota aquesta riquesa cultural que portem allà on anem"
+    "team_cindy_reasons": {
+        "www.asoticocat.com": "Después de lograr el sueño de venir a vivir a Barcelona, y sabiendo que tendría estabilidad en la ciudad, sentí la necesidad de aportar mi granito de arena a una comunidad que siempre me hizo sentir más cerca de casa. Se siente increíble representar a nuestro lindo país, y formar una familia de ticos al otro lado del mundo",
+        "cat.asoticocat.com": "Després d'aconseguir el somni de venir a viure a Barcelona, i sabent que tindria estabilitat a la ciutat, vaig sentir la necessitat d'aportar el meu granet de sorra a una comunitat que sempre em va fer sentir més a prop de casa. Se sent increïble representar el nostre bonic país, i formar una família de ticos a l'altra banda del món"
+    },
+    "team_aquion_arribada": {
+        "www.asoticocat.com": "Octubre, 2021",
+        "cat.asoticocat.com": "Octubre, 2021"
+    },
+    "team_aquion_occupation": {
+        "www.asoticocat.com": "Chef y Administrador de Empresas",
+        "cat.asoticocat.com": "Xef i Administrador d'Empreses"
+    },
+    "team_aquion_contributions": {
+        "www.asoticocat.com": "Logística y planificación de eventos",
+        "cat.asoticocat.com": "Logística i planificació d´esdeveniments"
+    },
+    "team_aquion_reasons": {
+        "www.asoticocat.com": "Amor a la patria y creer en Costa Rica",
+        "cat.asoticocat.com": "Amor a la pàtria i creure a Costa Rica"
     },
     "team_kevin_arribada": {
         "www.asoticocat.com": "Julio, 2021",

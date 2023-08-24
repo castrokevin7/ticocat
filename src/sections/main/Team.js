@@ -11,10 +11,11 @@ import TicoCatTeamMemberCard from "examples/Cards/TeamCards/TicoCatTeamMemberCar
 
 // Images
 import jordiPhoto from "assets/images/team/jordi.png";
-import gloPhoto from "assets/images/team/glo.png";
+import cindyPhoto from "assets/images/team/cindy.png";
 import kevinPhoto from "assets/images/team/kevin.png";
 import raquePhoto from "assets/images/team/raque.png";
 import alePhoto from "assets/images/team/ale.png";
+import aquionPhoto from "assets/images/team/aquion.png";
 
 import Translator from 'utils/Translator';
 
@@ -73,14 +74,14 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={gloPhoto}
-                name="Gloriana Sánchez"
+                image={cindyPhoto}
+                name="Cindy Rojas"
                 position={{ color: "dark", label: "team_vicepresident_position" }}
-                from="San Pablo, Heredia"
-                arrivalTime={Translator.instance.translate("team_glo_arribada")}
-                occupation={Translator.instance.translate("team_glo_occupation")}
-                contributions={Translator.instance.translate("team_glo_contributions")}
-                reasonOfParticipation={Translator.instance.translate("team_glo_reasons")}
+                from="Moravia, San José"
+                arrivalTime={Translator.instance.translate("team_cindy_arribada")}
+                occupation={Translator.instance.translate("team_cindy_occupation")}
+                contributions={Translator.instance.translate("team_cindy_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_cindy_reasons")}
               />
             </MKBox>
           </Grid>
@@ -123,6 +124,20 @@ function Team() {
                 occupation={Translator.instance.translate("team_ale_occupation")}
                 contributions={Translator.instance.translate("team_ale_contributions")}
                 reasonOfParticipation={Translator.instance.translate("team_ale_reasons")}
+              />
+            </MKBox>
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <MKBox mb={1}>
+              <TicoCatTeamMemberCard
+                image={aquionPhoto}
+                name="Aquión Chan"
+                position={{ color: "dark", label: "team_vocal_position" }}
+                from="Alajuela"
+                arrivalTime={Translator.instance.translate("team_aquion_arribada")}
+                occupation={Translator.instance.translate("team_aquion_occupation")}
+                contributions={Translator.instance.translate("team_aquion_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_aquion_reasons")}
               />
             </MKBox>
           </Grid>
