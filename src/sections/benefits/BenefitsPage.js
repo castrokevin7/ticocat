@@ -22,7 +22,7 @@ import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroun
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 // Images
-import bgImage from "assets/images/eventos.jpeg";
+import bgImage from "assets/images/beneficios.jpg";
 
 import { getBenefitTitle, getBenefitDescription } from './Utils';
 
