@@ -64,25 +64,14 @@ function BenefitView() {
         fetchBenefit();
     }, [benefitId]);
 
-    const getBenefitContent = (benefit) => {
-        return (
-            <MKBox component="section" py={{ xs: 3, md: 12 }}>
-                <Container>
-                    <MKTypography variant="h3" my={1}>
-                        {getBenefitTitle(benefit)}
-                    </MKTypography>
-                    <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
-                        {getBenefitDescription(benefit)}
-                    </MKTypography>
-                    <MKTypography variant="h3" mt={5} mb={1}>
-                        {Translator.instance.translate("benefit_about_provider")}
-                    </MKTypography>
-                    <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
-                        {getBenefitAboutProvider(benefit)}
-                    </MKTypography>
+    const getConnectionSection = (benefit) => {
+        if (benefit.email || benefit.websiteUrl || benefit.instagramUrl || benefit.facebookUrl) {
+            return (
+                <>
                     <MKTypography variant="h3" mt={5} mb={1}>
                         {Translator.instance.translate("benefit_connect")}
                     </MKTypography>
+
                     <Container>
                         {benefit.instagramUrl &&
                             <MuiLink href={benefit.instagramUrl} target="_blank" rel="noreferrer">
@@ -100,16 +89,41 @@ function BenefitView() {
                             </MuiLink>
                         }
                         {benefit.email &&
-                            <MuiLink href={benefit.email} target="_blank" rel="noreferrer">
+                            <MuiLink href={`mailto:${benefit.email}`} target="_blank" rel="noreferrer">
                                 <AlternateEmailIcon fontSize="large" />
                             </MuiLink>
                         }
+                    </Container>
+                </>
+            )
+        }
+
+        return null;
+    }
+
+    const getBenefitContent = (benefit) => {
+        return (
+            <MKBox component="section" py={{ xs: 3, md: 12 }}>
+                <Container>
+                    <MKTypography variant="h3" my={1}>
+                        {getBenefitTitle(benefit)}
+                    </MKTypography>
+                    <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
+                        {getBenefitDescription(benefit)}
+                    </MKTypography>
+                    <MKTypography variant="h3" mt={5} mb={1}>
+                        {Translator.instance.translate("benefit_about_provider")}
+                    </MKTypography>
+                    <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
+                        {getBenefitAboutProvider(benefit)}
                         {benefit.phone &&
-                            <MKTypography variant="body1" color="text">
-                                <ContactPhoneIcon fontSize="large" /> {benefit.phone}
+                            <MKTypography variant="body1" color='text' sx={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                                <ContactPhoneIcon sx={{ marginLeft: '5px' }} fontSize="large" />
+                                <span style={{ marginLeft: '10px' }}>{benefit.phone}</span>
                             </MKTypography>
                         }
-                    </Container>
+                    </MKTypography>
+                    {getConnectionSection(benefit)}
                 </Container>
             </MKBox >
         );
