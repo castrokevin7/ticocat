@@ -297,7 +297,7 @@
     },
     "benefits_page_benefits_header": {
         "www.asoticocat.com": "Todos los beneficios para nuetros socios. Podés disfrutar de ellos contactando al proveedor y presentando tu carnet de socio.",
-        "cat.asoticocat.com": "Tots els beneficis per a nostre socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
+        "cat.asoticocat.com": "Tots els beneficis per a nostres socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
     },
     "events_page_all_filter": {
         "www.asoticocat.com": "Todos",
@@ -342,6 +342,10 @@
     "benefit_about_provider": {
         "www.asoticocat.com": "Sobre el Proveedor",
         "cat.asoticocat.com": "Sobre el Proveïdor"
+    },
+    "benefit_connect": {
+        "www.asoticocat.com": "Conecta",
+        "cat.asoticocat.com": "Connecta"
     },
     "event_location": {
         "www.asoticocat.com": "Punto de encuentro",

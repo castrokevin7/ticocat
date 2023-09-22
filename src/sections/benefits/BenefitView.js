@@ -8,13 +8,14 @@ import Card from "@mui/material/Card";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import Stack from "@mui/material/Stack";
-import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption";
 import { getBenefitTitle, getBenefitDescription, getBenefitAboutProvider } from "./Utils";
 import Translator from "utils/Translator";
 import { getTranslateAction } from "sections/main/Navbar";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import LanguageIcon from "@mui/icons-material/Language";
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import MuiLink from "@mui/material/Link";
 
 
@@ -63,74 +64,54 @@ function BenefitView() {
         fetchBenefit();
     }, [benefitId]);
 
-    const getBenefitDetails = (benefit) => {
-        return (
-            <Stack>
-                {benefit.phone && <AboutUsOption
-                    icon="contact_phone"
-                    content={
-                        <>
-                            <span>{benefit.phone}</span>
-                        </>
-                    }
-                />}
-                {benefit.email && <AboutUsOption
-                    icon="alternate_email"
-                    content={
-                        <>
-                            <a rel="noreferrer" href={`mailto:${benefit.email}`} target="_blank">{benefit.email}</a>
-                        </>
-                    }
-                />}
-                {benefit.websiteUrl && <AboutUsOption
-                    icon="language_rounded"
-                    content={
-                        <>
-                            <a rel="noreferrer" href={benefit.websiteUrl} target="_blank">{benefit.websiteUrl}</a>
-                        </>
-                    }
-                />}
-            </Stack>
-        );
-    }
-
     const getBenefitContent = (benefit) => {
         return (
             <MKBox component="section" py={{ xs: 3, md: 12 }}>
                 <Container>
-                    <Grid container alignItems="center">
-                        <Grid item xs={12} lg={5}>
-                            <MKTypography variant="h3" my={1}>
-                                {getBenefitTitle(benefit)}
+                    <MKTypography variant="h3" my={1}>
+                        {getBenefitTitle(benefit)}
+                    </MKTypography>
+                    <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
+                        {getBenefitDescription(benefit)}
+                    </MKTypography>
+                    <MKTypography variant="h3" mt={5} mb={1}>
+                        {Translator.instance.translate("benefit_about_provider")}
+                    </MKTypography>
+                    <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
+                        {getBenefitAboutProvider(benefit)}
+                    </MKTypography>
+                    <MKTypography variant="h3" mt={5} mb={1}>
+                        {Translator.instance.translate("benefit_connect")}
+                    </MKTypography>
+                    <Container>
+                        {benefit.instagramUrl &&
+                            <MuiLink href={benefit.instagramUrl} target="_blank" rel="noreferrer">
+                                <InstagramIcon fontSize="large" />
+                            </MuiLink>
+                        }
+                        {benefit.facebookUrl &&
+                            <MuiLink href={benefit.facebookUrl} target="_blank" rel="noreferrer">
+                                <FacebookIcon fontSize="large" />
+                            </MuiLink>
+                        }
+                        {benefit.websiteUrl &&
+                            <MuiLink href={benefit.websiteUrl} target="_blank" rel="noreferrer">
+                                <LanguageIcon fontSize="large" />
+                            </MuiLink>
+                        }
+                        {benefit.email &&
+                            <MuiLink href={benefit.email} target="_blank" rel="noreferrer">
+                                <AlternateEmailIcon fontSize="large" />
+                            </MuiLink>
+                        }
+                        {benefit.phone &&
+                            <MKTypography variant="body1" color="text">
+                                <ContactPhoneIcon fontSize="large" /> {benefit.phone}
                             </MKTypography>
-                            <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
-                                {getBenefitDescription(benefit)}
-                            </MKTypography>
-                            <MKTypography variant="h3" mt={5} mb={1}>
-                                {Translator.instance.translate("benefit_about_provider")}
-                            </MKTypography>
-                            <MKTypography variant="body1" color="text" mb={2}>
-                                {getBenefitAboutProvider(benefit)}
-                            </MKTypography>
-                            <div>
-                                {benefit.instagramUrl &&
-                                    <MuiLink href={benefit.instagramUrl} target="_blank" rel="noreferrer">
-                                        <InstagramIcon fontSize="large" />
-                                    </MuiLink>
-                                }
-                                {benefit.facebookUrl &&
-                                    <MuiLink href={benefit.facebookUrl} target="_blank" rel="noreferrer">
-                                        <FacebookIcon fontSize="large" />
-                                    </MuiLink>
-                                }
-                            </div>
-                        </Grid>
-                        <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
-                            {getBenefitDetails(benefit)}
-                        </Grid>
-                    </Grid>
+                        }
+                    </Container>
                 </Container>
-            </MKBox>
+            </MKBox >
         );
     }
 
