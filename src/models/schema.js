@@ -101,16 +101,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "category": {
-                    "name": "category",
-                    "isArray": true,
-                    "type": {
-                        "enum": "BenefitCategory"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true
-                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -421,15 +411,6 @@ export const schema = {
         }
     },
     "enums": {
-        "BenefitCategory": {
-            "name": "BenefitCategory",
-            "values": [
-                "OCIO",
-                "TURISMO",
-                "SALUD",
-                "EDUCACION"
-            ]
-        },
         "IdentificationType": {
             "name": "IdentificationType",
             "values": [
@@ -451,5 +432,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "09860e6551aff68e5551ac7b307aac8d"
+    "version": "dfd31fbe780e23ffb96b5969dca9856d"
 };
