@@ -78,17 +78,17 @@ function Events() {
 
         if (state === 'error') {
             return (
-                <h1>
+                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
                     {Translator.instance.translate("error_tag")}
-                </h1>
+                </MKTypography>
             );
         }
 
         if (events === null || events.length === 0) {
             return (
-                <h1>
+                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
                     {Translator.instance.translate("events_page_no_events")}
-                </h1>
+                </MKTypography>
             );
         }
 

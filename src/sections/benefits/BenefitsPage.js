@@ -51,7 +51,7 @@ function BenefitsPage() {
                         url: benefit.url,
                         about_provider: benefit.about_provider,
                         about_provider_cat: benefit.about_provider_cat,
-                        
+
                     });
                 }));
                 response = response.sort(() => Math.random() - 0.5);
@@ -83,9 +83,9 @@ function BenefitsPage() {
 
         if (state === 'error') {
             return (
-                <h1>
+                <h3 style={{ textAlign: 'center' }}>
                     {Translator.instance.translate("error_tag")}
-                </h1>
+                </h3 >
             );
         }
 

@@ -61,12 +61,6 @@ const routes = [
     target: "_self" 
   },
   {
-    name: Translator.instance.translate("route_associates"),
-    icon: <Icon>volunteer_activism</Icon>,
-    href: "#socios",
-    target: "_self" 
-  },
-  {
     name: Translator.instance.translate("route_events"),
     icon: <Icon>celebration_rounded</Icon>,
     href: "#eventos",
@@ -76,6 +70,12 @@ const routes = [
     name: Translator.instance.translate("route_benefits"),
     icon: <Icon>card_giftcard_rounded</Icon>,
     href: "#beneficios",
+    target: "_self" 
+  },
+  {
+    name: Translator.instance.translate("route_associates"),
+    icon: <Icon>volunteer_activism</Icon>,
+    href: "#socios",
     target: "_self" 
   },
 ];

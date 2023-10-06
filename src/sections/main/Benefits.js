@@ -76,17 +76,17 @@ function Benefits() {
 
         if (state === 'error') {
             return (
-                <h1>
+                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
                     {Translator.instance.translate("error_tag")}
-                </h1>
+                </MKTypography>
             );
         }
 
         if (benefits === null || benefits.length === 0) {
             return (
-                <h1>
+                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
                     {Translator.instance.translate("benefits_page_no_benefits")}
-                </h1>
+                </MKTypography>
             );
         }
 
