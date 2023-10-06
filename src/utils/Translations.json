@@ -311,6 +311,10 @@
         "www.asoticocat.com": "Todos los beneficios para nuetros socios. Podés disfrutar de ellos contactando al proveedor y presentando tu carnet de socio.",
         "cat.asoticocat.com": "Tots els beneficis per a nostres socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
     },
+    "faqs_page_faqs_header": {
+        "www.asoticocat.com": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",
+        "cat.asoticocat.com": "Preguntes freqüents sobre tràmits, compres, viure a Catalunya, etc."
+    },
     "events_page_all_filter": {
         "www.asoticocat.com": "Todos",
         "cat.asoticocat.com": "Tots"
@@ -370,5 +374,9 @@
     "benefits_see_all": {
         "www.asoticocat.com": "Ver todos",
         "cat.asoticocat.com": "Veure'ls tots"
+    },
+    "faqs_see_all": {
+        "www.asoticocat.com": "Ver todas",
+        "cat.asoticocat.com": "Veure-les totes"
     }
 }

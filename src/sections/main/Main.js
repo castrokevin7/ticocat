@@ -9,7 +9,7 @@ import Associates from './Associates';
 import Events from './Events';
 import Footer from './Footer';
 import Benefits from './Benefits';
-import FAQ from './FAQ';
+import FAQ from './FAQs';
 
 export default function Main() {
     return (

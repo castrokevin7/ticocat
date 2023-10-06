@@ -80,25 +80,54 @@ function FAQs() {
         }
 
         return (
-            <Grid item xs={12} md={10}>
-                {faqs.map((faq, i) =>
-                    <FaqCollapse
-                        title={getFAQQuestion(faq)}
-                        open={collapse === i}
-                        onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
-                    >
-                        {getFAQAnswer(faq)}
+            <>
+                <Grid item xs={12} md={10}>
+                    {faqs.map((faq, i) =>
+                        <FaqCollapse
+                            title={getFAQQuestion(faq)}
+                            open={collapse === i}
+                            onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
+                        >
+                            {getFAQAnswer(faq)}
 
-                        <ol>
-                            {faq.links.map((link, i) =>
-                                <li key={i}>
-                                    <Link to={link.link}>{link.text}</Link>
-                                </li>
-                            )}
-                        </ol>
-                    </FaqCollapse>
-                )}
-            </Grid>
+                            <ol>
+                                {faq.links.map((link, i) =>
+                                    <li key={i}>
+                                        <Link to={link.link}>{link.text}</Link>
+                                    </li>
+                                )}
+                            </ol>
+                        </FaqCollapse>
+                    )}
+                </Grid>
+                <Grid p={3} xs={12} item>
+                    <MKTypography
+                        component="a"
+                        href="/faqs"
+                        variant="body1"
+                        color="info"
+                        fontWeight="regular"
+                        sx={{
+                            width: "max-content",
+                            display: "flex",
+                            alignItems: "center",
+
+                            "& .material-icons-round": {
+                                fontSize: "1.125rem",
+                                transform: "translateX(3px)",
+                                transition: "transform 0.2s cubic-bezier(0.34, 1.61, 0.7, 1.3)",
+                            },
+
+                            "&:hover .material-icons-round, &:focus .material-icons-round": {
+                                transform: "translateX(6px)",
+                            },
+                        }}
+                    >
+                        {Translator.instance.translate("faqs_see_all")}
+                        <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
+                    </MKTypography>
+                </Grid>
+            </>
         )
     }
     return (

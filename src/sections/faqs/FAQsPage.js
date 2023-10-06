@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage } from 'aws-amplify';
+import { DataStore } from 'aws-amplify';
 
-import { Benefit } from '../../models';
+import { FAQ } from '../../models';
 
 // react-router-dom components
 import { Link } from "react-router-dom";
@@ -17,45 +17,30 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Otis Kit PRO examples
-import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroundCard";
+import FaqCollapse from "pages/Support/HelpCenter/components/FaqCollapse";
 
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 // Images
-import bgImage from "assets/images/beneficios.jpg";
+import bgImage from "assets/images/faqs.jpeg";
 
-import { getBenefitTitle, getBenefitDescription } from './Utils';
+import { getFAQQuestion, getFAQAnswer } from './Utils';
 
 import Translator from 'utils/Translator';
 
 import { getTranslateAction } from 'sections/main/Navbar';
 
-function BenefitsPage() {
+function FAQsPage() {
+    const [collapse, setCollapse] = useState(false);
     const [state, setState] = useState('');
-    const [benefits, setBenefits] = useState(null);
+    const [faqs, setFAQs] = useState(null);
 
-    const fetchBenefits = async () => {
+    const fetchFAQs = async () => {
         try {
-            let response = await DataStore.query(Benefit);
+            let response = await DataStore.query(FAQ);
             if (response.length > 0) {
-                response = await Promise.all(response.map(async (benefit, i) => {
-                    const image = await Storage.get(benefit.image);
-                    return new Benefit({
-                        image,
-                        benefit_id: benefit.benefit_id,
-                        title: benefit.title,
-                        title_cat: benefit.title_cat,
-                        description: benefit.description,
-                        description_cat: benefit.description_cat,
-                        contact: benefit.contact,
-                        url: benefit.url,
-                        about_provider: benefit.about_provider,
-                        about_provider_cat: benefit.about_provider_cat,
-
-                    });
-                }));
                 response = response.sort(() => Math.random() - 0.5);
-                setBenefits(response);
+                setFAQs(response);
             }
             setState('success');
         } catch (err) {
@@ -66,10 +51,10 @@ function BenefitsPage() {
 
     useEffect(() => {
         setState('loading');
-        fetchBenefits();
+        fetchFAQs();
     }, []);
 
-    const getBenefits = () => {
+    const getFAQs = () => {
         if (state === 'loading') {
             return (
                 <div style={{ padding: '10px', display: 'flex' }}>
@@ -83,35 +68,45 @@ function BenefitsPage() {
 
         if (state === 'error') {
             return (
-                <MKTypography ml={3} mt={2} variant="body1" color="text">
-                    {Translator.instance.translate("error_tag")}
-                </MKTypography >
+                <Grid container spacing={3} mt={2}>
+                    <MKTypography ml={3} mt={2} variant="body1" color="text">
+                        {Translator.instance.translate("error_tag")}
+                    </MKTypography >
+                </Grid>
             );
         }
 
 
-        if (benefits === null || benefits.length === 0) {
-            return <MKTypography ml={3} mt={2} variant="body1" color="text">
-                {Translator.instance.translate("benefits_page_no_benefits")}
-            </MKTypography>
+        if (faqs === null || faqs.length === 0) {
+            return (
+                <Grid container spacing={3} mt={2}>
+                    <MKTypography ml={3} mt={2} variant="body1" color="text">
+                        {Translator.instance.translate("faqs_page_no_faqs")}
+                    </MKTypography>
+                </Grid>
+            );
         }
 
         return (
-            <>
-                {
-                    benefits.map((benefit, i) =>
-                        <Grid key={i} item xs={12} lg={4}>
-                            <Link to={`/beneficio/${benefit.benefit_id}`}>
-                                <SimpleBackgroundCard
-                                    image={benefit.image}
-                                    title={getBenefitTitle(benefit)}
-                                    date={benefit.date}
-                                    description={`${getBenefitDescription(benefit).substring(0, 31)}... ${Translator.instance.translate("benefits_page_see_more_from_benefit")}`}
-                                />
-                            </Link>
-                        </Grid>
-                    )}
-            </>
+            <Grid item xs={12} md={10}>
+                {faqs.map((faq, i) =>
+                    <FaqCollapse
+                        title={getFAQQuestion(faq)}
+                        open={collapse === i}
+                        onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
+                    >
+                        {getFAQAnswer(faq)}
+
+                        <ol>
+                            {faq.links.map((link, i) =>
+                                <li key={i}>
+                                    <Link to={link.link}>{link.text}</Link>
+                                </li>
+                            )}
+                        </ol>
+                    </FaqCollapse>
+                )}
+            </Grid>
         )
     }
 
@@ -155,10 +150,10 @@ function BenefitsPage() {
                                     },
                                 })}
                             >
-                                {Translator.instance.translate("benefits_page_title")}
+                                {Translator.instance.translate("faqs_page_title")}
                             </MKTypography>
                             <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
-                                {Translator.instance.translate("benefits_page_description")}
+                                {Translator.instance.translate("faqs_page_description")}
                             </MKTypography>
                         </Grid>
                     </Container>
@@ -179,12 +174,10 @@ function BenefitsPage() {
                     <Container>
                         <Grid container item xs={12} lg={6} flexDirection="column">
                             <MKTypography variant="body1" color="text" mb={2}>
-                                {Translator.instance.translate("benefits_page_benefits_header")}
+                                {Translator.instance.translate("faqs_page_faqs_header")}
                             </MKTypography>
                         </Grid>
-                        <Grid container spacing={3} mt={0.1}>
-                            {getBenefits()}
-                        </Grid>
+                        {getFAQs()}
                     </Container>
                 </MKBox>
             </Card>
@@ -192,4 +185,4 @@ function BenefitsPage() {
     );
 }
 
-export default BenefitsPage;
+export default FAQsPage;

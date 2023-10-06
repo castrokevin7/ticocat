@@ -93,9 +93,9 @@ function EventsPage() {
 
         if (state === 'error') {
             return (
-                <h1>
+                <MKTypography ml={3} mt={2} variant="body1" color="text">
                     {Translator.instance.translate("error_tag")}
-                </h1>
+                </MKTypography>
             );
         }
 
