@@ -6,11 +6,170 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Badge,
+  Button,
+  Divider,
+  Flex,
+  Grid,
+  Icon,
+  ScrollView,
+  SelectField,
+  Text,
+  TextField,
+  useTheme,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Benefit } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
+function ArrayField({
+  items = [],
+  onChange,
+  label,
+  inputFieldRef,
+  children,
+  hasError,
+  setFieldValue,
+  currentFieldValue,
+  defaultFieldValue,
+  lengthLimit,
+  getBadgeText,
+}) {
+  const labelElement = <Text>{label}</Text>;
+  const { tokens } = useTheme();
+  const [selectedBadgeIndex, setSelectedBadgeIndex] = React.useState();
+  const [isEditing, setIsEditing] = React.useState();
+  React.useEffect(() => {
+    if (isEditing) {
+      inputFieldRef?.current?.focus();
+    }
+  }, [isEditing]);
+  const removeItem = async (removeIndex) => {
+    const newItems = items.filter((value, index) => index !== removeIndex);
+    await onChange(newItems);
+    setSelectedBadgeIndex(undefined);
+  };
+  const addItem = async () => {
+    if (
+      currentFieldValue !== undefined &&
+      currentFieldValue !== null &&
+      currentFieldValue !== "" &&
+      !hasError
+    ) {
+      const newItems = [...items];
+      if (selectedBadgeIndex !== undefined) {
+        newItems[selectedBadgeIndex] = currentFieldValue;
+        setSelectedBadgeIndex(undefined);
+      } else {
+        newItems.push(currentFieldValue);
+      }
+      await onChange(newItems);
+      setIsEditing(false);
+    }
+  };
+  const arraySection = (
+    <React.Fragment>
+      {!!items?.length && (
+        <ScrollView height="inherit" width="inherit" maxHeight={"7rem"}>
+          {items.map((value, index) => {
+            return (
+              <Badge
+                key={index}
+                style={{
+                  cursor: "pointer",
+                  alignItems: "center",
+                  marginRight: 3,
+                  marginTop: 3,
+                  backgroundColor:
+                    index === selectedBadgeIndex ? "#B8CEF9" : "",
+                }}
+                onClick={() => {
+                  setSelectedBadgeIndex(index);
+                  setFieldValue(items[index]);
+                  setIsEditing(true);
+                }}
+              >
+                {getBadgeText ? getBadgeText(value) : value.toString()}
+                <Icon
+                  style={{
+                    cursor: "pointer",
+                    paddingLeft: 3,
+                    width: 20,
+                    height: 20,
+                  }}
+                  viewBox={{ width: 20, height: 20 }}
+                  paths={[
+                    {
+                      d: "M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z",
+                      stroke: "black",
+                    },
+                  ]}
+                  ariaLabel="button"
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    removeItem(index);
+                  }}
+                />
+              </Badge>
+            );
+          })}
+        </ScrollView>
+      )}
+      <Divider orientation="horizontal" marginTop={5} />
+    </React.Fragment>
+  );
+  if (lengthLimit !== undefined && items.length >= lengthLimit && !isEditing) {
+    return (
+      <React.Fragment>
+        {labelElement}
+        {arraySection}
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      {labelElement}
+      {isEditing && children}
+      {!isEditing ? (
+        <>
+          <Button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Add item
+          </Button>
+        </>
+      ) : (
+        <Flex justifyContent="flex-end">
+          {(currentFieldValue || isEditing) && (
+            <Button
+              children="Cancel"
+              type="button"
+              size="small"
+              onClick={() => {
+                setFieldValue(defaultFieldValue);
+                setIsEditing(false);
+                setSelectedBadgeIndex(undefined);
+              }}
+            ></Button>
+          )}
+          <Button
+            size="small"
+            variation="link"
+            color={tokens.colors.brand.primary[80]}
+            isDisabled={hasError}
+            onClick={addItem}
+          >
+            {selectedBadgeIndex !== undefined ? "Save" : "Add"}
+          </Button>
+        </Flex>
+      )}
+      {arraySection}
+    </React.Fragment>
+  );
+}
 export default function BenefitCreateForm(props) {
   const {
     clearOnSuccess = true,
@@ -36,6 +195,7 @@ export default function BenefitCreateForm(props) {
     instagramUrl: "",
     facebookUrl: "",
     websiteUrl: "",
+    category: [],
   };
   const [benefit_id, setBenefit_id] = React.useState(initialValues.benefit_id);
   const [title, setTitle] = React.useState(initialValues.title);
@@ -62,6 +222,7 @@ export default function BenefitCreateForm(props) {
     initialValues.facebookUrl
   );
   const [websiteUrl, setWebsiteUrl] = React.useState(initialValues.websiteUrl);
+  const [category, setCategory] = React.useState(initialValues.category);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setBenefit_id(initialValues.benefit_id);
@@ -77,7 +238,23 @@ export default function BenefitCreateForm(props) {
     setInstagramUrl(initialValues.instagramUrl);
     setFacebookUrl(initialValues.facebookUrl);
     setWebsiteUrl(initialValues.websiteUrl);
+    setCategory(initialValues.category);
+    setCurrentCategoryValue(undefined);
     setErrors({});
+  };
+  const [currentCategoryValue, setCurrentCategoryValue] =
+    React.useState(undefined);
+  const categoryRef = React.createRef();
+  const getDisplayValue = {
+    category: (r) => {
+      const enumDisplayValueMap = {
+        OCIO: "Ocio",
+        TURISMO: "Turismo",
+        SALUD: "Salud",
+        EDUCACION: "Educacion",
+      };
+      return enumDisplayValueMap[r];
+    },
   };
   const validations = {
     benefit_id: [],
@@ -93,6 +270,7 @@ export default function BenefitCreateForm(props) {
     instagramUrl: [{ type: "URL" }],
     facebookUrl: [{ type: "URL" }],
     websiteUrl: [{ type: "URL" }],
+    category: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -132,6 +310,7 @@ export default function BenefitCreateForm(props) {
           instagramUrl,
           facebookUrl,
           websiteUrl,
+          category,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -199,6 +378,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.benefit_id ?? value;
@@ -235,6 +415,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -271,6 +452,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.title_cat ?? value;
@@ -307,6 +489,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -343,6 +526,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.description_cat ?? value;
@@ -379,6 +563,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.about_provider ?? value;
@@ -415,6 +600,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.about_provider_cat ?? value;
@@ -453,6 +639,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -489,6 +676,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -526,6 +714,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.phone ?? value;
@@ -562,6 +751,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl: value,
               facebookUrl,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.instagramUrl ?? value;
@@ -598,6 +788,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl: value,
               websiteUrl,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.facebookUrl ?? value;
@@ -634,6 +825,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl: value,
+              category,
             };
             const result = onChange(modelFields);
             value = result?.websiteUrl ?? value;
@@ -648,6 +840,82 @@ export default function BenefitCreateForm(props) {
         hasError={errors.websiteUrl?.hasError}
         {...getOverrideProps(overrides, "websiteUrl")}
       ></TextField>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
+          if (onChange) {
+            const modelFields = {
+              benefit_id,
+              title,
+              title_cat,
+              description,
+              description_cat,
+              about_provider,
+              about_provider_cat,
+              image,
+              email,
+              phone,
+              instagramUrl,
+              facebookUrl,
+              websiteUrl,
+              category: values,
+            };
+            const result = onChange(modelFields);
+            values = result?.category ?? values;
+          }
+          setCategory(values);
+          setCurrentCategoryValue(undefined);
+        }}
+        currentFieldValue={currentCategoryValue}
+        label={"Category"}
+        items={category}
+        hasError={errors.category?.hasError}
+        getBadgeText={getDisplayValue.category}
+        setFieldValue={setCurrentCategoryValue}
+        inputFieldRef={categoryRef}
+        defaultFieldValue={undefined}
+      >
+        <SelectField
+          label="Category"
+          placeholder="Please select an option"
+          isDisabled={false}
+          value={currentCategoryValue}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.category?.hasError) {
+              runValidationTasks("category", value);
+            }
+            setCurrentCategoryValue(value);
+          }}
+          onBlur={() => runValidationTasks("category", currentCategoryValue)}
+          errorMessage={errors.category?.errorMessage}
+          hasError={errors.category?.hasError}
+          ref={categoryRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, "category")}
+        >
+          <option
+            children="Ocio"
+            value="OCIO"
+            {...getOverrideProps(overrides, "categoryoption0")}
+          ></option>
+          <option
+            children="Turismo"
+            value="TURISMO"
+            {...getOverrideProps(overrides, "categoryoption1")}
+          ></option>
+          <option
+            children="Salud"
+            value="SALUD"
+            {...getOverrideProps(overrides, "categoryoption2")}
+          ></option>
+          <option
+            children="Educacion"
+            value="EDUCACION"
+            {...getOverrideProps(overrides, "categoryoption3")}
+          ></option>
+        </SelectField>
+      </ArrayField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

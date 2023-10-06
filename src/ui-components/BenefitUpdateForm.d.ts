@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { Benefit } from "../models";
 export declare type ValidationResponse = {
@@ -27,6 +27,7 @@ export declare type BenefitUpdateFormInputValues = {
     instagramUrl?: string;
     facebookUrl?: string;
     websiteUrl?: string;
+    category?: string[];
 };
 export declare type BenefitUpdateFormValidationValues = {
     benefit_id?: ValidationFunction<string>;
@@ -42,6 +43,7 @@ export declare type BenefitUpdateFormValidationValues = {
     instagramUrl?: ValidationFunction<string>;
     facebookUrl?: ValidationFunction<string>;
     websiteUrl?: ValidationFunction<string>;
+    category?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BenefitUpdateFormOverridesProps = {
@@ -59,6 +61,7 @@ export declare type BenefitUpdateFormOverridesProps = {
     instagramUrl?: PrimitiveOverrideProps<TextFieldProps>;
     facebookUrl?: PrimitiveOverrideProps<TextFieldProps>;
     websiteUrl?: PrimitiveOverrideProps<TextFieldProps>;
+    category?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type BenefitUpdateFormProps = React.PropsWithChildren<{
     overrides?: BenefitUpdateFormOverridesProps | undefined | null;
