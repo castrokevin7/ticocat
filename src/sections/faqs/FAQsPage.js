@@ -34,15 +34,16 @@ import { getTranslateAction } from 'sections/main/Navbar';
 function FAQsPage() {
     const [collapse, setCollapse] = useState(false);
     const [state, setState] = useState('');
-    const [searchCriteria, setSearchCriteria] = useState('');
     const [faqs, setFAQs] = useState(null);
+    const [filteredFAQs, setFilteredFAQs] = useState(null);
 
     const fetchFAQs = async () => {
         try {
-            let response = await DataStore.query(FAQ, faq => faq.question('contains', searchCriteria));
+            let response = await DataStore.query(FAQ);
             if (response.length > 0) {
                 response = response.sort(() => Math.random() - 0.5);
                 setFAQs(response);
+                setFilteredFAQs(response);
             }
             setState('success');
         } catch (err) {
@@ -54,10 +55,10 @@ function FAQsPage() {
     useEffect(() => {
         setState('loading');
         fetchFAQs();
-    }, [searchCriteria]);
+    }, []);
 
     const getFAQs = () => {
-        if (state === 'loading') {
+        if (state === 'loading' && filteredFAQs === null) {
             return (
                 <div style={{ padding: '10px', display: 'flex' }}>
                     <div className="spinner-container">
@@ -79,7 +80,7 @@ function FAQsPage() {
         }
 
 
-        if (faqs === null || faqs.length === 0) {
+        if (filteredFAQs === null || filteredFAQs.length === 0) {
             return (
                 <Grid container spacing={3} mt={2}>
                     <MKTypography ml={3} mt={2} variant="body1" color="text">
@@ -90,8 +91,9 @@ function FAQsPage() {
         }
         return (
             <Grid item xs={12} md={10} mt={4}>
-                {faqs.map((faq, i) =>
+                {filteredFAQs.map((faq, i) =>
                     <FaqCollapse
+                        key={i}
                         title={getFAQQuestion(faq)}
                         open={collapse === i}
                         onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
@@ -110,6 +112,22 @@ function FAQsPage() {
             </Grid>
         )
     }
+
+    const filterFAQsByText = (filter) => {
+        if (filter == null || filter.trim() === '') {
+            setFilteredFAQs([...faqs]);
+        } else {
+            const filtered = faqs.filter(faq => {
+                const question = getFAQQuestion(faq);
+                return question.toLowerCase().includes(filter.toLowerCase())
+            });
+            setFilteredFAQs([...filtered]);
+        }
+    }
+
+    const handleSearchCriteriaChange = (event) => {
+        filterFAQsByText(event.target.value);
+    };
 
     return (
         <>
@@ -182,7 +200,7 @@ function FAQsPage() {
                             <MKInput
                                 label={Translator.instance.translate("faqs_page_look_for_faq")}
                                 fullWidth
-                                onChange={(e) => setSearchCriteria(e.target.value)}
+                                onChange={handleSearchCriteriaChange}
                             />
                         </Grid>
                         {getFAQs()}
