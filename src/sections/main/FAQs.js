@@ -4,9 +4,6 @@ import { DataStore } from 'aws-amplify';
 
 import { FAQ } from '../../models';
 
-// react-router-dom components
-import { Link } from "react-router-dom";
-
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -21,6 +18,7 @@ import Translator from 'utils/Translator';
 import FaqCollapse from "pages/Support/HelpCenter/components/FaqCollapse";
 
 import { getFAQQuestion, getFAQAnswer, getLinkText } from '../faqs/Utils';
+import { Link } from "react-router-dom";
 
 function FAQs() {
     const [collapse, setCollapse] = useState(false);
@@ -96,12 +94,13 @@ function FAQs() {
                                 {faq.links.map((link, i) => {
                                     return <li key={i}>
                                         <MKTypography variant="body1" color="text">
-                                            <a href={link} target='_blank'>{getLinkText(link)}</a>
+                                            <a href={link} target='_blank' rel="noreferrer">{getLinkText(link)}</a>
                                         </MKTypography>
                                     </li>
                                 }
                                 )}
                             </ol>
+                            <Link to={`/faqs/${faq.id}`}>View</Link>
                         </FaqCollapse>
                     )}
                 </Grid>

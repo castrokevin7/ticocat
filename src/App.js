@@ -14,6 +14,7 @@ import EventView from 'sections/events/EventView';
 import BenefitsPage from 'sections/benefits/BenefitsPage';
 import BenefitView from 'sections/benefits/BenefitView';
 import FAQsPage from 'sections/faqs/FAQsPage';
+import FAQView from 'sections/faqs/FAQView';
 
 function App() {
   const { pathname } = useLocation();
@@ -59,6 +60,7 @@ function App() {
         <Route exact path={"/beneficios"} element={<BenefitsPage />} />;
         <Route exact path={"/beneficio/:benefitId"} element={<BenefitView />} />;
         <Route exact path={"/faqs"} element={<FAQsPage />} />;
+        <Route exact path={"/faqs/:faqId"} element={<FAQView />} />;
         <Route path="/" element={<Main />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

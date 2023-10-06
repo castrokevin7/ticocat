@@ -359,6 +359,10 @@
         "www.asoticocat.com": "Beneficio '{0}' no encontrado.",
         "cat.asoticocat.com": "Benefici '{0}' no trobat."
     },
+    "faq_not_found": {
+        "www.asoticocat.com": "Pregunta frecuente '{0}' no encontrada.",
+        "cat.asoticocat.com": "Pregunta freqüent '{0}' no trobada."
+    },
     "benefit_about_provider": {
         "www.asoticocat.com": "Sobre el Proveedor",
         "cat.asoticocat.com": "Sobre el Proveïdor"
