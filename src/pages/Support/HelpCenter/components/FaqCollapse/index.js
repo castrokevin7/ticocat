@@ -39,7 +39,7 @@ function FaqCollapse({ title, open, children, ...rest }) {
             `${borderWidth[1]} solid ${borderColor}`,
         }}
       >
-        <MKTypography variant="h6" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
+        <MKTypography variant="h4" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
           {title}
         </MKTypography>
         <MKBox color={open ? "dark" : "text"}>

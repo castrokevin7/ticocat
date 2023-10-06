@@ -83,7 +83,7 @@ function FAQsPage() {
         if (filteredFAQs === null || filteredFAQs.length === 0) {
             return (
                 <Grid container spacing={3} mt={2}>
-                    <MKTypography ml={3} mt={2} variant="body1" color="text">
+                    <MKTypography ml={3} mt={2} variant="body2" color="text">
                         {Translator.instance.translate("faqs_page_no_faqs")}
                     </MKTypography>
                 </Grid>
@@ -98,13 +98,18 @@ function FAQsPage() {
                         open={collapse === i}
                         onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
                     >
-                        {getFAQAnswer(faq)}
+                        <MKTypography ml={2} mt={2} variant="body1" color="text">
+                            {getFAQAnswer(faq)}
+                        </MKTypography>
 
-                        <ol>
-                            {faq.links.map((link, i) =>
-                                <li key={i}>
-                                    <Link to={link.link}>{link.text}</Link>
+                        <ol style={{ marginTop: "10px", marginLeft: "20px" }}>
+                            {faq.links.map((link, i) => {
+                                return <li key={i}>
+                                    <MKTypography variant="body1" color="text">
+                                        <Link to={link}>{link}</Link>
+                                    </MKTypography>
                                 </li>
+                            }
                             )}
                         </ol>
                     </FaqCollapse>
@@ -126,6 +131,7 @@ function FAQsPage() {
     }
 
     const handleSearchCriteriaChange = (event) => {
+        setCollapse(false);
         filterFAQsByText(event.target.value);
     };
 
@@ -203,6 +209,7 @@ function FAQsPage() {
                                 onChange={handleSearchCriteriaChange}
                             />
                         </Grid>
+
                         {getFAQs()}
                     </Container>
                 </MKBox>

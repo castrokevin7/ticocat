@@ -83,7 +83,7 @@ function BenefitsPage() {
 
         if (state === 'error') {
             return (
-                <MKTypography ml={3} mt={2} variant="body1" color="text">
+                <MKTypography ml={3} mt={2} variant="body2" color="text">
                     {Translator.instance.translate("error_tag")}
                 </MKTypography >
             );
@@ -91,7 +91,7 @@ function BenefitsPage() {
 
 
         if (benefits === null || benefits.length === 0) {
-            return <MKTypography ml={3} mt={2} variant="body1" color="text">
+            return <MKTypography ml={3} mt={2} variant="body2" color="text">
                 {Translator.instance.translate("benefits_page_no_benefits")}
             </MKTypography>
         }
