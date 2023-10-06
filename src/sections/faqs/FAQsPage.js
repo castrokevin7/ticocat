@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import MKInput from "components/MKInput";
 
 // Otis Kit PRO components
 import MKBox from "components/MKBox";
@@ -33,11 +34,12 @@ import { getTranslateAction } from 'sections/main/Navbar';
 function FAQsPage() {
     const [collapse, setCollapse] = useState(false);
     const [state, setState] = useState('');
+    const [searchCriteria, setSearchCriteria] = useState('');
     const [faqs, setFAQs] = useState(null);
 
     const fetchFAQs = async () => {
         try {
-            let response = await DataStore.query(FAQ);
+            let response = await DataStore.query(FAQ, faq => faq.question('contains', searchCriteria));
             if (response.length > 0) {
                 response = response.sort(() => Math.random() - 0.5);
                 setFAQs(response);
@@ -52,7 +54,7 @@ function FAQsPage() {
     useEffect(() => {
         setState('loading');
         fetchFAQs();
-    }, []);
+    }, [searchCriteria]);
 
     const getFAQs = () => {
         if (state === 'loading') {
@@ -86,9 +88,8 @@ function FAQsPage() {
                 </Grid>
             );
         }
-
         return (
-            <Grid item xs={12} md={10}>
+            <Grid item xs={12} md={10} mt={4}>
                 {faqs.map((faq, i) =>
                     <FaqCollapse
                         title={getFAQQuestion(faq)}
@@ -176,6 +177,13 @@ function FAQsPage() {
                             <MKTypography variant="body1" color="text" mb={2}>
                                 {Translator.instance.translate("faqs_page_faqs_header")}
                             </MKTypography>
+                        </Grid>
+                        <Grid container item xs={12} lg={8} py={1} mx="auto">
+                            <MKInput
+                                label={Translator.instance.translate("faqs_page_look_for_faq")}
+                                fullWidth
+                                onChange={(e) => setSearchCriteria(e.target.value)}
+                            />
                         </Grid>
                         {getFAQs()}
                     </Container>

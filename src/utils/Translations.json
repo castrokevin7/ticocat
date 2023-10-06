@@ -339,6 +339,10 @@
         "www.asoticocat.com": "Ninguna pregunta frecuente",
         "cat.asoticocat.com": "Cap pregunta freqüent"
     },
+    "faqs_page_look_for_faq": {
+        "www.asoticocat.com": "Busca una pregunta frecuente",
+        "cat.asoticocat.com": "Busca una pregunta freqüent"
+    },
     "events_load": {
         "www.asoticocat.com": "Cargar Eventos",
         "cat.asoticocat.com": "Carregar Esdeveniments"
