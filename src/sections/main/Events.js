@@ -138,7 +138,9 @@ function Events() {
     }
 
     return (
-        <MKBox id="eventos" component="section" py={6} pt={12} pb={12}>
+        <MKBox sx={{
+            backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
+        }} id="eventos" component="section" py={6} pt={12} pb={12}>
             <Container>
                 <Grid
                     container

@@ -42,12 +42,12 @@ import Icon from "@mui/material/Icon";
 import Translator from 'utils/Translator';
 
 const routes = [
-  {
+/*   {
     name: Translator.instance.translate("route_home"),
     icon: <Icon>home</Icon>,
     href: "#",
     target: "_self" 
-  },
+  }, */
   {
     name: Translator.instance.translate("route_about"),
     icon: <Icon>info_rounded</Icon>,
@@ -70,6 +70,12 @@ const routes = [
     name: Translator.instance.translate("route_benefits"),
     icon: <Icon>card_giftcard_rounded</Icon>,
     href: "#beneficios",
+    target: "_self" 
+  },
+  {
+    name: Translator.instance.translate("route_faqs"),
+    icon: <Icon>quiz_rounded</Icon>,
+    href: "#faqs",
     target: "_self" 
   },
   {

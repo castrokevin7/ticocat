@@ -9,6 +9,7 @@ import Associates from './Associates';
 import Events from './Events';
 import Footer from './Footer';
 import Benefits from './Benefits';
+import FAQ from './FAQ';
 
 export default function Main() {
     return (
@@ -29,6 +30,7 @@ export default function Main() {
                 <Team />
                 <Events />
                 <Benefits />
+                <FAQ />
                 <Associates />
             </Card>
             <Footer />

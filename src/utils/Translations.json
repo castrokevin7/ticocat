@@ -31,6 +31,10 @@
         "www.asoticocat.com": "Beneficios",
         "cat.asoticocat.com": "Beneficis"
     },
+    "route_faqs": {
+        "www.asoticocat.com": "Preguntas Frecuentes",
+        "cat.asoticocat.com": "Preguntes freqüents"
+    },
     "home_main_title": {
         "www.asoticocat.com": "Asociación Cultural Costarricense Catalana",
         "cat.asoticocat.com": "Associació Cultural Costarricense Catalana"
@@ -275,6 +279,10 @@
         "www.asoticocat.com": "Beneficios",
         "cat.asoticocat.com": "Beneficis"
     },
+    "faqs_page_title": {
+        "www.asoticocat.com": "Preguntas Frecuentes",
+        "cat.asoticocat.com": "Preguntes freqüents"
+    },
     "events_page_description": {
         "www.asoticocat.com": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
         "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar-hi. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
@@ -282,6 +290,10 @@
     "benefits_page_description": {
         "www.asoticocat.com": "Beneficios desde descuentos en actividades y eventos hasta acceso a servicios y recursos útiles para la comunidad.",
         "cat.asoticocat.com": "Beneficis des de descomptes en activitats i esdeveniments fins a accés a serveis i recursos útils per a la comunitat."
+    },
+    "faqs_page_description": {
+        "www.asoticocat.com": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",
+        "cat.asoticocat.com": "Preguntes freqüents sobre tràmits, compres, viure a Catalunya, etc."
     },
     "events_page_see_more_from_event": {
         "www.asoticocat.com": "Ver más",
@@ -318,6 +330,10 @@
     "benefits_page_no_benefits": {
         "www.asoticocat.com": "Ningún beneficio",
         "cat.asoticocat.com": "Cap benefici"
+    },
+    "faqs_page_no_faqs": {
+        "www.asoticocat.com": "Ninguna pregunta frecuente",
+        "cat.asoticocat.com": "Cap pregunta freqüent"
     },
     "events_load": {
         "www.asoticocat.com": "Cargar Eventos",
