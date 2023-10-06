@@ -20,7 +20,7 @@ import Translator from 'utils/Translator';
 
 import FaqCollapse from "pages/Support/HelpCenter/components/FaqCollapse";
 
-import { getFAQQuestion, getFAQAnswer } from '../faqs/Utils';
+import { getFAQQuestion, getFAQAnswer, getLinkText } from '../faqs/Utils';
 
 function FAQs() {
     const [collapse, setCollapse] = useState(false);
@@ -88,13 +88,18 @@ function FAQs() {
                             open={collapse === i}
                             onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
                         >
-                            {getFAQAnswer(faq)}
+                            <MKTypography ml={2} mt={2} variant="body1" color="text">
+                                {getFAQAnswer(faq)}
+                            </MKTypography>
 
-                            <ol>
-                                {faq.links.map((link, i) =>
-                                    <li key={i}>
-                                        <Link to={link.link}>{link.text}</Link>
+                            <ol style={{ marginTop: "10px", marginLeft: "20px" }}>
+                                {faq.links.map((link, i) => {
+                                    return <li key={i}>
+                                        <MKTypography variant="body1" color="text">
+                                            <a href={link} target='_blank'>{getLinkText(link)}</a>
+                                        </MKTypography>
                                     </li>
+                                }
                                 )}
                             </ol>
                         </FaqCollapse>

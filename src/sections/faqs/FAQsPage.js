@@ -25,7 +25,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // Images
 import bgImage from "assets/images/faqs.jpeg";
 
-import { getFAQQuestion, getFAQAnswer } from './Utils';
+import { getFAQQuestion, getFAQAnswer, getLinkText } from './Utils';
 
 import Translator from 'utils/Translator';
 
@@ -89,6 +89,7 @@ function FAQsPage() {
                 </Grid>
             );
         }
+
         return (
             <Grid item xs={12} md={10} mt={4}>
                 {filteredFAQs.map((faq, i) =>
@@ -106,7 +107,7 @@ function FAQsPage() {
                             {faq.links.map((link, i) => {
                                 return <li key={i}>
                                     <MKTypography variant="body1" color="text">
-                                        <Link to={link}>{link}</Link>
+                                        <a href={link} target='_blank'>{getLinkText(link)}</a>
                                     </MKTypography>
                                 </li>
                             }

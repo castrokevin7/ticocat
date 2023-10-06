@@ -13,3 +13,10 @@ export const getFAQAnswer = (faq) => {
     }
     return faq.answer_cat;
 }
+
+export const getLinkText = (link) => {
+    if (link.length > 120) {
+        return link.substring(0, 120) + "...";
+    }
+    return link;
+}
