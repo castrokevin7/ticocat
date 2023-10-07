@@ -1,5 +1,94 @@
 export const schema = {
     "models": {
+        "FAQ": {
+            "name": "FAQ",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "question": {
+                    "name": "question",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "question_cat": {
+                    "name": "question_cat",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "answer": {
+                    "name": "answer",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "answer_cat": {
+                    "name": "answer_cat",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "links": {
+                    "name": "links",
+                    "isArray": true,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "FAQS",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Benefit": {
             "name": "Benefit",
             "fields": {
@@ -432,5 +521,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "dfd31fbe780e23ffb96b5969dca9856d"
+    "version": "48004d1b6327e4eaa9773a3063c23c4f"
 };

@@ -16,6 +16,10 @@ export enum BoardPosition {
   VOCAL = "VOCAL"
 }
 
+type FAQMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type BenefitMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -26,6 +30,34 @@ type EventMetaData = {
 
 type AssociateMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type EagerFAQ = {
+  readonly id: string;
+  readonly question: string;
+  readonly question_cat: string;
+  readonly answer: string;
+  readonly answer_cat: string;
+  readonly links?: (string | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyFAQ = {
+  readonly id: string;
+  readonly question: string;
+  readonly question_cat: string;
+  readonly answer: string;
+  readonly answer_cat: string;
+  readonly links?: (string | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type FAQ = LazyLoading extends LazyLoadingDisabled ? EagerFAQ : LazyFAQ
+
+export declare const FAQ: (new (init: ModelInit<FAQ, FAQMetaData>) => FAQ) & {
+  copyOf(source: FAQ, mutator: (draft: MutableModel<FAQ, FAQMetaData>) => MutableModel<FAQ, FAQMetaData> | void): FAQ;
 }
 
 type EagerBenefit = {

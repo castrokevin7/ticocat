@@ -5,6 +5,8 @@
  **************************************************************************/
 
 export { default as studioTheme } from "./studioTheme";
+export { default as FAQCreateForm } from "./FAQCreateForm";
+export { default as FAQUpdateForm } from "./FAQUpdateForm";
 export { default as BenefitCreateForm } from "./BenefitCreateForm";
 export { default as BenefitUpdateForm } from "./BenefitUpdateForm";
 export { default as EventCreateForm } from "./EventCreateForm";

@@ -1,3 +1,12 @@
+type FAQ @model @auth(rules: [{allow: public, provider: iam}]) {
+  id: ID!
+  question: String!
+  question_cat: String!
+  answer: String!
+  answer_cat: String!
+  links: [AWSURL]
+}
+
 type Benefit @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   benefit_id: String
