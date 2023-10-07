@@ -65,7 +65,7 @@ function FAQView() {
                     {getFAQQuestion(faq)}
                 </MKTypography>
 
-                <MKTypography mt={1} variant="body1" color="text">
+                <MKTypography sx={{ whiteSpace: 'pre-line' }} mt={1} variant="body1" color="text">
                     {getFAQAnswer(faq)}
                 </MKTypography>
 

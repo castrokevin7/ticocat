@@ -85,7 +85,7 @@ function FAQs() {
                             open={collapse === i}
                             onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
                         >
-                            <MKTypography ml={2} mt={2} variant="body1" color="text">
+                            <MKTypography sx={{ whiteSpace: 'pre-line' }} ml={2} mt={2} variant="body1" color="text">
                                 {getFAQAnswer(faq)}
                             </MKTypography>
 
