@@ -752,7 +752,7 @@ function EventsView() {
         <div>
             <div>
                 {eventsSearch()}
-                {state === 'loading' ? (
+                {state === 'loading' && events.length === 0 ? (
                     <div style={{ display: 'flex' }}>
                         <div className="spinner-container">
                             <div className="loading-spinner" />

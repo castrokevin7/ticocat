@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Benefit } from '../../models';
 import { DataStore, Predicates, SortDirection, Storage } from 'aws-amplify';
 import PageviewIcon from '@mui/icons-material/Pageview';
-import { Box, Button, FormControl, InputAdornment, MenuItem, Modal, Select, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputAdornment, Modal, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { Search } from '@mui/icons-material';
 import './BenefitsView.css';
@@ -10,10 +10,6 @@ import { modalStyle, formStyle } from '../styles';
 import CloseIcon from '@mui/icons-material/Close';
 import { v4 as uuidv4 } from 'uuid';
 import Input from '@mui/material/Input';
-
-type QueryExpressionsMap = {
-    [searchKey: string]: (searchValue: string) => Promise<Benefit[]>;
-}
 
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -25,8 +21,6 @@ const useConstructor = (callBack = () => { }) => {
 function BenefitsView() {
     const [state, setState] = useState('');
     const [benefits, setBenefits] = useState<Benefit[]>([]);
-    const [searchBy, setSearchBy] = useState('title');
-    const [searchValue, setSearchValue] = useState('');
     const [openCreateBenefit, setOpenCreateBenefit] = React.useState(false);
     const [mainImage, setMainImage] = useState(null);
     const [benefit, setBenefit] = useState<Benefit>();
@@ -39,24 +33,18 @@ function BenefitsView() {
         setMainImage(benefit.target.files[0]);
     }
 
-    const QUERY_EXPRESSIONS: QueryExpressionsMap = {
-        'title': (searchValue: string) => DataStore.query(Benefit, e => e.title('contains', searchValue), {
-            sort: e => e.createdAt(SortDirection.ASCENDING)
-        }),
-    };
-
-    const fetchBenefits = (searchBy?: string, searchValue?: string) => {
+    const fetchBenefits = (searchValue?: string) => {
         setState('loading');
-        if (searchBy && searchValue) {
-            QUERY_EXPRESSIONS[searchBy](searchValue)
-                .then((response) => {
-                    setBenefits(response);
-                    setState('success');
-                })
-                .catch((err) => {
-                    console.error('Error:', err);
-                    setState('error');
-                });
+        if (searchValue) {
+            DataStore.query(Benefit, e => e.title('contains', searchValue), {
+                sort: e => e.createdAt(SortDirection.ASCENDING)
+            }).then((response) => {
+                setBenefits(response);
+                setState('success');
+            }).catch((err) => {
+                console.error('Error:', err);
+                setState('error');
+            });
         } else {
             DataStore.query(Benefit, Predicates.ALL, {
                 sort: e => e.createdAt(SortDirection.ASCENDING)
@@ -105,20 +93,6 @@ function BenefitsView() {
                     >
                         <AddIcon />
                     </Button>
-                    <Select
-                        className='search-form-item'
-                        id='benefits-search-options'
-                        value={searchBy}
-                        sx={{ bgcolor: 'background.paper' }}
-                        onChange={(benefit) => {
-                            if (searchValue) {
-                                fetchBenefits(benefit.target.value, searchValue);
-                            }
-                            setSearchBy(benefit.target.value);
-                        }}
-                    >
-                        <MenuItem value='title'>Nombre</MenuItem>
-                    </Select>
                     <TextField
                         sx={{
                             bgcolor: 'background.paper',
@@ -135,13 +109,13 @@ function BenefitsView() {
                         }}
                         variant='outlined'
                         size='small'
+                        placeholder='Buscar un beneficio...'
                         onChange={(benefit) => {
                             if (benefit.target.value) {
-                                fetchBenefits(searchBy, benefit.target.value);
+                                fetchBenefits(benefit.target.value);
                             } else {
                                 fetchBenefits();
                             }
-                            setSearchValue(benefit.target.value);
                         }}
                     />
                 </FormControl>
@@ -193,7 +167,7 @@ function BenefitsView() {
         if (!benefit.email && !benefit.phone) {
             alert("Error: Email o Teléfono es requerido.");
             return false;
-        } 
+        }
         return true;
     }
 
@@ -883,7 +857,7 @@ function BenefitsView() {
         <div>
             <div>
                 {benefitsSearch()}
-                {state === 'loading' ? (
+                {state === 'loading' && benefits.length === 0 ? (
                     <div style={{ display: 'flex' }}>
                         <div className="spinner-container">
                             <div className="loading-spinner" />

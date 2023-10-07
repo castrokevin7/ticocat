@@ -540,7 +540,7 @@ function AssociatesView() {
         <div>
             <div>
                 {associatesSearch()}
-                {state === 'loading' ? (
+                {state === 'loading' && associates.length === 0 ? (
                     <div style={{ display: 'flex' }}>
                         <div className="spinner-container">
                             <div className="loading-spinner" />
