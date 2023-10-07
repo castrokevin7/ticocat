@@ -86,7 +86,6 @@ function EventsPage() {
                     <div className="spinner-container">
                         <div className="loading-spinner" />
                     </div>
-                    {Translator.instance.translate("loading_tag")}
                 </div>
             );
         }

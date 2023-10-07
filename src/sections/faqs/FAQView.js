@@ -9,6 +9,9 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import { getFAQAnswer, getFAQQuestion, getLinkText } from "./Utils";
 import Translator from "utils/Translator";
 import { getTranslateAction } from "sections/main/Navbar";
+import Grid from "@mui/material/Grid";
+import bgImage from "assets/images/faqs.jpeg";
+import Card from "@mui/material/Card";
 
 
 function FAQView() {
@@ -39,12 +42,28 @@ function FAQView() {
 
     const getFAQContent = (faq) => {
         return (
-            <Container>
-                <MKTypography ml={2} mt={2} variant="body1" color="text">
+            <Card
+                sx={{
+                    p: 2,
+                    backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+                    backdropFilter: "saturate(200%) blur(30px)",
+                    boxShadow: ({ boxShadows: { xxl } }) => xxl,
+                }}
+            >
+                <MKTypography
+                    variant="h3"
+                    mb={3}
+                >
+                    {Translator.instance.translate("faq_view_header")}:
+                </MKTypography>
+
+                <MKTypography
+                    variant="h4"
+                >
                     {getFAQQuestion(faq)}
                 </MKTypography>
 
-                <MKTypography ml={2} mt={2} variant="body1" color="text">
+                <MKTypography mt={1} variant="body1" color="text">
                     {getFAQAnswer(faq)}
                 </MKTypography>
 
@@ -58,7 +77,7 @@ function FAQView() {
                     }
                     )}
                 </ol>
-            </Container>
+            </Card>
         );
     }
 
@@ -68,7 +87,6 @@ function FAQView() {
                 <div className="spinner-container">
                     <div className="loading-spinner" />
                 </div>
-                {Translator.instance.translate("loading_tag")}
             </div>
         )
     }
@@ -106,8 +124,27 @@ function FAQView() {
                     minimal: true
                 }}
             />
-            <MKBox component="section" py={6}>
-                {getFAQContent(faq)}
+            <MKBox component="header" position="relative">
+                <MKBox
+                    display="flex"
+                    alignItems="center"
+                    minHeight="100vh"
+                    sx={{
+                        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${bgImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
+                >
+                    <Container>
+                        <Grid
+                            container
+                            item
+                            flexDirection="column"
+                        >
+                            {getFAQContent(faq)}
+                        </Grid>
+                    </Container>
+                </MKBox>
             </MKBox>
         </>
     )

@@ -23,8 +23,9 @@ import Collapse from "@mui/material/Collapse";
 // Otis Kit PRO components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import { Link } from "react-router-dom";
 
-function FaqCollapse({ title, open, children, ...rest }) {
+function FaqCollapse({ id, title, open, children, ...rest }) {
   return (
     <MKBox mb={2}>
       <MKBox
@@ -39,9 +40,16 @@ function FaqCollapse({ title, open, children, ...rest }) {
             `${borderWidth[1]} solid ${borderColor}`,
         }}
       >
-        <MKTypography variant="h4" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
-          {title}
-        </MKTypography>
+        <MKBox display="flex" alignItems="center" color={open ? "dark" : "text"}>
+          <Link target="_blank" to={`/faqs/${id}`}>
+            <Icon sx={{ fontWeight: "bold" }} fontSize="small">
+              link
+            </Icon>
+          </Link>
+          <MKTypography variant="h4" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
+            {title}
+          </MKTypography>
+        </MKBox>
         <MKBox color={open ? "dark" : "text"}>
           <Icon sx={{ fontWeight: "bold" }} fontSize="small">
             {open ? "remove" : "add"}
@@ -61,6 +69,7 @@ function FaqCollapse({ title, open, children, ...rest }) {
 
 // Typechecking props for the FaqCollapse
 FaqCollapse.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,

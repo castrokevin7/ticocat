@@ -18,7 +18,6 @@ import Translator from 'utils/Translator';
 import FaqCollapse from "pages/Support/HelpCenter/components/FaqCollapse";
 
 import { getFAQQuestion, getFAQAnswer, getLinkText } from '../faqs/Utils';
-import { Link } from "react-router-dom";
 
 function FAQs() {
     const [collapse, setCollapse] = useState(false);
@@ -52,7 +51,6 @@ function FAQs() {
                     <div className="spinner-container">
                         <div className="loading-spinner" />
                     </div>
-                    {Translator.instance.translate("loading_tag")}
                 </div>
             );
         }
@@ -79,9 +77,10 @@ function FAQs() {
 
         return (
             <>
-                <Grid item xs={12} md={10}>
+                <Grid item mt={5} xs={12} md={10}>
                     {faqs.map((faq, i) =>
                         <FaqCollapse
+                            id={faq.id}
                             title={getFAQQuestion(faq)}
                             open={collapse === i}
                             onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
@@ -100,7 +99,6 @@ function FAQs() {
                                 }
                                 )}
                             </ol>
-                            <Link to={`/faqs/${faq.id}`}>View</Link>
                         </FaqCollapse>
                     )}
                 </Grid>
@@ -172,6 +170,7 @@ function FAQs() {
                         {Translator.instance.translate("faqs_page_description")}
                     </MKTypography>
                 </Grid>
+
                 {getFAQs()}
             </Container>
         </MKBox>
