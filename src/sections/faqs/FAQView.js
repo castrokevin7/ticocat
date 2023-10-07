@@ -12,6 +12,8 @@ import { getTranslateAction } from "sections/main/Navbar";
 import Grid from "@mui/material/Grid";
 import bgImage from "assets/images/faqs.jpeg";
 import Card from "@mui/material/Card";
+import { Spinner } from "sections/common/Spinner";
+
 
 
 function FAQView() {
@@ -83,11 +85,7 @@ function FAQView() {
 
     if (state === 'loading') {
         return (
-            <div style={{ padding: '10px', display: 'flex' }}>
-                <div className="spinner-container">
-                    <div className="loading-spinner" />
-                </div>
-            </div>
+            <Spinner />
         )
     }
 

@@ -17,6 +17,7 @@ import { getTranslateAction } from "sections/main/Navbar";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Box from "@mui/material/Box";
+import { Spinner } from "sections/common/Spinner";
 
 function EventView() {
     const [state, setState] = useState("");
@@ -185,11 +186,7 @@ function EventView() {
 
     if (state === 'loading') {
         return (
-            <div style={{ padding: '10px', display: 'flex' }}>
-                <div className="spinner-container">
-                    <div className="loading-spinner" />
-                </div>
-            </div>
+            <Spinner />
         )
     }
 

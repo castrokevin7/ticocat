@@ -17,7 +17,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import MuiLink from "@mui/material/Link";
-
+import { Spinner } from "sections/common/Spinner";
 
 function BenefitView() {
     const [state, setState] = useState("");
@@ -131,11 +131,7 @@ function BenefitView() {
 
     if (state === 'loading') {
         return (
-            <div style={{ padding: '10px', display: 'flex' }}>
-                <div className="spinner-container">
-                    <div className="loading-spinner" />
-                </div>
-            </div>
+            <Spinner />
         )
     }
 
