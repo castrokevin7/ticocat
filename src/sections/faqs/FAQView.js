@@ -93,17 +93,17 @@ function FAQView() {
 
     if (state === 'error') {
         return (
-            <h1>
+            <MKTypography ml={1} mt={1} variant="h2">
                 {Translator.instance.translate("error_tag")}
-            </h1>
+            </MKTypography>
         );
     }
 
     if (faq === null) {
         return (
-            <h1>
+            <MKTypography ml={1} mt={1} variant="h2">
                 {Translator.instance.translate("faq_not_found")}
-            </h1>
+            </MKTypography>
         );
     }
 
@@ -136,13 +136,7 @@ function FAQView() {
                     }}
                 >
                     <Container>
-                        <Grid
-                            container
-                            item
-                            flexDirection="column"
-                        >
-                            {getFAQContent(faq)}
-                        </Grid>
+                        {getFAQContent(faq)}
                     </Container>
                 </MKBox>
             </MKBox>
