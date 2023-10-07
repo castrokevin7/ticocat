@@ -28,6 +28,7 @@ import Translator from 'utils/Translator';
 
 import { getTranslateAction } from 'sections/main/Navbar';
 import { Link } from "react-router-dom";
+import { Spinner } from "sections/common/Spinner";
 
 function FAQsPage() {
     const [collapse, setCollapse] = useState(false);
@@ -58,11 +59,7 @@ function FAQsPage() {
     const getFAQs = () => {
         if (state === 'loading' && filteredFAQs === null) {
             return (
-                <div style={{ padding: '10px', display: 'flex' }}>
-                    <div className="spinner-container">
-                        <div className="loading-spinner" />
-                    </div>
-                </div>
+                <Spinner />
             );
         }
 
@@ -110,7 +107,6 @@ function FAQsPage() {
                             }
                             )}
                         </ol>
-                        <Link to={`/faqs/${faq.id}`}>View</Link>
                     </FaqCollapse>
                 )}
             </Grid>

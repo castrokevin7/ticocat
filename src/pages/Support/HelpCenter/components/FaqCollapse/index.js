@@ -42,8 +42,8 @@ function FaqCollapse({ id, title, open, children, ...rest }) {
       >
         <MKBox display="flex" alignItems="center" color={open ? "dark" : "text"}>
           <Link target="_blank" to={`/faqs/${id}`}>
-            <Icon sx={{ fontWeight: "bold" }} fontSize="small">
-              link
+            <Icon sx={{ fontWeight: "bold", marginRight: 1, marginTop: 1 }} fontSize="small">
+              open_in_new_rounded
             </Icon>
           </Link>
           <MKTypography variant="h4" color={open ? "dark" : "text"} sx={{ userSelect: "none" }}>
