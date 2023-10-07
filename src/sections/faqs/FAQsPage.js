@@ -27,7 +27,6 @@ import { getFAQQuestion, getFAQAnswer, getLinkText } from './Utils';
 import Translator from 'utils/Translator';
 
 import { getTranslateAction } from 'sections/main/Navbar';
-import { Link } from "react-router-dom";
 import { Spinner } from "sections/common/Spinner";
 
 function FAQsPage() {
