@@ -1,0 +1,15 @@
+.download-associates {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  margin: 4px;
+  color: white;
+}
+
+#associates-search-options {
+  width: 100px;
+}
+
+#associates-search-input {
+  width: 250px;
+}

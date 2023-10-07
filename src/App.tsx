@@ -8,6 +8,7 @@ import './App.css';
 import AssociatesView from './components/associates/AssociatesView';
 import EventsView from './components/events/EventsView';
 import BenefitsView from './components/benefits/BenefitsView';
+import FAQsView from './components/faqs/FAQsView';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -76,11 +77,13 @@ export default function App() {
   };
 
   if (!isReady) {
-    return (<div style={{ padding: '10px', display: 'flex' }}>
-      <div className="spinner-container">
-        <div className="loading-spinner" />
+    return (
+      <div style={{ padding: '10px', display: 'flex' }}>
+        <div className="spinner-container">
+          <div className="loading-spinner" />
+        </div>
       </div>
-    </div>);
+    );
   }
 
   return (
@@ -88,22 +91,27 @@ export default function App() {
       <h2 id='header'>Asociación Cultural Costarricense Catalana</h2>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="application tabs">
-          <Tab sx={{color: 'gray'}} label="Socios" {...a11yProps(0)} />
-          <Tab sx={{color: 'gray'}} label="Eventos" {...a11yProps(1)} />
-          <Tab sx={{color: 'gray'}} label="Beneficios" {...a11yProps(2)} />
+          <Tab sx={{ color: 'gray' }} label="Socios" {...a11yProps(0)} />
+          <Tab sx={{ color: 'gray' }} label="Eventos" {...a11yProps(1)} />
+          <Tab sx={{ color: 'gray' }} label="Beneficios" {...a11yProps(2)} />
+          <Tab sx={{ color: 'gray' }} label="FAQs" {...a11yProps(3)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         <h3>Administración de Socios</h3>
-        <AssociatesView/>
+        <AssociatesView />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <h3>Administración de Eventos</h3>
-        <EventsView/>
+        <EventsView />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <h3>Administración de Beneficios</h3>
-        <BenefitsView/>
+        <BenefitsView />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <h3>Administración de FAQs</h3>
+        <FAQsView />
       </TabPanel>
     </Box>
   );
