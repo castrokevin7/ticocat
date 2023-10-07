@@ -7,6 +7,18 @@
         "www.asoticocat.com": "Error",
         "cat.asoticocat.com": "Error"
     },
+    "benefit_error_tag": {
+        "www.asoticocat.com": "Error cargando Beneficio '{0}'",
+        "cat.asoticocat.com": "Error carregant Benefici '{0}'"
+    },
+    "event_error_tag": {
+        "www.asoticocat.com": "Error cargando Evento '{0}'",
+        "cat.asoticocat.com": "Error carregant Esdeveniment '{0}'"
+    },
+    "faq_error_tag": {
+        "www.asoticocat.com": "Error cargando Pregunta Frecuente '{0}'",
+        "cat.asoticocat.com": "Error carregant Pregunta Freqüent '{0}'"
+    },
     "route_home": {
         "www.asoticocat.com": "Inicio",
         "cat.asoticocat.com": "Inici"
@@ -364,8 +376,8 @@
         "cat.asoticocat.com": "Pregunta Freqüent"
     },
     "faq_not_found": {
-        "www.asoticocat.com": "Pregunta frecuente '{0}' no encontrada.",
-        "cat.asoticocat.com": "Pregunta freqüent '{0}' no trobada."
+        "www.asoticocat.com": "Pregunta Frecuente '{0}' no encontrada.",
+        "cat.asoticocat.com": "Pregunta Freqüent '{0}' no trobada."
     },
     "benefit_about_provider": {
         "www.asoticocat.com": "Sobre el Proveedor",

@@ -141,17 +141,17 @@ function BenefitView() {
 
     if (state === 'error') {
         return (
-            <h1>
-                {Translator.instance.translate("error_tag")}
-            </h1>
+            <MKTypography ml={1} mt={1} variant="h4">
+                {Translator.instance.translate("benefit_error_tag").format(benefitId)}
+            </MKTypography>
         );
     }
 
     if (benefit === null) {
         return (
-            <h1>
-                {Translator.instance.translate("benefit_not_found")}
-            </h1>
+            <MKTypography ml={1} mt={1} variant="h4">
+                {Translator.instance.translate("benefit_not_found").format(benefitId)}
+            </MKTypography>
         );
     }
 

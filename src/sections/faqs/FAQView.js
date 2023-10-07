@@ -93,16 +93,16 @@ function FAQView() {
 
     if (state === 'error') {
         return (
-            <MKTypography ml={1} mt={1} variant="h2">
-                {Translator.instance.translate("error_tag")}
+            <MKTypography ml={1} mt={1} variant="h4">
+                {Translator.instance.translate("faq_error_tag").format(faqId)}
             </MKTypography>
         );
     }
 
     if (faq === null) {
         return (
-            <MKTypography ml={1} mt={1} variant="h2">
-                {Translator.instance.translate("faq_not_found")}
+            <MKTypography ml={1} mt={1} variant="h4">
+                {Translator.instance.translate("faq_not_found").format(faqId)}
             </MKTypography>
         );
     }
