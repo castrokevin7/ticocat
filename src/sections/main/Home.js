@@ -14,6 +14,7 @@ import bgImage from "assets/images/bg-cr.png";
 import Translator from 'utils/Translator';
 
 import logo from "assets/images/logo-asoticocat-white.png";
+import MKButton from "components/MKButton";
 
 function Home() {
   return (
@@ -50,9 +51,20 @@ function Home() {
                 />
               </MKBox>
             </Grid>
-            <MKTypography fontWeight="bold" variant="body1" color="white" mt={1} mb={{ xs: 3, sm: 8 }} px={3}>
+            <MKTypography fontWeight="bold" variant="body1" color="white" mt={1} px={3}>
               {Translator.instance.translate("home_main_title")}
             </MKTypography>
+            <MKButton
+              component="a"
+              href="mailto:asoticocat@gmail.com?Subject=Quiero asociarme"
+              target="_blank"
+              rel="noreferrer"
+              color="white"
+              size="small"
+              sx={{ my: { xs: 3, sm: 8 } }}
+            >
+              {Translator.instance.translate("associates_counter_action")}
+            </MKButton>
             <MKTypography fontWeight="bold" variant="body1" color="white" mb={3}>
               {Translator.instance.translate("home_text")}:
             </MKTypography>
