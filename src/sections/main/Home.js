@@ -14,6 +14,7 @@ import bgImage from "assets/images/bg-cr.png";
 import Translator from 'utils/Translator';
 
 import logo from "assets/images/logo-asoticocat-white.png";
+import MKButton from "components/MKButton";
 
 function Home() {
   return (
