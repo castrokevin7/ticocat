@@ -205,6 +205,30 @@ function FAQsView() {
                             multiline
                             rows={4}
                         />
+                        {faq.links !== null &&
+                            <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
+                                {faq.links.map((link, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <TextField
+                                                id='outlined-required'
+                                                label={`Link ${i + 1}`}
+                                                defaultValue={link}
+                                                onChange={(event) => {
+                                                    const updateLinks = faqToUpdate.links.map((link, index) => {
+                                                        if (index === i) {
+                                                            return event.target.value;
+                                                        } else {
+                                                            return link;
+                                                        }});
+                                                    faqToUpdate.links = updateLinks;
+                                                }}
+                                            />
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        }
                         <Button
                             variant='contained'
                             size='large'
