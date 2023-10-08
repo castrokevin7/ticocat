@@ -147,15 +147,7 @@ function FAQsView() {
         return true;
     }
 
-    const faqView = (faq: FAQ) => {
-        let faqToUpdate = {
-            question: faq.question,
-            question_cat: faq.question_cat,
-            answer: faq.answer,
-            answer_cat: faq.answer_cat,
-            links: faq.links,
-        };
-
+    const faqView = (faqToUpdate: FAQ) => {
         return (
             <Modal
                 open={openViewFAQ}
@@ -174,7 +166,13 @@ function FAQsView() {
                             label='Pregunta (ESP)'
                             defaultValue={faq.question}
                             onChange={(event) => {
-                                faqToUpdate.question = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToUpdate, updated => {
+                                    updated.question = event.target.value;
+                                    updated.question_cat = faqToUpdate.question_cat;
+                                    updated.answer = faqToUpdate.answer;
+                                    updated.answer_cat = faqToUpdate.answer_cat;
+                                    updated.links = faqToUpdate.links;
+                                }));
                             }}
                         />
                         <TextField
@@ -182,7 +180,13 @@ function FAQsView() {
                             label='Pregunta (CAT)'
                             defaultValue={faq.question_cat}
                             onChange={(event) => {
-                                faqToUpdate.question_cat = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToUpdate, updated => {
+                                    updated.question = faqToUpdate.question;
+                                    updated.question_cat = event.target.value;
+                                    updated.answer = faqToUpdate.answer;
+                                    updated.answer_cat = faqToUpdate.answer_cat;
+                                    updated.links = faqToUpdate.links;
+                                }));
                             }}
                         />
                         <TextField
@@ -190,7 +194,13 @@ function FAQsView() {
                             label='Respuesta (ESP)'
                             defaultValue={faq.answer}
                             onChange={(event) => {
-                                faqToUpdate.answer = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToUpdate, updated => {
+                                    updated.question = faqToUpdate.question;
+                                    updated.question_cat = faqToUpdate.question_cat;
+                                    updated.answer = event.target.value;
+                                    updated.answer_cat = faqToUpdate.answer_cat;
+                                    updated.links = faqToUpdate.links;
+                                }));
                             }}
                             multiline
                             rows={4}
@@ -200,7 +210,13 @@ function FAQsView() {
                             label='Respuesta (CAT)'
                             defaultValue={faq.answer_cat}
                             onChange={(event) => {
-                                faqToUpdate.answer_cat = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToUpdate, updated => {
+                                    updated.question = faqToUpdate.question;
+                                    updated.question_cat = faqToUpdate.question_cat;
+                                    updated.answer = faqToUpdate.answer;
+                                    updated.answer_cat = event.target.value;
+                                    updated.links = faqToUpdate.links;
+                                }));
                             }}
                             multiline
                             rows={4}
@@ -220,8 +236,15 @@ function FAQsView() {
                                                             return event.target.value;
                                                         } else {
                                                             return link;
-                                                        }});
-                                                    faqToUpdate.links = updateLinks;
+                                                        }
+                                                    });
+                                                    setFAQ(FAQ.copyOf(faqToUpdate, updated => {
+                                                        updated.question = faqToUpdate.question;
+                                                        updated.question_cat = faqToUpdate.question_cat;
+                                                        updated.answer = faqToUpdate.answer;
+                                                        updated.answer_cat = faqToUpdate.answer_cat;
+                                                        updated.links = updateLinks;
+                                                    }));
                                                 }}
                                             />
                                         </div>
@@ -234,7 +257,7 @@ function FAQsView() {
                             size='large'
                             onClick={async () => {
                                 if (validateFAQ(faq)) {
-                                    if (window.confirm(`¿Confirma la actualización de la pregunta: ${faq.question}?`)) {
+                                    if (window.confirm(`¿Confirma la actualización de la Pregunta: ${faq.question}?`)) {
                                         try {
                                             await DataStore.save(
                                                 FAQ.copyOf(faq, updated => {
@@ -276,14 +299,7 @@ function FAQsView() {
         )
     }
 
-    const faqCreate = () => {
-        let faqToCreate = {
-            question: '',
-            question_cat: '',
-            answer: '',
-            answer_cat: '',
-            links: [],
-        };
+    const faqCreate = (faqToCreate: FAQ) => {
         return (
             <Modal
                 open={openCreateFAQ}
@@ -303,21 +319,39 @@ function FAQsView() {
                             id='outlined-required'
                             label='Pregunta (ESP)'
                             onChange={(event) => {
-                                faqToCreate.question = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToCreate, updated => {
+                                    updated.question = event.target.value;
+                                    updated.question_cat = faqToCreate.question_cat;
+                                    updated.answer = faqToCreate.answer;
+                                    updated.answer_cat = faqToCreate.answer_cat;
+                                    updated.links = faqToCreate.links;
+                                }));
                             }}
                         />
                         <TextField
                             id='outlined-required'
                             label='Pregunta (CAT)'
                             onChange={(event) => {
-                                faqToCreate.question_cat = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToCreate, updated => {
+                                    updated.question = faqToCreate.question;
+                                    updated.question_cat = event.target.value;
+                                    updated.answer = faqToCreate.answer;
+                                    updated.answer_cat = faqToCreate.answer_cat;
+                                    updated.links = faqToCreate.links;
+                                }));
                             }}
                         />
                         <TextField
                             id='outlined-required'
                             label='Respuest (ESP)'
                             onChange={(event) => {
-                                faqToCreate.answer = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToCreate, updated => {
+                                    updated.question = faqToCreate.question;
+                                    updated.question_cat = faqToCreate.question_cat;
+                                    updated.answer = event.target.value;
+                                    updated.answer_cat = faqToCreate.answer_cat;
+                                    updated.links = faqToCreate.links;
+                                }));
                             }}
                             multiline
                             rows={4}
@@ -326,7 +360,13 @@ function FAQsView() {
                             id='outlined-required'
                             label='Respuest (CAT)'
                             onChange={(event) => {
-                                faqToCreate.answer_cat = event.target.value;
+                                setFAQ(FAQ.copyOf(faqToCreate, updated => {
+                                    updated.question = faqToCreate.question;
+                                    updated.question_cat = faqToCreate.question_cat;
+                                    updated.answer = faqToCreate.answer;
+                                    updated.answer_cat = event.target.value;
+                                    updated.links = faqToCreate.links;
+                                }));
                             }}
                             multiline
                             rows={4}
@@ -344,6 +384,7 @@ function FAQsView() {
                                                     question_cat: faqToCreate.question_cat,
                                                     answer: faqToCreate.answer,
                                                     answer_cat: faqToCreate.answer_cat,
+                                                    links: faqToCreate.links,
                                                 })
                                             );
                                             fetchFAQs();
@@ -368,12 +409,13 @@ function FAQsView() {
         fetchFAQs();
     });
 
-    if (state === 'error')
+    if (state === 'error') {
         return (
             <h1>
                 Hubo un error...
             </h1>
         );
+    }
     return (
         <div>
             <div>
@@ -391,8 +433,8 @@ function FAQsView() {
                     </div>
                 )}
             </div>
-            {faq ? faqView(faq) : null}
-            {faqCreate()}
+            {faq && openViewFAQ ? faqView(faq) : null}
+            {faq && openCreateFAQ ? faqCreate(faq) : null}
 
         </div>
     );
