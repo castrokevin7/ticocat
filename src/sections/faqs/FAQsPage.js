@@ -194,11 +194,6 @@ function FAQsPage() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
-                        <Grid container item xs={12} lg={6} flexDirection="column">
-                            <MKTypography variant="body1" color="text" mb={2}>
-                                {Translator.instance.translate("faqs_page_faqs_header")}
-                            </MKTypography>
-                        </Grid>
                         <Grid container item xs={12} lg={8} py={1} mx="auto">
                             <MKInput
                                 label={Translator.instance.translate("faqs_page_look_for_faq")}
