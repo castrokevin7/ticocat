@@ -17,7 +17,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import MuiLink from "@mui/material/Link";
-
+import { Spinner } from "sections/common/Spinner";
 
 function BenefitView() {
     const [state, setState] = useState("");
@@ -131,28 +131,23 @@ function BenefitView() {
 
     if (state === 'loading') {
         return (
-            <div style={{ padding: '10px', display: 'flex' }}>
-                <div className="spinner-container">
-                    <div className="loading-spinner" />
-                </div>
-                {Translator.instance.translate("loading_tag")}
-            </div>
+            <Spinner />
         )
     }
 
     if (state === 'error') {
         return (
-            <h1>
-                {Translator.instance.translate("error_tag")}
-            </h1>
+            <MKTypography ml={1} mt={1} variant="h4">
+                {Translator.instance.translate("benefit_error_tag").format(benefitId)}
+            </MKTypography>
         );
     }
 
     if (benefit === null) {
         return (
-            <h1>
-                {Translator.instance.translate("benefit_not_found")}
-            </h1>
+            <MKTypography ml={1} mt={1} variant="h4">
+                {Translator.instance.translate("benefit_not_found").format(benefitId)}
+            </MKTypography>
         );
     }
 

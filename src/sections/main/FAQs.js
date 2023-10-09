@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore, Storage, Predicates, SortDirection } from 'aws-amplify';
+import { DataStore } from 'aws-amplify';
 
-import { Event } from '../../models';
-
-// react-router-dom components
-import { Link } from "react-router-dom";
+import { FAQ } from '../../models';
 
 // @mui material components
 import Container from "@mui/material/Container";
@@ -16,41 +13,24 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import Icon from "@mui/material/Icon";
 
-// Otis Kit PRO examples
-import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroundCard";
-
 import Translator from 'utils/Translator';
 
-import { getEventTitle, getEventDescription } from '../events/Utils';
+import FaqCollapse from "pages/Support/HelpCenter/components/FaqCollapse";
 
-function Events() {
+import { getFAQQuestion, getFAQAnswer, getLinkText } from '../faqs/Utils';
+
+function FAQs() {
+    const [collapse, setCollapse] = useState(false);
     const [state, setState] = useState('');
-    const [events, setEvents] = useState(null);
+    const [faqs, setFAQs] = useState(null);
 
-    const fetchEvents = async () => {
+    const fetchFAQs = async () => {
         try {
-            let response = await DataStore.query(Event, Predicates.ALL, {
-                useCache: false,
-                sort: e => e.date(SortDirection.DESCENDING)
-            });
+            let response = await DataStore.query(FAQ);
+
             if (response.length > 0) {
-                response = await Promise.all(response.map(async (event, i) => {
-                    const image = await Storage.get(event.image);
-                    return new Event({
-                        image,
-                        event_id: event.event_id,
-                        title: event.title,
-                        title_cat: event.title_cat,
-                        description: event.description,
-                        description_cat: event.description_cat,
-                        date: event.date,
-                        time: event.time,
-                        contact: event.contact,
-                        location_url: event.location_url,
-                        gallery: event.gallery
-                    });
-                }));
-                setEvents(response.slice(0, 3));
+                response = response.sort(() => Math.random() - 0.5);
+                setFAQs(response.slice(0, 3));
             }
             setState('');
         } catch (err) {
@@ -61,10 +41,10 @@ function Events() {
 
     useEffect(() => {
         setState('loading');
-        fetchEvents();
+        fetchFAQs();
     }, []);
 
-    const getEvents = () => {
+    const getFAQs = () => {
         if (state === 'loading') {
             return (
                 <div style={{ padding: '10px', display: 'flex' }}>
@@ -77,38 +57,57 @@ function Events() {
 
         if (state === 'error') {
             return (
-                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
-                    {Translator.instance.translate("error_tag")}
-                </MKTypography>
+                <Grid container spacing={3} mt={2}>
+                    <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
+                        {Translator.instance.translate("error_tag")}
+                    </MKTypography>
+                </Grid>
             );
         }
 
-        if (events === null || events.length === 0) {
+        if (faqs === null || faqs.length === 0) {
             return (
-                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
-                    {Translator.instance.translate("events_page_no_events")}
-                </MKTypography>
+                <Grid container spacing={3} mt={2}>
+                    <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
+                        {Translator.instance.translate("faqs_page_no_faqs")}
+                    </MKTypography>
+                </Grid>
             );
         }
 
         return (
             <>
-                {events.map((event, i) =>
-                    <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/evento/${event.event_id}`}>
-                            <SimpleBackgroundCard
-                                image={event.image}
-                                title={getEventTitle(event)}
-                                date={event.date}
-                                description={`${getEventDescription(event).substring(0, 31)}... ${Translator.instance.translate("events_page_see_more_from_event")}`}
-                            />
-                        </Link>
-                    </Grid>
-                )}
+                <Grid item mt={5} xs={12} md={10}>
+                    {faqs.map((faq, i) =>
+                        <FaqCollapse
+                            id={faq.id}
+                            title={getFAQQuestion(faq)}
+                            open={collapse === i}
+                            onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}
+                        >
+                            <MKTypography sx={{ whiteSpace: 'pre-line' }} ml={2} mt={2} variant="body1" color="text">
+                                {getFAQAnswer(faq)}
+                            </MKTypography>
+
+                            {faq.links !== null &&
+                                <ol style={{ marginTop: "10px", marginLeft: "20px" }}>
+                                    {faq.links.map((link, i) => {
+                                        return <li key={i}>
+                                            <MKTypography variant="body1" color="text">
+                                                <a href={link} target='_blank' rel="noreferrer">{getLinkText(link)}</a>
+                                            </MKTypography>
+                                        </li>
+                                    }
+                                    )}
+                                </ol>
+                            }
+                        </FaqCollapse>
+                    )}
+                </Grid>
                 <Grid p={3} xs={12} item>
                     <MKTypography
                         component="a"
-                        href="/eventos"
+                        href="/faqs"
                         variant="body1"
                         color="info"
                         fontWeight="regular"
@@ -128,18 +127,17 @@ function Events() {
                             },
                         }}
                     >
-                        {Translator.instance.translate("events_see_all")}
+                        {Translator.instance.translate("faqs_see_all")}
                         <Icon sx={{ fontWeight: "bold" }}>arrow_forward</Icon>
                     </MKTypography>
                 </Grid>
             </>
         )
     }
-
     return (
         <MKBox sx={{
             backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
-        }} id="eventos" component="section" py={6} pt={12} pb={12}>
+        }} id="faqs" component="section" py={6} pt={12} pb={12}>
             <Container>
                 <Grid
                     container
@@ -164,22 +162,21 @@ function Events() {
                         justifyContent="center"
                     >
                         <Icon fontSize="small" sx={{ opacity: 0.8 }}>
-                            celebration_rounded
+                            quiz_rounded
                         </Icon>
                     </MKBox>
                     <MKTypography variant="h3" mt={3}>
-                        {Translator.instance.translate("events_page_title")}
+                        {Translator.instance.translate("faqs_page_title")}
                     </MKTypography>
                     <MKTypography variant="body1" color="text" mt={1}>
-                        {Translator.instance.translate("events_page_description")}
+                        {Translator.instance.translate("faqs_page_description")}
                     </MKTypography>
                 </Grid>
-                <Grid container spacing={3} mt={2}>
-                    {getEvents()}
-                </Grid>
+
+                {getFAQs()}
             </Container>
         </MKBox>
     );
 }
 
-export default Events;
+export default FAQs;

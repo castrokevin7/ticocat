@@ -86,22 +86,21 @@ function EventsPage() {
                     <div className="spinner-container">
                         <div className="loading-spinner" />
                     </div>
-                    {Translator.instance.translate("loading_tag")}
                 </div>
             );
         }
 
         if (state === 'error') {
             return (
-                <h1>
+                <MKTypography ml={3} mt={2} variant="body2" color="text">
                     {Translator.instance.translate("error_tag")}
-                </h1>
+                </MKTypography>
             );
         }
 
 
         if (filteredEvents === null || filteredEvents.length === 0) {
-            return <MKTypography ml={3} mt={2} variant="body1" color="text">
+            return <MKTypography ml={3} mt={2} variant="body2" color="text">
                 {Translator.instance.translate("events_page_no_events")}
             </MKTypography>
         }

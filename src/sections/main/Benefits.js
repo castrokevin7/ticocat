@@ -69,24 +69,23 @@ function Benefits() {
                     <div className="spinner-container">
                         <div className="loading-spinner" />
                     </div>
-                    {Translator.instance.translate("loading_tag")}
                 </div>
             );
         }
 
         if (state === 'error') {
             return (
-                <h1>
+                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
                     {Translator.instance.translate("error_tag")}
-                </h1>
+                </MKTypography>
             );
         }
 
         if (benefits === null || benefits.length === 0) {
             return (
-                <h1>
+                <MKTypography variant="body1" color="text" mt={1} ml={"auto"} mr={"auto"}>
                     {Translator.instance.translate("benefits_page_no_benefits")}
-                </h1>
+                </MKTypography>
             );
         }
 
@@ -134,9 +133,7 @@ function Benefits() {
         )
     }
     return (
-        <MKBox sx={{
-            backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
-        }} id="beneficios" component="section" py={6} pt={12} pb={12}>
+        <MKBox id="beneficios" component="section" py={6} pt={12} pb={12}>
             <Container>
                 <Grid
                     container

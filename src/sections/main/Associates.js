@@ -77,9 +77,7 @@ function AssociatesCounter() {
 
 function Associates() {
     return (
-        <MKBox sx={{
-            backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
-        }} id="socios" component="section" py={12} pt={12} pb={12}>
+        <MKBox id="socios" component="section" py={12} pt={12} pb={12}>
             <Container>
                 <Grid
                     container
