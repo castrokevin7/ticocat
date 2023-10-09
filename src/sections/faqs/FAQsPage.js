@@ -206,7 +206,7 @@ function FAQsPage() {
                                 onChange={handleSearchCriteriaChange}
                             />
                             <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1}>
-                                {Translator.instance.translate("faqs_page_suggestions")} <a target='_blank' href='https://forms.gle/mhvgWoYt1jj1YtUs6'>aquí</a>.
+                                {Translator.instance.translate("faqs_page_suggestions")} <a rel="noreferrer" target='_blank' href='https://forms.gle/mhvgWoYt1jj1YtUs6'>aquí</a>.
                             </MKTypography>
                         </Grid>
 
