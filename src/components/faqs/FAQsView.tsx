@@ -6,7 +6,7 @@ import './FAQsView.css';
 import { Box, Button, FormControl, InputAdornment, Modal, TextField } from '@mui/material';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
-import { Search } from '@mui/icons-material';
+import { RemoveCircleOutline, Search } from '@mui/icons-material';
 import { modalStyle, formStyle } from '../styles';
 
 const useConstructor = (callBack = () => { }) => {
@@ -225,11 +225,12 @@ function FAQsView() {
                             <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
                                 {faq.links.map((link, i) => {
                                     return (
-                                        <div key={i}>
+                                        <div style={{ display: 'flex'}} key={i}>
                                             <TextField
                                                 id='outlined-required'
                                                 label={`Link ${i + 1}`}
                                                 defaultValue={link}
+                                                sx={{ height: '50px' }}
                                                 onChange={(event) => {
                                                     const updateLinks = faqToUpdate.links.map((link, index) => {
                                                         if (index === i) {
@@ -247,6 +248,26 @@ function FAQsView() {
                                                     }));
                                                 }}
                                             />
+                                            <Button
+                                                variant='text'
+                                                color='error'
+                                                sx={{ width: '1px', height: '50px' }}
+                                                onClick={() => {
+                                                    const updateLinks = faqToUpdate.links.filter((link, index) => {
+                                                        console.log(link);
+                                                        return index !== i;
+                                                    });
+                                                    setFAQ(FAQ.copyOf(faqToUpdate, updated => {
+                                                        updated.question = faqToUpdate.question;
+                                                        updated.question_cat = faqToUpdate.question_cat;
+                                                        updated.answer = faqToUpdate.answer;
+                                                        updated.answer_cat = faqToUpdate.answer_cat;
+                                                        updated.links = updateLinks;
+                                                    }));
+                                                }}
+                                            >
+                                                <RemoveCircleOutline />
+                                            </Button>
                                         </div>
                                     )
                                 })}
