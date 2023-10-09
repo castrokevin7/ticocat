@@ -97,7 +97,7 @@ function FAQsPage() {
                             {getFAQAnswer(faq)}
                         </MKTypography>
 
-                        { faq.links !== null &&
+                        {faq.links !== null &&
                             <ol style={{ marginTop: "10px", marginLeft: "20px" }}>
                                 {faq.links.map((link, i) => {
                                     return <li key={i}>
@@ -205,6 +205,9 @@ function FAQsPage() {
                                 fullWidth
                                 onChange={handleSearchCriteriaChange}
                             />
+                            <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1}>
+                                {Translator.instance.translate("faqs_page_suggestions")} <a target='_blank' href='https://forms.gle/mhvgWoYt1jj1YtUs6'>aquí</a>.
+                            </MKTypography>
                         </Grid>
 
                         {getFAQs()}

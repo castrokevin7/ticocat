@@ -327,6 +327,10 @@
         "www.asoticocat.com": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",
         "cat.asoticocat.com": "Preguntes freqüents sobre tràmits, compres, viure a Catalunya, etc."
     },
+    "faqs_page_suggestions": {
+        "www.asoticocat.com": "¿Considerás alguna otra información imporate y no la encuentras aquí? Envianos tu sugerencia ",
+        "cat.asoticocat.com": "Consideres alguna altra informació important i no la trobes aquí? Envia'ns la teva suggerència "
+    },
     "events_page_all_filter": {
         "www.asoticocat.com": "Todos",
         "cat.asoticocat.com": "Tots"
