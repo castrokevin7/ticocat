@@ -287,7 +287,7 @@ function FAQsView() {
                             <div style={{ display: 'flex' }}>
                                 <TextField
                                     id='outlined-required'
-                                    label={`Link ${faqToUpdate.links.length + 1}`}
+                                    label={`Link ${faqToUpdate.links.length + 1}${newLink !== '' ? '*' : ''}`}
                                     sx={{ height: '50px' }}
                                     value={newLink}
                                     onChange={(event) => {
@@ -300,6 +300,7 @@ function FAQsView() {
                                     sx={{ width: '1px', height: '50px' }}
                                     disabled={newLink === '' ? true : false}
                                     onClick={() => {
+                                        console.log("newLink", newLink);
                                         setFAQ(FAQ.copyOf(faqToUpdate, updated => {
                                             updated.question = faqToUpdate.question;
                                             updated.question_cat = faqToUpdate.question_cat;
@@ -489,7 +490,7 @@ function FAQsView() {
                             <div style={{ display: 'flex' }}>
                                 <TextField
                                     id='outlined-required'
-                                    label={`Link ${faqToCreate.links.length + 1}`}
+                                    label={`Link ${faqToCreate.links.length + 1}${newLink !== '' ? '*' : ''}`}
                                     sx={{ height: '50px' }}
                                     value={newLink}
                                     onChange={(event) => {
@@ -502,6 +503,7 @@ function FAQsView() {
                                     sx={{ width: '1px', height: '50px' }}
                                     disabled={newLink === '' ? true : false}
                                     onClick={() => {
+                                        console.log("newLink", newLink);
                                         setFAQ(FAQ.copyOf(faqToCreate, updated => {
                                             updated.question = faqToCreate.question;
                                             updated.question_cat = faqToCreate.question_cat;
