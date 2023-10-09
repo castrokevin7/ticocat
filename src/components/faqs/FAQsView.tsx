@@ -61,7 +61,16 @@ function FAQsView() {
                     <Button
                         className='add-item'
                         variant='contained'
-                        onClick={() => setOpenCreateFAQ(true)}
+                        onClick={() => {
+                            setFAQ(new FAQ({
+                                question: '',
+                                question_cat: '',
+                                answer: '',
+                                answer_cat: '',
+                                links: [],
+                            }));
+                            setOpenCreateFAQ(true);
+                        }}
                     >
                         <AddIcon />
                     </Button>
@@ -221,11 +230,11 @@ function FAQsView() {
                             multiline
                             rows={4}
                         />
-                        {faq.links !== null &&
+                        {faqToUpdate.links !== null && faqToUpdate.links.length !== 0 &&
                             <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
                                 {faq.links.map((link, i) => {
                                     return (
-                                        <div style={{ display: 'flex'}} key={i}>
+                                        <div style={{ display: 'flex' }} key={i}>
                                             <TextField
                                                 id='outlined-required'
                                                 label={`Link ${i + 1}`}
@@ -392,6 +401,58 @@ function FAQsView() {
                             multiline
                             rows={4}
                         />
+                        {faqToCreate.links !== null && faqToCreate.links.length !== 0 &&
+                            <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
+                                {faq.links.map((link, i) => {
+                                    return (
+                                        <div style={{ display: 'flex' }} key={i}>
+                                            <TextField
+                                                id='outlined-required'
+                                                label={`Link ${i + 1}`}
+                                                defaultValue={link}
+                                                sx={{ height: '50px' }}
+                                                onChange={(event) => {
+                                                    const updateLinks = faqToCreate.links.map((link, index) => {
+                                                        if (index === i) {
+                                                            return event.target.value;
+                                                        } else {
+                                                            return link;
+                                                        }
+                                                    });
+                                                    setFAQ(FAQ.copyOf(faqToCreate, updated => {
+                                                        updated.question = faqToCreate.question;
+                                                        updated.question_cat = faqToCreate.question_cat;
+                                                        updated.answer = faqToCreate.answer;
+                                                        updated.answer_cat = faqToCreate.answer_cat;
+                                                        updated.links = updateLinks;
+                                                    }));
+                                                }}
+                                            />
+                                            <Button
+                                                variant='text'
+                                                color='error'
+                                                sx={{ width: '1px', height: '50px' }}
+                                                onClick={() => {
+                                                    const updateLinks = faqToCreate.links.filter((link, index) => {
+                                                        console.log(link);
+                                                        return index !== i;
+                                                    });
+                                                    setFAQ(FAQ.copyOf(faqToCreate, updated => {
+                                                        updated.question = faqToCreate.question;
+                                                        updated.question_cat = faqToCreate.question_cat;
+                                                        updated.answer = faqToCreate.answer;
+                                                        updated.answer_cat = faqToCreate.answer_cat;
+                                                        updated.links = updateLinks;
+                                                    }));
+                                                }}
+                                            >
+                                                <RemoveCircleOutline />
+                                            </Button>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        }
                         <Button
                             variant='contained'
                             size='large'
