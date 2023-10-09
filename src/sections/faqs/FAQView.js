@@ -9,7 +9,6 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import { getFAQAnswer, getFAQQuestion, getLinkText } from "./Utils";
 import Translator from "utils/Translator";
 import { getTranslateAction } from "sections/main/Navbar";
-import Grid from "@mui/material/Grid";
 import bgImage from "assets/images/faqs.jpeg";
 import Card from "@mui/material/Card";
 import { Spinner } from "sections/common/Spinner";
