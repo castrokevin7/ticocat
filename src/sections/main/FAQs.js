@@ -89,16 +89,18 @@ function FAQs() {
                                 {getFAQAnswer(faq)}
                             </MKTypography>
 
-                            <ol style={{ marginTop: "10px", marginLeft: "20px" }}>
-                                {faq.links.map((link, i) => {
-                                    return <li key={i}>
-                                        <MKTypography variant="body1" color="text">
-                                            <a href={link} target='_blank' rel="noreferrer">{getLinkText(link)}</a>
-                                        </MKTypography>
-                                    </li>
-                                }
-                                )}
-                            </ol>
+                            {faq.links !== null &&
+                                <ol style={{ marginTop: "10px", marginLeft: "20px" }}>
+                                    {faq.links.map((link, i) => {
+                                        return <li key={i}>
+                                            <MKTypography variant="body1" color="text">
+                                                <a href={link} target='_blank' rel="noreferrer">{getLinkText(link)}</a>
+                                            </MKTypography>
+                                        </li>
+                                    }
+                                    )}
+                                </ol>
+                            }
                         </FaqCollapse>
                     )}
                 </Grid>
