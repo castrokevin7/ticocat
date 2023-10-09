@@ -22,6 +22,7 @@ function FAQsView() {
     const [faq, setFAQ] = useState<FAQ>();
     const [openViewFAQ, setOpenViewFAQ] = React.useState(false);
     const [openCreateFAQ, setOpenCreateFAQ] = React.useState(false);
+    const [newLink, setNewLink] = useState('');
 
     const fetchFAQs = (searchValue?: string) => {
         setState('loading');
@@ -69,6 +70,7 @@ function FAQsView() {
                                 answer_cat: '',
                                 links: [],
                             }));
+                            setNewLink('');
                             setOpenCreateFAQ(true);
                         }}
                     >
@@ -123,6 +125,7 @@ function FAQsView() {
                                         className='view-item'
                                         onClick={() => {
                                             setFAQ(faq);
+                                            setNewLink('');
                                             setOpenViewFAQ(true);
                                         }}>
                                         <PageviewIcon />
@@ -230,9 +233,9 @@ function FAQsView() {
                             multiline
                             rows={4}
                         />
-                        {faqToUpdate.links !== null && faqToUpdate.links.length !== 0 &&
-                            <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
-                                {faq.links.map((link, i) => {
+                        <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
+                            {faqToUpdate.links !== null && faqToUpdate.links.length !== 0 ?
+                                faqToUpdate.links.map((link, i) => {
                                     return (
                                         <div style={{ display: 'flex' }} key={i}>
                                             <TextField
@@ -279,9 +282,39 @@ function FAQsView() {
                                             </Button>
                                         </div>
                                     )
-                                })}
+                                })
+                                : null}
+                            <div style={{ display: 'flex' }}>
+                                <TextField
+                                    id='outlined-required'
+                                    label={`Link ${faqToUpdate.links.length + 1}`}
+                                    sx={{ height: '50px' }}
+                                    value={newLink}
+                                    onChange={(event) => {
+                                        setNewLink(event.target.value);
+                                    }}
+                                />
+                                <Button
+                                    variant='text'
+                                    color='success'
+                                    sx={{ width: '1px', height: '50px' }}
+                                    disabled={newLink === '' ? true : false}
+                                    onClick={() => {
+                                        setFAQ(FAQ.copyOf(faqToUpdate, updated => {
+                                            updated.question = faqToUpdate.question;
+                                            updated.question_cat = faqToUpdate.question_cat;
+                                            updated.answer = faqToUpdate.answer;
+                                            updated.answer_cat = faqToUpdate.answer_cat;
+                                            updated.links = [...faqToUpdate.links, newLink];
+                                        }));
+                                        setNewLink('');
+                                    }}
+                                >
+                                    <AddIcon />
+                                </Button>
                             </div>
-                        }
+                        </div>
+
                         <Button
                             variant='contained'
                             size='large'
@@ -401,9 +434,9 @@ function FAQsView() {
                             multiline
                             rows={4}
                         />
-                        {faqToCreate.links !== null && faqToCreate.links.length !== 0 &&
-                            <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
-                                {faq.links.map((link, i) => {
+                        <div style={{ border: '1px solid gray', padding: 5, borderRadius: 5 }}>
+                            {faqToCreate.links !== null && faqToCreate.links.length !== 0 ?
+                                faqToCreate.links.map((link, i) => {
                                     return (
                                         <div style={{ display: 'flex' }} key={i}>
                                             <TextField
@@ -450,9 +483,39 @@ function FAQsView() {
                                             </Button>
                                         </div>
                                     )
-                                })}
+                                })
+                                : null
+                            }
+                            <div style={{ display: 'flex' }}>
+                                <TextField
+                                    id='outlined-required'
+                                    label={`Link ${faqToCreate.links.length + 1}`}
+                                    sx={{ height: '50px' }}
+                                    value={newLink}
+                                    onChange={(event) => {
+                                        setNewLink(event.target.value);
+                                    }}
+                                />
+                                <Button
+                                    variant='text'
+                                    color='success'
+                                    sx={{ width: '1px', height: '50px' }}
+                                    disabled={newLink === '' ? true : false}
+                                    onClick={() => {
+                                        setFAQ(FAQ.copyOf(faqToCreate, updated => {
+                                            updated.question = faqToCreate.question;
+                                            updated.question_cat = faqToCreate.question_cat;
+                                            updated.answer = faqToCreate.answer;
+                                            updated.answer_cat = faqToCreate.answer_cat;
+                                            updated.links = [...faqToCreate.links, newLink];
+                                        }));
+                                        setNewLink('');
+                                    }}
+                                >
+                                    <AddIcon />
+                                </Button>
                             </div>
-                        }
+                        </div>
                         <Button
                             variant='contained'
                             size='large'
