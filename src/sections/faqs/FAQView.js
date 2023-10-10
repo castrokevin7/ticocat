@@ -54,13 +54,6 @@ function FAQView() {
                 }}
             >
                 <MKTypography
-                    variant="h3"
-                    mb={3}
-                >
-                    {Translator.instance.translate("faq_view_header")}:
-                </MKTypography>
-
-                <MKTypography
                     variant="h4"
                 >
                     {getFAQQuestion(faq)}
