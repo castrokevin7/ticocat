@@ -98,7 +98,7 @@ function FAQsPage() {
                         </MKTypography>
 
                         {faq.links !== null &&
-                            <ol style={{ marginTop: "10px", marginLeft: "20px" }}>
+                            <ol style={{ marginTop: "20px", marginLeft: "20px" }}>
                                 {faq.links.map((link, i) => {
                                     return <li key={i}>
                                         <MKTypography variant="body1" color="text">
