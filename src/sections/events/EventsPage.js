@@ -34,6 +34,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
 import { getTranslateAction } from 'sections/main/Navbar';
+import { getLang } from 'utils/Translator';
 
 function EventsPage() {
     const [state, setState] = useState('');
@@ -105,22 +106,12 @@ function EventsPage() {
             </MKTypography>
         }
 
-        const getEventRoute = (eventId) => {
-            const path = window.location.pathname;
-            let parts = path.split("/");
-            if (parts.length > 0 && parts[0] === "") {
-                parts = parts.slice(1);
-            }
-            const first = parts[0];
-            return first === "es" || first === "cat" ? `/${first}/evento/${eventId}` : `/evento/${eventId}`;
-        }
-
         return (
             <>
                 {
                     filteredEvents.map((event, i) =>
                         <Grid key={i} item xs={12} lg={4}>
-                            <Link to={getEventRoute(event.event_id)}>
+                            <Link to={`/${getLang()}/evento/${event.event_id}`}>
                                 <SimpleBackgroundCard
                                     image={event.image}
                                     title={getEventTitle(event)}
@@ -160,16 +151,6 @@ function EventsPage() {
         filterEventsByDate(event.target.value);
     };
 
-    const getGoBackRoute = () => {
-        const path = window.location.pathname;
-        let parts = path.split("/");
-        if (parts.length > 0 && parts[0] === "") {
-            parts = parts.slice(1);
-        }
-        const first = parts[0];
-        return first === "es" || first === "cat" ? `/${first}` : "/";
-    }
-
     return (
         <>
             <DefaultNavbar
@@ -179,7 +160,7 @@ function EventsPage() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: getGoBackRoute(),
+                    route: `/${getLang()}`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

@@ -29,6 +29,7 @@ import { getBenefitTitle, getBenefitDescription } from './Utils';
 import Translator from 'utils/Translator';
 
 import { getTranslateAction } from 'sections/main/Navbar';
+import { getLang } from 'utils/Translator';
 
 function BenefitsPage() {
     const [state, setState] = useState('');
@@ -95,22 +96,12 @@ function BenefitsPage() {
             </MKTypography>
         }
 
-        const getBenefitRoute = (benefitId) => {
-            const path = window.location.pathname;
-            let parts = path.split("/");
-            if (parts.length > 0 && parts[0] === "") {
-                parts = parts.slice(1);
-            }
-            const first = parts[0];
-            return first === "es" || first === "cat" ? `/${first}/beneficio/${benefitId}` : `/beneficio/${benefitId}`;
-        }
-
         return (
             <>
                 {
                     benefits.map((benefit, i) =>
                         <Grid key={i} item xs={12} lg={4}>
-                            <Link to={getBenefitRoute(benefit.benefit_id)}>
+                            <Link to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
                                 <SimpleBackgroundCard
                                     image={benefit.image}
                                     title={getBenefitTitle(benefit)}
@@ -124,16 +115,6 @@ function BenefitsPage() {
         )
     }
 
-    const getGoBackRoute = () => {
-        const path = window.location.pathname;
-        let parts = path.split("/");
-        if (parts.length > 0 && parts[0] === "") {
-            parts = parts.slice(1);
-        }
-        const first = parts[0];
-        return first === "es" || first === "cat" ? `/${first}` : "/";
-    }
-
     return (
         <>
             <DefaultNavbar
@@ -143,7 +124,7 @@ function BenefitsPage() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: getGoBackRoute(),
+                    route: `/${getLang()}`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

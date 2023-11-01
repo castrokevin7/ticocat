@@ -28,6 +28,7 @@ import Translator from 'utils/Translator';
 
 import { getTranslateAction } from 'sections/main/Navbar';
 import { Spinner } from "sections/common/Spinner";
+import { getLang } from 'utils/Translator';
 
 function FAQsPage() {
     const [collapse, setCollapse] = useState(false);
@@ -132,16 +133,6 @@ function FAQsPage() {
         filterFAQsByText(event.target.value);
     };
 
-    const getGoBackRoute = () => {
-        const path = window.location.pathname;
-        let parts = path.split("/");
-        if (parts.length > 0 && parts[0] === "") {
-            parts = parts.slice(1);
-        }
-        const first = parts[0];
-        return first === "es" || first === "cat" ? `/${first}` : "/";
-    }
-
     return (
         <>
             <DefaultNavbar
@@ -151,7 +142,7 @@ function FAQsPage() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: getGoBackRoute(),
+                    route: `/${getLang()}`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

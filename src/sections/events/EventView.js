@@ -18,6 +18,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Box from "@mui/material/Box";
 import { Spinner } from "sections/common/Spinner";
+import { getLang } from "utils/Translator";
 
 function EventView() {
     const [state, setState] = useState("");
@@ -206,16 +207,6 @@ function EventView() {
         );
     }
 
-    const getGoBackRoute = () => {
-        const path = window.location.pathname;
-        let parts = path.split("/");
-        if (parts.length > 0 && parts[0] === "") {
-            parts = parts.slice(1);
-        }
-        const first = parts[0];
-        return first === "es" || first === "cat" ? `/${first}/eventos` : "/eventos";
-    }
-
     return (
         <>
             <DefaultNavbar
@@ -225,7 +216,7 @@ function EventView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: getGoBackRoute(),
+                    route: `/${getLang()}/eventos`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",
