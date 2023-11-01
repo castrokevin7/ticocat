@@ -151,6 +151,18 @@ function BenefitView() {
         );
     }
 
+    const getGoBackRoute = () => {
+        const path = window.location.pathname;
+        let parts = path.split("/");
+        if (parts.length > 0 && parts[0] === "") {
+            parts = parts.slice(1);
+        }
+        const first = parts[0];
+        if (first === "cat") return `/${first}/beneficis`;
+        else if (first === "es") return `/${first}/beneficios`;
+        else return "/beneficios";
+    }
+
     return (
         <>
             <DefaultNavbar
@@ -160,7 +172,7 @@ function BenefitView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: "/beneficios",
+                    route: getGoBackRoute(),
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

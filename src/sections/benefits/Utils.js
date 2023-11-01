@@ -1,23 +1,38 @@
 export const getBenefitTitle = (benefit) => {
-    let domain = window.location.hostname;
-    if (domain === "www.asoticocat.com") {
-        return benefit.title;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
     }
-    return benefit.title_cat;
+    const first = parts[0];
+    if (first === "cat") {
+        return benefit.title_cat;
+    }
+    return benefit.title;
 }
 
 export const getBenefitDescription = (benefit) => {
-    let domain = window.location.hostname;
-    if (domain === "www.asoticocat.com") {
-        return benefit.description;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
     }
-    return benefit.description_cat;
+    const first = parts[0];
+    if (first === "cat") {
+        return benefit.description_cat;
+    }
+    return benefit.description;
 }
 
 export const getBenefitAboutProvider = (benefit) => {
-    let domain = window.location.hostname;
-    if (domain === "www.asoticocat.com") {
-        return benefit.about_provider;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
     }
-    return benefit.about_provider_cat;
+    const first = parts[0];
+    if (first === "cat") {
+        return benefit.about_provider_cat;
+    }
+    return benefit.about_provider;
 }

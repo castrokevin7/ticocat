@@ -1,15 +1,25 @@
 export const getEventTitle = (event) => {
-    let domain = window.location.hostname;
-    if (domain === "www.asoticocat.com") {
-        return event.title;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
     }
-    return event.title_cat;
+    const first = parts[0];
+    if (first === "cat") {
+        return event.title_cat;
+    }
+    return event.title;
 }
 
 export const getEventDescription = (event) => {
-    let domain = window.location.hostname;
-    if (domain === "www.asoticocat.com") {
-        return event.description;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
     }
-    return event.description_cat;
+    const first = parts[0];
+    if (first === "cat") {
+        return event.description_cat;
+    }
+    return event.description;
 }

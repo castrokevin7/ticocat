@@ -57,19 +57,19 @@ function App() {
       <Routes>
         <Route exact path={"/eventos"} element={<EventsPage />} />;
         <Route exact path={"/es/eventos"} element={<EventsPage />} />;
-        <Route exact path={"/cat/eventos"} element={<EventsPage />} />;
+        <Route exact path={"/cat/esdeveniments"} element={<EventsPage />} />;
         
         <Route exact path={"/evento/:eventId"} element={<EventView />} />;
         <Route exact path={"/es/evento/:eventId"} element={<EventView />} />;
-        <Route exact path={"/cat/evento/:eventId"} element={<EventView />} />;
+        <Route exact path={"/cat/esdeveniment/:eventId"} element={<EventView />} />;
 
         <Route exact path={"/beneficios"} element={<BenefitsPage />} />;
         <Route exact path={"/es/beneficios"} element={<BenefitsPage />} />;
-        <Route exact path={"/cat/beneficios"} element={<BenefitsPage />} />;
+        <Route exact path={"/cat/beneficis"} element={<BenefitsPage />} />;
 
         <Route exact path={"/beneficio/:benefitId"} element={<BenefitView />} />;
         <Route exact path={"/es/beneficio/:benefitId"} element={<BenefitView />} />;
-        <Route exact path={"/cat/beneficio/:benefitId"} element={<BenefitView />} />;
+        <Route exact path={"/cat/benefici/:benefitId"} element={<BenefitView />} />;
 
         <Route exact path={"/faqs"} element={<FAQsPage />} />;
         <Route exact path={"/es/faqs"} element={<FAQsPage />} />;

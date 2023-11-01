@@ -75,6 +75,16 @@ function FAQs() {
             );
         }
 
+        const getFAQsPageRoute = () => {
+            const path = window.location.pathname;
+            let parts = path.split("/");
+            if (parts.length > 0 && parts[0] === "") {
+                parts = parts.slice(1);
+            }
+            const first = parts[0];
+            return first === "es" || first === "cat" ? `/${first}/faqs` : "/faqs";
+        }
+
         return (
             <>
                 <Grid item mt={5} xs={12} md={10}>
@@ -107,7 +117,7 @@ function FAQs() {
                 <Grid p={3} xs={12} item>
                     <MKTypography
                         component="a"
-                        href="/faqs"
+                        href={getFAQsPageRoute()}
                         variant="body1"
                         color="info"
                         fontWeight="regular"

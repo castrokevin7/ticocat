@@ -89,11 +89,32 @@ function Benefits() {
             );
         }
 
+        const getBenefitsPageRoute = () => {
+            const path = window.location.pathname;
+            let parts = path.split("/");
+            if (parts.length > 0 && parts[0] === "") {
+                parts = parts.slice(1);
+            }
+            const first = parts[0];
+            return first === "es" || first === "cat" ? `/${first}/beneficios` : "/beneficios";
+        }
+
+        
+        const getBenefitRoute = (benefitId) => {
+            const path = window.location.pathname;
+            let parts = path.split("/");
+            if (parts.length > 0 && parts[0] === "") {
+                parts = parts.slice(1);
+            }
+            const first = parts[0];
+            return first === "es" || first === "cat" ? `${first}/beneficio/${benefitId}` : `/beneficio/${benefitId}`;
+        }
+
         return (
             <>
                 {benefits.map((benefit, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/beneficio/${benefit.benefit_id}`}>
+                        <Link to={getBenefitRoute(benefit.benefit_id)}>
                             <SimpleBackgroundCard
                                 image={benefit.image}
                                 title={getBenefitTitle(benefit)}
@@ -105,7 +126,7 @@ function Benefits() {
                 <Grid p={3} xs={12} item>
                     <MKTypography
                         component="a"
-                        href="/beneficios"
+                        href={getBenefitsPageRoute()}
                         variant="body1"
                         color="info"
                         fontWeight="regular"

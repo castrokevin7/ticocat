@@ -206,6 +206,18 @@ function EventView() {
         );
     }
 
+    const getGoBackRoute = () => {
+        const path = window.location.pathname;
+        let parts = path.split("/");
+        if (parts.length > 0 && parts[0] === "") {
+            parts = parts.slice(1);
+        }
+        const first = parts[0];
+        if (first === "cat") return `/${first}/esdeveniments`;
+        else if (first === "es") return `/${first}/eventos`;
+        else return "/eventos";
+    }
+
     return (
         <>
             <DefaultNavbar
@@ -215,7 +227,7 @@ function EventView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: "/eventos",
+                    route: getGoBackRoute(),
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

@@ -99,6 +99,16 @@ function FAQView() {
         );
     }
 
+    const getGoBackRoute = () => {
+        const path = window.location.pathname;
+        let parts = path.split("/");
+        if (parts.length > 0 && parts[0] === "") {
+            parts = parts.slice(1);
+        }
+        const first = parts[0];
+        return first === "es" || first === "cat" ? `/${first}/faqs` : "/faqs";
+    }
+
     return (
         <>
             <DefaultNavbar
@@ -108,7 +118,7 @@ function FAQView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: "/faqs",
+                    route: getGoBackRoute(),
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

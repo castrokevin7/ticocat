@@ -1,17 +1,27 @@
 export const getFAQQuestion = (faq) => {
-    let domain = window.location.hostname;
-    if (domain === "www.asoticocat.com") {
-        return faq.question;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
     }
-    return faq.question_cat;
+    const first = parts[0];
+    if (first === "cat") {
+        return faq.question_cat;
+    }
+    return faq.question;
 }
 
 export const getFAQAnswer = (faq) => {
-    let domain = window.location.hostname;
-    if (domain === "www.asoticocat.com") {
-        return faq.answer;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
     }
-    return faq.answer_cat;
+    const first = parts[0];
+    if (first === "cat") {
+        return faq.answer_cat;
+    }
+    return faq.answer;
 }
 
 export const getLinkText = (link) => {
