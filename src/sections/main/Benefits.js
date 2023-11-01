@@ -94,7 +94,7 @@ function Benefits() {
             <>
                 {benefits.map((benefit, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/${getLang()}/beneficio/${benefit.benefitId}`}>
+                        <Link to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
                             <SimpleBackgroundCard
                                 image={benefit.image}
                                 title={getBenefitTitle(benefit)}

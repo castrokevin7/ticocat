@@ -23,6 +23,8 @@ import Translator from 'utils/Translator';
 
 import { getEventTitle, getEventDescription } from '../events/Utils';
 
+import { getLang } from 'utils/Translator';
+
 function Events() {
     const [state, setState] = useState('');
     const [events, setEvents] = useState(null);
@@ -91,31 +93,11 @@ function Events() {
             );
         }
 
-        const getEventsPageRoute = () => {
-            const path = window.location.pathname;
-            let parts = path.split("/");
-            if (parts.length > 0 && parts[0] === "") {
-                parts = parts.slice(1);
-            }
-            const first = parts[0];
-            return first === "es" || first === "cat" ? `/${first}/eventos` : "/eventos";
-        }
-
-        const getEventRoute = (eventId) => {
-            const path = window.location.pathname;
-            let parts = path.split("/");
-            if (parts.length > 0 && parts[0] === "") {
-                parts = parts.slice(1);
-            }
-            const first = parts[0];
-            return first === "es" || first === "cat" ? `/${first}/evento/${eventId}` : `/evento/${eventId}`;
-        }
-
         return (
             <>
                 {events.map((event, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={getEventRoute(event.event_id)}>
+                        <Link to={`/${getLang()}/evento/${event.event_id}`}>
                             <SimpleBackgroundCard
                                 image={event.image}
                                 title={getEventTitle(event)}
@@ -128,7 +110,7 @@ function Events() {
                 <Grid p={3} xs={12} item>
                     <MKTypography
                         component="a"
-                        href={getEventsPageRoute()}
+                        href={`/${getLang()}/eventos`}
                         variant="body1"
                         color="info"
                         fontWeight="regular"

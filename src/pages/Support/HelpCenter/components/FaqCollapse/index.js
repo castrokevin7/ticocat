@@ -24,18 +24,9 @@ import Collapse from "@mui/material/Collapse";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import { Link } from "react-router-dom";
+import { getLang } from 'utils/Translator';
 
 function FaqCollapse({ id, title, open, children, ...rest }) {
-  const getFAQRoute = (faqId) => {
-    const path = window.location.pathname;
-    let parts = path.split("/");
-    if (parts.length > 0 && parts[0] === "") {
-      parts = parts.slice(1);
-    }
-    const first = parts[0];
-    return first === "es" || first === "cat" ? `/${first}/faqs/${faqId}` : `/faqs/${faqId}`;
-  }
-
   return (
     <MKBox mb={2}>
       <MKBox
@@ -51,7 +42,7 @@ function FaqCollapse({ id, title, open, children, ...rest }) {
         }}
       >
         <MKBox sx={{ overflowX: 'auto' }} display="flex" alignItems="center" color={open ? "dark" : "text"}>
-          <Link target="_blank" to={getFAQRoute(id)}>
+          <Link target="_blank" to={`/${getLang()}/faqs/${id}`}>
             <Icon sx={{ fontWeight: "bold", marginRight: 1, marginTop: 1 }} fontSize="small">
               open_in_new_rounded
             </Icon>
