@@ -213,9 +213,7 @@ function EventView() {
             parts = parts.slice(1);
         }
         const first = parts[0];
-        if (first === "cat") return `/${first}/esdeveniments`;
-        else if (first === "es") return `/${first}/eventos`;
-        else return "/eventos";
+        return first === "es" || first === "cat" ? `/${first}/eventos` : "/eventos";
     }
 
     return (

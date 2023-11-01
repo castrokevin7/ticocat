@@ -158,9 +158,7 @@ function BenefitView() {
             parts = parts.slice(1);
         }
         const first = parts[0];
-        if (first === "cat") return `/${first}/beneficis`;
-        else if (first === "es") return `/${first}/beneficios`;
-        else return "/beneficios";
+        return first === "es" || first === "cat" ? `/${first}/beneficios` : "/beneficios";
     }
 
     return (
