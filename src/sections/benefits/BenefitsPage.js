@@ -102,7 +102,7 @@ function BenefitsPage() {
                 parts = parts.slice(1);
             }
             const first = parts[0];
-            return first === "es" || first === "cat" ? `${first}/beneficio/${benefitId}` : `/beneficio/${benefitId}`;
+            return first === "es" || first === "cat" ? `/${first}/beneficio/${benefitId}` : `/beneficio/${benefitId}`;
         }
 
         return (

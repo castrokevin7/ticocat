@@ -5,6 +5,16 @@ String.prototype.format = function () {
     });
 };
 
+export const getLang = () => {
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
+    }
+    const lang = parts[0];
+    return lang === "es" || lang === "cat" ? lang : "es";
+};
+
 export default class Translator {
 
     constructor() {
@@ -14,13 +24,7 @@ export default class Translator {
     static instance = Translator.instance || new Translator()
 
     translate(key) {
-        const path = window.location.pathname;
-        let parts = path.split("/");
-        if (parts.length > 0 && parts[0] === "") {
-            parts = parts.slice(1);
-        }
-        const first = parts[0];
-        const lang = first === "es" || first === "cat" ? first : "es";
+        const lang = getLang();
         if (key in this.data && lang in this.data[key]) {
             return this.data[key][lang];
         }

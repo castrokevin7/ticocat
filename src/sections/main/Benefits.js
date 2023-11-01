@@ -22,6 +22,7 @@ import SimpleBackgroundCard from "examples/Cards/BackgroundCards/SimpleBackgroun
 import Translator from 'utils/Translator';
 
 import { getBenefitTitle, getBenefitDescription } from '../benefits/Utils';
+import { getLang } from 'utils/Translator';
 
 function Benefits() {
     const [state, setState] = useState('');
@@ -89,32 +90,11 @@ function Benefits() {
             );
         }
 
-        const getBenefitsPageRoute = () => {
-            const path = window.location.pathname;
-            let parts = path.split("/");
-            if (parts.length > 0 && parts[0] === "") {
-                parts = parts.slice(1);
-            }
-            const first = parts[0];
-            return first === "es" || first === "cat" ? `/${first}/beneficios` : "/beneficios";
-        }
-
-        
-        const getBenefitRoute = (benefitId) => {
-            const path = window.location.pathname;
-            let parts = path.split("/");
-            if (parts.length > 0 && parts[0] === "") {
-                parts = parts.slice(1);
-            }
-            const first = parts[0];
-            return first === "es" || first === "cat" ? `${first}/beneficio/${benefitId}` : `/beneficio/${benefitId}`;
-        }
-
         return (
             <>
                 {benefits.map((benefit, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={getBenefitRoute(benefit.benefit_id)}>
+                        <Link to={`/${getLang()}/beneficio/${benefit.benefitId}`}>
                             <SimpleBackgroundCard
                                 image={benefit.image}
                                 title={getBenefitTitle(benefit)}
@@ -126,7 +106,7 @@ function Benefits() {
                 <Grid p={3} xs={12} item>
                     <MKTypography
                         component="a"
-                        href={getBenefitsPageRoute()}
+                        href={`${getLang()}/beneficios`}
                         variant="body1"
                         color="info"
                         fontWeight="regular"

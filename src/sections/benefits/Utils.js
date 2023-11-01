@@ -1,38 +1,16 @@
+import { getLang } from "utils/Translator";
+
 export const getBenefitTitle = (benefit) => {
-    const path = window.location.pathname;
-    let parts = path.split("/");
-    if (parts.length > 0 && parts[0] === "") {
-        parts = parts.slice(1);
-    }
-    const first = parts[0];
-    if (first === "cat") {
-        return benefit.title_cat;
-    }
-    return benefit.title;
+    return getLang() === "cat" ? benefit.title_cat : benefit.title;
+
 }
 
 export const getBenefitDescription = (benefit) => {
-    const path = window.location.pathname;
-    let parts = path.split("/");
-    if (parts.length > 0 && parts[0] === "") {
-        parts = parts.slice(1);
-    }
-    const first = parts[0];
-    if (first === "cat") {
-        return benefit.description_cat;
-    }
-    return benefit.description;
+    return getLang() === "cat" ? benefit.description_cat : benefit.description;
+
 }
 
 export const getBenefitAboutProvider = (benefit) => {
-    const path = window.location.pathname;
-    let parts = path.split("/");
-    if (parts.length > 0 && parts[0] === "") {
-        parts = parts.slice(1);
-    }
-    const first = parts[0];
-    if (first === "cat") {
-        return benefit.about_provider_cat;
-    }
-    return benefit.about_provider;
+    return getLang() === "cat" ? benefit.about_provider_cat : benefit.about_provider;
+
 }
