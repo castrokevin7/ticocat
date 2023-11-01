@@ -14,13 +14,15 @@ export default class Translator {
     static instance = Translator.instance || new Translator()
 
     translate(key) {
-        let domain = window.location.hostname;
-        if (domain === "localhost" || domain === "dev.asoticocat.com") {
-            domain = "cat.asoticocat.com"
+        const path = window.location.pathname;
+        let parts = path.split("/");
+        if (parts.length > 0 && parts[0] === "") {
+            parts = parts.slice(1);
         }
-
-        if (key in this.data && domain in this.data[key]) {
-            return this.data[key][domain];
+        const first = parts[0];
+        const lang = first === "es" || first === "cat" ? first : "es";
+        if (key in this.data && lang in this.data[key]) {
+            return this.data[key][lang];
         }
         return key;
     }

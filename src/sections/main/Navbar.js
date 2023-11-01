@@ -4,11 +4,18 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 
 export function getTranslateAction() {
-    let domain = window.location.hostname;
-    let path = window.location.pathname;
-    if (domain === "www.asoticocat.com") {
+    const origin = window.location.origin;
+    const path = window.location.pathname;
+    let parts = path.split("/");
+    if (parts.length > 0 && parts[0] === "") {
+        parts = parts.slice(1);
+    }
+
+    if (parts.length > 0 && parts[0] === "es") {
+        parts = parts.slice(1);
+        const route = [origin, "cat"].concat(parts).join("/");
         return {
-            route: "https://cat.asoticocat.com" + path,
+            route,
             label: "CAT",
             color: "info",
             icon: "translate_rounded",
@@ -16,15 +23,29 @@ export function getTranslateAction() {
             size: "small",
             minimal: false
         }
-    }
-    return {
-        route: "https://www.asoticocat.com" + path,
-        label: "ESP",
-        color: "info",
-        icon: "translate_rounded",
-        variant: "outlined",
-        size: "small",
-        minimal: false
+    } else if (parts.length > 0 && parts[0] === "cat") {
+        parts = parts.slice(1);
+        const route = [origin, "es"].concat(parts).join("/");
+        return {
+            route,
+            label: "ESP",
+            color: "info",
+            icon: "translate_rounded",
+            variant: "outlined",
+            size: "small",
+            minimal: false
+        }
+    } else {
+        const route = [origin, "cat"].concat(parts).join("/");
+        return {
+            route,
+            label: "CAT",
+            color: "info",
+            icon: "translate_rounded",
+            variant: "outlined",
+            size: "small",
+            minimal: false
+        }
     }
 }
 

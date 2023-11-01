@@ -1,410 +1,410 @@
 {
     "loading_tag": {
-        "www.asoticocat.com": "Cargando",
-        "cat.asoticocat.com": "Carregant"
+        "es": "Cargando",
+        "cat": "Carregant"
     },
     "error_tag": {
-        "www.asoticocat.com": "Error",
-        "cat.asoticocat.com": "Error"
+        "es": "Error",
+        "cat": "Error"
     },
     "benefit_error_tag": {
-        "www.asoticocat.com": "Error cargando Beneficio '{0}'",
-        "cat.asoticocat.com": "Error carregant Benefici '{0}'"
+        "es": "Error cargando Beneficio '{0}'",
+        "cat": "Error carregant Benefici '{0}'"
     },
     "event_error_tag": {
-        "www.asoticocat.com": "Error cargando Evento '{0}'",
-        "cat.asoticocat.com": "Error carregant Esdeveniment '{0}'"
+        "es": "Error cargando Evento '{0}'",
+        "cat": "Error carregant Esdeveniment '{0}'"
     },
     "faq_error_tag": {
-        "www.asoticocat.com": "Error cargando Pregunta Frecuente '{0}'",
-        "cat.asoticocat.com": "Error carregant Pregunta Freqüent '{0}'"
+        "es": "Error cargando Pregunta Frecuente '{0}'",
+        "cat": "Error carregant Pregunta Freqüent '{0}'"
     },
     "route_home": {
-        "www.asoticocat.com": "Inicio",
-        "cat.asoticocat.com": "Inici"
+        "es": "Inicio",
+        "cat": "Inici"
     },
     "route_about": {
-        "www.asoticocat.com": "Acerca",
-        "cat.asoticocat.com": "Sobre"
+        "es": "Acerca",
+        "cat": "Sobre"
     },
     "route_team": {
-        "www.asoticocat.com": "Equipo",
-        "cat.asoticocat.com": "Equip"
+        "es": "Equipo",
+        "cat": "Equip"
     },
     "route_associates": {
-        "www.asoticocat.com": "Socios",
-        "cat.asoticocat.com": "Socis"
+        "es": "Socios",
+        "cat": "Socis"
     },
     "route_events": {
-        "www.asoticocat.com": "Eventos",
-        "cat.asoticocat.com": "Esdeveniments"
+        "es": "Eventos",
+        "cat": "Esdeveniments"
     },
     "route_benefits": {
-        "www.asoticocat.com": "Beneficios",
-        "cat.asoticocat.com": "Beneficis"
+        "es": "Beneficios",
+        "cat": "Beneficis"
     },
     "route_faqs": {
-        "www.asoticocat.com": "Preguntas Frecuentes",
-        "cat.asoticocat.com": "Preguntes freqüents"
+        "es": "Preguntas Frecuentes",
+        "cat": "Preguntes freqüents"
     },
     "home_main_title": {
-        "www.asoticocat.com": "Asociación Cultural Costarricense Catalana",
-        "cat.asoticocat.com": "Associació Cultural Costarricense Catalana"
+        "es": "Asociación Cultural Costarricense Catalana",
+        "cat": "Associació Cultural Costarricense Catalana"
     },
     "home_mini_title": {
-        "www.asoticocat.com": "TICOCAT",
-        "cat.asoticocat.com": "TICOCAT"
+        "es": "TICOCAT",
+        "cat": "TICOCAT"
     },
     "home_text": {
-        "www.asoticocat.com": "Conecta con nosotros en",
-        "cat.asoticocat.com": "Connecta amb nosaltres a"
+        "es": "Conecta con nosotros en",
+        "cat": "Connecta amb nosaltres a"
     },
     "about_context_title": {
-        "www.asoticocat.com": "TICOCAT: promoviendo la cultura costarricense en Cataluña",
-        "cat.asoticocat.com": "TICOCAT: promovent la cultura costa-riquenya a Catalunya"
+        "es": "TICOCAT: promoviendo la cultura costarricense en Cataluña",
+        "cat": "TICOCAT: promovent la cultura costa-riquenya a Catalunya"
     },
     "about_context_description": {
-        "www.asoticocat.com": "TICOCAT es una asociación sin ánimo de lucro creada en diciembre de 2019 con el objetivo de brindar espacios y actividades para la conexión de los y las costarricenses residentes en Cataluña con su cultura y promoverla dentro de la sociedad Catalana.",
-        "cat.asoticocat.com": "TICOCAT és una associació sense ànim de lucre creada el desembre de 2019 amb l'objectiu de brindar espais i activitats per a la connexió dels costarricencs residents a Catalunya amb la seva cultura i promoure-la dins de la societat Catalana."
+        "es": "TICOCAT es una asociación sin ánimo de lucro creada en diciembre de 2019 con el objetivo de brindar espacios y actividades para la conexión de los y las costarricenses residentes en Cataluña con su cultura y promoverla dentro de la sociedad Catalana.",
+        "cat": "TICOCAT és una associació sense ànim de lucre creada el desembre de 2019 amb l'objectiu de brindar espais i activitats per a la connexió dels costarricencs residents a Catalunya amb la seva cultura i promoure-la dins de la societat Catalana."
     },
     "about_context_description_follow": {
-        "www.asoticocat.com": "Queremos que los ticos y ticas que viven en Cataluña no se sientan lejos de casa y puedan disfrutar de la esencia pura de Costa Rica. Somos un lugar de encuentro cuyo objetivo es fomentar comunidad. ¡Unite a nosotros y sentite un poco más cerca de casa!",
-        "cat.asoticocat.com": "Volem que els ticos i ticas que viuen a Catalunya no se sentin lluny de casa i puguin gaudir de l´essència pura de Costa Rica. Som un lloc de trobada que té com a objectiu fomentar comunitat. Uniu-vos a nosaltres i sentiu una mica més a prop de casa!"
+        "es": "Queremos que los ticos y ticas que viven en Cataluña no se sientan lejos de casa y puedan disfrutar de la esencia pura de Costa Rica. Somos un lugar de encuentro cuyo objetivo es fomentar comunidad. ¡Unite a nosotros y sentite un poco más cerca de casa!",
+        "cat": "Volem que els ticos i ticas que viuen a Catalunya no se sentin lluny de casa i puguin gaudir de l´essència pura de Costa Rica. Som un lloc de trobada que té com a objectiu fomentar comunitat. Uniu-vos a nosaltres i sentiu una mica més a prop de casa!"
     },
     "about_vision_title": {
-        "www.asoticocat.com": "Visión",
-        "cat.asoticocat.com": "Visió"
+        "es": "Visión",
+        "cat": "Visió"
     },
     "about_vision_description": {
-        "www.asoticocat.com": "Ser el principal punto de contacto entre Costa Rica y la comunidad de costarricenses en Cataluña a través de actividades culturales, sociales y de desarrollo económico.",
-        "cat.asoticocat.com": "Ser el principal punt de contacte entre Costa Rica i la comunitat de costarricencs a Catalunya mitjançant activitats culturals, socials i de desenvolupament econòmic."
+        "es": "Ser el principal punto de contacto entre Costa Rica y la comunidad de costarricenses en Cataluña a través de actividades culturales, sociales y de desarrollo económico.",
+        "cat": "Ser el principal punt de contacte entre Costa Rica i la comunitat de costarricencs a Catalunya mitjançant activitats culturals, socials i de desenvolupament econòmic."
     },
     "about_mission_title": {
-        "www.asoticocat.com": "Misión",
-        "cat.asoticocat.com": "Missió"
+        "es": "Misión",
+        "cat": "Missió"
     },
     "about_mission_description": {
-        "www.asoticocat.com": "Promover el acercamiento de los costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el Pura Vida que nos caracteriza.",
-        "cat.asoticocat.com": "Promoure l'acostament dels costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el Pura Vida que ens caracteritza."
+        "es": "Promover el acercamiento de los costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el Pura Vida que nos caracteriza.",
+        "cat": "Promoure l'acostament dels costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el Pura Vida que ens caracteritza."
     },
     "about_download_statutes": {
-        "www.asoticocat.com": "Descargar estatutos",
-        "cat.asoticocat.com": "Descarregar estatuts"
+        "es": "Descargar estatutos",
+        "cat": "Descarregar estatuts"
     },
     "associates_count_load": {
-        "www.asoticocat.com": "Cargar Socios",
-        "cat.asoticocat.com": "Carregar Socis"
+        "es": "Cargar Socios",
+        "cat": "Carregar Socis"
     },
     "associates_count_zero": {
-        "www.asoticocat.com": "No hay",
-        "cat.asoticocat.com": "No hi ha"
+        "es": "No hay",
+        "cat": "No hi ha"
     },
     "associates_counter_title": {
-        "www.asoticocat.com": "Socios",
-        "cat.asoticocat.com": "Socis"
+        "es": "Socios",
+        "cat": "Socis"
     },
     "associates_counter_description": {
-        "www.asoticocat.com": "¿Y vos, te animás?",
-        "cat.asoticocat.com": "¿Y tú, t'animes?"
+        "es": "¿Y vos, te animás?",
+        "cat": "¿Y tú, t'animes?"
     },
     "associates_counter_action": {
-        "www.asoticocat.com": "Quiero asociarme",
-        "cat.asoticocat.com": "Vull associar-m'hi"
+        "es": "Quiero asociarme",
+        "cat": "Vull associar-m'hi"
     },
     "associates_main_title": {
-        "www.asoticocat.com": "Nuestra Comunidad",
-        "cat.asoticocat.com": "La Nostra Comunitat"
+        "es": "Nuestra Comunidad",
+        "cat": "La Nostra Comunitat"
     },
     "associates_main_description": {
-        "www.asoticocat.com": "TICOCAT ofrece múltiples beneficios para miembros.",
-        "cat.asoticocat.com": "TICOCAT ofereix múltiples beneficis per a membres."
+        "es": "TICOCAT ofrece múltiples beneficios para miembros.",
+        "cat": "TICOCAT ofereix múltiples beneficis per a membres."
     },
     "associates_benefit_1": {
-        "www.asoticocat.com": "1. Comunidad organizada de costarricenses en Cataluña",
-        "cat.asoticocat.com": "1. Comunitat organitzada de costarricencs a Catalunya"
+        "es": "1. Comunidad organizada de costarricenses en Cataluña",
+        "cat": "1. Comunitat organitzada de costarricencs a Catalunya"
     },
     "associates_benefit_2": {
-        "www.asoticocat.com": "2. Actividades socio-culturales entre sus miembros y la comunidad",
-        "cat.asoticocat.com": "2. Activitats socioculturals entre els seus membres i la comunitat"
+        "es": "2. Actividades socio-culturales entre sus miembros y la comunidad",
+        "cat": "2. Activitats socioculturals entre els seus membres i la comunitat"
     },
     "associates_benefit_3": {
-        "www.asoticocat.com": "3. Inserción de los costarricenses dentro de la Comunidad Catalana",
-        "cat.asoticocat.com": "3. Inserció dels costarricencs dins de la Comunitat Catalana"
+        "es": "3. Inserción de los costarricenses dentro de la Comunidad Catalana",
+        "cat": "3. Inserció dels costarricencs dins de la Comunitat Catalana"
     },
     "associates_benefit_4": {
-        "www.asoticocat.com": "4. Acercamiento intercultural",
-        "cat.asoticocat.com": "4. Apropament intercultural"
+        "es": "4. Acercamiento intercultural",
+        "cat": "4. Apropament intercultural"
     },
     "associates_benefit_5": {
-        "www.asoticocat.com": "5. Colaboración, apoyo e información entre sus miembros",
-        "cat.asoticocat.com": "5. Col·laboració, suport i informació entre els seus membres"
+        "es": "5. Colaboración, apoyo e información entre sus miembros",
+        "cat": "5. Col·laboració, suport i informació entre els seus membres"
     },
     "team_from_prefix": {
-        "www.asoticocat.com": "De",
-        "cat.asoticocat.com": "De"
+        "es": "De",
+        "cat": "De"
     },
     "team_arrival_prefix": {
-        "www.asoticocat.com": "Llegada a Cataluña",
-        "cat.asoticocat.com": "Arribada a Catalunya"
+        "es": "Llegada a Cataluña",
+        "cat": "Arribada a Catalunya"
     },
     "team_occupation_prefix": {
-        "www.asoticocat.com": "Ocupación",
-        "cat.asoticocat.com": "Ocupació"
+        "es": "Ocupación",
+        "cat": "Ocupació"
     },
     "team_contributions_prefix": {
-        "www.asoticocat.com": "Aportes en la Aso",
-        "cat.asoticocat.com": "Aportacions a l'Aso"
+        "es": "Aportes en la Aso",
+        "cat": "Aportacions a l'Aso"
     },
     "team_reasons_prefix": {
-        "www.asoticocat.com": "Motivo para entrar a la Aso",
-        "cat.asoticocat.com": "Motiu per entrar a l'Aso"
+        "es": "Motivo para entrar a la Aso",
+        "cat": "Motiu per entrar a l'Aso"
     },
     "team_president_position": {
-        "www.asoticocat.com": "Presidencia",
-        "cat.asoticocat.com": "Presidència"
+        "es": "Presidencia",
+        "cat": "Presidència"
     },
     "team_vicepresident_position": {
-        "www.asoticocat.com": "Vicepresidencia",
-        "cat.asoticocat.com": "Vicepresidencia"
+        "es": "Vicepresidencia",
+        "cat": "Vicepresidencia"
     },
     "team_secretary_position": {
-        "www.asoticocat.com": "Secretariado",
-        "cat.asoticocat.com": "Secretariat"
+        "es": "Secretariado",
+        "cat": "Secretariat"
     },
     "team_treasurer_position": {
-        "www.asoticocat.com": "Tesorería",
-        "cat.asoticocat.com": "Tresoreria"
+        "es": "Tesorería",
+        "cat": "Tresoreria"
     },
     "team_vocal_position": {
-        "www.asoticocat.com": "Vocal",
-        "cat.asoticocat.com": "Vocal"
+        "es": "Vocal",
+        "cat": "Vocal"
     },
     "team_title": {
-        "www.asoticocat.com": "El Equipo",
-        "cat.asoticocat.com": "L'Equip"
+        "es": "El Equipo",
+        "cat": "L'Equip"
     },
     "team_description": {
-        "www.asoticocat.com": "Junta directiva de la asociación período 2021-2023",
-        "cat.asoticocat.com": "Junta directiva de l'associació període 2021-2023"
+        "es": "Junta directiva de la asociación período 2021-2023",
+        "cat": "Junta directiva de l'associació període 2021-2023"
     },
     "team_jordi_arribada": {
-        "www.asoticocat.com": "Octubre, 2013",
-        "cat.asoticocat.com": "Octubre, 2013"
+        "es": "Octubre, 2013",
+        "cat": "Octubre, 2013"
     },
     "team_jordi_occupation": {
-        "www.asoticocat.com": "Cinematografía y Música",
-        "cat.asoticocat.com": "Cinematografia i Música"
+        "es": "Cinematografía y Música",
+        "cat": "Cinematografia i Música"
     },
     "team_jordi_contributions": {
-        "www.asoticocat.com": "Creatividad, entusiasmo y... Comida!",
-        "cat.asoticocat.com": "Creativitat, entusiasme i... Menjar!"
+        "es": "Creatividad, entusiasmo y... Comida!",
+        "cat": "Creativitat, entusiasme i... Menjar!"
     },
     "team_jordi_reasons": {
-        "www.asoticocat.com": "Después de, por casualidad, haber heredado el grupo de Facebook de \"Ticos en Barcelona\", me encontré con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los Ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo",
-        "cat.asoticocat.com": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, seguim unint forces per aconseguir-ho"
+        "es": "Después de, por casualidad, haber heredado el grupo de Facebook de \"Ticos en Barcelona\", me encontré con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los Ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo",
+        "cat": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, seguim unint forces per aconseguir-ho"
     },
     "team_cindy_arribada": {
-        "www.asoticocat.com": "Octubre, 2021",
-        "cat.asoticocat.com": "Octubre, 2021"
+        "es": "Octubre, 2021",
+        "cat": "Octubre, 2021"
     },
     "team_cindy_occupation": {
-        "www.asoticocat.com": "Arquitectura, Interiorismo y Educación",
-        "cat.asoticocat.com": "Arquitectura, Interiorisme i Educació"
+        "es": "Arquitectura, Interiorismo y Educación",
+        "cat": "Arquitectura, Interiorisme i Educació"
     },
     "team_cindy_contributions": {
-        "www.asoticocat.com": "Creatividad, diseño, rigurosidad y organización",
-        "cat.asoticocat.com": "Creativitat, disseny, rigorositat i organització"
+        "es": "Creatividad, diseño, rigurosidad y organización",
+        "cat": "Creativitat, disseny, rigorositat i organització"
     },
     "team_cindy_reasons": {
-        "www.asoticocat.com": "Después de lograr el sueño de venir a vivir a Barcelona, y sabiendo que tendría estabilidad en la ciudad, sentí la necesidad de aportar mi granito de arena a una comunidad que siempre me hizo sentir más cerca de casa. Se siente increíble representar a nuestro lindo país, y formar una familia de ticos al otro lado del mundo",
-        "cat.asoticocat.com": "Després d'aconseguir el somni de venir a viure a Barcelona, i sabent que tindria estabilitat a la ciutat, vaig sentir la necessitat d'aportar el meu granet de sorra a una comunitat que sempre em va fer sentir més a prop de casa. Se sent increïble representar el nostre bonic país, i formar una família de ticos a l'altra banda del món"
+        "es": "Después de lograr el sueño de venir a vivir a Barcelona, y sabiendo que tendría estabilidad en la ciudad, sentí la necesidad de aportar mi granito de arena a una comunidad que siempre me hizo sentir más cerca de casa. Se siente increíble representar a nuestro lindo país, y formar una familia de ticos al otro lado del mundo",
+        "cat": "Després d'aconseguir el somni de venir a viure a Barcelona, i sabent que tindria estabilitat a la ciutat, vaig sentir la necessitat d'aportar el meu granet de sorra a una comunitat que sempre em va fer sentir més a prop de casa. Se sent increïble representar el nostre bonic país, i formar una família de ticos a l'altra banda del món"
     },
     "team_aquion_arribada": {
-        "www.asoticocat.com": "Octubre, 2021",
-        "cat.asoticocat.com": "Octubre, 2021"
+        "es": "Octubre, 2021",
+        "cat": "Octubre, 2021"
     },
     "team_aquion_occupation": {
-        "www.asoticocat.com": "Chef y Administrador de Empresas",
-        "cat.asoticocat.com": "Xef i Administrador d'Empreses"
+        "es": "Chef y Administrador de Empresas",
+        "cat": "Xef i Administrador d'Empreses"
     },
     "team_aquion_contributions": {
-        "www.asoticocat.com": "Logística y planificación de eventos",
-        "cat.asoticocat.com": "Logística i planificació d´esdeveniments"
+        "es": "Logística y planificación de eventos",
+        "cat": "Logística i planificació d´esdeveniments"
     },
     "team_aquion_reasons": {
-        "www.asoticocat.com": "Amor a la patria y creer en Costa Rica",
-        "cat.asoticocat.com": "Amor a la pàtria i creure a Costa Rica"
+        "es": "Amor a la patria y creer en Costa Rica",
+        "cat": "Amor a la pàtria i creure a Costa Rica"
     },
     "team_kevin_arribada": {
-        "www.asoticocat.com": "Julio, 2021",
-        "cat.asoticocat.com": "Juliol, 2021"
+        "es": "Julio, 2021",
+        "cat": "Juliol, 2021"
     },
     "team_kevin_occupation": {
-        "www.asoticocat.com": "Ing. En Computación",
-        "cat.asoticocat.com": "Ing. En Computació"
+        "es": "Ing. En Computación",
+        "cat": "Ing. En Computació"
     },
     "team_kevin_contributions": {
-        "www.asoticocat.com": "Secretariado, eventos y desarrollo web",
-        "cat.asoticocat.com": "Secretariat, esdeveniments i desenvolupament web"
+        "es": "Secretariado, eventos y desarrollo web",
+        "cat": "Secretariat, esdeveniments i desenvolupament web"
     },
     "team_kevin_reasons": {
-        "www.asoticocat.com": "Como manera de agradecimiento por estar aquí me interesa ayudar a la comunidad. Además cuando comparto con Ticos soy feliz y me teletransporto por un momento a nuestra patria que quiero y extraño tanto",
-        "cat.asoticocat.com": "Com a agraïment per ser aquí, m'interessa ajudar la comunitat. A més quan comparteixo amb Ticos sóc feliç i em teletransporto per un moment a la nostra pàtria que estimo i tant trobo a faltar"
+        "es": "Como manera de agradecimiento por estar aquí me interesa ayudar a la comunidad. Además cuando comparto con Ticos soy feliz y me teletransporto por un momento a nuestra patria que quiero y extraño tanto",
+        "cat": "Com a agraïment per ser aquí, m'interessa ajudar la comunitat. A més quan comparteixo amb Ticos sóc feliç i em teletransporto per un moment a la nostra pàtria que estimo i tant trobo a faltar"
     },
     "team_raque_arribada": {
-        "www.asoticocat.com": "Septiembre, 2016⁣",
-        "cat.asoticocat.com": "Setembre, 2016⁣"
+        "es": "Septiembre, 2016⁣",
+        "cat": "Setembre, 2016⁣"
     },
     "team_raque_occupation": {
-        "www.asoticocat.com": "Analista de Datos",
-        "cat.asoticocat.com": "Analista de Dades"
+        "es": "Analista de Datos",
+        "cat": "Analista de Dades"
     },
     "team_raque_contributions": {
-        "www.asoticocat.com": "Finanzas y eventos",
-        "cat.asoticocat.com": "Finances i esdeveniments"
+        "es": "Finanzas y eventos",
+        "cat": "Finances i esdeveniments"
     },
     "team_raque_reasons": {
-        "www.asoticocat.com": "Cuando llegué a Barcelona no conocía nadie y me hacía falta ese sabor Tico. Luego de un año y medio que conocí otros Ticos, además de disfrutar a lo Tico, ¡nos ayudábamos para hacer desde trámites hasta el gallo pinto! ¡Y cuando me hicieron la propuesta de formar la Aso, no dude en decir que sí! Poder ayudar a otros Ticos y unirnos en comunidad es una linda forma de mostrar al mundo lo que es ser Pura Vida",
-        "cat.asoticocat.com": "Quan vaig arribar a Barcelona no coneixia ningú i em feia falta aquest gust Tico. Després d'un any i mig que vaig conèixer altres Ticos, a més de gaudir a l'estil Tico, ens ajudàvem a fer des de tràmits fins al Gallo Pinto! I quan em van fer la proposta de formar l'Aso, no vaig dubtar a dir que sí! Poder ajudar altres Ticos i unir-nos en comunitat és una bonica forma de mostrar al món el que és ser Pura Vida"
+        "es": "Cuando llegué a Barcelona no conocía nadie y me hacía falta ese sabor Tico. Luego de un año y medio que conocí otros Ticos, además de disfrutar a lo Tico, ¡nos ayudábamos para hacer desde trámites hasta el gallo pinto! ¡Y cuando me hicieron la propuesta de formar la Aso, no dude en decir que sí! Poder ayudar a otros Ticos y unirnos en comunidad es una linda forma de mostrar al mundo lo que es ser Pura Vida",
+        "cat": "Quan vaig arribar a Barcelona no coneixia ningú i em feia falta aquest gust Tico. Després d'un any i mig que vaig conèixer altres Ticos, a més de gaudir a l'estil Tico, ens ajudàvem a fer des de tràmits fins al Gallo Pinto! I quan em van fer la proposta de formar l'Aso, no vaig dubtar a dir que sí! Poder ajudar altres Ticos i unir-nos en comunitat és una bonica forma de mostrar al món el que és ser Pura Vida"
     },
     "team_ale_arribada": {
-        "www.asoticocat.com": "Febrero, 2017⁣",
-        "cat.asoticocat.com": "Febrer, 2017"
+        "es": "Febrero, 2017⁣",
+        "cat": "Febrer, 2017"
     },
     "team_ale_occupation": {
-        "www.asoticocat.com": "Diseñadora UX",
-        "cat.asoticocat.com": "Dissenyadora UX"
+        "es": "Diseñadora UX",
+        "cat": "Dissenyadora UX"
     },
     "team_ale_contributions": {
-        "www.asoticocat.com": "Comunicación, patriotismo, iniciativa y diseño",
-        "cat.asoticocat.com": "Comunicació, patriotisme, iniciativa i disseny"
+        "es": "Comunicación, patriotismo, iniciativa y diseño",
+        "cat": "Comunicació, patriotisme, iniciativa i disseny"
     },
     "team_ale_reasons": {
-        "www.asoticocat.com": "Recuerdo que antes de venirme a Barcelona, tenía muchas preguntas y necesitaba de alguien que me ayudara a contestarlas. En aquel momento tuve un angel que no dudo en responderlas. Cuando llegue me propuse a ser ese ángel para alguien más y desde entonces he estado trabajando para la comunidad aportando mi granito de arena. Para que otros tengan la misma posibilidad de cumplir el sueño de estudiar o vivir en Barcelona",
-        "cat.asoticocat.com": "Recordo que abans de arribar a Barcelona tenia moltes preguntes i necessitava algú que m'ajudés a contestar-les. En aquell moment vaig tenir un àngel que no va dubtar a respondre-les. Quan vaig arribar em vaig proposar de ser aquest àngel per a algú més i des de llavors he estat treballant per a la comunitat aportant el meu granet de sorra. Perquè els altres tinguin la mateixa possibilitat de complir el somni d'estudiar o viure a Barcelona"
+        "es": "Recuerdo que antes de venirme a Barcelona, tenía muchas preguntas y necesitaba de alguien que me ayudara a contestarlas. En aquel momento tuve un angel que no dudo en responderlas. Cuando llegue me propuse a ser ese ángel para alguien más y desde entonces he estado trabajando para la comunidad aportando mi granito de arena. Para que otros tengan la misma posibilidad de cumplir el sueño de estudiar o vivir en Barcelona",
+        "cat": "Recordo que abans de arribar a Barcelona tenia moltes preguntes i necessitava algú que m'ajudés a contestar-les. En aquell moment vaig tenir un àngel que no va dubtar a respondre-les. Quan vaig arribar em vaig proposar de ser aquest àngel per a algú més i des de llavors he estat treballant per a la comunitat aportant el meu granet de sorra. Perquè els altres tinguin la mateixa possibilitat de complir el somni d'estudiar o viure a Barcelona"
     },
     "events_page_title": {
-        "www.asoticocat.com": "Eventos",
-        "cat.asoticocat.com": "Esdeveniments"
+        "es": "Eventos",
+        "cat": "Esdeveniments"
     },
     "benefits_page_title": {
-        "www.asoticocat.com": "Beneficios",
-        "cat.asoticocat.com": "Beneficis"
+        "es": "Beneficios",
+        "cat": "Beneficis"
     },
     "faqs_page_title": {
-        "www.asoticocat.com": "Preguntas Frecuentes",
-        "cat.asoticocat.com": "Preguntes freqüents"
+        "es": "Preguntas Frecuentes",
+        "cat": "Preguntes freqüents"
     },
     "events_page_description": {
-        "www.asoticocat.com": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
-        "cat.asoticocat.com": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar-hi. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
+        "es": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
+        "cat": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar-hi. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
     },
     "benefits_page_description": {
-        "www.asoticocat.com": "Beneficios desde descuentos en actividades y eventos hasta acceso a servicios y recursos útiles para la comunidad.",
-        "cat.asoticocat.com": "Beneficis des de descomptes en activitats i esdeveniments fins a accés a serveis i recursos útils per a la comunitat."
+        "es": "Beneficios desde descuentos en actividades y eventos hasta acceso a servicios y recursos útiles para la comunidad.",
+        "cat": "Beneficis des de descomptes en activitats i esdeveniments fins a accés a serveis i recursos útils per a la comunitat."
     },
     "faqs_page_description": {
-        "www.asoticocat.com": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",
-        "cat.asoticocat.com": "Preguntes freqüents sobre tràmits, compres, viure a Catalunya, etc."
+        "es": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",
+        "cat": "Preguntes freqüents sobre tràmits, compres, viure a Catalunya, etc."
     },
     "events_page_see_more_from_event": {
-        "www.asoticocat.com": "Ver más",
-        "cat.asoticocat.com": "Veure més"
+        "es": "Ver más",
+        "cat": "Veure més"
     },
     "benefits_page_see_more_from_benefit": {
-        "www.asoticocat.com": "Ver más",
-        "cat.asoticocat.com": "Veure més"
+        "es": "Ver más",
+        "cat": "Veure més"
     },
     "events_page_events_header": {
-        "www.asoticocat.com": "Todos los eventos, tanto registro de los pasados como los que están por venir.",
-        "cat.asoticocat.com": "Tots els esdeveniments, tant registre dels passats com els que han de venir."
+        "es": "Todos los eventos, tanto registro de los pasados como los que están por venir.",
+        "cat": "Tots els esdeveniments, tant registre dels passats com els que han de venir."
     },
     "benefits_page_benefits_header": {
-        "www.asoticocat.com": "Todos los beneficios para nuetros socios. Podés disfrutar de ellos contactando al proveedor y presentando tu carnet de socio.",
-        "cat.asoticocat.com": "Tots els beneficis per a nostres socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
+        "es": "Todos los beneficios para nuetros socios. Podés disfrutar de ellos contactando al proveedor y presentando tu carnet de socio.",
+        "cat": "Tots els beneficis per a nostres socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
     },
     "faqs_page_faqs_header": {
-        "www.asoticocat.com": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",
-        "cat.asoticocat.com": "Preguntes freqüents sobre tràmits, compres, viure a Catalunya, etc."
+        "es": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",
+        "cat": "Preguntes freqüents sobre tràmits, compres, viure a Catalunya, etc."
     },
     "faqs_page_suggestions": {
-        "www.asoticocat.com": "¿Considerás alguna otra información importante y no la encontrás aquí? Envianos tu sugerencia ",
-        "cat.asoticocat.com": "Consideres alguna altra informació important i no la trobes aquí? Envia'ns la teva suggerència "
+        "es": "¿Considerás alguna otra información importante y no la encontrás aquí? Envianos tu sugerencia ",
+        "cat": "Consideres alguna altra informació important i no la trobes aquí? Envia'ns la teva suggerència "
     },
     "events_page_all_filter": {
-        "www.asoticocat.com": "Todos",
-        "cat.asoticocat.com": "Tots"
+        "es": "Todos",
+        "cat": "Tots"
     },
     "events_page_upcoming_filter": {
-        "www.asoticocat.com": "Futuros",
-        "cat.asoticocat.com": "Futurs"
+        "es": "Futuros",
+        "cat": "Futurs"
     },
     "events_page_past_filter": {
-        "www.asoticocat.com": "Pasados",
-        "cat.asoticocat.com": "Passats"
+        "es": "Pasados",
+        "cat": "Passats"
     },
     "events_page_no_events": {
-        "www.asoticocat.com": "Ningún evento",
-        "cat.asoticocat.com": "Cap esdeveniment"
+        "es": "Ningún evento",
+        "cat": "Cap esdeveniment"
     },
     "benefits_page_no_benefits": {
-        "www.asoticocat.com": "Ningún beneficio",
-        "cat.asoticocat.com": "Cap benefici"
+        "es": "Ningún beneficio",
+        "cat": "Cap benefici"
     },
     "faqs_page_no_faqs": {
-        "www.asoticocat.com": "Ninguna pregunta frecuente",
-        "cat.asoticocat.com": "Cap pregunta freqüent"
+        "es": "Ninguna pregunta frecuente",
+        "cat": "Cap pregunta freqüent"
     },
     "faqs_page_look_for_faq": {
-        "www.asoticocat.com": "Busca una pregunta frecuente",
-        "cat.asoticocat.com": "Busca una pregunta freqüent"
+        "es": "Busca una pregunta frecuente",
+        "cat": "Busca una pregunta freqüent"
     },
     "events_load": {
-        "www.asoticocat.com": "Cargar Eventos",
-        "cat.asoticocat.com": "Carregar Esdeveniments"
+        "es": "Cargar Eventos",
+        "cat": "Carregar Esdeveniments"
     },
     "retry_event_load": {
-        "www.asoticocat.com": "Reintentar",
-        "cat.asoticocat.com": "Reintentar"
+        "es": "Reintentar",
+        "cat": "Reintentar"
     },
     "event_not_found": {
-        "www.asoticocat.com": "Evento '{0}' no encontrado.",
-        "cat.asoticocat.com": "Esdeveniment '{0}' no trobat."
+        "es": "Evento '{0}' no encontrado.",
+        "cat": "Esdeveniment '{0}' no trobat."
     },
     "benefit_not_found": {
-        "www.asoticocat.com": "Beneficio '{0}' no encontrado.",
-        "cat.asoticocat.com": "Benefici '{0}' no trobat."
+        "es": "Beneficio '{0}' no encontrado.",
+        "cat": "Benefici '{0}' no trobat."
     },
     "faq_view_header": {
-        "www.asoticocat.com": "Pregunta Frecuente",
-        "cat.asoticocat.com": "Pregunta Freqüent"
+        "es": "Pregunta Frecuente",
+        "cat": "Pregunta Freqüent"
     },
     "faq_not_found": {
-        "www.asoticocat.com": "Pregunta Frecuente '{0}' no encontrada.",
-        "cat.asoticocat.com": "Pregunta Freqüent '{0}' no trobada."
+        "es": "Pregunta Frecuente '{0}' no encontrada.",
+        "cat": "Pregunta Freqüent '{0}' no trobada."
     },
     "benefit_about_provider": {
-        "www.asoticocat.com": "Sobre el Proveedor",
-        "cat.asoticocat.com": "Sobre el Proveïdor"
+        "es": "Sobre el Proveedor",
+        "cat": "Sobre el Proveïdor"
     },
     "benefit_connect": {
-        "www.asoticocat.com": "Conecta",
-        "cat.asoticocat.com": "Connecta"
+        "es": "Conecta",
+        "cat": "Connecta"
     },
     "event_location": {
-        "www.asoticocat.com": "Punto de encuentro",
-        "cat.asoticocat.com": "Punt de trobada"
+        "es": "Punto de encuentro",
+        "cat": "Punt de trobada"
     },
     "events_see_all": {
-        "www.asoticocat.com": "Ver todos",
-        "cat.asoticocat.com": "Veure'ls tots"
+        "es": "Ver todos",
+        "cat": "Veure'ls tots"
     },
     "benefits_see_all": {
-        "www.asoticocat.com": "Ver todos",
-        "cat.asoticocat.com": "Veure'ls tots"
+        "es": "Ver todos",
+        "cat": "Veure'ls tots"
     },
     "faqs_see_all": {
-        "www.asoticocat.com": "Ver todas",
-        "cat.asoticocat.com": "Veure-les totes"
+        "es": "Ver todas",
+        "cat": "Veure-les totes"
     }
 }
