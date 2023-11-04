@@ -70,7 +70,7 @@ function AssociatePage() {
                                     />
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <Link to={`/${getLang()}/socio/${associateId}`}>
+                                    <Link to={associateId && associateId.trim() !== '' ? `/${getLang()}/socio/${associateId}` : ''}>
                                         <MKButton
                                             fullWidth
                                             sx={{ height: "100%" }}
