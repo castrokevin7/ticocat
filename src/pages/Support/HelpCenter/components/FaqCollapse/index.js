@@ -42,7 +42,7 @@ function FaqCollapse({ id, title, open, children, ...rest }) {
         }}
       >
         <MKBox sx={{ overflowX: 'auto' }} display="flex" alignItems="center" color={open ? "dark" : "text"}>
-          <Link target="_blank" to={`/${getLang()}/faqs/${id}`}>
+          <Link target="_blank" to={`/${getLang()}/faq/${id}`}>
             <Icon sx={{ fontWeight: "bold", marginRight: 1, marginTop: 1 }} fontSize="small">
               open_in_new_rounded
             </Icon>

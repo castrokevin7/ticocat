@@ -70,8 +70,8 @@ function App() {
         <Route exact path={"/es/faqs"} element={<FAQsPage />} />;
         <Route exact path={"/cat/faqs"} element={<FAQsPage />} />;
 
-        <Route exact path={"/es/faqs/:faqId"} element={<FAQView />} />;
-        <Route exact path={"/cat/faqs/:faqId"} element={<FAQView />} />;
+        <Route exact path={"/es/faq/:faqId"} element={<FAQView />} />;
+        <Route exact path={"/cat/faq/:faqId"} element={<FAQView />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />
