@@ -1,0 +1,93 @@
+import React, { useState } from "react";
+import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import { getTranslateAction } from 'sections/main/Navbar';
+import { getLang } from 'utils/Translator';
+import Container from "@mui/material/Container";
+import MKBox from "components/MKBox";
+import bgImage from "assets/images/associates.jpg";
+import MKInput from "components/MKInput";
+import MKButton from "components/MKButton";
+import Translator from 'utils/Translator';
+import Card from "@mui/material/Card";
+import { auto } from "@popperjs/core";
+import Grid from "@mui/material/Grid";
+import { Link } from "react-router-dom";
+
+function AssociatePage() {
+    const [associateId, setAssociateId] = useState();
+
+    const handleSearchCriteriaChange = (event) => {
+        setAssociateId(event.target.value);
+    };
+
+    return (
+        <>
+            <DefaultNavbar
+                routes={[]}
+                center
+                sticky
+                brand="asoticocat"
+                action={getTranslateAction()}
+                secondaryAction={{
+                    route: `/${getLang()}`,
+                    color: "info",
+                    icon: "arrow_circle_left_rounded",
+                    variant: "text",
+                    size: "large",
+                    minimal: true
+                }}
+            />
+
+            <MKBox component="header" position="relative">
+                <MKBox
+                    display="flex"
+                    alignItems="center"
+                    minHeight="100vh"
+                    sx={{
+                        backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.4), rgba(gradients.dark.state, 0.4))}, url(${bgImage})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
+                >
+                    <Container
+                        sx={{ marginTop: '150px', marginBottom: '100px' }}
+                    >
+                        <Card
+                            sx={{
+                                p: 2,
+                                backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+                                backdropFilter: "saturate(200%) blur(30px)",
+                                boxShadow: ({ boxShadows: { xxl } }) => xxl,
+                                overflowY: auto
+                            }}
+                        >
+                            <Grid container spacing={1}>
+                                <Grid item xs={8}>
+                                    <MKInput
+                                        label="Identificación del Socio (NIE, DNI, Pasaporte)"
+                                        fullWidth
+                                        onChange={handleSearchCriteriaChange}
+                                    />
+                                </Grid>
+                                <Grid item xs={4}>
+                                    <Link to={`/${getLang()}/socio/${associateId}`}>
+                                        <MKButton
+                                            fullWidth
+                                            sx={{ height: "100%" }}
+                                            color="white"
+                                        >
+                                            Buscar
+                                        </MKButton>
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Card>
+                    </Container>
+                </MKBox>
+            </MKBox>
+        </>
+    );
+}
+
+
+export default AssociatePage;

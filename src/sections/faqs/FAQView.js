@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { FAQ } from "../../models";
 import { DataStore } from "aws-amplify";
+import { FAQ } from "../../models";
 import Container from "@mui/material/Container";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
