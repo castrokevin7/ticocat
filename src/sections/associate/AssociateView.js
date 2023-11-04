@@ -43,7 +43,7 @@ function AssociateView() {
         return (
             <>
                 <h3>{Translator.instance.translate("associate_information")}</h3>
-                <p>{associateId}: {associate.name}</p>
+                <p>{associateId.toUpperCase()}: {associate.name}</p>
             </>
         )
     }
