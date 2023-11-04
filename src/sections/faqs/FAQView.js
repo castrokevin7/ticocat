@@ -13,8 +13,7 @@ import bgImage from "assets/images/faqs.jpeg";
 import Card from "@mui/material/Card";
 import { Spinner } from "sections/common/Spinner";
 import { auto } from "@popperjs/core";
-
-
+import { getLang } from 'utils/Translator';
 
 function FAQView() {
     const [state, setState] = useState("");
@@ -99,16 +98,6 @@ function FAQView() {
         );
     }
 
-    const getGoBackRoute = () => {
-        const path = window.location.pathname;
-        let parts = path.split("/");
-        if (parts.length > 0 && parts[0] === "") {
-            parts = parts.slice(1);
-        }
-        const first = parts[0];
-        return first === "es" || first === "cat" ? `/${first}/faqs` : "/faqs";
-    }
-
     return (
         <>
             <DefaultNavbar
@@ -118,7 +107,7 @@ function FAQView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: getGoBackRoute(),
+                    route: `/${getLang()}/faqs`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",
