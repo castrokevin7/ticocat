@@ -11,6 +11,7 @@ import { useParams } from "react-router";
 import { DataStore } from "aws-amplify";
 import Card from "@mui/material/Card";
 import { auto } from "@popperjs/core";
+import Translator from 'utils/Translator';
 
 function AssociateView() {
     const [state, setState] = useState("");
@@ -19,15 +20,12 @@ function AssociateView() {
 
     const fetchAssociate = async () => {
         try {
-            console.log("looking for:", associateId);
-            let response = await DataStore.query(Associate, associate => associate.identification('eq', associateId));
+            let response = await DataStore.query(Associate, associate => associate.identification('eq', associateId.toUpperCase()));
             if (response.length > 0) {
                 response = response[0];
                 setAssociate(response);
-                console.log("found:", response);
             } else {
                 setAssociate(null);
-                console.log("not found");
             }
             setState('success');
         } catch (err) {
@@ -41,6 +39,15 @@ function AssociateView() {
         fetchAssociate();
     }, [associateId]);
 
+    const getAssociateInformation = () => {
+        return (
+            <>
+                <h3>{Translator.instance.translate("associate_information")}</h3>
+                <p>{associateId}: {associate.name}</p>
+            </>
+        )
+    }
+
     const getAssociateContent = () => {
         if (state === 'loading') {
             return (
@@ -49,10 +56,10 @@ function AssociateView() {
         }
 
         if (state === 'error') {
-            return "There has been an error loading the associate"
+            return Translator.instance.translate("associate_search_error")
         }
 
-        return associate ? associate.name : "Not found";
+        return associate ? getAssociateInformation() : Translator.instance.translate("associate_not_found");
     }
 
     return (
@@ -64,7 +71,7 @@ function AssociateView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: `/${getLang()}/socio`,
+                    route: `/${getLang()}/socios`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

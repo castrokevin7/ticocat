@@ -75,8 +75,8 @@ function App() {
         <Route exact path={"/es/faq/:faqId"} element={<FAQView />} />;
         <Route exact path={"/cat/faq/:faqId"} element={<FAQView />} />;
 
-        <Route exact path={"/es/socio"} element={<AssociatePage />} />;
-        <Route exact path={"/cat/socio"} element={<AssociatePage />} />;
+        <Route exact path={"/es/socios"} element={<AssociatePage />} />;
+        <Route exact path={"/cat/socios"} element={<AssociatePage />} />;
 
         <Route exact path={"/es/socio/:associateId"} element={<AssociateView />} />;
         <Route exact path={"/cat/socio/:associateId"} element={<AssociateView />} />;

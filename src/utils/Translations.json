@@ -406,5 +406,25 @@
     "faqs_see_all": {
         "es": "Ver todas",
         "cat": "Veure-les totes"
+    },
+    "associate_search_label": {
+        "es": "Identificación del Socio (NIE, DNI, Pasaporte)",
+        "cat": "Identificació del Soci (NIE, DNI, Passaport)"
+    },
+    "associate_search_action": {
+        "es": "Buscar",
+        "cat": "Cercar"
+    },
+    "associate_search_error": {
+        "es": "Error buscando socio",
+        "cat": "Error cercant soci"
+    },
+    "associate_not_found": {
+        "es": "Socio no encontrado",
+        "cat": "Soci no trobat"
+    },
+    "associate_information": {
+        "es": "Socio Registrado",
+        "cat": "Soci Registrat"
     }
 }

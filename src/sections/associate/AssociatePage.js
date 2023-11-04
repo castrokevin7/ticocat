@@ -64,7 +64,7 @@ function AssociatePage() {
                             <Grid container spacing={1}>
                                 <Grid item xs={8}>
                                     <MKInput
-                                        label="Identificación del Socio (NIE, DNI, Pasaporte)"
+                                        label={Translator.instance.translate("associate_search_label")}
                                         fullWidth
                                         onChange={handleSearchCriteriaChange}
                                     />
@@ -76,7 +76,7 @@ function AssociatePage() {
                                             sx={{ height: "100%" }}
                                             color="white"
                                         >
-                                            Buscar
+                                            {Translator.instance.translate("associate_search_action")}
                                         </MKButton>
                                     </Link>
                                 </Grid>
