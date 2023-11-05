@@ -10,6 +10,7 @@ import Events from './Events';
 import Footer from './Footer';
 import Benefits from './Benefits';
 import FAQ from './FAQs';
+import Closure from './Closure';
 
 export default function Main() {
     return (
@@ -32,6 +33,7 @@ export default function Main() {
                 <Benefits />
                 <FAQ />
                 <Associates />
+                <Closure />
             </Card>
             <Footer />
         </>

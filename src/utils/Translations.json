@@ -19,6 +19,10 @@
         "es": "Error cargando Pregunta Frecuente '{0}'",
         "cat": "Error carregant Pregunta Freqüent '{0}'"
     },
+    "closure_invitation": {
+        "es": "Esperamos verte en alguna de nuestras actividades, ya sea como socio o particular, podamos disfrutar de la compañía, amistad y el pura vida ❤️.",
+        "cat": "Esperem veure't en alguna de les nostres activitats, ja sigui com a soci o particular, puguem gaudir de la companyia, amistat i el pura vida ❤️."
+    },
     "route_home": {
         "es": "Inicio",
         "cat": "Inici"
