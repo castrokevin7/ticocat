@@ -3,6 +3,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import MKTypography from "components/MKTypography";
 import Translator from 'utils/Translator';
+import bgImage from "assets/images/closure-bg.png";
 
 function Closure() {
     return (
@@ -18,7 +19,7 @@ function Closure() {
                     p={6}
                     sx={{
                         backgroundImage:
-                            "url(https://images.unsplash.com/photo-1533563906091-fdfdffc3e3c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80)",
+                            `url(${bgImage})`,
                     }}
                 >
                     <Grid container>
