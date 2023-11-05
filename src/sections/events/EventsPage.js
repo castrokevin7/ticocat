@@ -180,7 +180,7 @@ function EventsPage() {
                     }}
                 >
                     <Container>
-                        <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
+                        <Grid container item xs={12} lg={8} flexDirection="column" justifyContent="center">
                             <MKTypography
                                 variant="h1"
                                 color="white"

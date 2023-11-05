@@ -320,8 +320,12 @@
         "cat": "Tots els esdeveniments, tant registre dels passats com els que han de venir."
     },
     "benefits_page_benefits_header": {
-        "es": "Todos los beneficios para nuetros socios. Podés disfrutar de ellos contactando al proveedor y presentando tu carnet de socio.",
-        "cat": "Tots els beneficis per a nostres socis. Pots gaudir d'ells contactant amb el proveïdor i presentant el teu carnet de soci."
+        "es": "Podés disfrutar de los beneficios contactando al proveedor, presentando tu carnet de socio o verificando tu membresía a la asociación",
+        "cat": "Pots gaudir dels beneficis contactant amb el proveïdor, presentant el teu carnet de soci o verificant la teva membreia a l'associació"
+    },
+    "benefits_page_benefits_verification_link": {
+        "es": "aquí",
+        "cat": "aquí"
     },
     "faqs_page_faqs_header": {
         "es": "Preguntas frecuentes sobre trámites, compras, vivir en Cataluña, etc.",

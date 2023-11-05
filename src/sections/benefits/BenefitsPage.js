@@ -144,7 +144,7 @@ function BenefitsPage() {
                     }}
                 >
                     <Container>
-                        <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
+                        <Grid container item xs={12} lg={8} flexDirection="column" justifyContent="center">
                             <MKTypography
                                 variant="h1"
                                 color="white"
@@ -177,9 +177,20 @@ function BenefitsPage() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
-                        <Grid container item xs={12} lg={6} flexDirection="column">
+                        <Grid container item xs={12} lg={8} flexDirection="column">
                             <MKTypography variant="body1" color="text" mb={2}>
                                 {Translator.instance.translate("benefits_page_benefits_header")}
+                                {' '}
+                                <MKTypography
+                                    component="a"
+                                    href={`/${getLang()}/socios`}
+                                    variant="body1"
+                                    color="info"
+                                    fontWeight="regular"
+                                >
+                                    {Translator.instance.translate("benefits_page_benefits_verification_link")}
+                                </MKTypography>
+                                .
                             </MKTypography>
                         </Grid>
                         <Grid container spacing={3} mt={0.1}>
