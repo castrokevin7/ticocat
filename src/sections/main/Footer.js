@@ -11,14 +11,16 @@ import Translator from 'utils/Translator';
 function Footer() {
   const company = {
     href: "https://www.asoticocat.com/",
-    name: "Aso TicoCat",
+    name: "TICOCAT",
   };
   const links = [
-    { href: "/#", name: Translator.instance.translate("route_home") },
-    { href: "/#acerca", name: Translator.instance.translate("route_about") },
-    { href: "/#equipo", name: Translator.instance.translate("route_team") },
-    { href: "/#socios", name: Translator.instance.translate("route_associates") },
-    { href: "/#eventos", name: Translator.instance.translate("route_events") },
+    { href: "#", name: Translator.instance.translate("route_home") },
+    { href: "#acerca", name: Translator.instance.translate("route_about") },
+    { href: "#equipo", name: Translator.instance.translate("route_team") },
+    { href: "#eventos", name: Translator.instance.translate("route_events") },
+    { href: "#beneficios", name: Translator.instance.translate("route_benefits") },
+    { href: "#faqs", name: Translator.instance.translate("route_faqs") },
+    { href: "#socios", name: Translator.instance.translate("route_associates") },
   ];
   const socials = [
     {

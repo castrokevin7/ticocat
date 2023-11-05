@@ -139,6 +139,10 @@
         "es": "5. Colaboración, apoyo e información entre sus miembros",
         "cat": "5. Col·laboració, suport i informació entre els seus membres"
     },
+    "associates_main_verification": {
+        "es": "Podés verificar tu membría a la asociación",
+        "cat": "Pots verificar la teva membreia a l'associació"
+    },
     "team_from_prefix": {
         "es": "De",
         "cat": "De"
@@ -320,8 +324,8 @@
         "cat": "Tots els esdeveniments, tant registre dels passats com els que han de venir."
     },
     "benefits_page_benefits_header": {
-        "es": "Podés disfrutar de los beneficios contactando al proveedor, presentando tu carnet de socio o verificando tu membresía a la asociación",
-        "cat": "Pots gaudir dels beneficis contactant amb el proveïdor, presentant el teu carnet de soci o verificant la teva membreia a l'associació"
+        "es": "Podés disfrutar de los beneficios contactando al proveedor, y presentar tu carnet de socio o verificando tu membresía a la asociación",
+        "cat": "Pots gaudir dels beneficis contactant amb el proveïdor, y presentar el teu carnet de soci o verificant la teva membreia a l'associació"
     },
     "benefits_page_benefits_verification_link": {
         "es": "aquí",

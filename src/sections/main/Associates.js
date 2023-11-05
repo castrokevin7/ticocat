@@ -22,6 +22,7 @@ import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
 import bgImage1 from "assets/images/examples/comunidad-ticos.png";
 
 import Translator from 'utils/Translator';
+import { getLang } from 'utils/Translator';
 
 function AssociatesCounter() {
     const [count, setCount] = useState(null);
@@ -107,31 +108,43 @@ function Associates() {
                     <MKTypography variant="h3" mt={3}>
                         {Translator.instance.translate("associates_main_title")}
                     </MKTypography>
-                    <MKTypography variant="body1" color="text" mt={1}>
-                        {Translator.instance.translate("associates_main_description")}
-                    </MKTypography>
                 </Grid>
                 <Grid container spacing={3} alignItems="center" sx={{ mt: 6 }}>
                     <Grid item xs={12} md={4} sx={{ ml: "auto" }}>
                         <AssociatesCounter />
                     </Grid>
                     <Grid item xs={12} md={5} sx={{ mr: "auto", ml: { xs: 0, md: 6 } }}>
-                        <ListItem title={Translator.instance.translate("associates_benefit_1")}>
-                            <></>
-                        </ListItem>
-                        <ListItem title={Translator.instance.translate("associates_benefit_2")}>
-                            <></>
-                        </ListItem>
-                        <ListItem title={Translator.instance.translate("associates_benefit_3")}>
-                            <></>
-                        </ListItem>
-                        <ListItem title={Translator.instance.translate("associates_benefit_4")}>
-                            <></>
-                        </ListItem>
-                        <ListItem title={Translator.instance.translate("associates_benefit_5")}>
-                            <></>
-                        </ListItem>
+                        <ListItem title={Translator.instance.translate("associates_benefit_1")} />
+                        <ListItem title={Translator.instance.translate("associates_benefit_2")} />
+                        <ListItem title={Translator.instance.translate("associates_benefit_3")} />
+                        <ListItem title={Translator.instance.translate("associates_benefit_4")} />
+                        <ListItem title={Translator.instance.translate("associates_benefit_5")} />
                     </Grid>
+                </Grid>
+                <Grid
+                    container
+                    item
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    xs={12}
+                    sx={{ mx: "auto", textAlign: "center", mt: 6 }}
+                >
+                    <MKTypography variant="body1" color="text">
+                        {Translator.instance.translate("associates_main_verification")}
+                        {' '}
+                        <MKTypography
+                            component="a"
+                            target="_blank"
+                            href={`/${getLang()}/socios`}
+                            variant="body1"
+                            color="info"
+                            fontWeight="regular"
+                        >
+                            {Translator.instance.translate("benefits_page_benefits_verification_link")}
+                        </MKTypography>
+                        .
+                    </MKTypography>
                 </Grid>
             </Container>
         </MKBox>

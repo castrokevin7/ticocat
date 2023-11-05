@@ -183,6 +183,7 @@ function BenefitsPage() {
                                 {' '}
                                 <MKTypography
                                     component="a"
+                                    target="_blank"
                                     href={`/${getLang()}/socios`}
                                     variant="body1"
                                     color="info"
