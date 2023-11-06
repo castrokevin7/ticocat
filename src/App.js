@@ -17,6 +17,7 @@ import FAQsPage from 'sections/faqs/FAQsPage';
 import FAQView from 'sections/faqs/FAQView';
 import AssociatePage from 'sections/associate/AssociatePage';
 import AssociateView from 'sections/associate/AssociateView';
+import TermsAndConditionsPage from 'sections/terms-and-conditions/TermsAndConditionsPage';
 
 function App() {
   const { pathname } = useLocation();
@@ -80,6 +81,9 @@ function App() {
 
         <Route exact path={"/es/socio/:associateId"} element={<AssociateView />} />;
         <Route exact path={"/cat/socio/:associateId"} element={<AssociateView />} />;
+        
+        <Route exact path={"/es/terminos-condiciones"} element={<TermsAndConditionsPage />} />;
+        <Route exact path={"/cat/terminos-condiciones"} element={<TermsAndConditionsPage />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />
