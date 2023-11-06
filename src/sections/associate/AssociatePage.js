@@ -81,6 +81,8 @@ function AssociatePage() {
                                     </Link>
                                 </Grid>
                             </Grid>
+
+                            <p style={{ marginTop: '15px', textAlign: 'center' }}>{Translator.instance.translate("associate_terms_conditions")} <a target="_blank" rel="noreferrer" href={`/${getLang()}/terminos-condiciones`}>aquí</a>.</p>
                         </Card>
                     </Container>
                 </MKBox>

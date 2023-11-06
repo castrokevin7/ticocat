@@ -61,7 +61,7 @@ function TermsAndConditionsPage() {
 
                             <h3>2. Datos Recopilados</h3>
                             <p>Los datos personales que recopilamos pueden incluir, pero no se limitan a:</p>
-                            <ul>
+                            <ul style={{ marginLeft: '40px' }}>
                                 <li>Nombre y apellidos</li>
                                 <li>Dirección de correo electrónico</li>
                                 <li>Número de teléfono</li>
@@ -70,7 +70,7 @@ function TermsAndConditionsPage() {
 
                             <h3>3. Uso de Datos</h3>
                             <p>Utilizaremos tus datos personales para los siguientes fines:</p>
-                            <ul>
+                            <ul style={{ marginLeft: '40px' }}>
                                 <li>Comunicación relacionada con actividades y eventos de la asociación.</li>
                                 <li>Gestión de tu membresía y participación en proyectos.</li>
                                 <li>Envío de boletines informativos y anuncios relevantes.</li>
@@ -86,7 +86,7 @@ function TermsAndConditionsPage() {
                             <h3>6. Derechos del Titular de Datos</h3>
 
                             <p>Como titular de datos, tienes los siguientes derechos:</p>
-                            <ul>
+                            <ul style={{ marginLeft: '40px' }}>
                                 <li>Acceso a tus datos personales.</li>
                                 <li>Rectificación de datos inexactos o incompletos.</li>
                                 <li>Supresión de tus datos cuando ya no sean necesarios para los fines establecidos.</li>
