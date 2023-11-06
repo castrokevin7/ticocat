@@ -20,8 +20,8 @@
         "cat": "Error carregant Pregunta Freqüent '{0}'"
     },
     "closure_invitation": {
-        "es": "Esperamos verte en alguna de nuestras actividades, ya sea como socio o particular, podamos disfrutar de la compañía, amistad y el pura vida ❤️.",
-        "cat": "Esperem veure't en alguna de les nostres activitats, ja sigui com a soci o particular, puguem gaudir de la companyia, amistat i el pura vida ❤️."
+        "es": "Esperamos verte en alguna de nuestras actividades, ya sea como socio o particular, podamos disfrutar de la compañía, amistad y el Pura Vida ❤️.",
+        "cat": "Esperem veure't en alguna de les nostres activitats, sigui com a soci o particular, puguem gaudir de la companyia, amistat i el Pura Vida ❤️."
     },
     "route_home": {
         "es": "Inicio",
@@ -53,7 +53,7 @@
     },
     "home_main_title": {
         "es": "Asociación Cultural Costarricense Catalana",
-        "cat": "Associació Cultural Costarricense Catalana"
+        "cat": "Associació Cultural Costa-riquenya Catalana"
     },
     "home_mini_title": {
         "es": "TICOCAT",
@@ -65,43 +65,39 @@
     },
     "about_context_title": {
         "es": "TICOCAT: promoviendo la cultura costarricense en Cataluña",
-        "cat": "TICOCAT: promovent la cultura costa-riquenya a Catalunya"
+        "cat": "TICOCAT: promovent la cultura Costa-riquenya a Catalunya"
     },
     "about_context_description": {
-        "es": "TICOCAT es una asociación sin ánimo de lucro creada en diciembre de 2019 con el objetivo de brindar espacios y actividades para la conexión de los y las costarricenses residentes en Cataluña con su cultura y promoverla dentro de la sociedad Catalana.",
-        "cat": "TICOCAT és una associació sense ànim de lucre creada el desembre de 2019 amb l'objectiu de brindar espais i activitats per a la connexió dels costarricencs residents a Catalunya amb la seva cultura i promoure-la dins de la societat Catalana."
+        "es": "TICOCAT es una asociación sin ánimo de lucro creada en diciembre de 2019 con el objetivo de brindar espacios y actividades para la conexión de los y las Costarricenses residentes en Cataluña con su cultura y promoverla dentro de la sociedad Catalana.",
+        "cat": "TICOCAT és una associació sense ànim de lucre creada el desembre de 2019 amb l'objectiu de brindar espais i activitats per a la connexió dels Costa-riquenys residents a Catalunya amb la seva cultura i promoure-la dins de la societat Catalana."
     },
     "about_context_description_follow": {
-        "es": "Queremos que los ticos y ticas que viven en Cataluña no se sientan lejos de casa y puedan disfrutar de la esencia pura de Costa Rica. Somos un lugar de encuentro cuyo objetivo es fomentar comunidad. ¡Unite a nosotros y sentite un poco más cerca de casa!",
-        "cat": "Volem que els ticos i ticas que viuen a Catalunya no se sentin lluny de casa i puguin gaudir de l´essència pura de Costa Rica. Som un lloc de trobada que té com a objectiu fomentar comunitat. Uniu-vos a nosaltres i sentiu una mica més a prop de casa!"
+        "es": "Queremos que los Ticos y Ticas que viven en Cataluña no se sientan lejos de casa y puedan disfrutar de la esencia pura de Costa Rica. Somos un lugar de encuentro cuyo objetivo es fomentar comunidad. ¡Unite a nosotros y sentite un poco más cerca de casa!",
+        "cat": "Volem que els Ticos i Ticas que viuen a Catalunya no se sentin lluny de casa i puguin gaudir de l'essència pura de Costa Rica. Som un lloc de trobada que té com a objectiu fomentar comunitat. Uniu-vos a nosaltres i sentiu una mica més a prop de casa!"
     },
     "about_vision_title": {
         "es": "Visión",
         "cat": "Visió"
     },
     "about_vision_description": {
-        "es": "Ser el principal punto de contacto entre Costa Rica y la comunidad de costarricenses en Cataluña a través de actividades culturales, sociales y de desarrollo económico.",
-        "cat": "Ser el principal punt de contacte entre Costa Rica i la comunitat de costarricencs a Catalunya mitjançant activitats culturals, socials i de desenvolupament econòmic."
+        "es": "Ser el principal punto de contacto entre Costa Rica y la comunidad de Costarricenses en Cataluña a través de actividades culturales, sociales y de desarrollo económico.",
+        "cat": "Ser el principal punt de contacte entre Costa Rica i la comunitat de Costa-riquenys a Catalunya mitjançant activitats culturals, socials i de desenvolupament econòmic."
     },
     "about_mission_title": {
         "es": "Misión",
         "cat": "Missió"
     },
     "about_mission_description": {
-        "es": "Promover el acercamiento de los costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el Pura Vida que nos caracteriza.",
-        "cat": "Promoure l'acostament dels costarricencs que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el Pura Vida que ens caracteritza."
+        "es": "Promover el acercamiento de los Costarricenses que residen en Cataluña para salvaguardar nuestro legado cultural y el Pura Vida que nos caracteriza.",
+        "cat": "Promoure l'acostament dels Costa-riquenys que resideixen a Catalunya per salvaguardar el nostre llegat cultural i el Pura Vida que ens caracteritza."
     },
     "about_download_statutes": {
         "es": "Descargar estatutos",
         "cat": "Descarregar estatuts"
     },
-    "associates_count_load": {
-        "es": "Cargar Socios",
-        "cat": "Carregar Socis"
-    },
     "associates_count_zero": {
         "es": "No hay",
-        "cat": "No hi ha"
+        "cat": "No n'hi ha"
     },
     "associates_counter_title": {
         "es": "Socios",
@@ -109,7 +105,7 @@
     },
     "associates_counter_description": {
         "es": "¿Y vos, te animás?",
-        "cat": "¿Y tú, t'animes?"
+        "cat": "¿I tu, t'hi animes?"
     },
     "associates_counter_action": {
         "es": "Quiero asociarme",
@@ -119,21 +115,17 @@
         "es": "Nuestra Comunidad",
         "cat": "La Nostra Comunitat"
     },
-    "associates_main_description": {
-        "es": "TICOCAT ofrece múltiples beneficios para miembros.",
-        "cat": "TICOCAT ofereix múltiples beneficis per a membres."
-    },
     "associates_benefit_1": {
-        "es": "1. Comunidad organizada de costarricenses en Cataluña",
-        "cat": "1. Comunitat organitzada de costarricencs a Catalunya"
+        "es": "1. Comunidad organizada de Costarricenses en Cataluña",
+        "cat": "1. Comunitat organitzada de Costa-riquenys a Catalunya"
     },
     "associates_benefit_2": {
         "es": "2. Actividades socio-culturales entre sus miembros y la comunidad",
         "cat": "2. Activitats socioculturals entre els seus membres i la comunitat"
     },
     "associates_benefit_3": {
-        "es": "3. Inserción de los costarricenses dentro de la Comunidad Catalana",
-        "cat": "3. Inserció dels costarricencs dins de la Comunitat Catalana"
+        "es": "3. Inserción de los Costarricenses dentro de la Comunidad Catalana",
+        "cat": "3. Inserció dels Costa-riquenys dins de la Comunitat Catalana"
     },
     "associates_benefit_4": {
         "es": "4. Acercamiento intercultural",
@@ -144,8 +136,8 @@
         "cat": "5. Col·laboració, suport i informació entre els seus membres"
     },
     "associates_main_verification": {
-        "es": "Podés verificar tu membría a la asociación",
-        "cat": "Pots verificar la teva membreia a l'associació"
+        "es": "Podés verificar tu membresía a la asociación",
+        "cat": "Pots verificar la teva filiació a l'associació"
     },
     "team_from_prefix": {
         "es": "De",
@@ -204,12 +196,12 @@
         "cat": "Cinematografia i Música"
     },
     "team_jordi_contributions": {
-        "es": "Creatividad, entusiasmo y... Comida!",
+        "es": "Creatividad, entusiasmo y... ¡Comida!",
         "cat": "Creativitat, entusiasme i... Menjar!"
     },
     "team_jordi_reasons": {
         "es": "Después de, por casualidad, haber heredado el grupo de Facebook de \"Ticos en Barcelona\", me encontré con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los Ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo",
-        "cat": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, seguim unint forces per aconseguir-ho"
+        "cat": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, encara unim forces per aconseguir-ho"
     },
     "team_cindy_arribada": {
         "es": "Octubre, 2021",
@@ -224,8 +216,8 @@
         "cat": "Creativitat, disseny, rigorositat i organització"
     },
     "team_cindy_reasons": {
-        "es": "Después de lograr el sueño de venir a vivir a Barcelona, y sabiendo que tendría estabilidad en la ciudad, sentí la necesidad de aportar mi granito de arena a una comunidad que siempre me hizo sentir más cerca de casa. Se siente increíble representar a nuestro lindo país, y formar una familia de ticos al otro lado del mundo",
-        "cat": "Després d'aconseguir el somni de venir a viure a Barcelona, i sabent que tindria estabilitat a la ciutat, vaig sentir la necessitat d'aportar el meu granet de sorra a una comunitat que sempre em va fer sentir més a prop de casa. Se sent increïble representar el nostre bonic país, i formar una família de ticos a l'altra banda del món"
+        "es": "Después de lograr el sueño de venir a vivir a Barcelona, y sabiendo que tendría estabilidad en la ciudad, sentí la necesidad de aportar mi granito de arena a una comunidad que siempre me hizo sentir más cerca de casa. Se siente increíble representar a nuestro lindo país, y formar una familia de Ticos al otro lado del mundo",
+        "cat": "Després d'aconseguir el somni de venir a viure a Barcelona, i sabent que tindria estabilitat a la ciutat, vaig sentir la necessitat d'aportar el meu granet de sorra a una comunitat que sempre em va fer sentir més a prop de casa. Se sent increïble representar el nostre bonic país, i formar una família de Ticos a l'altra banda del món"
     },
     "team_aquion_arribada": {
         "es": "Octubre, 2021",
@@ -237,7 +229,7 @@
     },
     "team_aquion_contributions": {
         "es": "Logística y planificación de eventos",
-        "cat": "Logística i planificació d´esdeveniments"
+        "cat": "Logística i planificació d'esdeveniments"
     },
     "team_aquion_reasons": {
         "es": "Amor a la patria y creer en Costa Rica",
@@ -252,12 +244,12 @@
         "cat": "Ing. En Computació"
     },
     "team_kevin_contributions": {
-        "es": "Secretariado, eventos y desarrollo web",
-        "cat": "Secretariat, esdeveniments i desenvolupament web"
+        "es": "Secretariado, eventos y desarrollo de software",
+        "cat": "Secretariat, esdeveniments i desenvolupament de programari"
     },
     "team_kevin_reasons": {
         "es": "Como manera de agradecimiento por estar aquí me interesa ayudar a la comunidad. Además cuando comparto con Ticos soy feliz y me teletransporto por un momento a nuestra patria que quiero y extraño tanto",
-        "cat": "Com a agraïment per ser aquí, m'interessa ajudar la comunitat. A més quan comparteixo amb Ticos sóc feliç i em teletransporto per un moment a la nostra pàtria que estimo i tant trobo a faltar"
+        "cat": "Com a agraïment per ser aquí, m'interessa ajudar la comunitat. A més quan comparteixo amb Ticos soc feliç i em teletransporto per un moment a la nostra pàtria que estimo i tant trobo a faltar"
     },
     "team_raque_arribada": {
         "es": "Septiembre, 2016⁣",
@@ -289,7 +281,7 @@
     },
     "team_ale_reasons": {
         "es": "Recuerdo que antes de venirme a Barcelona, tenía muchas preguntas y necesitaba de alguien que me ayudara a contestarlas. En aquel momento tuve un angel que no dudo en responderlas. Cuando llegue me propuse a ser ese ángel para alguien más y desde entonces he estado trabajando para la comunidad aportando mi granito de arena. Para que otros tengan la misma posibilidad de cumplir el sueño de estudiar o vivir en Barcelona",
-        "cat": "Recordo que abans de arribar a Barcelona tenia moltes preguntes i necessitava algú que m'ajudés a contestar-les. En aquell moment vaig tenir un àngel que no va dubtar a respondre-les. Quan vaig arribar em vaig proposar de ser aquest àngel per a algú més i des de llavors he estat treballant per a la comunitat aportant el meu granet de sorra. Perquè els altres tinguin la mateixa possibilitat de complir el somni d'estudiar o viure a Barcelona"
+        "cat": "Recordo que abans d'arribar a Barcelona tenia moltes preguntes i necessitava algú que m'ajudés a contestar-les. En aquell moment vaig tenir un àngel que no va dubtar a respondre-les. Quan vaig arribar em vaig proposar de ser aquest àngel per a algú més i des de llavors he estat treballant per a la comunitat aportant el meu granet de sorra. Perquè els altres tinguin la mateixa possibilitat de complir el somni d'estudiar o viure a Barcelona"
     },
     "events_page_title": {
         "es": "Eventos",
@@ -301,11 +293,11 @@
     },
     "faqs_page_title": {
         "es": "Preguntas Frecuentes",
-        "cat": "Preguntes freqüents"
+        "cat": "Preguntes Freqüents"
     },
     "events_page_description": {
         "es": "Aquí encontrarás una variedad de eventos y actividades en las que nuestros miembros pueden participar. Desde eventos culturales y festivales hasta encuentros sociales y talleres educativos, hay algo para todos.",
-        "cat": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar-hi. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
+        "cat": "Aquí trobareu una varietat d'esdeveniments i activitats on els nostres membres poden participar. Des d'esdeveniments culturals i festivals fins a trobades socials i tallers educatius, hi ha alguna cosa per a tothom."
     },
     "benefits_page_description": {
         "es": "Beneficios desde descuentos en actividades y eventos hasta acceso a servicios y recursos útiles para la comunidad.",
@@ -329,7 +321,7 @@
     },
     "benefits_page_benefits_header": {
         "es": "Podés disfrutar de los beneficios contactando al proveedor, y presentar tu carnet de socio o verificando tu membresía a la asociación",
-        "cat": "Pots gaudir dels beneficis contactant amb el proveïdor, y presentar el teu carnet de soci o verificant la teva membreia a l'associació"
+        "cat": "Pots gaudir dels beneficis contactant amb el proveïdor, i presentar el teu carnet de soci o verificant la teva filiació a l'associació"
     },
     "benefits_page_benefits_verification_link": {
         "es": "aquí",
@@ -341,7 +333,7 @@
     },
     "faqs_page_suggestions": {
         "es": "¿Considerás alguna otra información importante y no la encontrás aquí? Envianos tu sugerencia ",
-        "cat": "Consideres alguna altra informació important i no la trobes aquí? Envia'ns la teva suggerència "
+        "cat": "Consideres alguna altra informació important i no la trobes aquí? Envia'ns la teva suggeriment "
     },
     "events_page_all_filter": {
         "es": "Todos",
