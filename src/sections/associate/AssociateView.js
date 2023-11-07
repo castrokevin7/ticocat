@@ -44,6 +44,8 @@ function AssociateView() {
             <>
                 <h3>{Translator.instance.translate("associate_information")}</h3>
                 <p>{associateId.toUpperCase()}: {associate.name}</p>
+
+                <p style={{ marginTop: '15px', textAlign: 'center' }}>{Translator.instance.translate("associate_terms_conditions")} <a target="_blank" rel="noreferrer" href={`/${getLang()}/terminos-condiciones`}>aquí</a>.</p>
             </>
         )
     }
@@ -56,10 +58,12 @@ function AssociateView() {
         }
 
         if (state === 'error') {
-            return Translator.instance.translate("associate_search_error")
+            return <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_search_error")}</p>;
         }
 
-        return associate ? getAssociateInformation() : Translator.instance.translate("associate_not_found");
+        return associate ? 
+            getAssociateInformation() : 
+            <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_not_found")}</p>;
     }
 
     return (
@@ -79,7 +83,7 @@ function AssociateView() {
                     minimal: true
                 }}
             />
-            
+
             <MKBox component="header" position="relative">
                 <MKBox
                     display="flex"
@@ -93,7 +97,7 @@ function AssociateView() {
                 >
                     <Container
                         sx={{ marginTop: '150px', marginBottom: '100px' }}
-                    >   
+                    >
                         <Card
                             sx={{
                                 p: 2,
