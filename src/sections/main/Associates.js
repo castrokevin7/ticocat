@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DataStore, Predicates } from '@aws-amplify/datastore';
+import { DataStore } from '@aws-amplify/datastore';
 import { Associate } from 'models';
 
 // @mui material components
