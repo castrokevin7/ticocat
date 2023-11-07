@@ -76,6 +76,7 @@ function TermsAndConditionsPage() {
                                 <li>{Translator.instance.translate("terms_term_3_description_item_2")}</li>
                                 <li>{Translator.instance.translate("terms_term_3_description_item_3")}</li>
                                 <li>{Translator.instance.translate("terms_term_3_description_item_4")}</li>
+                                <li>{Translator.instance.translate("terms_term_3_description_item_5")}</li>
                             </ul>
 
                             <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_4")}</h3>
