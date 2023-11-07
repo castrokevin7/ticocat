@@ -145,6 +145,21 @@ function Associates() {
                         </MKTypography>
                         .
                     </MKTypography>
+                    <MKTypography variant="body1" color="text">
+                        {Translator.instance.translate("associate_terms_conditions")}
+                        {' '}
+                        <MKTypography
+                            component="a"
+                            target="_blank"
+                            href={`/${getLang()}/terminos-condiciones`}
+                            variant="body1"
+                            color="info"
+                            fontWeight="regular"
+                        >
+                            {Translator.instance.translate("benefits_page_benefits_verification_link")}
+                        </MKTypography>
+                        .
+                    </MKTypography>
                 </Grid>
             </Container>
         </MKBox>
