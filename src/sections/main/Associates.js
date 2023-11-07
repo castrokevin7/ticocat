@@ -28,7 +28,7 @@ function AssociatesCounter() {
     const [count, setCount] = useState(null);
 
     const fetchData = async () => {
-        const associates = await DataStore.query(Associate, Predicates.ALL, { useCache: false });
+        const associates = await DataStore.query(Associate);
         setCount(associates.length);
     }
 
