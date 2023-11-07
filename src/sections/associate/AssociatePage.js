@@ -64,6 +64,7 @@ function AssociatePage() {
                             <Grid container spacing={1}>
                                 <Grid item xs={8}>
                                     <MKInput
+                                        variant="standard"
                                         label={Translator.instance.translate("associate_search_label")}
                                         fullWidth
                                         onChange={handleSearchCriteriaChange}

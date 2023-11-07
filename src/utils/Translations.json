@@ -412,8 +412,8 @@
         "cat": "Veure-les totes"
     },
     "associate_search_label": {
-        "es": "Identificación del Socio (NIE, DNI, Pasaporte)",
-        "cat": "Identificació del Soci (NIE, DNI, Passaport)"
+        "es": "Identificación del Socio (NIE, DNI o Pasaporte)",
+        "cat": "Identificació del Soci (NIE, DNI o Passaport)"
     },
     "associate_search_action": {
         "es": "Buscar",
