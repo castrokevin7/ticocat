@@ -121,23 +121,24 @@ function EventView() {
             <MKBox component="section" py={{ xs: 3, md: 12 }}>
                 <Container>
                     <Grid container alignItems="center">
-                        <Grid item xs={12} lg={5}>
+                        <Grid item xs={12}>
                             <MKTypography variant="h3" my={1}>
                                 {getEventTitle(event)}
                             </MKTypography>
                             <MKTypography sx={{ whiteSpace: 'pre-line' }} variant="body1" color="text" mb={2}>
                                 {getEventDescription(event)}
                             </MKTypography>
-                            {
+                            {/*                             {
                                 event.gallery && event.gallery.length > 0 && getEventDetails(event)
-                            }
+                            } */}
+                            {getEventDetails(event)}
                         </Grid>
-                        {event.gallery && event.gallery.length > 0 ?
+                        {/*                        {event.gallery && event.gallery.length > 0 ?
                             getEventGallery(event) :
                             <Grid item xs={12} lg={6} sx={{ ml: { xs: -2, lg: "auto" }, mt: { xs: 6, lg: 0 } }}>
                                 {getEventDetails(event)}
                             </Grid>
-                        }
+                        } */}
                     </Grid>
                 </Container>
             </MKBox>
