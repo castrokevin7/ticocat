@@ -10,7 +10,7 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import { getBenefitTitle, getBenefitDescription, getBenefitAboutProvider } from "./Utils";
 import Translator from "utils/Translator";
-import { getTranslateAction } from "sections/main/Navbar";
+import { getTranslateAction } from 'utils/TranslateAction';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LanguageIcon from "@mui/icons-material/Language";

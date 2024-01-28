@@ -28,7 +28,7 @@ import { getBenefitTitle, getBenefitDescription } from './Utils';
 
 import Translator from 'utils/Translator';
 
-import { getTranslateAction } from 'sections/main/Navbar';
+import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
 
 function BenefitsPage() {

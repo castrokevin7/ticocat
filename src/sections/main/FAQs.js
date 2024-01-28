@@ -81,6 +81,7 @@ function FAQs() {
                 <Grid item mt={5} xs={12} md={10}>
                     {faqs.map((faq, i) =>
                         <FaqCollapse
+                            key={i}
                             id={faq.id}
                             title={getFAQQuestion(faq)}
                             open={collapse === i}

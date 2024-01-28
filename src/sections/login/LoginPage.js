@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import { getTranslateAction } from 'sections/main/Navbar';
+import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
 import MKBox from "components/MKBox";
 import bgImage from "assets/images/associates.jpg";
@@ -15,13 +15,19 @@ import Icon from "@mui/material/Icon";
 import { Associate } from 'models';
 import { DataStore } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
-
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import { Navigate } from 'react-router-dom';
 
 function LoginPage() {
+    const { user } = useAuthenticator((context) => [context.user]);
     const [email, setEmail] = useState(null);
     const [notFound, setNotFound] = useState(false);
     const [emailToSearch, setEmailToSearch] = useState(null);
     const [invalidEmail, setInvalidEmail] = useState(false);
+
+    if (user) {
+        return <Navigate to={`/${getLang()}/cuenta`} />;
+    }
 
     const searchAssociate = async (email) => {
         try {
@@ -57,16 +63,7 @@ function LoginPage() {
     const getLoginContent = () => {
 
         if (email) {
-            return (
-                <Authenticator>
-                    {({ signOut, user }) => (
-                        <main>
-                            <h1>Hello {user.username}</h1>
-                            <button onClick={signOut}>Sign out</button>
-                        </main>
-                    )}
-                </Authenticator>
-            );
+            return <Authenticator />;
         }
 
         return (

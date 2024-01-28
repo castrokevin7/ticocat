@@ -3,44 +3,19 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 
 import routes from "routes";
 
-import { getLang } from 'utils/Translator';
-
-export function getTranslateAction() {
-    const origin = window.location.origin;
-    
-    let pathnameParts = window.location.pathname.split("/");
-    if (pathnameParts.length > 0 && pathnameParts[0] === "") {
-        pathnameParts = pathnameParts.slice(1);
-    }
-
-    if (getLang() === "es") {
-        pathnameParts = pathnameParts.slice(1);
-        const route = [origin, "cat"].concat(pathnameParts).join("/");
-        return {
-            route,
-            label: "CAT",
-            color: "info",
-            icon: "translate_rounded",
-            variant: "outlined",
-            size: "small",
-            minimal: false
-        }
-    } else {
-        pathnameParts = pathnameParts.slice(1);
-        const route = [origin, "es"].concat(pathnameParts).join("/");
-        return {
-            route,
-            label: "ES",
-            color: "info",
-            icon: "translate_rounded",
-            variant: "outlined",
-            size: "small",
-            minimal: false
-        }
-    }
-}
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import { getTranslateAction } from 'utils/TranslateAction';
+import { getAccessAction } from 'utils/AccessAction';
+import { getUserProfileAction } from 'utils/UserProfileAction';
 
 function Navbar() {
+    const { user } = useAuthenticator((context) => [context.user]);
+
+    let secondaryAction = getAccessAction();
+    if (user) {
+        secondaryAction = getUserProfileAction();
+    }
+
     return (
         <DefaultNavbar
             routes={routes}
@@ -48,6 +23,7 @@ function Navbar() {
             sticky
             brand="asoticocat"
             action={getTranslateAction()}
+            secondaryAction={secondaryAction}
         />
     );
 }

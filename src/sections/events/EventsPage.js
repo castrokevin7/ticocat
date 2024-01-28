@@ -33,7 +33,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
-import { getTranslateAction } from 'sections/main/Navbar';
+import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
 
 function EventsPage() {

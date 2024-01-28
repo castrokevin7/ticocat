@@ -518,8 +518,9 @@ function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAct
                 sx={secondaryAction.minimal ? {
                   paddingRight: { xs: 0, s: 0 },
                   paddingLeft: { xs: 0, s: 0 },
-                  minWidth: { xs: 40, s: 40 }
-                } : null}
+                  minWidth: { xs: 40, s: 40 },
+                  marginLeft: 2,
+                } : { marginLeft: 1 }}
                 component="a"
                 href={secondaryAction.route}
                 target="_self"

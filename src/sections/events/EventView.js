@@ -13,7 +13,7 @@ import Stack from "@mui/material/Stack";
 import AboutUsOption from "pages/LandingPages/Coworking/components/AboutUsOption";
 import { getEventTitle, getEventDescription } from "./Utils";
 import Translator from "utils/Translator";
-import { getTranslateAction } from "sections/main/Navbar";
+import { getTranslateAction } from 'utils/TranslateAction';
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Box from "@mui/material/Box";

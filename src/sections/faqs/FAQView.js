@@ -8,7 +8,7 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import { getFAQAnswer, getFAQQuestion, getLinkText } from "./Utils";
 import Translator from "utils/Translator";
-import { getTranslateAction } from "sections/main/Navbar";
+import { getTranslateAction } from 'utils/TranslateAction';
 import bgImage from "assets/images/faqs.jpeg";
 import Card from "@mui/material/Card";
 import { Spinner } from "sections/common/Spinner";

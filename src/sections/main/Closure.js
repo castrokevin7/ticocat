@@ -23,7 +23,7 @@ function Closure() {
                     }}
                 >
                     <Grid container>
-                        <Grid xs={12} textAlign="center">
+                        <Grid item xs={12} textAlign="center">
                             <MKTypography variant="h5" color="white" fontWeight="bold">
                                 {Translator.instance.translate("closure_invitation")}
                             </MKTypography>

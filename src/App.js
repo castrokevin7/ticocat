@@ -19,6 +19,7 @@ import AssociatePage from 'sections/associate/AssociatePage';
 import AssociateView from 'sections/associate/AssociateView';
 import TermsAndConditionsPage from 'sections/terms-and-conditions/TermsAndConditionsPage';
 import LoginPage from 'sections/login/LoginPage';
+import AccountPage from 'sections/account/AccountPage';
 import { Authenticator } from '@aws-amplify/ui-react';
 
 
@@ -90,6 +91,9 @@ function App() {
 
         <Route exact path={"/es/acceso"} element={<LoginPage />} />;
         <Route exact path={"/cat/acceso"} element={<LoginPage />} />;
+
+        <Route exact path={"/es/cuenta"} element={<AccountPage />} />;
+        <Route exact path={"/cat/cuenta"} element={<AccountPage />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />

@@ -1,5 +1,5 @@
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import { getTranslateAction } from 'sections/main/Navbar';
+import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
 import Container from "@mui/material/Container";
 import MKBox from "components/MKBox";
