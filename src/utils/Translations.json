@@ -570,5 +570,17 @@
     "terms_conclusion_thanks": {
         "es": "Gracias por ser parte de nuestra comunidad. ¡Esperamos que disfrutes de tu experiencia con nosotros!",
         "cat": "Gràcies per ser part de la nostra comunitat. Esperem que gaudeixis de la teva experiència amb nosaltres!"
+    },
+    "login_page_email": {
+        "es": "Correo Electrónico",
+        "cat": "Correu Electrònic"
+    },
+    "login_page_access": {
+        "es": "Acceder",
+        "cat": "Accedir"
+    },
+    "login_page_email_not_found": {
+        "es": "Correo electrónico no registrado",
+        "cat": "Correu electrònic no registrat"
     }
 }

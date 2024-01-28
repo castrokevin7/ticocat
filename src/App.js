@@ -18,6 +18,9 @@ import FAQView from 'sections/faqs/FAQView';
 import AssociatePage from 'sections/associate/AssociatePage';
 import AssociateView from 'sections/associate/AssociateView';
 import TermsAndConditionsPage from 'sections/terms-and-conditions/TermsAndConditionsPage';
+import LoginPage from 'sections/login/LoginPage';
+import { Authenticator } from '@aws-amplify/ui-react';
+
 
 function App() {
   const { pathname } = useLocation();
@@ -60,7 +63,7 @@ function App() {
       <Routes>
         <Route exact path={"/es/eventos"} element={<EventsPage />} />;
         <Route exact path={"/cat/eventos"} element={<EventsPage />} />;
-        
+
         <Route exact path={"/es/evento/:eventId"} element={<EventView />} />;
         <Route exact path={"/cat/evento/:eventId"} element={<EventView />} />;
 
@@ -81,9 +84,12 @@ function App() {
 
         <Route exact path={"/es/socio/:associateId"} element={<AssociateView />} />;
         <Route exact path={"/cat/socio/:associateId"} element={<AssociateView />} />;
-        
+
         <Route exact path={"/es/terminos-condiciones"} element={<TermsAndConditionsPage />} />;
         <Route exact path={"/cat/terminos-condiciones"} element={<TermsAndConditionsPage />} />;
+
+        <Route exact path={"/es/acceso"} element={<LoginPage />} />;
+        <Route exact path={"/cat/acceso"} element={<LoginPage />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />
@@ -94,4 +100,8 @@ function App() {
   );
 }
 
-export default App;
+export default () => (
+  <Authenticator.Provider>
+    <App />
+  </Authenticator.Provider>
+);
