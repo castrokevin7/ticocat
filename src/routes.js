@@ -42,18 +42,6 @@ import Icon from "@mui/material/Icon";
 import Translator from 'utils/Translator';
 
 const routes = [
-/*   {
-    name: Translator.instance.translate("route_home"),
-    icon: <Icon>home</Icon>,
-    href: "#",
-    target: "_self" 
-  }, */
-  {
-    name: Translator.instance.translate("route_about"),
-    icon: <Icon>info_rounded</Icon>,
-    href: "#acerca",
-    target: "_self" 
-  },
   {
     name: Translator.instance.translate("route_team"),
     icon: <Icon>supervisor_account</Icon>,

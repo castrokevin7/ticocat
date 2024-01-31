@@ -17,6 +17,9 @@ import { DataStore } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
+import { formFields } from './AuthenticatorFormFields';
+import { components } from './AuthenticatorComponents';
+import MKTypography from "components/MKTypography";
 
 function LoginPage() {
     const { user } = useAuthenticator((context) => [context.user]);
@@ -63,7 +66,7 @@ function LoginPage() {
     const getLoginContent = () => {
 
         if (email) {
-            return <Authenticator />;
+            return <Authenticator formFields={formFields} components={components} />;
         }
 
         return (
@@ -78,6 +81,9 @@ function LoginPage() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
+                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                            {Translator.instance.translate("login_page_email_input")}:
+                        </MKTypography>
                         <Grid item sx={{ display: 'flex', flexDirection: 'row' }} xs={12} lg={8} py={1} mx="auto">
                             <MKInput
                                 label={Translator.instance.translate("login_page_email")}
@@ -86,7 +92,6 @@ function LoginPage() {
                                 type="email"
                             />
                             <MKButton
-                                variant="outlined"
                                 color="dark"
                                 onClick={handleAccess}
                                 disabled={!emailToSearch || invalidEmail}

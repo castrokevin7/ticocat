@@ -582,5 +582,25 @@
     "login_page_email_not_found": {
         "es": "Correo electrónico no registrado",
         "cat": "Correu electrònic no registrat"
+    },
+    "login_header": {
+        "es": "Iniciar Sesión",
+        "cat": "Iniciar Sessió"
+    },
+    "login_form_email_placeholder": {
+        "es": "Correo electrónico",
+        "cat": "Correu electrònic"
+    },
+    "login_form_password_placeholder": {
+        "es": "Contraseña",
+        "cat": "Contrasenya"
+    },
+    "login_sign_up_header": {
+        "es": "Registrarse",
+        "cat": "Registrar-se"
+    },
+    "login_page_email_input": {
+        "es": "Ingresá el correo electrónico con el que te registraste a TICOCAT",
+        "cat": "Ingressa el correu electrònic amb el que et vas registrar a TICOCAT"
     }
 }

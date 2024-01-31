@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import { getLang } from 'utils/Translator';
 import MKBox from "components/MKBox";
 import bgImage from "assets/images/associates.jpg";
 import { auto } from "@popperjs/core";
-import Translator from 'utils/Translator';
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import Icon from "@mui/material/Icon";
-import { Associate } from 'models';
-import { DataStore } from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-react';
 import { getTranslateAction } from 'utils/TranslateAction';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
+import Card from "@mui/material/Card";
 
 function AccountPage() {
     const { user, signOut } = useAuthenticator((context) => [context.user]);

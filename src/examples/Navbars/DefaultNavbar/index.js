@@ -456,7 +456,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAct
     <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}>
       <MKBox
         py={1}
-        px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
+        px={{ xs: 2, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 2}
         mx={relative ? 0 : 3}
         width={relative ? "100%" : "calc(100% - 48px)"}
@@ -501,6 +501,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAct
           <MKBox ml={{ xs: "auto", lg: 0 }}>
             {action &&
               <MKButton
+                sx={{padding: 0.5}}
                 component="a"
                 href={action.route}
                 target="_self"
@@ -520,7 +521,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, secondaryAct
                   paddingLeft: { xs: 0, s: 0 },
                   minWidth: { xs: 40, s: 40 },
                   marginLeft: 2,
-                } : { marginLeft: 1 }}
+                } : { marginLeft: 1, padding: 0.5 }}
                 component="a"
                 href={secondaryAction.route}
                 target="_self"
