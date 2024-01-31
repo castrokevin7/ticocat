@@ -596,11 +596,63 @@
         "cat": "Contrasenya"
     },
     "login_sign_up_header": {
-        "es": "Registrarse",
-        "cat": "Registrar-se"
+        "es": "Activar Cuenta",
+        "cat": "Activar Compte"
     },
     "login_page_email_input": {
         "es": "Ingresá el correo electrónico con el que te registraste a TICOCAT",
         "cat": "Ingressa el correu electrònic amb el que et vas registrar a TICOCAT"
+    },
+    "login_form_confirm_password_placeholder": {
+        "es": "Confirmar Contraseña",
+        "cat": "Confirmar Contrasenya"
+    },
+    "login_form_forgot_password_placeholder": {
+        "es": "Has olvidado tu contraseña?",
+        "cat": "Has oblidat la teva contrasenya?"
+    },
+    "login_form_password_length_placeholder": {
+        "es": "La contraseña debe tener al menos 8 caracteres.",
+        "cat": "La contrasenya ha de tenir almenys 8 caràcters."
+    },
+    "login_form_password_lowercase_placeholder": {
+        "es": "La contraseña debe tener al menos una letra minúscula.",
+        "cat": "La contrasenya ha de tenir almenys una lletra minúscula."
+    },
+    "login_form_password_uppercase_placeholder": {
+        "es": "La contraseña debe tener al menos una letra mayúscula.",
+        "cat": "La contrasenya ha de tenir almenys una lletra majúscula."
+    },
+    "login_form_password_numbers_placeholder": {
+        "es": "La contraseña debe tener al menos un número.",
+        "cat": "La contrasenya ha de tenir almenys un número."
+    },
+    "login_form_password_special_characters_placeholder": {
+        "es": "La contraseña debe tener al menos un caracter especial.",
+        "cat": "La contrasenya ha de tenir almenys un caràcter especial."
+    },
+    "login_form_passwords_match_placeholder": {
+        "es": "Las contraseñas deben coincidir.",
+        "cat": "Les contrasenyes han de coincidir."
+    },
+    "login_form_password_wrong": {
+        "es": "Email o contraseña incorrecta.",
+        "cat": "Email o contrasenya incorrecta."
+    },
+    "login_form_account_already_exists": {
+        "es": "Ya existe una cuenta activada con este correo electrónico.",
+        "cat": "Ja existeix un compte activat amb aquest correu electrònic."
+    },
+    "login_form_user_does_not_exist": {
+        "es": "No existe una cuenta activada con este correo electrónico.",
+        "cat": "No existeix un compte activat amb aquest correu electrònic."
+    },
+    "login_form_invalid_verification_code": {
+        "es": "Código de verificación inválido.",
+        "cat": "Codi de verificació invàlid."
+    },
+    "login_form_email_verification": {
+        "es": "Verifica tu email",
+        "cat": "Verifica el teu email"
     }
 }

@@ -17,18 +17,58 @@ import { DataStore } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
-import { formFields } from './AuthenticatorFormFields';
-import { components } from './AuthenticatorComponents';
 import MKTypography from "components/MKTypography";
+import { I18n } from 'aws-amplify';
+import { translations } from '@aws-amplify/ui-react';
+
+I18n.putVocabularies(translations);
+I18n.setLanguage(getLang());
+
+I18n.putVocabularies({
+    es: {
+        'Create Account': Translator.instance.translate("login_sign_up_header"),
+        'Password must have at least 8 characters': Translator.instance.translate("login_form_password_length_placeholder"),
+        'Password must have lower case letters': Translator.instance.translate("login_form_password_lowercase_placeholder"),
+        'Password must have numbers': Translator.instance.translate("login_form_password_numbers_placeholder"),
+        'Password must have special characters': Translator.instance.translate("login_form_password_special_characters_placeholder"),
+        'Password must have upper case letters': Translator.instance.translate("login_form_password_uppercase_placeholder"),
+        'Your passwords must match': Translator.instance.translate("login_form_passwords_match_placeholder"),
+        'Incorrect username or password.': Translator.instance.translate("login_form_password_wrong"),
+        'An account with the given email already exists.': Translator.instance.translate("login_form_account_already_exists"),
+        'User does not exist.': Translator.instance.translate("login_form_user_does_not_exist"),
+        'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
+        'We Emailed You': Translator.instance.translate("login_form_email_verification"),
+    },
+    cat: {
+        'Sign in': Translator.instance.translate("login_header"),
+        'Sign In': Translator.instance.translate("login_header"),
+        'Create Account': Translator.instance.translate("login_sign_up_header"),
+        'Password': Translator.instance.translate("login_form_password_placeholder"),
+        'Confirm Password': Translator.instance.translate("login_form_confirm_password_placeholder"),
+        'Forgot your password?': Translator.instance.translate("login_form_forgot_password_placeholder"),
+        'Password must have at least 8 characters': Translator.instance.translate("login_form_password_length_placeholder"),
+        'Password must have lower case letters': Translator.instance.translate("login_form_password_lowercase_placeholder"),
+        'Password must have numbers': Translator.instance.translate("login_form_password_numbers_placeholder"),
+        'Password must have special characters': Translator.instance.translate("login_form_password_special_characters_placeholder"),
+        'Password must have upper case letters': Translator.instance.translate("login_form_password_uppercase_placeholder"),
+        'Your passwords must match': Translator.instance.translate("login_form_passwords_match_placeholder"),
+        'Incorrect username or password.': Translator.instance.translate("login_form_password_wrong"),
+        'An account with the given email already exists.': Translator.instance.translate("login_form_account_already_exists"),
+        'User does not exist.': Translator.instance.translate("login_form_user_does_not_exist"),
+        'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
+        'We Emailed You': Translator.instance.translate("login_form_email_verification"),
+    },
+});
 
 function LoginPage() {
-    const { user } = useAuthenticator((context) => [context.user]);
     const [email, setEmail] = useState(null);
     const [notFound, setNotFound] = useState(false);
     const [emailToSearch, setEmailToSearch] = useState(null);
     const [invalidEmail, setInvalidEmail] = useState(false);
+    const { route } = useAuthenticator(context => [context.route]);
 
-    if (user) {
+
+    if (route === 'authenticated') {
         return <Navigate to={`/${getLang()}/cuenta`} />;
     }
 
@@ -66,7 +106,7 @@ function LoginPage() {
     const getLoginContent = () => {
 
         if (email) {
-            return <Authenticator formFields={formFields} components={components} />;
+            return <Authenticator/>;
         }
 
         return (
