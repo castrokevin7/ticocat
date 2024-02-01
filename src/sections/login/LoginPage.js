@@ -67,7 +67,6 @@ function LoginPage() {
     const [invalidEmail, setInvalidEmail] = useState(false);
     const { route } = useAuthenticator(context => [context.route]);
 
-
     if (route === 'authenticated') {
         return <Navigate to={`/${getLang()}/cuenta`} />;
     }
@@ -106,7 +105,7 @@ function LoginPage() {
     const getLoginContent = () => {
 
         if (email) {
-            return <Authenticator/>;
+            return <Authenticator />;
         }
 
         return (
