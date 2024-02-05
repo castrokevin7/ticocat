@@ -654,5 +654,9 @@
     "login_form_email_verification": {
         "es": "Verifica tu email",
         "cat": "Verifica el teu email"
+    },
+    "login_form_network_error": {
+        "es": "Error de red. Por favor, inténtalo de nuevo.",
+        "cat": "Error de xarxa. Si us plau, intenta-ho de nou."
     }
 }

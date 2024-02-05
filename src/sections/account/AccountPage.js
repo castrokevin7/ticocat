@@ -16,7 +16,7 @@ import MKTypography from "components/MKTypography";
 import { Spinner } from "sections/common/Spinner";
 
 function AccountPage() {
-    const [state, setState] = useState("");
+    const [state, setState] = useState("loading");
     const [associate, setAssociate] = useState();
     const { route } = useAuthenticator(context => [context.route]);
     const { user, signOut } = useAuthenticator((context) => [context.user]);
@@ -27,6 +27,7 @@ function AccountPage() {
             if (response.length > 0) {
                 setAssociate(response[0]);
                 setState('success');
+                console.log('Success:', response[0]);
             } else {
                 console.error('Error: Associate not found');
                 setState('error');
@@ -63,10 +64,23 @@ function AccountPage() {
             );
         }
 
-        return <>
-            Hello {associate.name}!
-            <button onClick={signOut}>Sign out</button>
-        </>
+        return (
+            <div>
+                <MKTypography sx={{ mx: 'auto' }} variant="body1" color="text" mb={1}>
+                    Hola {associate.name}!
+                </MKTypography>
+                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                    Correo: {associate.email}
+                </MKTypography>
+                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                    Teléfono: {associate.phone}
+                </MKTypography>
+                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                    Identificación: {associate.identification}
+                </MKTypography>
+                <button onClick={signOut}>Sign out</button>
+            </div>
+        );
     }
 
     return (

@@ -38,6 +38,7 @@ I18n.putVocabularies({
         'User does not exist.': Translator.instance.translate("login_form_user_does_not_exist"),
         'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
         'We Emailed You': Translator.instance.translate("login_form_email_verification"),
+        'Network Error': Translator.instance.translate("login_form_network_error"),
     },
     cat: {
         'Sign in': Translator.instance.translate("login_header"),
@@ -57,6 +58,7 @@ I18n.putVocabularies({
         'User does not exist.': Translator.instance.translate("login_form_user_does_not_exist"),
         'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
         'We Emailed You': Translator.instance.translate("login_form_email_verification"),
+        'Network Error': Translator.instance.translate("login_form_network_error"),
     },
 });
 
