@@ -14,6 +14,7 @@ import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
 import { Spinner } from "sections/common/Spinner";
+import MKButton from "components/MKButton";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -67,18 +68,31 @@ function AccountPage() {
         return (
             <div>
                 <MKTypography sx={{ mx: 'auto' }} variant="body1" color="text" mb={1}>
-                    Hola {associate.name}!
+                    {associate.name}
                 </MKTypography>
                 <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    Correo: {associate.email}
+                    <b>Correo</b>: {associate.email}
                 </MKTypography>
-                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    Teléfono: {associate.phone}
-                </MKTypography>
-                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    Identificación: {associate.identification}
-                </MKTypography>
-                <button onClick={signOut}>Sign out</button>
+                {associate.phone && (
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                        <b>Teléfono</b>: {associate.phone}
+                    </MKTypography>
+                )}
+                {associate.identification && (
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                        <b>Identificación</b>: {associate.identification}
+                    </MKTypography>
+                )}
+                <MKButton
+                    sx={{ float: 'right'}}
+                    mt={2}
+                    onClick={() => {
+                        signOut();
+                        return <Navigate to="/" />;
+                    }}
+                >
+                    Sign out
+                </MKButton>
             </div>
         );
     }
