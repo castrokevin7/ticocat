@@ -580,8 +580,8 @@
         "cat": "Accedir"
     },
     "login_page_email_not_found": {
-        "es": "Correo electrónico no registrado",
-        "cat": "Correu electrònic no registrat"
+        "es": "Correo electrónico no registrado en la asociación. Contacta con nosotros en asoticocat@gmail.com para más información.",
+        "cat": "Correu electrònic no registrat a l'associació. Contacta amb nosaltres a asoticocat@gmail.com per a més informació."
     },
     "login_header": {
         "es": "Iniciar Sesión",
@@ -658,5 +658,9 @@
     "login_form_network_error": {
         "es": "Error de red. Por favor, inténtalo de nuevo.",
         "cat": "Error de xarxa. Si us plau, intenta-ho de nou."
+    },
+    "login_form_email_does_not_match": {
+        "es": "El correo electrónico no coincide con el proporcionado anteriormente.",
+        "cat": "El correu electrònic no coincideix amb el proporcionat anteriorment."
     }
 }

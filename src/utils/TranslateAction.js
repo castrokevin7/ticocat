@@ -16,7 +16,7 @@ export function getTranslateAction() {
             label: "CAT",
             color: "info",
             icon: "translate_rounded",
-            variant: "filled",
+            variant: "text",
             size: "small",
             minimal: false
         }
@@ -28,7 +28,7 @@ export function getTranslateAction() {
             label: "ES",
             color: "info",
             icon: "translate_rounded",
-            variant: "filled",
+            variant: "text",
             size: "small",
             minimal: false
         }

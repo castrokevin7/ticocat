@@ -13,7 +13,7 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import Icon from "@mui/material/Icon";
 import { Associate } from 'models';
-import { DataStore } from 'aws-amplify';
+import { DataStore, Auth } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
@@ -39,6 +39,8 @@ I18n.putVocabularies({
         'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
         'We Emailed You': Translator.instance.translate("login_form_email_verification"),
         'Network Error': Translator.instance.translate("login_form_network_error"),
+        'The username should either be a string or one of the sign in types': Translator.instance.translate("login_form_email_does_not_match"),
+        'Username cannot be empty': Translator.instance.translate("login_form_email_does_not_match"),
     },
     cat: {
         'Sign in': Translator.instance.translate("login_header"),
@@ -59,6 +61,8 @@ I18n.putVocabularies({
         'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
         'We Emailed You': Translator.instance.translate("login_form_email_verification"),
         'Network Error': Translator.instance.translate("login_form_network_error"),
+        'The username should either be a string or one of the sign in types': Translator.instance.translate("login_form_email_does_not_match"),
+        'Username cannot be empty': Translator.instance.translate("login_form_email_does_not_match"),
     },
 });
 
@@ -104,10 +108,38 @@ function LoginPage() {
         }
     };
 
+    const services = {
+        async handleSignIn(formData) {
+            let { username, password } = formData;
+
+            if (email && email.email === username) {
+                return Auth.signIn({
+                    username,
+                    password
+                });
+            } else {
+                return Auth.signIn({});
+            }
+        },
+
+        async handleSignUp(formData) {
+            let { username, password } = formData;
+            console.log("email: ", username);
+            if (email && email.email === username) {
+                return Auth.signUp({
+                    username,
+                    password
+                });
+            } else {
+                return Auth.signUp({});
+            }
+        },
+    };
+
     const getLoginContent = () => {
 
         if (email) {
-            return <Authenticator />;
+            return <Authenticator services={services} />;
         }
 
         return (
@@ -142,7 +174,7 @@ function LoginPage() {
                             </MKButton>
                         </Grid>
                         {notFound &&
-                            <p style={{ fontSize: '14px', textAlign: 'center', color: 'red' }}>
+                            <p style={{ marginTop: '10px', fontSize: '14px', textAlign: 'center', color: 'red' }}>
                                 {Translator.instance.translate("login_page_email_not_found")}
                             </p>
                         }
