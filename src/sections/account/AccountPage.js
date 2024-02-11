@@ -28,7 +28,6 @@ function AccountPage() {
             if (response.length > 0) {
                 setAssociate(response[0]);
                 setState('success');
-                console.log('Success:', response[0]);
             } else {
                 console.error('Error: Associate not found');
                 setState('error');
@@ -46,7 +45,7 @@ function AccountPage() {
         }
     }, [route, user]);
 
-    if (!user) {
+    if (!user || route !== 'authenticated') {
         return <Navigate to={`/${getLang()}/acceso`} />;
     }
 
@@ -88,7 +87,7 @@ function AccountPage() {
                     mt={2}
                     onClick={() => {
                         signOut();
-                        return <Navigate to="/" />;
+                        setState('signingOut');
                     }}
                 >
                     Sign out
