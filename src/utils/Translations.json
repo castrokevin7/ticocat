@@ -662,5 +662,9 @@
     "login_form_email_does_not_match": {
         "es": "El correo electrónico no coincide con el proporcionado anteriormente.",
         "cat": "El correu electrònic no coincideix amb el proporcionat anteriorment."
+    },
+    "login_form_temporary_password_expired": {
+        "es": "Tu contraseña temporal ha expirado. Por favor, contacta con nosotros a asoticocat@gmail.com",
+        "cat": "La teva contrasenya temporal ha expirat. Si us plau, contacta amb nosaltres a asoticocat@gmail.com"
     }
 }

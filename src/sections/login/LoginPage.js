@@ -42,6 +42,7 @@ I18n.putVocabularies({
         'The username should either be a string or one of the sign in types': Translator.instance.translate("login_form_email_does_not_match"),
         'Username cannot be empty': Translator.instance.translate("login_form_email_does_not_match"),
         'Username/client id combination not found.': Translator.instance.translate("login_form_email_does_not_match"),
+        'Temporary password has expired and must be reset by an administrator.': Translator.instance.translate("login_form_temporary_password_expired"),
     },
     cat: {
         'Sign in': Translator.instance.translate("login_header"),
@@ -65,6 +66,7 @@ I18n.putVocabularies({
         'The username should either be a string or one of the sign in types': Translator.instance.translate("login_form_email_does_not_match"),
         'Username cannot be empty': Translator.instance.translate("login_form_email_does_not_match"),
         'Username/client id combination not found.': Translator.instance.translate("login_form_email_does_not_match"),
+        'Temporary password has expired and must be reset by an administrator.': Translator.instance.translate("login_form_temporary_password_expired"),
     },
 });
 
