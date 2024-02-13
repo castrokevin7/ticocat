@@ -599,10 +599,6 @@
         "es": "Activar Cuenta",
         "cat": "Activar Compte"
     },
-    "login_page_email_input": {
-        "es": "Ingresá el correo electrónico con el que te registraste a TICOCAT",
-        "cat": "Ingressa el correu electrònic amb el que et vas registrar a TICOCAT"
-    },
     "login_form_confirm_password_placeholder": {
         "es": "Confirmar Contraseña",
         "cat": "Confirmar Contrasenya"
@@ -658,10 +654,6 @@
     "login_form_network_error": {
         "es": "Error de red. Por favor, inténtalo de nuevo.",
         "cat": "Error de xarxa. Si us plau, intenta-ho de nou."
-    },
-    "login_form_email_does_not_match": {
-        "es": "El correo electrónico no coincide con el proporcionado anteriormente.",
-        "cat": "El correu electrònic no coincideix amb el proporcionat anteriorment."
     },
     "login_form_temporary_password_expired": {
         "es": "Tu contraseña temporal ha expirado. Por favor, contacta con nosotros a asoticocat@gmail.com.",

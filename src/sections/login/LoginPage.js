@@ -1,23 +1,15 @@
-import React, { useState } from 'react';
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
 import MKBox from "components/MKBox";
 import bgImage from "assets/images/associates.jpg";
-import { auto } from "@popperjs/core";
 import Translator from 'utils/Translator';
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
-import Icon from "@mui/material/Icon";
 import { Associate } from 'models';
 import { DataStore, Auth } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
-import MKTypography from "components/MKTypography";
 import { I18n } from 'aws-amplify';
 import { translations } from '@aws-amplify/ui-react';
 
@@ -63,73 +55,35 @@ I18n.putVocabularies({
         'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
         'We Emailed You': Translator.instance.translate("login_form_email_verification"),
         'Network Error': Translator.instance.translate("login_form_network_error"),
-        'The username should either be a string or one of the sign in types': Translator.instance.translate("login_form_email_does_not_match"),
-        'Username cannot be empty': Translator.instance.translate("login_form_email_does_not_match"),
-        'Username/client id combination not found.': Translator.instance.translate("login_form_email_does_not_match"),
+        'The username should either be a string or one of the sign in types': Translator.instance.translate("login_page_email_not_found"),
+        'Username cannot be empty': Translator.instance.translate("login_page_email_not_found"),
+        'Username/client id combination not found.': Translator.instance.translate("login_page_email_not_found"),
         'Temporary password has expired and must be reset by an administrator.': Translator.instance.translate("login_form_temporary_password_expired"),
     },
 });
 
 function LoginPage() {
-    const [email, setEmail] = useState(null);
-    const [notFound, setNotFound] = useState(false);
-    const [emailToSearch, setEmailToSearch] = useState(null);
-    const [invalidEmail, setInvalidEmail] = useState(false);
     const { route } = useAuthenticator(context => [context.route]);
 
     if (route === 'authenticated') {
         return <Navigate to={`/${getLang()}/cuenta`} />;
     }
 
-    const searchAssociate = async (email) => {
+    const isRegisteredAssociate = async (email) => {
         try {
             let response = await DataStore.query(Associate, c => c.email("eq", email));
-            if (response.length > 0) {
-                setEmail(response[0]);
-                setNotFound(false);
-            } else {
-                setEmail(null);
-                setNotFound(true);
-            }
+            return response.length > 0;
         } catch (err) {
             console.error('Error:', err);
+            return false;
         }
     }
-
-    const handleAccess = () => {
-        searchAssociate(emailToSearch);
-    }
-
-    const handleEmailChange = (event) => {
-        const email = event.target.value;
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        if (emailRegex.test(email)) {
-            setEmailToSearch(email);
-            setInvalidEmail(false);
-        } else {
-            setEmailToSearch(null);
-            setInvalidEmail(true);
-        }
-    };
 
     const services = {
-        async handleSignIn(formData) {
-            let { username, password } = formData;
-
-            if (email && email.email === username) {
-                return Auth.signIn({
-                    username,
-                    password
-                });
-            } else {
-                return Auth.signIn({});
-            }
-        },
-
         async handleSignUp(formData) {
             let { username, password } = formData;
-            console.log("email: ", username);
-            if (email && email.email === username) {
+            const isRegistered = await isRegisteredAssociate(username);
+            if (isRegistered) {
                 return Auth.signUp({
                     username,
                     password
@@ -141,61 +95,14 @@ function LoginPage() {
 
         async handleForgotPassword(formData) {
             let { username } = formData;
-            if (email && email.email === username) {
+            const isRegistered = await isRegisteredAssociate(username);
+            if (isRegistered) {
                 return Auth.forgotPassword(username);
             } else {
                 return Auth.forgotPassword({});
             }
         },
     };
-
-    const getLoginContent = () => {
-
-        if (email) {
-            return <Authenticator services={services} />;
-        }
-
-        return (
-            <Card
-                sx={{
-                    p: 2,
-                    backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
-                    backdropFilter: "saturate(200%) blur(30px)",
-                    boxShadow: ({ boxShadows: { xxl } }) => xxl,
-                    overflowY: auto
-                }}
-            >
-                <MKBox component="section" py={6}>
-                    <Container>
-                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                            {Translator.instance.translate("login_page_email_input")}:
-                        </MKTypography>
-                        <Grid item sx={{ display: 'flex', flexDirection: 'row' }} xs={12} lg={8} py={1} mx="auto">
-                            <MKInput
-                                label={Translator.instance.translate("login_page_email")}
-                                fullWidth
-                                onChange={handleEmailChange}
-                                type="email"
-                            />
-                            <MKButton
-                                color="dark"
-                                onClick={handleAccess}
-                                disabled={!emailToSearch || invalidEmail}
-                            >
-                                {Translator.instance.translate("login_page_access")}
-                                <Icon sx={{ ml: 1 }}>login</Icon>
-                            </MKButton>
-                        </Grid>
-                        {notFound &&
-                            <p style={{ marginTop: '10px', fontSize: '14px', textAlign: 'center', color: 'red' }}>
-                                {Translator.instance.translate("login_page_email_not_found")}
-                            </p>
-                        }
-                    </Container>
-                </MKBox>
-            </Card>
-        );
-    }
 
     return (
         <>
@@ -229,7 +136,7 @@ function LoginPage() {
                     <Container
                         sx={{ marginTop: '150px', marginBottom: '100px' }}
                     >
-                        {getLoginContent()}
+                        <Authenticator services={services} />;
                     </Container>
                 </MKBox>
             </MKBox>
