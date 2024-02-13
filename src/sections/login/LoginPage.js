@@ -12,6 +12,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import { I18n } from 'aws-amplify';
 import { translations } from '@aws-amplify/ui-react';
+import './LoginPage.css';
 
 I18n.putVocabularies(translations);
 I18n.setLanguage(getLang());
