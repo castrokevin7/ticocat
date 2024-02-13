@@ -31,9 +31,9 @@ I18n.putVocabularies({
         'Invalid verification code provided, please try again.': Translator.instance.translate("login_form_invalid_verification_code"),
         'We Emailed You': Translator.instance.translate("login_form_email_verification"),
         'Network Error': Translator.instance.translate("login_form_network_error"),
-        'The username should either be a string or one of the sign in types': Translator.instance.translate("login_form_email_does_not_match"),
-        'Username cannot be empty': Translator.instance.translate("login_form_email_does_not_match"),
-        'Username/client id combination not found.': Translator.instance.translate("login_form_email_does_not_match"),
+        'The username should either be a string or one of the sign in types': Translator.instance.translate("login_page_email_not_found"),
+        'Username cannot be empty': Translator.instance.translate("login_page_email_not_found"),
+        'Username/client id combination not found.': Translator.instance.translate("login_page_email_not_found"),
         'Temporary password has expired and must be reset by an administrator.': Translator.instance.translate("login_form_temporary_password_expired"),
     },
     cat: {
