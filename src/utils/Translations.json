@@ -648,8 +648,8 @@
         "cat": "Codi de verificació invàlid."
     },
     "login_form_email_verification": {
-        "es": "Verifica tu email",
-        "cat": "Verifica el teu email"
+        "es": "Verifica tu email (revisa tu bandeja de entrada o spam).",
+        "cat": "Verifica el teu email (revisa la teva safata d'entrada o spam)."
     },
     "login_form_network_error": {
         "es": "Error de red. Por favor, inténtalo de nuevo.",
