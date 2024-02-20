@@ -70,16 +70,19 @@ function AccountPage() {
                     {associate.name}
                 </MKTypography>
                 <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    <b>Correo</b>: {associate.email}
+                    <b>{Translator.instance.translate("account_page_associate_id_label")}</b>: {associate.associate_id}
+                </MKTypography>
+                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                    <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
                 </MKTypography>
                 {associate.phone && (
                     <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>Teléfono</b>: {associate.phone}
+                        <b>{Translator.instance.translate("account_page_phone_label")}</b>: {associate.phone}
                     </MKTypography>
                 )}
                 {associate.identification && (
                     <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>Identificación</b>: {associate.identification}
+                        <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
                     </MKTypography>
                 )}
                 <MKButton
@@ -90,7 +93,7 @@ function AccountPage() {
                         setState('signingOut');
                     }}
                 >
-                    Sign out
+                    {Translator.instance.translate("account_page_sign_out_button")}
                 </MKButton>
             </div>
         );

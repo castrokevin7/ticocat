@@ -658,5 +658,25 @@
     "login_form_temporary_password_expired": {
         "es": "Tu contraseña temporal ha expirado. Por favor, contacta con nosotros a asoticocat@gmail.com.",
         "cat": "La teva contrasenya temporal ha expirat. Si us plau, contacta amb nosaltres a asoticocat@gmail.com."
+    },
+    "account_page_sign_out_button": {
+        "es": "Cerrar Sesión",
+        "cat": "Tancar Sessió"
+    },
+    "account_page_email_label": {
+        "es": "Correo electrónico",
+        "cat": "Correu electrònic"
+    },
+    "account_page_phone_label": {
+        "es": "Teléfono",
+        "cat": "Telèfon"
+    },
+    "account_page_id_label": {
+        "es": "Identificación",
+        "cat": "Identificació"
+    },
+    "account_page_associate_id_label": {
+        "es": "Identificación",
+        "cat": "Identificació"
     }
 }
