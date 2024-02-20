@@ -184,104 +184,104 @@
         "cat": "L'Equip"
     },
     "team_description": {
-        "es": "Junta directiva de la asociación período 2021-2023",
-        "cat": "Junta directiva de l'associació període 2021-2023"
+        "es": "Junta directiva de la asociación período 2024-2026",
+        "cat": "Junta directiva de l'associació període 2024-2026"
     },
-    "team_jordi_arribada": {
+    "team_president_arrival": {
         "es": "Octubre, 2013",
         "cat": "Octubre, 2013"
     },
-    "team_jordi_occupation": {
+    "team_president_occupation": {
         "es": "Cinematografía y Música",
         "cat": "Cinematografia i Música"
     },
-    "team_jordi_contributions": {
+    "team_president_contributions": {
         "es": "Creatividad, entusiasmo y... ¡Comida!",
         "cat": "Creativitat, entusiasme i... Menjar!"
     },
-    "team_jordi_reasons": {
+    "team_president_reasons": {
         "es": "Después de, por casualidad, haber heredado el grupo de Facebook de \"Ticos en Barcelona\", me encontré con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los Ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo",
         "cat": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, encara unim forces per aconseguir-ho"
     },
-    "team_cindy_arribada": {
-        "es": "Octubre, 2021",
-        "cat": "Octubre, 2021"
+    "team_vicepresident_arrival": {
+        "es": "Junio, 2023",
+        "cat": "Juny, 2023"
     },
-    "team_cindy_occupation": {
-        "es": "Arquitectura, Interiorismo y Educación",
-        "cat": "Arquitectura, Interiorisme i Educació"
+    "team_vicepresident_occupation": {
+        "es": "Psicóloga y Escritora",
+        "cat": "Psicòloga i Escriptora"
     },
-    "team_cindy_contributions": {
-        "es": "Creatividad, diseño, rigurosidad y organización",
-        "cat": "Creativitat, disseny, rigorositat i organització"
+    "team_vicepresident_contributions": {
+        "es": "Proyección, estructura, habilidades sociales y colaboraciones",
+        "cat": "Projecció, estructura, habilitats socials i col·laboracions"
     },
-    "team_cindy_reasons": {
-        "es": "Después de lograr el sueño de venir a vivir a Barcelona, y sabiendo que tendría estabilidad en la ciudad, sentí la necesidad de aportar mi granito de arena a una comunidad que siempre me hizo sentir más cerca de casa. Se siente increíble representar a nuestro lindo país, y formar una familia de Ticos al otro lado del mundo",
-        "cat": "Després d'aconseguir el somni de venir a viure a Barcelona, i sabent que tindria estabilitat a la ciutat, vaig sentir la necessitat d'aportar el meu granet de sorra a una comunitat que sempre em va fer sentir més a prop de casa. Se sent increïble representar el nostre bonic país, i formar una família de Ticos a l'altra banda del món"
+    "team_vicepresident_reasons": {
+        "es": "Me mueve el formar parte de una comunidad colaborativa, el ayudar a facilitar la integración de nuevos residentes y promover las relaciones sociales y profesionales",
+        "cat": "Em mou formar part d'una comunitat col·laborativa, el ajudar a facilitar la integració de nous residents i promoure les relacions socials i professionals"
     },
-    "team_aquion_arribada": {
-        "es": "Octubre, 2021",
-        "cat": "Octubre, 2021"
-    },
-    "team_aquion_occupation": {
-        "es": "Chef y Administrador de Empresas",
-        "cat": "Xef i Administrador d'Empreses"
-    },
-    "team_aquion_contributions": {
-        "es": "Logística y planificación de eventos",
-        "cat": "Logística i planificació d'esdeveniments"
-    },
-    "team_aquion_reasons": {
-        "es": "Amor a la patria y creer en Costa Rica",
-        "cat": "Amor a la pàtria i creure a Costa Rica"
-    },
-    "team_kevin_arribada": {
+    "team_secretary_arrival": {
         "es": "Julio, 2021",
         "cat": "Juliol, 2021"
     },
-    "team_kevin_occupation": {
+    "team_secretary_occupation": {
         "es": "Ing. En Computación",
         "cat": "Ing. En Computació"
     },
-    "team_kevin_contributions": {
+    "team_secretary_contributions": {
         "es": "Secretariado, eventos y desarrollo de software",
         "cat": "Secretariat, esdeveniments i desenvolupament de programari"
     },
-    "team_kevin_reasons": {
+    "team_secretary_reasons": {
         "es": "Como manera de agradecimiento por estar aquí me interesa ayudar a la comunidad. Además cuando comparto con Ticos soy feliz y me teletransporto por un momento a nuestra patria que quiero y extraño tanto",
         "cat": "Com a agraïment per ser aquí, m'interessa ajudar la comunitat. A més quan comparteixo amb Ticos soc feliç i em teletransporto per un moment a la nostra pàtria que estimo i tant trobo a faltar"
     },
-    "team_raque_arribada": {
-        "es": "Septiembre, 2016⁣",
-        "cat": "Setembre, 2016⁣"
+    "team_treasury_arrival": {
+        "es": "Febrero, 2024",
+        "cat": "Febrer, 2024"
     },
-    "team_raque_occupation": {
-        "es": "Analista de Datos",
-        "cat": "Analista de Dades"
+    "team_treasury_occupation": {
+        "es": "Educadora Física",
+        "cat": "Educadora Física"
     },
-    "team_raque_contributions": {
-        "es": "Finanzas y eventos",
-        "cat": "Finances i esdeveniments"
+    "team_treasury_contributions": {
+        "es": "Empatía, buen ambiente y cercanía",
+        "cat": "Empatia, bon ambient i proximitat"
     },
-    "team_raque_reasons": {
-        "es": "Cuando llegué a Barcelona no conocía nadie y me hacía falta ese sabor Tico. Luego de un año y medio que conocí otros Ticos, además de disfrutar a lo Tico, ¡nos ayudábamos para hacer desde trámites hasta el gallo pinto! ¡Y cuando me hicieron la propuesta de formar la Aso, no dude en decir que sí! Poder ayudar a otros Ticos y unirnos en comunidad es una linda forma de mostrar al mundo lo que es ser Pura Vida",
-        "cat": "Quan vaig arribar a Barcelona no coneixia ningú i em feia falta aquest gust Tico. Després d'un any i mig que vaig conèixer altres Ticos, a més de gaudir a l'estil Tico, ens ajudàvem a fer des de tràmits fins al Gallo Pinto! I quan em van fer la proposta de formar l'Aso, no vaig dubtar a dir que sí! Poder ajudar altres Ticos i unir-nos en comunitat és una bonica forma de mostrar al món el que és ser Pura Vida"
+    "team_treasury_reasons": {
+        "es": "Poder seguir cerca de la cultura Tica y compartir con gente de una tierra en comun. Hacer el esduerzo de crear comunidad y disfrutar de ls mezcla de culturas que aportsmos aquí en Cataluña",
+        "cat": "Poder seguir a prop de la cultura Tica i compartir amb gent d'una terra en comú. Fer l'esforç de crear comunitat i gaudir de la barreja de cultures que aportem aquí a Catalunya"
     },
-    "team_ale_arribada": {
-        "es": "Febrero, 2017⁣",
-        "cat": "Febrer, 2017"
+    "team_vocal_one_arrival": {
+        "es": "Septiembre, 2012",
+        "cat": "Setmebre, 2012"
     },
-    "team_ale_occupation": {
-        "es": "Diseñadora UX",
-        "cat": "Dissenyadora UX"
+    "team_vocal_one_occupation": {
+        "es": "Profesor de Inglés y Actor",
+        "cat": "Professor d'Anglès i Actor"
     },
-    "team_ale_contributions": {
-        "es": "Comunicación, patriotismo, iniciativa y diseño",
+    "team_vocal_one_contributions": {
+        "es": "Como fundador de una organizacion sin animo de grupo en California llamada High Desert Equality: aportar esa experiencia a TICOCAT",
+        "cat": "Com a fundador d'una organització sense ànim de grup a Califòrnia anomenada High Desert Equality: aportar aquesta experiència a TICOCAT"
+    },
+    "team_vocal_one_reasons": {
+        "es": "Creo en la misión de esta asociación y quiero aportar mi granito de arena",
+        "cat": "Creo en la missió d'aquesta associació i vull aportar el meu granet de sorra"
+    },
+    "team_vocal_two_arrival": {
+        "es": "Mayo, 2016",
+        "cat": "Maig, 2017"
+    },
+    "team_vocal_two_occupation": {
+        "es": "Sommelier, Cocinero & Elaborador de Vino",
+        "cat": "Sommelier, Cuiner & Elaborador de Vi"
+    },
+    "team_vocal_two_contributions": {
+        "es": "Gestión de eventos, creatividad, chifrijo y tamales",
         "cat": "Comunicació, patriotisme, iniciativa i disseny"
     },
-    "team_ale_reasons": {
-        "es": "Recuerdo que antes de venirme a Barcelona, tenía muchas preguntas y necesitaba de alguien que me ayudara a contestarlas. En aquel momento tuve un angel que no dudo en responderlas. Cuando llegue me propuse a ser ese ángel para alguien más y desde entonces he estado trabajando para la comunidad aportando mi granito de arena. Para que otros tengan la misma posibilidad de cumplir el sueño de estudiar o vivir en Barcelona",
-        "cat": "Recordo que abans d'arribar a Barcelona tenia moltes preguntes i necessitava algú que m'ajudés a contestar-les. En aquell moment vaig tenir un àngel que no va dubtar a respondre-les. Quan vaig arribar em vaig proposar de ser aquest àngel per a algú més i des de llavors he estat treballant per a la comunitat aportant el meu granet de sorra. Perquè els altres tinguin la mateixa possibilitat de complir el somni d'estudiar o viure a Barcelona"
+    "team_vocal_two_reasons": {
+        "es": "Ofrecer la estructura de mi empresa - Gastro Affair - para poder gestionar y ejecutar eventos para los Ticos y otras personas interesadas en nuestra cultura",
+        "cat": "Ofereix la estructura de la meva empresa - Gastro Affair - per poder gestionar i executar esdeveniments per als Ticos i altres persones interessades en la nostra cultura"
     },
     "events_page_title": {
         "es": "Eventos",
