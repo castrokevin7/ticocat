@@ -135,7 +135,7 @@ function Benefits() {
     }
     return (
         <MKBox id="beneficios" component="section" py={6} pt={12} pb={12}>
-            <Container>
+            <Container sx={{ mt: '10px' }}>
                 <Grid
                     container
                     item

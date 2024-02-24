@@ -23,7 +23,7 @@ function Team() {
 
   return (
     <MKBox id="equipo" component="section" py={6} pt={12} pb={12}>
-      <Container>
+      <Container sx={{ mt: '10px' }}>
         <Grid
           container
           item

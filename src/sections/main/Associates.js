@@ -79,7 +79,7 @@ function AssociatesCounter() {
 function Associates() {
     return (
         <MKBox id="socios" component="section" py={12} pt={12} pb={12}>
-            <Container>
+            <Container sx={{ mt: '10px' }}>
                 <Grid
                     container
                     item

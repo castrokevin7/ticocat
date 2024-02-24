@@ -33,7 +33,7 @@ function About() {
       borderTopRightRadius: '0.75rem',
       borderTopLeftRadius: '0.75rem',
     }} id="acerca" component="section" py={6} pt={12} pb={12}>
-      <Container>
+      <Container sx={{ mt: '10px' }}>
         <Grid container display="flex" alignItems="center">
           <Grid container mb={2}>
             <MKTypography variant="h3" my={1} mb={2}>
@@ -44,6 +44,21 @@ function About() {
             </MKTypography>
             <MKTypography variant="body1" color="text" mb={2}>
               {Translator.instance.translate("about_context_description_follow")}
+            </MKTypography>
+            <MKTypography variant="body1" color="text" mb={2}>
+              {Translator.instance.translate("about_context_registrarion_information")}
+              {' '}
+              <MKTypography
+                component="a"
+                target="_blank"
+                href="https://justicia.gencat.cat/ca/serveis/guia_d_entitats?idEntitat=106901#"
+                variant="body1"
+                color="info"
+                fontWeight="regular"
+              >
+                {Translator.instance.translate("benefits_page_benefits_verification_link")}
+              </MKTypography>
+              .
             </MKTypography>
           </Grid>
           <Grid container spacing={2}>

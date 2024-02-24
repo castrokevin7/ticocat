@@ -75,6 +75,10 @@
         "es": "Queremos que los Ticos y Ticas que viven en Cataluña no se sientan lejos de casa y puedan disfrutar de la esencia pura de Costa Rica. Somos un lugar de encuentro cuyo objetivo es fomentar comunidad. ¡Unite a nosotros y sentite un poco más cerca de casa!",
         "cat": "Volem que els Ticos i Ticas que viuen a Catalunya no se sentin lluny de casa i puguin gaudir de l'essència pura de Costa Rica. Som un lloc de trobada que té com a objectiu fomentar comunitat. Uniu-vos a nosaltres i sentiu una mica més a prop de casa!"
     },
+    "about_context_registrarion_information": {
+        "es": "Revisá nuestra información de registro ante la Generalitat de Catalunya",
+        "cat": "Revisa la nostra informació de registre davant la Generalitat de Catalunya"
+    },
     "about_vision_title": {
         "es": "Visión",
         "cat": "Visió"

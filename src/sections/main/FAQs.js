@@ -140,7 +140,7 @@ function FAQs() {
         <MKBox sx={{
             backgroundColor: ({ palette: { bgcolor1 }, functions: { rgba } }) => rgba(bgcolor1.main, 0.4),
         }} id="faqs" component="section" py={6} pt={12} pb={12}>
-            <Container>
+            <Container sx={{ mt: '10px' }}>
                 <Grid
                     container
                     item
