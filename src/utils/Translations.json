@@ -436,8 +436,8 @@
         "cat": "Soci Registrat"
     },
     "associate_terms_conditions": {
-        "es": "Revisa nuestra política de datos personales",
-        "cat": "Revisa la nostra política de dades personals"
+        "es": "Revisa nuestra política de datos",
+        "cat": "Revisa la nostra política de dades"
     },
     "terms_title": {
         "es": "Términos y Condiciones para la Gestión de Datos de Asociados",
@@ -455,115 +455,159 @@
         "es": "Bienvenido a la página web de la Asociación Cultural Costarricense Catalana (en adelante, \"nuestra asociación\"). Agradecemos tu interés en ser parte de nuestra comunidad. Para brindarte una experiencia óptima como asociado, necesitamos recopilar y gestionar ciertos datos personales. Este documento establece los términos y condiciones que rigen la recopilación, uso y protección de tus datos personales.",
         "cat": "Benvingut a la pàgina web de l'Associació Cultural Costa-riquenya Catalana (d'ara endavant, \"la nostra associació\"). Agraïm el teu interès a ser part de la nostra comunitat. Per a brindar-te una experiència òptima com a associat, necessitem recopilar i gestionar unes certes dades personals. Aquest document estableix els termes i condicions que regeixen la recopilació, ús i protecció de les teves dades personals."
     },
-    "terms_term_1": {
-        "es": "1. Consentimiento",
-        "cat": "1. Consentiment"
+    "terms_consent": {
+        "es": "Consentimiento",
+        "cat": "Consentiment"
     },
-    "terms_term_1_description": {
+    "terms_consent_description": {
         "es": "Al unirte como asociado a la Asociación Cultural Costarricense Catalana, otorgas tu consentimiento expreso para la recopilación y procesamiento de tus datos personales con fines de comunicación y gestión de la asociación. Aseguramos que tus datos serán utilizados exclusivamente para los fines establecidos en este documento y en conformidad con la legislación aplicable en materia de protección de datos.",
         "cat": "En unir-te com a associat a l'Associació Cultural Costa-riquenya Catalana, atorgues el teu consentiment exprés per a la recopilació i processament de les teves dades personals amb finalitats de comunicació i gestió de l'associació. Assegurem que les teves dades seran utilitzades exclusivament per als fins establerts en aquest document i en conformitat amb la legislació aplicable en matèria de protecció de dades."
     },
-    "terms_term_2": {
-        "es": "2. Datos Recopilados",
-        "cat": "2. Dades Recopilades"
+    "terms_data_collected": {
+        "es": "Datos Recopilados",
+        "cat": "Dades Recopilades"
     },
-    "terms_term_2_description": {
+    "terms_data_collected_description": {
         "es": "Los datos personales que recopilamos pueden incluir, pero no se limitan a:",
         "cat": "Les dades personals que recopilem poden incloure, però no es limiten a:"
     },
-    "terms_term_2_description_item_1": {
-        "es": "Nombre y apellidos",
-        "cat": "Nom i cognoms"
+    "terms_data_collected_description_item_1": {
+        "es": "Nombre y apellidos.",
+        "cat": "Nom i cognoms."
     },
-    "terms_term_2_description_item_2": {
-        "es": "Dirección de correo electrónico",
-        "cat": "Adreça de correu electrònic"
+    "terms_data_collected_description_item_2": {
+        "es": "Dirección de correo electrónico.",
+        "cat": "Adreça de correu electrònic."
     },
-    "terms_term_2_description_item_3": {
-        "es": "Número de teléfono",
-        "cat": "Número de telèfon"
+    "terms_data_collected_description_item_3": {
+        "es": "Número de teléfono.",
+        "cat": "Número de telèfon."
     },
-    "terms_term_2_description_item_4": {
-        "es": "Identificación (DNI, NIE o Pasaporte)",
-        "cat": "Identificació (DNI, NIE o Passaport)"
+    "terms_data_collected_description_item_4": {
+        "es": "Identificación (DNI, NIE o Pasaporte).",
+        "cat": "Identificació (DNI, NIE o Passaport)."
     },
-    "terms_term_3": {
-        "es": "3. Uso de Datos",
-        "cat": "3. Ús de Dades"
+    "terms_data_usage": {
+        "es": "Uso de Datos",
+        "cat": "Ús de Dades"
     },
-    "terms_term_3_description": {
+    "terms_data_usage_description": {
         "es": "Utilizaremos tus datos personales para los siguientes fines:",
         "cat": "Utilitzarem les teves dades personals per als següents fins:"
     },
-    "terms_term_3_description_item_1": {
+    "terms_data_usage_description_item_1": {
         "es": "Comunicación relacionada con actividades y eventos de la asociación.",
         "cat": "Comunicació relacionada amb activitats i esdeveniments de l'associació."
     },
-    "terms_term_3_description_item_2": {
+    "terms_data_usage_description_item_2": {
         "es": "Gestión de tu membresía y participación en proyectos.",
         "cat": "Gestió de la teva filiació i participació en projectes."
     },
-    "terms_term_3_description_item_3": {
+    "terms_data_usage_description_item_3": {
         "es": "Envío de boletines informativos y anuncios relevantes.",
         "cat": "Enviament de butlletins informatius i anuncis rellevants."
     },
-    "terms_term_3_description_item_4": {
+    "terms_data_usage_description_item_4": {
         "es": "Información sobre oportunidades de voluntariado y colaboración.",
         "cat": "Informació sobre oportunitats de voluntariat i col·laboració."
     },
-    "terms_term_3_description_item_5": {
-        "es": "Incorporación a nuestra comunidad de WhatsApp (bajo aprobación explícita de cada socio).",
-        "cat": "Incorporació a la nostra comunitat de WhatsApp (sota aprovació explícita de cada soci)."
+    "terms_multimedia_usage": {
+        "es": "Uso de Multimedia",
+        "cat": "Ús de Multimedia"
     },
-    "terms_term_4": {
-        "es": "4. Seguridad de Datos",
-        "cat": "4. Seguretat de Dades"
+    "terms_multimedia_usage_description": {
+        "es": "Durante nuestras actividades y eventos, es posible que tomemos fotografías y grabemos videos. Al participar en estas actividades, aceptas que estas imágenes y videos puedan ser utilizados para fines de promoción y difusión de la asociación.",
+        "cat": "Durant les nostres activitats i esdeveniments, és possible que prenguem fotografies i gravem vídeos. En participar en aquestes activitats, acceptes que aquestes imatges i vídeos puguin ser utilitzats per a fins de promoció i difusió de l'associació."
     },
-    "terms_term_4_description": {
+    "terms_whatsapp_community_usage": {
+        "es": "Uso de Nuestra Comunidad de WhatsApp",
+        "cat": "Ús de la Nostra Comunitat de WhatsApp"
+    },
+    "terms_whatsapp_community_usage_description": {
+        "es": "Sobre el uso de esta herramienta:",
+        "cat": "Sobre l'ús d'aquesta eina:"
+    },
+    "terms_whatsapp_community_usage_description_item_1": {
+        "es": "La incorporación es exclusiva para socios y se hace bajo aprobación explícita de los mismos.",
+        "cat": "L'incorporació és exclusiva per a socis i es fa sota aprovació explícita dels mateixos."
+    },
+    "terms_whatsapp_community_usage_description_item_2": {
+        "es": "La comunidad es administrada por la junta directiva de la asociación.",
+        "cat": "La comunitat és administrada per la junta directiva de l'associació."
+    },
+    "terms_whatsapp_community_usage_description_item_3": {
+        "es": "El contenido será moderado y debe ser respetuoso y relevante para la comunidad.",
+        "cat": "El contingut serà moderat i ha de ser respectuós i rellevant per a la comunitat."
+    },
+    "terms_whatsapp_community_usage_description_item_4": {
+        "es": "Se podrán compartir anuncios y oportunidades de interés para la comunidad.",
+        "cat": "Es podran compartir anuncis i oportunitats d'interès per a la comunitat."
+    },
+    "terms_whatsapp_community_usage_description_item_5": {
+        "es": "Se crearán diferentes grupos de interés para la comunidad, a cargo de los administradores o socios que envién la solicitud para aprobación.",
+        "cat": "Es crearan diferents grups d'interès per a la comunitat, a càrrec dels administradors o socis que enviïn la sol·licitud per aprovació."
+    },
+    "terms_whatsapp_community_usage_description_item_6": {
+        "es": "La participación en la comunidad es voluntaria y puedes abandonarla en cualquier momento.",
+        "cat": "La participació en la comunitat és voluntària i pots abandonar-la en qualsevol moment."
+    },
+    "terms_whatsapp_community_usage_description_item_7": {
+        "es": "Los eventos organizados por los miembros podrán ser anunciados en la comunidad y en redes sociales.",
+        "cat": "Els esdeveniments organitzats pels membres podran ser anunciats a la comunitat i a xarxes socials."
+    },
+    "terms_whatsapp_community_usage_description_item_8": {
+        "es": "El contenido multimedia compartido en la comunidad podrá ser utilizado para fines de promoción y difusión de la asociación, como redes sociales.",
+        "cat": "El contingut multimèdia compartit a la comunitat podrà ser utilitzat per a fins de promoció i difusió de l'associació, com xarxes socials."
+    },
+    "terms_data_safety": {
+        "es": "Seguridad de Datos",
+        "cat": "Seguretat de Dades"
+    },
+    "terms_data_safety_description": {
         "es": "Nos comprometemos a garantizar la seguridad de tus datos personales y a protegerlos de accesos no autorizados, pérdida, robo o divulgación no autorizada. Utilizamos medidas de seguridad técnicas y organizativas adecuadas para proteger tus datos.",
         "cat": "Ens comprometem a garantir la seguretat de les teves dades personals i a protegir-les d'accés no autoritzat, pèrdua, robatori o divulgació no autoritzada. Utilitzem mesures de seguretat tècniques i organitzatives adequades per protegir les teves dades."
     },
-    "terms_term_5": {
-        "es": "5. Compartir Datos",
-        "cat": "5. Compartir Dades"
+    "terms_share_data": {
+        "es": "Compartir Datos",
+        "cat": "Compartir Dades"
     },
-    "terms_term_5_description": {
+    "terms_share_data_description": {
         "es": "No compartiremos tus datos personales con terceros sin tu consentimiento expreso, a menos que estemos legalmente obligados a hacerlo.",
         "cat": "No compartirem les teves dades personals amb tercers sense el teu consentiment exprés, llevat que estiguem legalment obligats a fer-ho."
     },
-    "terms_term_6": {
-        "es": "6. Derechos del Titular de Datos",
-        "cat": "6. Drets del Titular de Dades"
+    "terms_data_subject_rights": {
+        "es": "Derechos del Titular de Datos",
+        "cat": "Drets del Titular de Dades"
     },
-    "terms_term_6_description": {
+    "terms_data_subject_rights_description": {
         "es": "Como titular de datos, tienes los siguientes derechos:",
         "cat": "Com a titular de dades, tens els següents drets:"
     },
-    "terms_term_6_description_item_1": {
+    "terms_data_subject_rights_description_item_1": {
         "es": "Acceso a tus datos personales.",
         "cat": "Accés a les teves dades personals."
     },
-    "terms_term_6_description_item_2": {
+    "terms_data_subject_rights_description_item_2": {
         "es": "Rectificación de datos inexactos o incompletos.",
         "cat": "Rectificació de dades inexactes o incomplets."
     },
-    "terms_term_6_description_item_3": {
+    "terms_data_subject_rights_description_item_3": {
         "es": "Supresión de tus datos cuando ya no sean necesarios para los fines establecidos.",
         "cat": "Supressió de les teves dades quan ja no siguin necessaris per als fins establerts."
     },
-    "terms_term_6_description_item_4": {
+    "terms_data_subject_rights_description_item_4": {
         "es": "Oposición al procesamiento de tus datos.",
         "cat": "Oposició al processament de les teves dades."
     },
-    "terms_term_6_conclusion": {
+    "terms_data_subject_rights_conclusion": {
         "es": "Para ejercer tus derechos o si tienes alguna pregunta o inquietud sobre la gestión de tus datos personales, por favor, contáctanos a través de",
         "cat": "Per exercir els teus drets o si tens alguna pregunta o inquietud sobre la gestió de les teves dades personals, si us plau, contacta amb nosaltres a través de"
     },
-    "terms_term_7": {
-        "es": "7. Cambios en los Términos y Condiciones",
-        "cat": "7. Canvis en els Termes i Condicions"
+    "terms_conditions_changes": {
+        "es": "Cambios en los Términos y Condiciones",
+        "cat": "Canvis en els Termes i Condicions"
     },
-    "terms_term_7_description": {
+    "terms_conditions_changes_description": {
         "es": "Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Cualquier cambio significativo será notificado a los asociados de manera adecuada.",
         "cat": "Ens reservem el dret de modificar aquests termes i condicions en qualsevol moment. Qualsevol canvi significatiu serà notificat als associats de manera adequada."
     },

@@ -57,53 +57,66 @@ function TermsAndConditionsPage() {
 
                             <p>{Translator.instance.translate("terms_introduction")}</p>
 
-                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_1")}</h3>
-                            <p>{Translator.instance.translate("terms_term_1_description")}</p>
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_consent")}</h3>
+                            <p>{Translator.instance.translate("terms_consent_description")}</p>
 
-                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_2")}</h3>
-                            <p>{Translator.instance.translate("terms_term_2_description")}</p>
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_data_collected")}</h3>
+                            <p>{Translator.instance.translate("terms_data_collected_description")}</p>
                             <ul style={{ marginLeft: '40px' }}>
-                                <li>{Translator.instance.translate("terms_term_2_description_item_1")}</li>
-                                <li>{Translator.instance.translate("terms_term_2_description_item_2")}</li>
-                                <li>{Translator.instance.translate("terms_term_2_description_item_3")}</li>
-                                <li>{Translator.instance.translate("terms_term_2_description_item_4")}</li>
+                                <li>{Translator.instance.translate("terms_data_collected_description_item_1")}</li>
+                                <li>{Translator.instance.translate("terms_data_collected_description_item_2")}</li>
+                                <li>{Translator.instance.translate("terms_data_collected_description_item_3")}</li>
+                                <li>{Translator.instance.translate("terms_data_collected_description_item_4")}</li>
                             </ul>
 
-                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_3")}</h3>
-                            <p>{Translator.instance.translate("terms_term_3_description")}</p>
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_data_usage")}</h3>
+                            <p>{Translator.instance.translate("terms_data_usage_description")}</p>
                             <ul style={{ marginLeft: '40px' }}>
-                                <li>{Translator.instance.translate("terms_term_3_description_item_1")}</li>
-                                <li>{Translator.instance.translate("terms_term_3_description_item_2")}</li>
-                                <li>{Translator.instance.translate("terms_term_3_description_item_3")}</li>
-                                <li>{Translator.instance.translate("terms_term_3_description_item_4")}</li>
-                                <li>{Translator.instance.translate("terms_term_3_description_item_5")}</li>
+                                <li>{Translator.instance.translate("terms_data_usage_description_item_1")}</li>
+                                <li>{Translator.instance.translate("terms_data_usage_description_item_2")}</li>
+                                <li>{Translator.instance.translate("terms_data_usage_description_item_3")}</li>
+                                <li>{Translator.instance.translate("terms_data_usage_description_item_4")}</li>
                             </ul>
 
-                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_4")}</h3>
-                            <p>{Translator.instance.translate("terms_term_4_description")}</p>
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_multimedia_usage")}</h3>
+                            <p>{Translator.instance.translate("terms_multimedia_usage_description")}</p>
 
-                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_5")}</h3>
-                            <p>{Translator.instance.translate("terms_term_5_description")}</p>
-
-                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_6")}</h3>
-
-                            <p>{Translator.instance.translate("terms_term_6_description")}</p>
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_whatsapp_community_usage")}</h3>
+                            <p>{Translator.instance.translate("terms_whatsapp_community_usage_description")}</p>
                             <ul style={{ marginLeft: '40px' }}>
-                                <li>{Translator.instance.translate("terms_term_6_description_item_1")}</li>
-                                <li>{Translator.instance.translate("terms_term_6_description_item_2")}</li>
-                                <li>{Translator.instance.translate("terms_term_6_description_item_3")}</li>
-                                <li>{Translator.instance.translate("terms_term_6_description_item_4")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_1")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_2")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_3")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_4")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_5")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_6")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_7")}</li>
+                                <li>{Translator.instance.translate("terms_whatsapp_community_usage_description_item_8")}</li>
                             </ul>
 
-                            <p>{Translator.instance.translate("terms_term_6_conclusion")}: <a href="mailto:asoticocat@gmail.com?Subject=Mis datos" rel="noreferrer">asoticocat@gmail.com</a>.</p>
-                            
-                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_term_7")}</h3>
-                            <p>{Translator.instance.translate("terms_term_7_description")}</p>
-                            
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_data_safety")}</h3>
+                            <p>{Translator.instance.translate("terms_data_safety_description")}</p>
+
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_share_data")}</h3>
+                            <p>{Translator.instance.translate("terms_share_data_description")}</p>
+
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_data_subject_rights")}</h3>
+                            <p>{Translator.instance.translate("terms_data_subject_rights_description")}</p>
+                            <ul style={{ marginLeft: '40px' }}>
+                                <li>{Translator.instance.translate("terms_data_subject_rights_description_item_1")}</li>
+                                <li>{Translator.instance.translate("terms_data_subject_rights_description_item_2")}</li>
+                                <li>{Translator.instance.translate("terms_data_subject_rights_description_item_3")}</li>
+                                <li>{Translator.instance.translate("terms_data_subject_rights_description_item_4")}</li>
+                            </ul>
+                            <p>{Translator.instance.translate("terms_data_subject_rights_conclusion")}: <a href="mailto:asoticocat@gmail.com?Subject=Mis datos" rel="noreferrer">asoticocat@gmail.com</a>.</p>
+
+                            <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_conditions_changes")}</h3>
+                            <p>{Translator.instance.translate("terms_conditions_changes_description")}</p>
+
                             <p style={{ marginTop: '25px' }}>{Translator.instance.translate("terms_conclusion")}</p>
 
                             <p>{Translator.instance.translate("terms_conclusion_thanks")}</p>
-                            
+
                             <p><a href="mailto:asoticocat@gmail.com?Subject=Mis datos" rel="noreferrer">asoticocat@gmail.com</a></p>
 
                             <p><strong>{Translator.instance.translate("terms_last_update_date")}</strong></p>
