@@ -28,11 +28,11 @@ export default function Main() {
                 }}
             >
                 <About />
+                <Associates />
                 <Team />
                 <Events />
                 <Benefits />
                 <FAQ />
-                <Associates />
                 <Closure />
             </Card>
             <Footer />

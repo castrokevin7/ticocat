@@ -5,7 +5,7 @@ export function getAccessAction() {
     if (getLang() === "es") {
         return {
             route: "/es/acceso",
-            label: "Socios",
+            label: "Acceso",
             color: "info",
             icon: "login_rounded",
             variant: "outlined",
@@ -15,7 +15,7 @@ export function getAccessAction() {
     } else {
         return {
             route: "/cat/acceso",
-            label: "Socis",
+            label: "Accés",
             color: "info",
             icon: "login_rounded",
             variant: "outlined",

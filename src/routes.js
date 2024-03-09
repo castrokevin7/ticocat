@@ -43,34 +43,34 @@ import Translator from 'utils/Translator';
 
 const routes = [
   {
+    name: Translator.instance.translate("route_associates"),
+    icon: <Icon>volunteer_activism</Icon>,
+    href: "#socios",
+    target: "_self"
+  },
+  {
     name: Translator.instance.translate("route_team"),
     icon: <Icon>supervisor_account</Icon>,
     href: "#equipo",
-    target: "_self" 
+    target: "_self"
   },
   {
     name: Translator.instance.translate("route_events"),
     icon: <Icon>celebration_rounded</Icon>,
     href: "#eventos",
-    target: "_self" 
+    target: "_self"
   },
   {
     name: Translator.instance.translate("route_benefits"),
     icon: <Icon>card_giftcard_rounded</Icon>,
     href: "#beneficios",
-    target: "_self" 
+    target: "_self"
   },
   {
     name: Translator.instance.translate("route_faqs"),
     icon: <Icon>quiz_rounded</Icon>,
     href: "#faqs",
-    target: "_self" 
-  },
-  {
-    name: Translator.instance.translate("route_associates"),
-    icon: <Icon>volunteer_activism</Icon>,
-    href: "#socios",
-    target: "_self" 
+    target: "_self"
   },
 ];
 
