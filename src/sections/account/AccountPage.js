@@ -70,7 +70,7 @@ function AccountPage() {
                     {associate.name}
                 </MKTypography>
                 <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    <b>{Translator.instance.translate("account_page_associate_id_label")}</b>: {associate.associate_id}
+                    <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
                 </MKTypography>
                 <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
                     <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
