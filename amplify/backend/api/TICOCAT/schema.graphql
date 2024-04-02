@@ -66,5 +66,7 @@ type Associate @model @auth(rules: [{allow: public, provider: iam}]) {
   identification_type: IdentificationType
   board_position: BoardPosition
   associate_id: String
+  bio: String
+  profile_picture: String
 }
  

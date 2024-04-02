@@ -40,6 +40,8 @@ export default function AssociateCreateForm(props) {
     identification_type: undefined,
     board_position: undefined,
     associate_id: "",
+    bio: "",
+    profile_picture: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [birthday, setBirthday] = React.useState(initialValues.birthday);
@@ -64,6 +66,10 @@ export default function AssociateCreateForm(props) {
   const [associate_id, setAssociate_id] = React.useState(
     initialValues.associate_id
   );
+  const [bio, setBio] = React.useState(initialValues.bio);
+  const [profile_picture, setProfile_picture] = React.useState(
+    initialValues.profile_picture
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
@@ -77,6 +83,8 @@ export default function AssociateCreateForm(props) {
     setIdentification_type(initialValues.identification_type);
     setBoard_position(initialValues.board_position);
     setAssociate_id(initialValues.associate_id);
+    setBio(initialValues.bio);
+    setProfile_picture(initialValues.profile_picture);
     setErrors({});
   };
   const validations = {
@@ -91,6 +99,8 @@ export default function AssociateCreateForm(props) {
     identification_type: [],
     board_position: [],
     associate_id: [],
+    bio: [],
+    profile_picture: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -128,6 +138,8 @@ export default function AssociateCreateForm(props) {
           identification_type,
           board_position,
           associate_id,
+          bio,
+          profile_picture,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -193,6 +205,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -227,6 +241,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.birthday ?? value;
@@ -261,6 +277,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.address ?? value;
@@ -295,6 +313,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -329,6 +349,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.inscription_date ?? value;
@@ -364,6 +386,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.phone ?? value;
@@ -398,6 +422,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.nationality ?? value;
@@ -432,6 +458,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.identification ?? value;
@@ -466,6 +494,8 @@ export default function AssociateCreateForm(props) {
               identification_type: value,
               board_position,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.identification_type ?? value;
@@ -518,6 +548,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position: value,
               associate_id,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.board_position ?? value;
@@ -578,6 +610,8 @@ export default function AssociateCreateForm(props) {
               identification_type,
               board_position,
               associate_id: value,
+              bio,
+              profile_picture,
             };
             const result = onChange(modelFields);
             value = result?.associate_id ?? value;
@@ -591,6 +625,78 @@ export default function AssociateCreateForm(props) {
         errorMessage={errors.associate_id?.errorMessage}
         hasError={errors.associate_id?.hasError}
         {...getOverrideProps(overrides, "associate_id")}
+      ></TextField>
+      <TextField
+        label="Bio"
+        isRequired={false}
+        isReadOnly={false}
+        value={bio}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              birthday,
+              address,
+              email,
+              inscription_date,
+              phone,
+              nationality,
+              identification,
+              identification_type,
+              board_position,
+              associate_id,
+              bio: value,
+              profile_picture,
+            };
+            const result = onChange(modelFields);
+            value = result?.bio ?? value;
+          }
+          if (errors.bio?.hasError) {
+            runValidationTasks("bio", value);
+          }
+          setBio(value);
+        }}
+        onBlur={() => runValidationTasks("bio", bio)}
+        errorMessage={errors.bio?.errorMessage}
+        hasError={errors.bio?.hasError}
+        {...getOverrideProps(overrides, "bio")}
+      ></TextField>
+      <TextField
+        label="Profile picture"
+        isRequired={false}
+        isReadOnly={false}
+        value={profile_picture}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              birthday,
+              address,
+              email,
+              inscription_date,
+              phone,
+              nationality,
+              identification,
+              identification_type,
+              board_position,
+              associate_id,
+              bio,
+              profile_picture: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.profile_picture ?? value;
+          }
+          if (errors.profile_picture?.hasError) {
+            runValidationTasks("profile_picture", value);
+          }
+          setProfile_picture(value);
+        }}
+        onBlur={() => runValidationTasks("profile_picture", profile_picture)}
+        errorMessage={errors.profile_picture?.errorMessage}
+        hasError={errors.profile_picture?.hasError}
+        {...getOverrideProps(overrides, "profile_picture")}
       ></TextField>
       <Flex
         justifyContent="space-between"
