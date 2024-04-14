@@ -13,7 +13,7 @@ import { auto } from "@popperjs/core";
 import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 
-function AssociatePage() {
+function AssociateVerificationPage() {
     const [associateId, setAssociateId] = useState();
 
     const handleSearchCriteriaChange = (event) => {
@@ -93,4 +93,4 @@ function AssociatePage() {
 }
 
 
-export default AssociatePage;
+export default AssociateVerificationPage;

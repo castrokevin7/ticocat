@@ -15,12 +15,13 @@ import BenefitsPage from 'sections/benefits/BenefitsPage';
 import BenefitView from 'sections/benefits/BenefitView';
 import FAQsPage from 'sections/faqs/FAQsPage';
 import FAQView from 'sections/faqs/FAQView';
-import AssociatePage from 'sections/associate/AssociatePage';
-import AssociateView from 'sections/associate/AssociateView';
+import AssociateVerificationPage from 'sections/associate-verification/AssociateVerificationPage';
+import AssociateConfirmationView from 'sections/associate-verification/AssociateConfirmationView';
 import TermsAndConditionsPage from 'sections/terms-and-conditions/TermsAndConditionsPage';
 import LoginPage from 'sections/login/LoginPage';
 import AccountPage from 'sections/account/AccountPage';
 import SocialNetworkPage from 'sections/social-network/SocialNetworkPage';
+import AssociateView from 'sections/social-network/AssociateView';
 import { Authenticator } from '@aws-amplify/ui-react';
 
 
@@ -81,11 +82,11 @@ function App() {
         <Route exact path={"/es/faq/:faqId"} element={<FAQView />} />;
         <Route exact path={"/cat/faq/:faqId"} element={<FAQView />} />;
 
-        <Route exact path={"/es/socios"} element={<AssociatePage />} />;
-        <Route exact path={"/cat/socios"} element={<AssociatePage />} />;
+        <Route exact path={"/es/socios"} element={<AssociateVerificationPage />} />;
+        <Route exact path={"/cat/socios"} element={<AssociateVerificationPage />} />;
 
-        <Route exact path={"/es/socio/:associateId"} element={<AssociateView />} />;
-        <Route exact path={"/cat/socio/:associateId"} element={<AssociateView />} />;
+        <Route exact path={"/es/socio/:associateId"} element={<AssociateConfirmationView />} />;
+        <Route exact path={"/cat/socio/:associateId"} element={<AssociateConfirmationView />} />;
 
         <Route exact path={"/es/terminos-condiciones"} element={<TermsAndConditionsPage />} />;
         <Route exact path={"/cat/terminos-condiciones"} element={<TermsAndConditionsPage />} />;
@@ -98,6 +99,9 @@ function App() {
 
         <Route exact path={"/es/social"} element={<SocialNetworkPage />} />;
         <Route exact path={"/cat/social"} element={<SocialNetworkPage />} />;
+
+        <Route exact path={"/es/social/usuario/:associateId"} element={<AssociateView />} />;
+        <Route exact path={"/cat/social/usuario/:associateId"} element={<AssociateView />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />

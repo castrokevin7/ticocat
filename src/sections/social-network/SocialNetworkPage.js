@@ -18,6 +18,8 @@ import { Associate } from 'models';
 import { Spinner } from "sections/common/Spinner";
 import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
+import { getLang } from 'utils/Translator';
+import { Link } from "react-router-dom";
 
 function SocialNetworkPage() {
     const [state, setState] = useState('');
@@ -74,11 +76,13 @@ function SocialNetworkPage() {
                 {associates.map((associate, index) => (
                     <Grid item xs={12} lg={4}>
                         <MKBox mb={1}>
-                            <HorizontalTeamCard
-                                image={thumbnail}
-                                name={associate.name}
-                                bio={associate.bio}
-                            />
+                            <Link to={`/${getLang()}/social/usuario/${associate.id}`}>
+                                <HorizontalTeamCard
+                                    image={thumbnail}
+                                    name={associate.name}
+                                    bio={associate.bio}
+                                />
+                            </Link>
                         </MKBox>
                     </Grid>
                 ))}
@@ -96,7 +100,7 @@ function SocialNetworkPage() {
             }}
         >
             <Container>
-{/*                 <Grid container>
+                {/*                 <Grid container>
                     <Grid item xs={12} md={8} sx={{ mb: 6 }}>
                         <MKBox
                             display="flex"

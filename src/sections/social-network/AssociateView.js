@@ -20,7 +20,7 @@ function AssociateView() {
 
     const fetchAssociate = async () => {
         try {
-            let response = await DataStore.query(Associate, associate => associate.identification('eq', associateId.toUpperCase()));
+            let response = await DataStore.query(Associate, associate => associate.id('eq', associateId));
             if (response.length > 0) {
                 response = response[0];
                 setAssociate(response);
