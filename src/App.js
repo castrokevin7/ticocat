@@ -5,23 +5,23 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from 'assets/theme';
 import { Hub, DataStore } from 'aws-amplify';
 
-import Main from 'sections/main/Main';
+import Main from 'views/main/Main';
 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
-import EventsPage from 'sections/events/EventsPage';
-import EventView from 'sections/events/EventView';
-import BenefitsPage from 'sections/benefits/BenefitsPage';
-import BenefitView from 'sections/benefits/BenefitView';
-import FAQsPage from 'sections/faqs/FAQsPage';
-import FAQView from 'sections/faqs/FAQView';
-import AssociateVerificationPage from 'sections/associate-verification/AssociateVerificationPage';
-import AssociateConfirmationView from 'sections/associate-verification/AssociateConfirmationView';
-import TermsAndConditionsPage from 'sections/terms-and-conditions/TermsAndConditionsPage';
-import LoginPage from 'sections/login/LoginPage';
-import AccountPage from 'sections/account/AccountPage';
-import SocialNetworkPage from 'sections/social-network/SocialNetworkPage';
-import AssociateView from 'sections/social-network/AssociateView';
+import EventsPage from 'views/events/EventsPage';
+import EventView from 'views/events/EventView';
+import BenefitsPage from 'views/benefits/BenefitsPage';
+import BenefitView from 'views/benefits/BenefitView';
+import FAQsPage from 'views/faqs/FAQsPage';
+import FAQView from 'views/faqs/FAQView';
+import AssociateVerificationPage from 'views/associate-verification/AssociateVerificationPage';
+import AssociateConfirmationView from 'views/associate-verification/AssociateConfirmationView';
+import TermsAndConditionsPage from 'views/terms-and-conditions/TermsAndConditionsPage';
+import LoginPage from 'views/login/LoginPage';
+import AccountPage from 'views/account/AccountPage';
+import SocialNetworkPage from 'views/social-network/SocialNetworkPage';
+import AssociateView from 'views/social-network/AssociateView';
 import { Authenticator } from '@aws-amplify/ui-react';
 
 
