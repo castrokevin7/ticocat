@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import MKBox from "components/MKBox";
 import bgImage from "assets/images/associates.jpg";
 import { Associate } from "../../models";
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { useParams } from "react-router";
 import { DataStore } from "aws-amplify";
 import Card from "@mui/material/Card";

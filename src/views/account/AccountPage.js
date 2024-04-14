@@ -13,7 +13,7 @@ import { Associate } from 'models';
 import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import MKButton from "components/MKButton";
 
 function AccountPage() {

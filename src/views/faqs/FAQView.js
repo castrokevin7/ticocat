@@ -11,7 +11,7 @@ import Translator from "utils/Translator";
 import { getTranslateAction } from 'utils/TranslateAction';
 import bgImage from "assets/images/faqs.jpeg";
 import Card from "@mui/material/Card";
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { auto } from "@popperjs/core";
 import { getLang } from 'utils/Translator';
 

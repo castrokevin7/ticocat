@@ -15,7 +15,7 @@ import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
 import bgImage from "assets/images/examples/city.jpg";
 import thumbnail from "assets/images/profile.png";
 import { Associate } from 'models';
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import { getLang } from 'utils/Translator';

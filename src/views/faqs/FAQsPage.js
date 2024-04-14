@@ -27,7 +27,7 @@ import { getFAQQuestion, getFAQAnswer, getLinkText } from './Utils';
 import Translator from 'utils/Translator';
 
 import { getTranslateAction } from 'utils/TranslateAction';
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { getLang } from 'utils/Translator';
 
 function FAQsPage() {
