@@ -15,6 +15,7 @@ import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
 import { Spinner } from "components/Spinner";
 import MKButton from "components/MKButton";
+import { Link } from "react-router-dom";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -85,8 +86,16 @@ function AccountPage() {
                         <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
                     </MKTypography>
                 )}
+                <Link to={`/${getLang()}/social`}>
+                    <MKButton
+                        sx={{ float: 'left' }}
+                        mt={2}
+                    >
+                        Go to Social
+                    </MKButton>
+                </Link>
                 <MKButton
-                    sx={{ float: 'right'}}
+                    sx={{ float: 'right' }}
                     mt={2}
                     onClick={() => {
                         signOut();

@@ -12,11 +12,15 @@ import { DataStore } from "aws-amplify";
 import Card from "@mui/material/Card";
 import { auto } from "@popperjs/core";
 import Translator from 'utils/Translator';
+import MKButton from "components/MKButton";
+import { Link } from "react-router-dom";
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 function AssociateView() {
     const [state, setState] = useState("");
     const [associate, setAssociate] = useState();
     const { associateId } = useParams();
+    const { user } = useAuthenticator((context) => [context.user]);
 
     const fetchAssociate = async () => {
         try {
@@ -43,6 +47,16 @@ function AssociateView() {
         return (
             <>
                 <h3>{Translator.instance.translate("associate_information")}</h3>
+                {user && user.attributes.email === associate.email &&
+                    <Link to={`/${getLang()}/cuenta`}>
+                        <MKButton
+                            sx={{ float: 'right' }}
+                            mt={2}
+                        >
+                            Go to Account
+                        </MKButton>
+                    </Link>
+                }
                 <p>{associateId.toUpperCase()}: {associate.name}</p>
             </>
         )
@@ -59,8 +73,8 @@ function AssociateView() {
             return <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_search_error")}</p>;
         }
 
-        return associate ? 
-            getAssociateInformation() : 
+        return associate ?
+            getAssociateInformation() :
             <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_not_found")}</p>;
     }
 

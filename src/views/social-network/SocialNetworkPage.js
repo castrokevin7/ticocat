@@ -9,7 +9,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Otis Kit PRO examples
-import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
+import AssociateCard from "components/Cards/TeamCards/AssociateCard";
 
 // Images
 import bgImage from "assets/images/examples/city.jpg";
@@ -77,7 +77,7 @@ function SocialNetworkPage() {
                     <Grid item xs={12} lg={4}>
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/usuario/${associate.id}`}>
-                                <HorizontalTeamCard
+                                <AssociateCard
                                     image={thumbnail}
                                     name={associate.name}
                                     bio={associate.bio}
@@ -100,33 +100,6 @@ function SocialNetworkPage() {
             }}
         >
             <Container>
-                {/*                 <Grid container>
-                    <Grid item xs={12} md={8} sx={{ mb: 6 }}>
-                        <MKBox
-                            display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            width="3rem"
-                            height="3rem"
-                            variant="gradient"
-                            bgColor="info"
-                            color="white"
-                            shadow="md"
-                            borderRadius="lg"
-                            mb={2}
-                        >
-                            <Icon>supervisor_account</Icon>
-                        </MKBox>
-                        <MKTypography variant="h3" color="white">
-                            The Executive Team
-                        </MKTypography>
-                        <MKTypography variant="body2" color="white" opacity={0.8}>
-                            There&apos;s nothing I really wanted to do in life that I wasn&apos;t able to get good
-                            at. That&apos;s my skill.
-                        </MKTypography>
-                    </Grid>
-                </Grid> */}
-
                 {getAssociates()}
             </Container>
         </MKBox>

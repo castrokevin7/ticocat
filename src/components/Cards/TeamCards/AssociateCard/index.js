@@ -24,7 +24,7 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function HorizontalTeamCard({ image, name, bio }) {
+function AssociateCard({ image, name, bio }) {
   return (
     <Card sx={{ mt: 3 }}>
       <Grid container>
@@ -57,11 +57,11 @@ function HorizontalTeamCard({ image, name, bio }) {
   );
 }
 
-// Typechecking props for the HorizontalTeamCard
-HorizontalTeamCard.propTypes = {
+// Typechecking props for the AssociateCard
+AssociateCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   bio: PropTypes.string,
 };
 
-export default HorizontalTeamCard;
+export default AssociateCard;
