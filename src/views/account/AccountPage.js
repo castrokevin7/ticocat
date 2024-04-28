@@ -65,60 +65,76 @@ function AccountPage() {
             );
         }
 
+        const getAccountHeaderControls = () => {
+            return (
+                <div style={{ float: 'right' }}>
+                    <MKButton
+                        color="secondary"
+                        onClick={() => {
+                            signOut();
+                            setState('signingOut');
+                        }}
+                    >
+                        {Translator.instance.translate("account_page_sign_out_button")}
+                    </MKButton>
+                    {' '}
+                    <Link to={`/${getLang()}/social`}>
+                        <MKButton color="info">
+                            TICOCAT Social
+                        </MKButton>
+                    </Link>
+                </div>
+            );
+        }
+
+        const getRegistryInformation = () => {
+            return (
+                <>
+                    <MKTypography variant="body1" color="text">
+                        {Translator.instance.translate("account_page_inscription_information_header")}
+                    </MKTypography>
+                    <MKTypography variant="body2" color="text" mb={1}>
+                        {Translator.instance.translate("account_page_about_updating_information")}
+                        {' '}
+                        <MKTypography
+                            component="a"
+                            target="_blank"
+                            href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
+                            variant="body2"
+                            color="info"
+                            fontWeight="regular"
+                        >
+                            {Translator.instance.translate("account_page_about_updating_information_link")}
+                        </MKTypography>
+                        .
+                    </MKTypography>
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1} mb={1}>
+                        <b>{Translator.instance.translate("account_page_name_label")}</b>: {associate.name}
+                    </MKTypography>
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                        <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
+                    </MKTypography>
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                        <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
+                    </MKTypography>
+                    {associate.phone && (
+                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                            <b>{Translator.instance.translate("account_page_phone_label")}</b>: {associate.phone}
+                        </MKTypography>
+                    )}
+                    {associate.identification && (
+                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                            <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
+                        </MKTypography>
+                    )}
+                </>
+            );
+        }
+
         return (
             <div>
-                <MKTypography sx={{ mx: 'auto' }} variant="body1" color="text" mb={1}>
-                    {associate.name}
-                </MKTypography>
-                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
-                </MKTypography>
-                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
-                </MKTypography>
-                {associate.phone && (
-                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>{Translator.instance.translate("account_page_phone_label")}</b>: {associate.phone}
-                    </MKTypography>
-                )}
-                {associate.identification && (
-                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
-                    </MKTypography>
-                )}
-                <MKTypography variant="body1" color="text">
-                    {Translator.instance.translate("account_page_about_updating_information")}
-                    {' '}
-                    <MKTypography
-                        component="a"
-                        target="_blank"
-                        href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
-                        variant="body1"
-                        color="info"
-                        fontWeight="regular"
-                    >
-                        {Translator.instance.translate("account_page_about_updating_information_link")}
-                    </MKTypography>
-                    .
-                </MKTypography>
-                <Link to={`/${getLang()}/social`}>
-                    <MKButton
-                        sx={{ float: 'left' }}
-                        mt={2}
-                    >
-                        Go to Social
-                    </MKButton>
-                </Link>
-                <MKButton
-                    sx={{ float: 'right' }}
-                    mt={2}
-                    onClick={() => {
-                        signOut();
-                        setState('signingOut');
-                    }}
-                >
-                    {Translator.instance.translate("account_page_sign_out_button")}
-                </MKButton>
+                {getAccountHeaderControls()}
+                {getRegistryInformation()}
             </div>
         );
     }

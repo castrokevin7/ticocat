@@ -439,9 +439,13 @@
         "es": "Socio Registrado",
         "cat": "Soci Registrat"
     },
+    "account_page_inscription_information_header": {
+        "es": "Tu información de registro",
+        "cat": "La teva informació de registre"
+    },
     "account_page_about_updating_information": {
-        "es": "Si quieres actualizar tu información de registro, contáctanos",
-        "cat": "Si vols actualitzar la teva informació de registre, contacta'ns"
+        "es": "Si quieres actualizar estos datos, contáctanos",
+        "cat": "Si vols actualitzar aquestes dades, contacta'ns"
     },
     "account_page_about_updating_information_link": {
         "es": "aquí",
@@ -738,5 +742,9 @@
     "account_page_number_label": {
         "es": "Nº de socio",
         "cat": "Nº de soci"
+    },
+    "account_page_name_label": {
+        "es": "Nombre",
+        "cat": "Nom"
     }
 }
