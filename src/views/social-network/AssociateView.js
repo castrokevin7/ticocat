@@ -46,18 +46,18 @@ function AssociateView() {
     const getAssociateInformation = () => {
         return (
             <>
-                <h3>{Translator.instance.translate("associate_information")}</h3>
                 {user && user.attributes.email === associate.email &&
                     <Link to={`/${getLang()}/cuenta`}>
                         <MKButton
                             sx={{ float: 'right' }}
                             mt={2}
                         >
-                            Go to Account
+                            {Translator.instance.translate("associate_update_account")}
                         </MKButton>
                     </Link>
                 }
-                <p>{associateId.toUpperCase()}: {associate.name}</p>
+                <h3>{associate.name}</h3>
+                {associate.bio && <p><i>"{associate.bio}"</i></p>}
             </>
         )
     }
@@ -87,7 +87,7 @@ function AssociateView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: `/${getLang()}/socios`,
+                    route: `/${getLang()}/social`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

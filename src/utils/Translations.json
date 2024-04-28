@@ -439,6 +439,14 @@
         "es": "Socio Registrado",
         "cat": "Soci Registrat"
     },
+    "account_page_about_updating_information": {
+        "es": "Si quieres actualizar tu información de registro, contáctanos",
+        "cat": "Si vols actualitzar la teva informació de registre, contacta'ns"
+    },
+    "account_page_about_updating_information_link": {
+        "es": "aquí",
+        "cat": "aquí"
+    },
     "associate_terms_conditions": {
         "es": "Revisa nuestra política de datos",
         "cat": "Revisa la nostra política de dades"

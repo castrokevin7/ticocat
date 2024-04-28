@@ -86,6 +86,21 @@ function AccountPage() {
                         <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
                     </MKTypography>
                 )}
+                <MKTypography variant="body1" color="text">
+                    {Translator.instance.translate("account_page_about_updating_information")}
+                    {' '}
+                    <MKTypography
+                        component="a"
+                        target="_blank"
+                        href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
+                        variant="body1"
+                        color="info"
+                        fontWeight="regular"
+                    >
+                        {Translator.instance.translate("account_page_about_updating_information_link")}
+                    </MKTypography>
+                    .
+                </MKTypography>
                 <Link to={`/${getLang()}/social`}>
                     <MKButton
                         sx={{ float: 'left' }}
