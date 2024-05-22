@@ -51,8 +51,9 @@ function AssociateView() {
                         <MKButton
                             sx={{ float: 'right' }}
                             mt={2}
+                            color="info"
                         >
-                            {Translator.instance.translate("associate_update_account")}
+                            {Translator.instance.translate("associate_account_access")}
                         </MKButton>
                     </Link>
                 }

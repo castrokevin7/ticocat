@@ -439,6 +439,10 @@
         "es": "Socio Registrado",
         "cat": "Soci Registrat"
     },
+    "associate_account_access": {
+        "es": "Mi Cuenta",
+        "cat": "El Meu Compte"
+    },
     "account_page_inscription_information_header": {
         "es": "Tu información de registro",
         "cat": "La teva informació de registre"
