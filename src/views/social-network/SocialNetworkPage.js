@@ -20,10 +20,25 @@ import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import { getLang } from 'utils/Translator';
 import { Link } from "react-router-dom";
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import { Navigate } from 'react-router-dom';
 
 function SocialNetworkPage() {
     const [state, setState] = useState('');
-    const [associates, setAssociates] = useState(null);
+    const [associates, setAssociates] = useState(null);    
+    const { route } = useAuthenticator(context => [context.route]);
+
+    useEffect(() => {
+        if (route !== 'authenticated')
+            return;
+
+        setState('loading');
+        fetchAssociates();
+    }, [route]);
+
+    if (route !== 'authenticated') {
+        return <Navigate to={`/${getLang()}/cuenta`} />;
+    }
 
     const fetchAssociates = async () => {
         try {
@@ -38,11 +53,6 @@ function SocialNetworkPage() {
             setState('error');
         }
     }
-
-    useEffect(() => {
-        setState('loading');
-        fetchAssociates();
-    }, []);
 
     const getAssociates = () => {
         if (state === 'loading') {
