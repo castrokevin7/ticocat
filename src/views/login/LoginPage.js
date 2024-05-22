@@ -72,7 +72,7 @@ function LoginPage() {
 
     const isRegisteredAssociate = async (email) => {
         try {
-            let response = await DataStore.query(Associate, c => c.email("eq", email));
+            const response = await DataStore.query(Associate, associate => associate.email("eq", email));
             return response.length > 0;
         } catch (err) {
             console.error('Error:', err);
@@ -137,7 +137,7 @@ function LoginPage() {
                     <Container
                         sx={{ marginTop: '150px', marginBottom: '100px' }}
                     >
-                        <Authenticator services={services} />;
+                        <Authenticator services={services} />
                     </Container>
                 </MKBox>
             </MKBox>

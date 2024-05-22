@@ -46,8 +46,30 @@ function AccountPage() {
         }
     }, [route, user]);
 
+    useEffect(() => {
+        if (associate) {
+            markAccountAsActivated(associate);
+        }
+    }, [associate]);
+
     if (!user || route !== 'authenticated') {
         return <Navigate to={`/${getLang()}/acceso`} />;
+    }
+
+    const markAccountAsActivated = async (associate) => {
+        if (associate.is_account_activated)
+            return;
+        
+        try {
+            await DataStore.save(
+                Associate.copyOf(associate, updated => {
+                    Object.assign(updated, { is_account_activated: true });
+                })
+            );
+            console.log('Account marked as activated:', associate.email);
+        } catch (err) {
+            console.error('Error activating account:', err);
+        }
     }
 
     const getAccountContent = () => {

@@ -27,7 +27,7 @@ function SocialNetworkPage() {
 
     const fetchAssociates = async () => {
         try {
-            let response = await DataStore.query(Associate);
+            let response = await DataStore.query(Associate, a => a.is_account_activated("eq", true));
             if (response.length > 0) {
                 response = response.sort(() => Math.random() - 0.5);
                 setAssociates(response);
@@ -74,7 +74,7 @@ function SocialNetworkPage() {
         return (
             <Grid container spacing={4}>
                 {associates.map((associate, index) => (
-                    <Grid item xs={12} lg={4}>
+                    <Grid key={index} item xs={12} lg={4}>
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/usuario/${associate.id}`}>
                                 <AssociateCard

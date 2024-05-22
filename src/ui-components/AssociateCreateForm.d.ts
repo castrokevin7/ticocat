@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, SwitchFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -26,6 +26,8 @@ export declare type AssociateCreateFormInputValues = {
     associate_id?: string;
     bio?: string;
     profile_picture?: string;
+    is_account_activated?: boolean;
+    is_public_profile?: boolean;
 };
 export declare type AssociateCreateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -41,6 +43,8 @@ export declare type AssociateCreateFormValidationValues = {
     associate_id?: ValidationFunction<string>;
     bio?: ValidationFunction<string>;
     profile_picture?: ValidationFunction<string>;
+    is_account_activated?: ValidationFunction<boolean>;
+    is_public_profile?: ValidationFunction<boolean>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AssociateCreateFormOverridesProps = {
@@ -58,6 +62,8 @@ export declare type AssociateCreateFormOverridesProps = {
     associate_id?: PrimitiveOverrideProps<TextFieldProps>;
     bio?: PrimitiveOverrideProps<TextFieldProps>;
     profile_picture?: PrimitiveOverrideProps<TextFieldProps>;
+    is_account_activated?: PrimitiveOverrideProps<SwitchFieldProps>;
+    is_public_profile?: PrimitiveOverrideProps<SwitchFieldProps>;
 } & EscapeHatchProps;
 export declare type AssociateCreateFormProps = React.PropsWithChildren<{
     overrides?: AssociateCreateFormOverridesProps | undefined | null;

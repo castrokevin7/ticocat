@@ -11,6 +11,7 @@ import {
   Flex,
   Grid,
   SelectField,
+  SwitchField,
   TextField,
 } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
@@ -42,6 +43,8 @@ export default function AssociateCreateForm(props) {
     associate_id: "",
     bio: "",
     profile_picture: "",
+    is_account_activated: false,
+    is_public_profile: false,
   };
   const [name, setName] = React.useState(initialValues.name);
   const [birthday, setBirthday] = React.useState(initialValues.birthday);
@@ -70,6 +73,12 @@ export default function AssociateCreateForm(props) {
   const [profile_picture, setProfile_picture] = React.useState(
     initialValues.profile_picture
   );
+  const [is_account_activated, setIs_account_activated] = React.useState(
+    initialValues.is_account_activated
+  );
+  const [is_public_profile, setIs_public_profile] = React.useState(
+    initialValues.is_public_profile
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
@@ -85,6 +94,8 @@ export default function AssociateCreateForm(props) {
     setAssociate_id(initialValues.associate_id);
     setBio(initialValues.bio);
     setProfile_picture(initialValues.profile_picture);
+    setIs_account_activated(initialValues.is_account_activated);
+    setIs_public_profile(initialValues.is_public_profile);
     setErrors({});
   };
   const validations = {
@@ -101,6 +112,8 @@ export default function AssociateCreateForm(props) {
     associate_id: [],
     bio: [],
     profile_picture: [],
+    is_account_activated: [],
+    is_public_profile: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -140,6 +153,8 @@ export default function AssociateCreateForm(props) {
           associate_id,
           bio,
           profile_picture,
+          is_account_activated,
+          is_public_profile,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -207,6 +222,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -243,6 +260,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.birthday ?? value;
@@ -279,6 +298,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.address ?? value;
@@ -315,6 +336,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -351,6 +374,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.inscription_date ?? value;
@@ -388,6 +413,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.phone ?? value;
@@ -424,6 +451,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.nationality ?? value;
@@ -460,6 +489,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.identification ?? value;
@@ -496,6 +527,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.identification_type ?? value;
@@ -550,6 +583,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.board_position ?? value;
@@ -612,6 +647,8 @@ export default function AssociateCreateForm(props) {
               associate_id: value,
               bio,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.associate_id ?? value;
@@ -648,6 +685,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio: value,
               profile_picture,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.bio ?? value;
@@ -684,6 +723,8 @@ export default function AssociateCreateForm(props) {
               associate_id,
               bio,
               profile_picture: value,
+              is_account_activated,
+              is_public_profile,
             };
             const result = onChange(modelFields);
             value = result?.profile_picture ?? value;
@@ -698,6 +739,86 @@ export default function AssociateCreateForm(props) {
         hasError={errors.profile_picture?.hasError}
         {...getOverrideProps(overrides, "profile_picture")}
       ></TextField>
+      <SwitchField
+        label="Is account activated"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={is_account_activated}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              name,
+              birthday,
+              address,
+              email,
+              inscription_date,
+              phone,
+              nationality,
+              identification,
+              identification_type,
+              board_position,
+              associate_id,
+              bio,
+              profile_picture,
+              is_account_activated: value,
+              is_public_profile,
+            };
+            const result = onChange(modelFields);
+            value = result?.is_account_activated ?? value;
+          }
+          if (errors.is_account_activated?.hasError) {
+            runValidationTasks("is_account_activated", value);
+          }
+          setIs_account_activated(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("is_account_activated", is_account_activated)
+        }
+        errorMessage={errors.is_account_activated?.errorMessage}
+        hasError={errors.is_account_activated?.hasError}
+        {...getOverrideProps(overrides, "is_account_activated")}
+      ></SwitchField>
+      <SwitchField
+        label="Is public profile"
+        defaultChecked={false}
+        isDisabled={false}
+        isChecked={is_public_profile}
+        onChange={(e) => {
+          let value = e.target.checked;
+          if (onChange) {
+            const modelFields = {
+              name,
+              birthday,
+              address,
+              email,
+              inscription_date,
+              phone,
+              nationality,
+              identification,
+              identification_type,
+              board_position,
+              associate_id,
+              bio,
+              profile_picture,
+              is_account_activated,
+              is_public_profile: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.is_public_profile ?? value;
+          }
+          if (errors.is_public_profile?.hasError) {
+            runValidationTasks("is_public_profile", value);
+          }
+          setIs_public_profile(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("is_public_profile", is_public_profile)
+        }
+        errorMessage={errors.is_public_profile?.errorMessage}
+        hasError={errors.is_public_profile?.hasError}
+        {...getOverrideProps(overrides, "is_public_profile")}
+      ></SwitchField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
