@@ -439,6 +439,38 @@
         "es": "Socio Registrado",
         "cat": "Soci Registrat"
     },
+    "associate_account_access": {
+        "es": "Mi Cuenta",
+        "cat": "El Meu Compte"
+    },
+    "account_page_inscription_information_header": {
+        "es": "Tu información de registro",
+        "cat": "La teva informació de registre"
+    },
+    "account_page_social_information_header": {
+        "es": "Tu información social",
+        "cat": "La teva informació social"
+    },
+    "account_page_social_information_description": {
+        "es": "Estos datos son opcionales y ayudarán a que te conozcan mejor en TICOCAT Social",
+        "cat": "Aquestes dades són opcionals i ajudaran a que et coneguin millor a TICOCAT Social"
+    },
+    "account_page_social_public_account_label": {
+        "es": "Perfil Público",
+        "cat": "Perfil Públic"
+    },
+    "account_page_social_public_account_description": {
+        "es": "Habilita tu perfil público para que cualquier persona en internet pueda verlo",
+        "cat": "Habilita el teu perfil públic perquè qualsevol persona a internet pugui veure'l"
+    },
+    "account_page_about_updating_information": {
+        "es": "Si quieres actualizar estos datos, contáctanos",
+        "cat": "Si vols actualitzar aquestes dades, contacta'ns"
+    },
+    "account_page_about_updating_information_link": {
+        "es": "aquí",
+        "cat": "aquí"
+    },
     "associate_terms_conditions": {
         "es": "Revisa nuestra política de datos",
         "cat": "Revisa la nostra política de dades"
@@ -730,5 +762,9 @@
     "account_page_number_label": {
         "es": "Nº de socio",
         "cat": "Nº de soci"
+    },
+    "account_page_name_label": {
+        "es": "Nombre",
+        "cat": "Nom"
     }
 }

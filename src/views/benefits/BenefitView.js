@@ -17,7 +17,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import MuiLink from "@mui/material/Link";
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { getLang } from "utils/Translator";
 
 function BenefitView() {

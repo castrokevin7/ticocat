@@ -17,7 +17,7 @@ import { getTranslateAction } from 'utils/TranslateAction';
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Box from "@mui/material/Box";
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { getLang } from "utils/Translator";
 
 function EventView() {

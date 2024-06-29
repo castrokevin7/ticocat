@@ -469,6 +469,27 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "is_account_activated": {
+                    "name": "is_account_activated",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "is_public_profile": {
+                    "name": "is_public_profile",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "username": {
+                    "name": "username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -535,5 +556,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "528d801ff46d8f111e71783f9a985f08"
+    "version": "751f21b871b7c2c389e4badfac83e554"
 };

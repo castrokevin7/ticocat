@@ -13,8 +13,10 @@ import { Associate } from 'models';
 import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import MKButton from "components/MKButton";
+import { Link } from "react-router-dom";
+import Switch from "@mui/material/Switch";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -45,8 +47,30 @@ function AccountPage() {
         }
     }, [route, user]);
 
+    useEffect(() => {
+        if (associate) {
+            markAccountAsActivated(associate);
+        }
+    }, [associate]);
+
     if (!user || route !== 'authenticated') {
         return <Navigate to={`/${getLang()}/acceso`} />;
+    }
+
+    const markAccountAsActivated = async (associate) => {
+        if (associate.is_account_activated)
+            return;
+
+        try {
+            await DataStore.save(
+                Associate.copyOf(associate, updated => {
+                    Object.assign(updated, { is_account_activated: true });
+                })
+            );
+            console.log('Account marked as activated:', associate.email);
+        } catch (err) {
+            console.error('Error activating account:', err);
+        }
     }
 
     const getAccountContent = () => {
@@ -64,37 +88,121 @@ function AccountPage() {
             );
         }
 
+        const getAccountHeaderControls = () => {
+            return (
+                <div style={{ float: 'right' }}>
+                    <MKButton
+                        color="secondary"
+                        onClick={() => {
+                            signOut();
+                            setState('signingOut');
+                        }}
+                    >
+                        {Translator.instance.translate("account_page_sign_out_button")}
+                    </MKButton>
+                    {' '}
+                    <Link to={`/${getLang()}/social`}>
+                        <MKButton color="info">
+                            TICOCAT Social
+                        </MKButton>
+                    </Link>
+                </div>
+            );
+        }
+
+        const getRegistryInformation = () => {
+            return (
+                <>
+                    <MKTypography variant="body1" color="text">
+                        {Translator.instance.translate("account_page_inscription_information_header")}
+                    </MKTypography>
+                    <MKTypography variant="body2" color="text" mb={1}>
+                        {Translator.instance.translate("account_page_about_updating_information")}
+                        {' '}
+                        <MKTypography
+                            component="a"
+                            target="_blank"
+                            href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
+                            variant="body2"
+                            color="info"
+                            fontWeight="regular"
+                        >
+                            {Translator.instance.translate("account_page_about_updating_information_link")}
+                        </MKTypography>
+                        .
+                    </MKTypography>
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                        <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
+                    </MKTypography>
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1} mb={1}>
+                        <b>{Translator.instance.translate("account_page_name_label")}</b>: {associate.name}
+                    </MKTypography>
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                        <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
+                    </MKTypography>
+                    {associate.phone && (
+                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                            <b>{Translator.instance.translate("account_page_phone_label")}</b>: {associate.phone}
+                        </MKTypography>
+                    )}
+                    {associate.identification && (
+                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                            <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
+                        </MKTypography>
+                    )}
+                </>
+            );
+        }
+
+        const toggleSwitch = async () => {
+            try {
+                await DataStore.save(
+                    Associate.copyOf(associate, updated => {
+                        Object.assign(updated, { is_public_profile: !associate.is_public_profile });
+                    })
+                );
+                console.log('Public profile updated:', associate.email);
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating public profile:', err);
+            }
+        }
+
+        const getPublicAccountToggle = () => {
+            return (
+                <MKBox display="flex" alignItems="center">
+                    <Switch checked={associate.is_public_profile} onChange={toggleSwitch} />
+                    <MKBox ml={2} lineHeight={0.5}>
+                        <MKTypography display="block" variant="button" fontWeight="bold">
+                            {Translator.instance.translate("account_page_social_public_account_label")}
+                        </MKTypography>
+                        <MKTypography variant="caption" color="text" fontWeight="regular">
+                            {Translator.instance.translate("account_page_social_public_account_description")}
+                        </MKTypography>
+                    </MKBox>
+                </MKBox>
+            )
+        }
+
+        const getSocialInformation = () => {
+            return (
+                <>
+                    <MKTypography mt={5} variant="body1" color="text">
+                        {Translator.instance.translate("account_page_social_information_header")}
+                    </MKTypography>
+                    <MKTypography variant="body2" color="text" mb={1}>
+                        {Translator.instance.translate("account_page_social_information_description")}.
+                    </MKTypography>
+                    {getPublicAccountToggle()}
+                </>
+            );
+        }
+
         return (
             <div>
-                <MKTypography sx={{ mx: 'auto' }} variant="body1" color="text" mb={1}>
-                    {associate.name}
-                </MKTypography>
-                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
-                </MKTypography>
-                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                    <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
-                </MKTypography>
-                {associate.phone && (
-                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>{Translator.instance.translate("account_page_phone_label")}</b>: {associate.phone}
-                    </MKTypography>
-                )}
-                {associate.identification && (
-                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
-                    </MKTypography>
-                )}
-                <MKButton
-                    sx={{ float: 'right'}}
-                    mt={2}
-                    onClick={() => {
-                        signOut();
-                        setState('signingOut');
-                    }}
-                >
-                    {Translator.instance.translate("account_page_sign_out_button")}
-                </MKButton>
+                {getAccountHeaderControls()}
+                {getRegistryInformation()}
+                {getSocialInformation()}
             </div>
         );
     }

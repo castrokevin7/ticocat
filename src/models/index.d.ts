@@ -159,6 +159,9 @@ type EagerAssociate = {
   readonly associate_id?: string | null;
   readonly bio?: string | null;
   readonly profile_picture?: string | null;
+  readonly is_account_activated?: boolean | null;
+  readonly is_public_profile?: boolean | null;
+  readonly username?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -178,6 +181,9 @@ type LazyAssociate = {
   readonly associate_id?: string | null;
   readonly bio?: string | null;
   readonly profile_picture?: string | null;
+  readonly is_account_activated?: boolean | null;
+  readonly is_public_profile?: boolean | null;
+  readonly username?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

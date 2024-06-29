@@ -38,10 +38,7 @@ function App() {
         payload: { event, data },
       } = capsule;
 
-      console.log("DataStore event", event, data);
-
       if (event === "ready") {
-        console.log("DataStore is ready!");
         setIsReady(true);
       }
     });

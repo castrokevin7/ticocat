@@ -6,21 +6,25 @@ import Container from "@mui/material/Container";
 import MKBox from "components/MKBox";
 import bgImage from "assets/images/associates.jpg";
 import { Associate } from "../../models";
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { useParams } from "react-router";
 import { DataStore } from "aws-amplify";
 import Card from "@mui/material/Card";
 import { auto } from "@popperjs/core";
 import Translator from 'utils/Translator';
+import MKButton from "components/MKButton";
+import { Link } from "react-router-dom";
+import { useAuthenticator } from '@aws-amplify/ui-react';
 
 function AssociateView() {
     const [state, setState] = useState("");
     const [associate, setAssociate] = useState();
     const { associateId } = useParams();
+    const { user } = useAuthenticator((context) => [context.user]);
 
     const fetchAssociate = async () => {
         try {
-            let response = await DataStore.query(Associate, associate => associate.id('eq', associateId));
+            let response = await DataStore.query(Associate, associate => associate.id('eq', associateId) && associate.is_account_activated('eq', true));
             if (response.length > 0) {
                 response = response[0];
                 setAssociate(response);
@@ -37,13 +41,38 @@ function AssociateView() {
     useEffect(() => {
         setState('loading');
         fetchAssociate();
+        // eslint-disable-next-line
     }, [associateId]);
 
     const getAssociateInformation = () => {
+        if (!user && !associate.is_public_profile) {
+            return <div>
+                <p style={{ textAlign: 'center', fontWeight: 'bold' }}>Perfil de usuario privado: solo es visible para miembros de TICOCAT Social.</p>
+                <div style={{ float: 'right', marginTop: '10px' }}>
+                    <Link to={`/${getLang()}/acceso`}>
+                        <MKButton color="info">
+                            Acceso Socios
+                        </MKButton>
+                    </Link>
+                </div>
+            </div>;
+        }
+
         return (
             <>
-                <h3>{Translator.instance.translate("associate_information")}</h3>
-                <p>{associateId.toUpperCase()}: {associate.name}</p>
+                {user && user.attributes.email === associate.email &&
+                    <Link to={`/${getLang()}/cuenta`}>
+                        <MKButton
+                            sx={{ float: 'right' }}
+                            mt={2}
+                            color="info"
+                        >
+                            {Translator.instance.translate("associate_account_access")}
+                        </MKButton>
+                    </Link>
+                }
+                <h3>{associate.name}</h3>
+                {associate.bio && <p><i>"{associate.bio}"</i></p>}
             </>
         )
     }
@@ -59,8 +88,8 @@ function AssociateView() {
             return <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_search_error")}</p>;
         }
 
-        return associate ? 
-            getAssociateInformation() : 
+        return associate ?
+            getAssociateInformation() :
             <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_not_found")}</p>;
     }
 
@@ -73,7 +102,7 @@ function AssociateView() {
                 brand="asoticocat"
                 action={getTranslateAction()}
                 secondaryAction={{
-                    route: `/${getLang()}/socios`,
+                    route: `/${getLang()}/social`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",
                     variant: "text",

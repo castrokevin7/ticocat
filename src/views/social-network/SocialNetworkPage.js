@@ -9,25 +9,40 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Otis Kit PRO examples
-import HorizontalTeamCard from "components/Cards/TeamCards/HorizontalTeamCard";
+import AssociateCard from "components/Cards/TeamCards/AssociateCard";
 
 // Images
 import bgImage from "assets/images/examples/city.jpg";
 import thumbnail from "assets/images/profile.png";
 import { Associate } from 'models';
-import { Spinner } from "views/common/Spinner";
+import { Spinner } from "components/Spinner";
 import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import { getLang } from 'utils/Translator';
 import { Link } from "react-router-dom";
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import { Navigate } from 'react-router-dom';
 
 function SocialNetworkPage() {
     const [state, setState] = useState('');
-    const [associates, setAssociates] = useState(null);
+    const [associates, setAssociates] = useState(null);    
+    const { route } = useAuthenticator(context => [context.route]);
+
+    useEffect(() => {
+        if (route !== 'authenticated')
+            return;
+
+        setState('loading');
+        fetchAssociates();
+    }, [route]);
+
+    if (route !== 'authenticated') {
+        return <Navigate to={`/${getLang()}/cuenta`} />;
+    }
 
     const fetchAssociates = async () => {
         try {
-            let response = await DataStore.query(Associate);
+            let response = await DataStore.query(Associate, a => a.is_account_activated("eq", true));
             if (response.length > 0) {
                 response = response.sort(() => Math.random() - 0.5);
                 setAssociates(response);
@@ -38,11 +53,6 @@ function SocialNetworkPage() {
             setState('error');
         }
     }
-
-    useEffect(() => {
-        setState('loading');
-        fetchAssociates();
-    }, []);
 
     const getAssociates = () => {
         if (state === 'loading') {
@@ -74,10 +84,10 @@ function SocialNetworkPage() {
         return (
             <Grid container spacing={4}>
                 {associates.map((associate, index) => (
-                    <Grid item xs={12} lg={4}>
+                    <Grid key={index} item xs={12} lg={4}>
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/usuario/${associate.id}`}>
-                                <HorizontalTeamCard
+                                <AssociateCard
                                     image={thumbnail}
                                     name={associate.name}
                                     bio={associate.bio}
@@ -100,33 +110,6 @@ function SocialNetworkPage() {
             }}
         >
             <Container>
-                {/*                 <Grid container>
-                    <Grid item xs={12} md={8} sx={{ mb: 6 }}>
-                        <MKBox
-                            display="flex"
-                            alignItems="center"
-                            justifyContent="center"
-                            width="3rem"
-                            height="3rem"
-                            variant="gradient"
-                            bgColor="info"
-                            color="white"
-                            shadow="md"
-                            borderRadius="lg"
-                            mb={2}
-                        >
-                            <Icon>supervisor_account</Icon>
-                        </MKBox>
-                        <MKTypography variant="h3" color="white">
-                            The Executive Team
-                        </MKTypography>
-                        <MKTypography variant="body2" color="white" opacity={0.8}>
-                            There&apos;s nothing I really wanted to do in life that I wasn&apos;t able to get good
-                            at. That&apos;s my skill.
-                        </MKTypography>
-                    </Grid>
-                </Grid> */}
-
                 {getAssociates()}
             </Container>
         </MKBox>
