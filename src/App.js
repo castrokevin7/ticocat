@@ -94,11 +94,11 @@ function App() {
         <Route exact path={"/es/cuenta"} element={<AccountPage />} />;
         <Route exact path={"/cat/cuenta"} element={<AccountPage />} />;
 
-{/*         <Route exact path={"/es/social"} element={<SocialNetworkPage />} />;
+        <Route exact path={"/es/social"} element={<SocialNetworkPage />} />;
         <Route exact path={"/cat/social"} element={<SocialNetworkPage />} />;
 
         <Route exact path={"/es/social/usuario/:associateId"} element={<AssociateView />} />;
-        <Route exact path={"/cat/social/usuario/:associateId"} element={<AssociateView />} />; */}
+        <Route exact path={"/cat/social/usuario/:associateId"} element={<AssociateView />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />
