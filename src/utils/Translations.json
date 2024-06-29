@@ -447,6 +447,22 @@
         "es": "Tu información de registro",
         "cat": "La teva informació de registre"
     },
+    "account_page_social_information_header": {
+        "es": "Tu información social",
+        "cat": "La teva informació social"
+    },
+    "account_page_social_information_description": {
+        "es": "Estos datos son opcionales y ayudarán a conocerte mejor en TICOCAT Social",
+        "cat": "Aquestes dades són opcionals i ajudaran a conèixer-te millor a TICOCAT Social"
+    },
+    "account_page_social_public_account_label": {
+        "es": "Perfil Público",
+        "cat": "Perfil Públic"
+    },
+    "account_page_social_public_account_description": {
+        "es": "Habilita tu perfil público para que cualquier persona en internet pueda verlo",
+        "cat": "Habilita el teu perfil públic perquè qualsevol persona a internet pugui veure'l"
+    },
     "account_page_about_updating_information": {
         "es": "Si quieres actualizar estos datos, contáctanos",
         "cat": "Si vols actualitzar aquestes dades, contacta'ns"

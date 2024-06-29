@@ -16,6 +16,7 @@ import MKTypography from "components/MKTypography";
 import { Spinner } from "components/Spinner";
 import MKButton from "components/MKButton";
 import { Link } from "react-router-dom";
+import Switch from "@mui/material/Switch";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -59,7 +60,7 @@ function AccountPage() {
     const markAccountAsActivated = async (associate) => {
         if (associate.is_account_activated)
             return;
-        
+
         try {
             await DataStore.save(
                 Associate.copyOf(associate, updated => {
@@ -130,11 +131,11 @@ function AccountPage() {
                         </MKTypography>
                         .
                     </MKTypography>
-                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1} mb={1}>
-                        <b>{Translator.instance.translate("account_page_name_label")}</b>: {associate.name}
-                    </MKTypography>
                     <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
                         <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
+                    </MKTypography>
+                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1} mb={1}>
+                        <b>{Translator.instance.translate("account_page_name_label")}</b>: {associate.name}
                     </MKTypography>
                     <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
                         <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
@@ -153,10 +154,55 @@ function AccountPage() {
             );
         }
 
+        const toggleSwitch = async () => {
+            try {
+                await DataStore.save(
+                    Associate.copyOf(associate, updated => {
+                        Object.assign(updated, { is_public_profile: !associate.is_public_profile });
+                    })
+                );
+                console.log('Public profile updated:', associate.email);
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating public profile:', err);
+            }
+        }
+
+        const getPublicAccountToggle = () => {
+            return (
+                <MKBox display="flex" alignItems="center">
+                    <Switch checked={associate.is_public_profile} onChange={toggleSwitch} />
+                    <MKBox ml={2} lineHeight={0.5}>
+                        <MKTypography display="block" variant="button" fontWeight="bold">
+                            {Translator.instance.translate("account_page_social_public_account_label")}
+                        </MKTypography>
+                        <MKTypography variant="caption" color="text" fontWeight="regular">
+                            {Translator.instance.translate("account_page_social_public_account_description")}
+                        </MKTypography>
+                    </MKBox>
+                </MKBox>
+            )
+        }
+
+        const getSocialInformation = () => {
+            return (
+                <>
+                    <MKTypography mt={5} variant="body1" color="text">
+                        {Translator.instance.translate("account_page_social_information_header")}
+                    </MKTypography>
+                    <MKTypography variant="body2" color="text" mb={1}>
+                        {Translator.instance.translate("account_page_social_information_description")}.
+                    </MKTypography>
+                    {getPublicAccountToggle()}
+                </>
+            );
+        }
+
         return (
             <div>
                 {getAccountHeaderControls()}
                 {getRegistryInformation()}
+                {getSocialInformation()}
             </div>
         );
     }

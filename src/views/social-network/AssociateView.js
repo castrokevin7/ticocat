@@ -24,7 +24,7 @@ function AssociateView() {
 
     const fetchAssociate = async () => {
         try {
-            let response = await DataStore.query(Associate, associate => associate.id('eq', associateId));
+            let response = await DataStore.query(Associate, associate => associate.id('eq', associateId) && associate.is_account_activated('eq', true));
             if (response.length > 0) {
                 response = response[0];
                 setAssociate(response);
@@ -41,9 +41,23 @@ function AssociateView() {
     useEffect(() => {
         setState('loading');
         fetchAssociate();
+        // eslint-disable-next-line
     }, [associateId]);
 
     const getAssociateInformation = () => {
+        if (!user && !associate.is_public_profile) {
+            return <div>
+                <p style={{ textAlign: 'center', fontWeight: 'bold' }}>Perfil de usuario privado: solo es visible para miembros de TICOCAT Social.</p>
+                <div style={{ float: 'right', marginTop: '10px' }}>
+                    <Link to={`/${getLang()}/acceso`}>
+                        <MKButton color="info">
+                            Acceso Socios
+                        </MKButton>
+                    </Link>
+                </div>
+            </div>;
+        }
+
         return (
             <>
                 {user && user.attributes.email === associate.email &&
