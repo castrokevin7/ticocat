@@ -49,6 +49,21 @@ function AssociateView() {
         try {
             let response = await DataStore.query(Benefit, b => b.associate_id("eq", associate.id));
             if (response.length > 0) {
+                response = await Promise.all(response.map(async (benefit, i) => {
+                    const image = await Storage.get(benefit.image);
+                    return new Benefit({
+                        image,
+                        benefit_id: benefit.benefit_id,
+                        title: benefit.title,
+                        title_cat: benefit.title_cat,
+                        description: benefit.description,
+                        description_cat: benefit.description_cat,
+                        contact: benefit.contact,
+                        url: benefit.url,
+                        about_provider: benefit.about_provider,
+                        about_provider_cat: benefit.about_provider_cat,
+                    });
+                }));   
                 setAssociateOfferedBenefits(response);
             }
         } catch (err) {
