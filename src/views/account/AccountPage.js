@@ -234,7 +234,7 @@ function AccountPage() {
                             {Translator.instance.translate("account_page_social_public_account_label")}
                         </MKTypography>
                         <MKTypography variant="caption" color="text" fontWeight="regular">
-                            {Translator.instance.translate("account_page_social_public_account_description")}
+                            {Translator.instance.translate("account_page_social_public_account_description")}.
                         </MKTypography>
                     </MKBox>
                 </MKBox>
