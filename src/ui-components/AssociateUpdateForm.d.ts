@@ -29,6 +29,7 @@ export declare type AssociateUpdateFormInputValues = {
     profile_picture?: string;
     is_account_activated?: boolean;
     is_public_profile?: boolean;
+    username?: string;
 };
 export declare type AssociateUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -46,6 +47,7 @@ export declare type AssociateUpdateFormValidationValues = {
     profile_picture?: ValidationFunction<string>;
     is_account_activated?: ValidationFunction<boolean>;
     is_public_profile?: ValidationFunction<boolean>;
+    username?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AssociateUpdateFormOverridesProps = {
@@ -65,6 +67,7 @@ export declare type AssociateUpdateFormOverridesProps = {
     profile_picture?: PrimitiveOverrideProps<TextFieldProps>;
     is_account_activated?: PrimitiveOverrideProps<SwitchFieldProps>;
     is_public_profile?: PrimitiveOverrideProps<SwitchFieldProps>;
+    username?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AssociateUpdateFormProps = React.PropsWithChildren<{
     overrides?: AssociateUpdateFormOverridesProps | undefined | null;

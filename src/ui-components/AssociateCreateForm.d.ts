@@ -28,6 +28,7 @@ export declare type AssociateCreateFormInputValues = {
     profile_picture?: string;
     is_account_activated?: boolean;
     is_public_profile?: boolean;
+    username?: string;
 };
 export declare type AssociateCreateFormValidationValues = {
     name?: ValidationFunction<string>;
@@ -45,6 +46,7 @@ export declare type AssociateCreateFormValidationValues = {
     profile_picture?: ValidationFunction<string>;
     is_account_activated?: ValidationFunction<boolean>;
     is_public_profile?: ValidationFunction<boolean>;
+    username?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type AssociateCreateFormOverridesProps = {
@@ -64,6 +66,7 @@ export declare type AssociateCreateFormOverridesProps = {
     profile_picture?: PrimitiveOverrideProps<TextFieldProps>;
     is_account_activated?: PrimitiveOverrideProps<SwitchFieldProps>;
     is_public_profile?: PrimitiveOverrideProps<SwitchFieldProps>;
+    username?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type AssociateCreateFormProps = React.PropsWithChildren<{
     overrides?: AssociateCreateFormOverridesProps | undefined | null;
