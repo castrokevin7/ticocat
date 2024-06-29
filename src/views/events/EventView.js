@@ -83,6 +83,7 @@ function EventView() {
     useEffect(() => {
         setState('loading');
         fetchEvent();
+        // eslint-disable-next-line
     }, [eventId]);
 
     const getEventDetails = (event) => {
@@ -159,6 +160,7 @@ function EventView() {
         }
     };
 
+    // eslint-disable-next-line
     const getEventGallery = (event) => {
         if (event.gallery && event.gallery.length > 0) {
             return (

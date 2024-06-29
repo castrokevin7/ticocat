@@ -36,6 +36,7 @@ export default function BenefitCreateForm(props) {
     instagramUrl: "",
     facebookUrl: "",
     websiteUrl: "",
+    associate_id: "",
   };
   const [benefit_id, setBenefit_id] = React.useState(initialValues.benefit_id);
   const [title, setTitle] = React.useState(initialValues.title);
@@ -62,6 +63,9 @@ export default function BenefitCreateForm(props) {
     initialValues.facebookUrl
   );
   const [websiteUrl, setWebsiteUrl] = React.useState(initialValues.websiteUrl);
+  const [associate_id, setAssociate_id] = React.useState(
+    initialValues.associate_id
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setBenefit_id(initialValues.benefit_id);
@@ -77,6 +81,7 @@ export default function BenefitCreateForm(props) {
     setInstagramUrl(initialValues.instagramUrl);
     setFacebookUrl(initialValues.facebookUrl);
     setWebsiteUrl(initialValues.websiteUrl);
+    setAssociate_id(initialValues.associate_id);
     setErrors({});
   };
   const validations = {
@@ -93,6 +98,7 @@ export default function BenefitCreateForm(props) {
     instagramUrl: [{ type: "URL" }],
     facebookUrl: [{ type: "URL" }],
     websiteUrl: [{ type: "URL" }],
+    associate_id: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -132,6 +138,7 @@ export default function BenefitCreateForm(props) {
           instagramUrl,
           facebookUrl,
           websiteUrl,
+          associate_id,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -199,6 +206,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.benefit_id ?? value;
@@ -235,6 +243,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -271,6 +280,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.title_cat ?? value;
@@ -307,6 +317,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -343,6 +354,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.description_cat ?? value;
@@ -379,6 +391,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.about_provider ?? value;
@@ -415,6 +428,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.about_provider_cat ?? value;
@@ -453,6 +467,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -489,6 +504,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -526,6 +542,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.phone ?? value;
@@ -562,6 +579,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl: value,
               facebookUrl,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.instagramUrl ?? value;
@@ -598,6 +616,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl: value,
               websiteUrl,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.facebookUrl ?? value;
@@ -634,6 +653,7 @@ export default function BenefitCreateForm(props) {
               instagramUrl,
               facebookUrl,
               websiteUrl: value,
+              associate_id,
             };
             const result = onChange(modelFields);
             value = result?.websiteUrl ?? value;
@@ -647,6 +667,43 @@ export default function BenefitCreateForm(props) {
         errorMessage={errors.websiteUrl?.errorMessage}
         hasError={errors.websiteUrl?.hasError}
         {...getOverrideProps(overrides, "websiteUrl")}
+      ></TextField>
+      <TextField
+        label="Associate id"
+        isRequired={false}
+        isReadOnly={false}
+        value={associate_id}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              benefit_id,
+              title,
+              title_cat,
+              description,
+              description_cat,
+              about_provider,
+              about_provider_cat,
+              image,
+              email,
+              phone,
+              instagramUrl,
+              facebookUrl,
+              websiteUrl,
+              associate_id: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.associate_id ?? value;
+          }
+          if (errors.associate_id?.hasError) {
+            runValidationTasks("associate_id", value);
+          }
+          setAssociate_id(value);
+        }}
+        onBlur={() => runValidationTasks("associate_id", associate_id)}
+        errorMessage={errors.associate_id?.errorMessage}
+        hasError={errors.associate_id?.hasError}
+        {...getOverrideProps(overrides, "associate_id")}
       ></TextField>
       <Flex
         justifyContent="space-between"

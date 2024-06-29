@@ -39,6 +39,7 @@ function FAQView() {
     useEffect(() => {
         setState('loading');
         fetchFAQ();
+        // eslint-disable-next-line
     }, [faqId]);
 
     const getFAQContent = (faq) => {

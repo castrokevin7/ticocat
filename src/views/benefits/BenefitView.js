@@ -63,6 +63,7 @@ function BenefitView() {
     useEffect(() => {
         setState('loading');
         fetchBenefit();
+        // eslint-disable-next-line
     }, [benefitId]);
 
     const getConnectionSection = (benefit) => {
