@@ -35,6 +35,7 @@ function App() {
 
     const removeListener = Hub.listen("datastore", async (capsule) => {
       const {
+        // eslint-disable-next-line
         payload: { event, data },
       } = capsule;
 
@@ -109,6 +110,7 @@ function App() {
   );
 }
 
+// eslint-disable-next-line
 export default () => (
   <Authenticator.Provider>
     <App />

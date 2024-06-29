@@ -17,10 +17,13 @@ import { Spinner } from "components/Spinner";
 import MKButton from "components/MKButton";
 import { Link } from "react-router-dom";
 import Switch from "@mui/material/Switch";
+import { Benefit } from "models";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
     const [associate, setAssociate] = useState();
+    const [associateOfferedBenefits, setAssociateOfferedBenefits] = useState();
+    const [isLoadingBenefits, setIsLoadingBenefits] = useState(false);
     const { route } = useAuthenticator(context => [context.route]);
     const { user, signOut } = useAuthenticator((context) => [context.user]);
 
@@ -40,6 +43,19 @@ function AccountPage() {
         }
     };
 
+    const fetchAssociateOfferedBenefits = async (associate) => {
+        setIsLoadingBenefits(true);
+        try {
+            let response = await DataStore.query(Benefit, b => b.associate_id("eq", associate.id));
+            if (response.length > 0) {
+                setAssociateOfferedBenefits(response);
+            }
+        } catch (err) {
+            console.error('Error:', err);
+        }
+        setIsLoadingBenefits(false);
+    };
+
     useEffect(() => {
         if (route === 'authenticated') {
             setState('loading');
@@ -50,6 +66,7 @@ function AccountPage() {
     useEffect(() => {
         if (associate) {
             markAccountAsActivated(associate);
+            fetchAssociateOfferedBenefits(associate);
         }
     }, [associate]);
 
@@ -110,6 +127,45 @@ function AccountPage() {
             );
         }
 
+        const getBenefitsOffered = () => {
+            if (isLoadingBenefits) {
+                return (
+                    <MKTypography
+                        sx={{ mx: 'auto', display: 'flex', alignItems: 'center' }}
+                        variant="body2"
+                        color="text"
+                        mt={2}
+                    >
+                        <Spinner /> {Translator.instance.translate("account_page_loading_benefits_offered")}
+                    </MKTypography>
+                );
+            }
+
+            if (!associateOfferedBenefits || associateOfferedBenefits.length === 0) {
+                return;
+            }
+
+            return (
+                <>
+                    <MKTypography variant="body2" color="text">
+                        <b>{Translator.instance.translate("account_page_benefits_offered")}</b>:
+                    </MKTypography>
+                    <ul style={{ marginLeft: '30px' }}>
+                        {associateOfferedBenefits && associateOfferedBenefits.map(benefit => (
+                            <li key={benefit.id}>
+                                <Link target="_blank" to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
+                                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text">
+                                        {benefit.title}
+                                    </MKTypography>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            );
+        }
+
+
         const getRegistryInformation = () => {
             return (
                 <>
@@ -150,6 +206,7 @@ function AccountPage() {
                             <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
                         </MKTypography>
                     )}
+                    {getBenefitsOffered()}
                 </>
             );
         }

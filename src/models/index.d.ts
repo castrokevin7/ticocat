@@ -75,6 +75,7 @@ type EagerBenefit = {
   readonly instagramUrl?: string | null;
   readonly facebookUrl?: string | null;
   readonly websiteUrl?: string | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -94,6 +95,7 @@ type LazyBenefit = {
   readonly instagramUrl?: string | null;
   readonly facebookUrl?: string | null;
   readonly websiteUrl?: string | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

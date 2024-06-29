@@ -26,6 +26,7 @@ export declare type BenefitCreateFormInputValues = {
     instagramUrl?: string;
     facebookUrl?: string;
     websiteUrl?: string;
+    associate_id?: string;
 };
 export declare type BenefitCreateFormValidationValues = {
     benefit_id?: ValidationFunction<string>;
@@ -41,6 +42,7 @@ export declare type BenefitCreateFormValidationValues = {
     instagramUrl?: ValidationFunction<string>;
     facebookUrl?: ValidationFunction<string>;
     websiteUrl?: ValidationFunction<string>;
+    associate_id?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BenefitCreateFormOverridesProps = {
@@ -58,6 +60,7 @@ export declare type BenefitCreateFormOverridesProps = {
     instagramUrl?: PrimitiveOverrideProps<TextFieldProps>;
     facebookUrl?: PrimitiveOverrideProps<TextFieldProps>;
     websiteUrl?: PrimitiveOverrideProps<TextFieldProps>;
+    associate_id?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type BenefitCreateFormProps = React.PropsWithChildren<{
     overrides?: BenefitCreateFormOverridesProps | undefined | null;

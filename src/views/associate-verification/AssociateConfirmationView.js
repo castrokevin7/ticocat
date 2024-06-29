@@ -37,6 +37,7 @@ function AssociateConfirmationView() {
     useEffect(() => {
         setState('loading');
         fetchAssociate();
+        // eslint-disable-next-line
     }, [associateId]);
 
     const getAssociateInformation = () => {

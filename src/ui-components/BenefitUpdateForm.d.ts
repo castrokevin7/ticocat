@@ -27,6 +27,7 @@ export declare type BenefitUpdateFormInputValues = {
     instagramUrl?: string;
     facebookUrl?: string;
     websiteUrl?: string;
+    associate_id?: string;
 };
 export declare type BenefitUpdateFormValidationValues = {
     benefit_id?: ValidationFunction<string>;
@@ -42,6 +43,7 @@ export declare type BenefitUpdateFormValidationValues = {
     instagramUrl?: ValidationFunction<string>;
     facebookUrl?: ValidationFunction<string>;
     websiteUrl?: ValidationFunction<string>;
+    associate_id?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type BenefitUpdateFormOverridesProps = {
@@ -59,6 +61,7 @@ export declare type BenefitUpdateFormOverridesProps = {
     instagramUrl?: PrimitiveOverrideProps<TextFieldProps>;
     facebookUrl?: PrimitiveOverrideProps<TextFieldProps>;
     websiteUrl?: PrimitiveOverrideProps<TextFieldProps>;
+    associate_id?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type BenefitUpdateFormProps = React.PropsWithChildren<{
     overrides?: BenefitUpdateFormOverridesProps | undefined | null;
