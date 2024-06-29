@@ -8,7 +8,7 @@ import bgImage from "assets/images/associates.jpg";
 import { Associate, Benefit } from "../../models";
 import { Spinner } from "components/Spinner";
 import { useParams } from "react-router";
-import { DataStore } from "aws-amplify";
+import { DataStore, Storage } from "aws-amplify";
 import Card from "@mui/material/Card";
 import { auto } from "@popperjs/core";
 import Translator from 'utils/Translator';
