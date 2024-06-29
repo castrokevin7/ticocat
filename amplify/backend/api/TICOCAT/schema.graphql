@@ -1,4 +1,4 @@
-type FAQ @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
+type FAQ @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   question: String!
   question_cat: String!
@@ -7,7 +7,7 @@ type FAQ @model @auth(rules: [{allow: public, provider: iam}, {allow: private, p
   links: [AWSURL]
 }
 
-type Benefit @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
+type Benefit @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   benefit_id: String
   title: String
@@ -25,7 +25,7 @@ type Benefit @model @auth(rules: [{allow: public, provider: iam}, {allow: privat
   associate_id: String
 }
 
-type Event @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
+type Event @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   event_id: String
   title: String
@@ -54,7 +54,7 @@ enum BoardPosition {
   VOCAL
 }
 
-type Associate @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
+type Associate @model @auth(rules: [{allow: public, provider: iam}]) {
   id: ID!
   name: String
   birthday: String
