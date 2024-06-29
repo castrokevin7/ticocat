@@ -5,7 +5,7 @@ import { getLang } from 'utils/Translator';
 import Container from "@mui/material/Container";
 import MKBox from "components/MKBox";
 import bgImage from "assets/images/associates.jpg";
-import { Associate } from "../../models";
+import { Associate, Benefit } from "../../models";
 import { Spinner } from "components/Spinner";
 import { useParams } from "react-router";
 import { DataStore } from "aws-amplify";
@@ -15,10 +15,16 @@ import Translator from 'utils/Translator';
 import MKButton from "components/MKButton";
 import { Link } from "react-router-dom";
 import { useAuthenticator } from '@aws-amplify/ui-react';
+import { getBenefitTitle, getBenefitDescription } from '../benefits/Utils';
+import MKTypography from "components/MKTypography";
+import Grid from "@mui/material/Grid";
+import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
 
 function AssociateView() {
     const [state, setState] = useState("");
     const [associate, setAssociate] = useState();
+    const [associateOfferedBenefits, setAssociateOfferedBenefits] = useState();
+    const [isLoadingBenefits, setIsLoadingBenefits] = useState(false);
     const { associateId } = useParams();
     const { user } = useAuthenticator((context) => [context.user]);
 
@@ -38,11 +44,72 @@ function AssociateView() {
         }
     };
 
+    const fetchAssociateOfferedBenefits = async (associate) => {
+        setIsLoadingBenefits(true);
+        try {
+            let response = await DataStore.query(Benefit, b => b.associate_id("eq", associate.id));
+            if (response.length > 0) {
+                setAssociateOfferedBenefits(response);
+            }
+        } catch (err) {
+            console.error('Error:', err);
+        }
+        setIsLoadingBenefits(false);
+    };
+
     useEffect(() => {
         setState('loading');
         fetchAssociate();
         // eslint-disable-next-line
     }, [associateId]);
+
+    useEffect(() => {
+        if (associate) {
+            fetchAssociateOfferedBenefits(associate);
+        }
+    }, [associate]);
+
+    const getOfferedBenefits = () => {
+        if (isLoadingBenefits) {
+            return (
+                <MKTypography
+                    sx={{ mx: 'auto', display: 'flex', alignItems: 'center' }}
+                    variant="body2"
+                    color="text"
+                    mt={2}
+                >
+                    <Spinner /> {Translator.instance.translate("account_page_loading_benefits_offered")}
+                </MKTypography>
+            );
+        }
+
+        if (!associateOfferedBenefits || associateOfferedBenefits.length === 0) {
+            return;
+        }
+
+        return (
+            <>
+                <MKTypography variant="body1" color="text" mt={2}>
+                    {Translator.instance.translate("account_page_benefits_offered")}:
+                </MKTypography>
+                <Grid container spacing={3}>
+                    {
+                        associateOfferedBenefits.map((benefit, i) =>
+                            <Grid key={i} item xs={12} lg={4}>
+                                <Link to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
+                                    <SimpleBackgroundCard
+                                        image={benefit.image}
+                                        title={getBenefitTitle(benefit)}
+                                        date={benefit.date}
+                                        description={`${getBenefitDescription(benefit).substring(0, 31)}... ${Translator.instance.translate("benefits_page_see_more_from_benefit")}`}
+                                    />
+                                </Link>
+                            </Grid>
+                        )}
+                </Grid>
+            </>
+        );
+    }
 
     const getAssociateInformation = () => {
         if (!user && !associate.is_public_profile) {
@@ -73,6 +140,7 @@ function AssociateView() {
                 }
                 <h3>{associate.name}</h3>
                 {associate.bio && <p><i>"{associate.bio}"</i></p>}
+                {getOfferedBenefits()}
             </>
         )
     }
