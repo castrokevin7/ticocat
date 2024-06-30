@@ -377,7 +377,9 @@ function AccountPage() {
         const getUsernameField = () => {
             return (
                 <div style={{ marginTop: '5px' }}>
-                    <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Grid container item xs={12} lg={6} py={1}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
                         <MKInput
                             variant="standard"
                             label="Nombre de usuario"
@@ -385,6 +387,7 @@ function AccountPage() {
                             InputLabelProps={{ shrink: true }}
                             onChange={updateUsername}
                             value={username}
+                            fullWidth
                         />
                         {getUpdateUsernameControls()}
                         {usernameAlreadyExists && (
@@ -449,8 +452,10 @@ function AccountPage() {
 
         const getBioField = () => {
             return (
-                <div style={{ marginTop: '5px' }}>
-                    <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ marginTop: '15px' }}>
+                    <Grid container item xs={12} lg={6} py={1}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
                         <MKInput
                             variant="standard"
                             label="Biografía"
@@ -460,6 +465,7 @@ function AccountPage() {
                             rows={4}
                             value={bio}
                             onChange={updateBio}
+                            fullWidth
                         />
                         {getUpdateBioControls()}
                     </Grid>
