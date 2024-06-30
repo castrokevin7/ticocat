@@ -131,6 +131,12 @@ function AccountPage() {
                         {Translator.instance.translate("account_page_sign_out_button")}
                     </MKButton>
                     {' '}
+                    <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
+                        <MKButton color="info">
+                            Mi Perfil
+                        </MKButton>
+                    </Link>
+                    {' '}
                     <Link to={`/${getLang()}/social`}>
                         <MKButton color="info">
                             TICOCAT Social
