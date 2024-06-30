@@ -90,12 +90,13 @@ function AccountPage() {
             return;
 
         try {
-            await DataStore.save(
+            console.log('Activating account:', associate.email);
+            const response = await DataStore.save(
                 Associate.copyOf(associate, updated => {
-                    Object.assign(updated, { is_account_activated: true });
+                    updated.is_account_activated = true;
                 })
             );
-            console.log('Account marked as activated:', associate.email);
+            console.log('Account activated:', response);
         } catch (err) {
             console.error('Error activating account:', err);
         }
