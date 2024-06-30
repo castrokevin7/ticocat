@@ -126,6 +126,30 @@ function AssociateView() {
         );
     }
 
+    const getContactInformation = () => {
+        if (!associate.share_phone && !associate.share_email) {
+            return;
+        }
+
+        return (
+            <>
+                <MKTypography variant="body1" color="text" mt={2}>
+                    {Translator.instance.translate("associate_view_contact_information_label")}:
+                </MKTypography>
+                {associate.share_phone &&
+                    <MKTypography variant="body2" color="text">
+                        <b>{Translator.instance.translate("account_page_phone_label")}:</b> {associate.phone}
+                    </MKTypography>
+                }
+                {associate.share_email &&
+                    <MKTypography variant="body2" color="text">
+                        <b>{Translator.instance.translate("account_page_email_label")}:</b> {associate.email}
+                    </MKTypography>
+                }
+            </>
+        );    
+    }
+
     const getAssociateInformation = () => {
         if (!user && !associate.is_public_profile) {
             return <div>
@@ -155,6 +179,7 @@ function AssociateView() {
                 }
                 <h3>{associate.name}</h3>
                 {associate.bio && <p><i>"{associate.bio}"</i></p>}
+                {getContactInformation()}
                 {getOfferedBenefits()}
             </>
         )
