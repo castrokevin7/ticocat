@@ -400,15 +400,20 @@ function AccountPage() {
             )
         }
 
+        const MAX_BIO_LENGTH = 250;
         const updateBio = async (event) => {
             const newBio = event.target.value;
+
+            if (newBio.length > MAX_BIO_LENGTH) {
+                return;
+            }
 
             if (newBio === '') {
                 setBio(newBio);
                 return;
             }
 
-            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"']*$/.test(newBio)) {
+            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"'áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙ]*$/.test(newBio)) {
                 setBio(newBio);
             }
         }
@@ -467,6 +472,9 @@ function AccountPage() {
                             onChange={updateBio}
                             fullWidth
                         />
+                        <MKTypography variant="caption" color="info">
+                            {bio.length}/{MAX_BIO_LENGTH}
+                        </MKTypography>
                         {getUpdateBioControls()}
                     </Grid>
                 </div>
