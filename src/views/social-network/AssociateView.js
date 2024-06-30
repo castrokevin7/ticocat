@@ -182,6 +182,7 @@ function AssociateView() {
                     </Link>
                 }
                 <h3>{associate.name}</h3>
+                {associate.username && <p>@{associate.username}</p>}
                 {associate.bio && <p><i>"{associate.bio}"</i></p>}
                 {getContactInformation()}
                 {getOfferedBenefits()}
