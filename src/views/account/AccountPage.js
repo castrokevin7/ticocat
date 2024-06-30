@@ -30,6 +30,7 @@ function AccountPage() {
     const { route } = useAuthenticator(context => [context.route]);
     const { user, signOut } = useAuthenticator((context) => [context.user]);
     const [username, setUsername] = useState();
+    const [bio, setBio] = useState();
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
 
     const fetchAssociate = async (email) => {
@@ -77,6 +78,7 @@ function AccountPage() {
             markAccountAsActivated(associate);
             fetchAssociateOfferedBenefits(associate);
             setUsername(associate.username);
+            setBio(associate.bio);
         }
         // eslint-disable-next-line
     }, [associate]);
@@ -315,10 +317,6 @@ function AccountPage() {
         const updateUsername = async (event) => {
             const newUsername = event.target.value;
 
-            if (newUsername === associate.username) {
-                return;
-            }
-
             if (newUsername === '') {
                 setUsername(newUsername);
                 setUsernameAlreadyExists(false);
@@ -378,10 +376,8 @@ function AccountPage() {
 
         const getUsernameField = () => {
             return (
-                <Container ml={2} mt={2}>
-                    <Grid container item xs={12} lg={4} py={1}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
+                <div style={{ marginTop: '5px' }}>
+                    <Grid sx={{ display: 'flex', alignItems: 'center' }}>
                         <MKInput
                             variant="standard"
                             label="Nombre de usuario"
@@ -397,7 +393,77 @@ function AccountPage() {
                             </MKTypography>
                         )}
                     </Grid>
-                </Container>
+                </div>
+            )
+        }
+
+        const updateBio = async (event) => {
+            const newBio = event.target.value;
+
+            if (newBio === '') {
+                setBio(newBio);
+                return;
+            }
+
+            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"']*$/.test(newBio)) {
+                setBio(newBio);
+            }
+        }
+
+        const updateAssociateBio = async () => {
+            try {
+                const original = await DataStore.query(Associate, associate.id);
+                await DataStore.save(
+                    Associate.copyOf(original, updated => {
+                        updated.bio = bio;
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating bio:', err);
+            }
+        }
+
+        const getUpdateBioControls = () => {
+            if (bio === associate.bio) {
+                return;
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '5px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateBio}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setBio(associate.bio)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        const getBioField = () => {
+            return (
+                <div style={{ marginTop: '5px' }}>
+                    <Grid sx={{ display: 'flex', alignItems: 'center' }}>
+                        <MKInput
+                            variant="standard"
+                            label="Biografía"
+                            placeholder="Escribe algo sobre ti"
+                            InputLabelProps={{ shrink: true }}
+                            multiline
+                            rows={4}
+                            value={bio}
+                            onChange={updateBio}
+                        />
+                        {getUpdateBioControls()}
+                    </Grid>
+                </div>
             )
         }
 
@@ -413,7 +479,10 @@ function AccountPage() {
                     {getPublicAccountToggle()}
                     {getPublicPhoneToggle()}
                     {getPublicEmailToggle()}
-                    {getUsernameField()}
+                    <div style={{ marginTop: '5px', marginLeft: '5px' }}>
+                        {getUsernameField()}
+                        {getBioField()}
+                    </div>
                 </>
             );
         }
