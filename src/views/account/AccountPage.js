@@ -423,7 +423,7 @@ function AccountPage() {
                 const original = await DataStore.query(Associate, associate.id);
                 await DataStore.save(
                     Associate.copyOf(original, updated => {
-                        updated.bio = bio;
+                        updated.bio = bio.trim();
                     })
                 );
                 fetchAssociate(user.attributes.email);
@@ -472,11 +472,9 @@ function AccountPage() {
                             onChange={updateBio}
                             fullWidth
                         />
-                        {bio && bio.length > MAX_BIO_LENGTH && (
-                            <MKTypography variant="caption" color="info">
-                                {bio.length}/{MAX_BIO_LENGTH}
-                            </MKTypography>
-                        )}
+                        <MKTypography variant="caption" color="info">
+                            {bio ? bio.length : 0}/{MAX_BIO_LENGTH}
+                        </MKTypography>
                         {getUpdateBioControls()}
                     </Grid>
                 </div>
