@@ -33,12 +33,12 @@ function AssociateView() {
             let response = await DataStore.query(Associate, associate => associate.and(associate => [
                 associate.username('eq', associateId),
                 associate.is_account_activated('eq', true)
-              ]));
+            ]));
             if (response.length === 0) {
                 response = await DataStore.query(Associate, associate => associate.and(associate => [
                     associate.id('eq', associateId),
                     associate.is_account_activated('eq', true)
-                  ]));
+                ]));
             }
 
             if (response.length > 0) {
@@ -77,7 +77,7 @@ function AssociateView() {
                         about_provider: benefit.about_provider,
                         about_provider_cat: benefit.about_provider_cat,
                     });
-                }));   
+                }));
                 setAssociateOfferedBenefits(response);
             }
         } catch (err) {
@@ -162,7 +162,7 @@ function AssociateView() {
                     </MKTypography>
                 }
             </>
-        );    
+        );
     }
 
     const getAssociateInformation = () => {
@@ -192,8 +192,10 @@ function AssociateView() {
                         </MKButton>
                     </Link>
                 }
-                <h3>{associate.name}</h3>
-                {associate.username && <p>@{associate.username}</p>}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <h3>{associate.name}</h3>
+                    {associate.username && <p style={{ marginLeft: '5px' }}>@{associate.username}</p>}
+                </div>
                 {associate.bio && <p><i>"{associate.bio}"</i></p>}
                 {getContactInformation()}
                 {getOfferedBenefits()}
