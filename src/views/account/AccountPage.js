@@ -323,7 +323,7 @@ function AccountPage() {
         const updateUsername = async (event) => {
             const newUsername = event.target.value;
 
-            if (newUsername === '') {
+            if (newUsername === '' || newUsername === associate.username) {
                 setUsername(newUsername);
                 setUsernameAlreadyExists(false);
                 return;
