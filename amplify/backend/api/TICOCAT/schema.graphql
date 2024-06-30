@@ -72,5 +72,7 @@ type Associate @model @auth(rules: [{allow: public, provider: iam}]) {
   is_account_activated: Boolean
   is_public_profile: Boolean
   username: String
+  share_email: Boolean
+  share_phone: Boolean
 }
  

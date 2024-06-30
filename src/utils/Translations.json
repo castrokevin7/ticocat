@@ -471,6 +471,22 @@
         "es": "Habilita tu perfil público para que cualquier persona en internet pueda verlo",
         "cat": "Habilita el teu perfil públic perquè qualsevol persona a internet pugui veure'l"
     },
+    "account_page_social_public_phone_label": {
+        "es": "Compartir Teléfono",
+        "cat": "Compartir Telèfon"
+    },
+    "account_page_social_public_phone_description": {
+        "es": "Habilita esta opción para compartir tu teléfono en la red social",
+        "cat": "Habilita aquesta opció per compartir el teu telèfon a la xarxa social"
+    },
+    "account_page_social_public_email_label": {
+        "es": "Compartir Correo Eletrónico",
+        "cat": "Compartir Correu Electrònic"
+    },
+    "account_page_social_public_email_description": {
+        "es": "Habilita esta opción para compartir tu correo electrónico en la red social",
+        "cat": "Habilita aquesta opció per compartir el teu correu electrònic a la xarxa social"
+    },
     "account_page_about_updating_information": {
         "es": "Si quieres actualizar estos datos, contáctanos",
         "cat": "Si vols actualitzar aquestes dades, contacta'ns"

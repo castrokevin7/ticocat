@@ -44,6 +44,10 @@ function AccountPage() {
     };
 
     const fetchAssociateOfferedBenefits = async (associate) => {
+        if (associateOfferedBenefits && associateOfferedBenefits.length > 0) {
+            return;
+        }
+
         setIsLoadingBenefits(true);
         try {
             let response = await DataStore.query(Benefit, b => b.associate_id("eq", associate.id));
@@ -211,7 +215,7 @@ function AccountPage() {
             );
         }
 
-        const toggleSwitch = async () => {
+        const updateProfileVisiblitySettings = async () => {
             try {
                 await DataStore.save(
                     Associate.copyOf(associate, updated => {
@@ -227,14 +231,72 @@ function AccountPage() {
 
         const getPublicAccountToggle = () => {
             return (
-                <MKBox display="flex" alignItems="center">
-                    <Switch checked={associate.is_public_profile} onChange={toggleSwitch} />
+                <MKBox display="flex" alignItems="center" mb={2}>
+                    <Switch checked={associate.is_public_profile} onChange={updateProfileVisiblitySettings} />
                     <MKBox ml={2} lineHeight={0.5}>
                         <MKTypography display="block" variant="button" fontWeight="bold">
                             {Translator.instance.translate("account_page_social_public_account_label")}
                         </MKTypography>
                         <MKTypography variant="caption" color="text" fontWeight="regular">
                             {Translator.instance.translate("account_page_social_public_account_description")}.
+                        </MKTypography>
+                    </MKBox>
+                </MKBox>
+            )
+        }
+
+        const updatePhoneVisiblitySettings = async () => {
+            try {
+                await DataStore.save(
+                    Associate.copyOf(associate, updated => {
+                        Object.assign(updated, { share_phone: !associate.share_phone });
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating public phone:', err);
+            }
+        }
+
+        const getPublicPhoneToggle = () => {
+            return (
+                <MKBox display="flex" alignItems="center" mb={2}>
+                    <Switch checked={associate.share_phone} onChange={updatePhoneVisiblitySettings} />
+                    <MKBox ml={2} lineHeight={0.5}>
+                        <MKTypography display="block" variant="button" fontWeight="bold">
+                            {Translator.instance.translate("account_page_social_public_phone_label")}
+                        </MKTypography>
+                        <MKTypography variant="caption" color="text" fontWeight="regular">
+                            {Translator.instance.translate("account_page_social_public_phone_description")}.
+                        </MKTypography>
+                    </MKBox>
+                </MKBox>
+            )
+        }
+
+        const updateEmailVisiblitySettings = async () => {
+            try {
+                await DataStore.save(
+                    Associate.copyOf(associate, updated => {
+                        Object.assign(updated, { share_email: !associate.share_email });
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating public email:', err);
+            }
+        }
+
+        const getPublicEmailToggle = () => {
+            return (
+                <MKBox display="flex" alignItems="center" mb={2}>
+                    <Switch checked={associate.share_email} onChange={updateEmailVisiblitySettings} />
+                    <MKBox ml={2} lineHeight={0.5}>
+                        <MKTypography display="block" variant="button" fontWeight="bold">
+                            {Translator.instance.translate("account_page_social_public_email_label")}
+                        </MKTypography>
+                        <MKTypography variant="caption" color="text" fontWeight="regular">
+                            {Translator.instance.translate("account_page_social_public_email_description")}.
                         </MKTypography>
                     </MKBox>
                 </MKBox>
@@ -251,6 +313,8 @@ function AccountPage() {
                         {Translator.instance.translate("account_page_social_information_description")}.
                     </MKTypography>
                     {getPublicAccountToggle()}
+                    {getPublicPhoneToggle()}
+                    {getPublicEmailToggle()}
                 </>
             );
         }

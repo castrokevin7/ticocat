@@ -75,7 +75,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
                                 "provider": "iam",
                                 "operations": [
                                     "create",
@@ -226,7 +226,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
                                 "provider": "iam",
                                 "operations": [
                                     "create",
@@ -357,7 +357,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
                                 "provider": "iam",
                                 "operations": [
                                     "create",
@@ -497,6 +497,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "share_email": {
+                    "name": "share_email",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "share_phone": {
+                    "name": "share_phone",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -526,7 +540,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
                                 "provider": "iam",
                                 "operations": [
                                     "create",
@@ -563,5 +577,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "016c958b33e7ac000abf39ec10df139d"
+    "version": "5150ddbcadfdc98d91c7457320ba4e0d"
 };
