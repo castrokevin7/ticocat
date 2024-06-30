@@ -472,9 +472,11 @@ function AccountPage() {
                             onChange={updateBio}
                             fullWidth
                         />
-                        <MKTypography variant="caption" color="info">
-                            {bio.length}/{MAX_BIO_LENGTH}
-                        </MKTypography>
+                        {bio && bio.length > MAX_BIO_LENGTH && (
+                            <MKTypography variant="caption" color="info">
+                                {bio.length}/{MAX_BIO_LENGTH}
+                            </MKTypography>
+                        )}
                         {getUpdateBioControls()}
                     </Grid>
                 </div>
