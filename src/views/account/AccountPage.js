@@ -318,16 +318,13 @@ function AccountPage() {
             }
 
             if (newUsername === '') {
-                console.log('Username set to empty string');
                 setUsername(newUsername);
                 setUsernameAlreadyExists(false);
                 return;
             }
 
             if (/^[a-zA-Z0-9_]*$/.test(newUsername)) {
-                console.log('Checking if username exists already:', newUsername);
                 const otherAssociate = await DataStore.query(Associate, a => a.username("eq", newUsername));
-                console.log('User?:', otherAssociate);
                 if (otherAssociate.length > 0) {
                     console.error('Error: Username already exists');
                     setUsernameAlreadyExists(true);
