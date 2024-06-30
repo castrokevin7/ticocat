@@ -133,7 +133,7 @@ function AccountPage() {
                     {' '}
                     <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
                         <MKButton color="info">
-                            Mi Perfil
+                            {Translator.instance.translate("account_page_my_profile_button")}
                         </MKButton>
                     </Link>
                     {' '}

@@ -503,6 +503,10 @@
         "es": "Revisa nuestra política de datos",
         "cat": "Revisa la nostra política de dades"
     },
+    "account_page_my_profile_button": {
+        "es": "Mi Perfil",
+        "cat": "El Meu Perfil"
+    },
     "terms_title": {
         "es": "Términos y Condiciones para la Gestión de Datos de Asociados",
         "cat": "Termes i Condicions per a la Gestió de Dades d'Associats"
