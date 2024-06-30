@@ -90,13 +90,12 @@ function AccountPage() {
             return;
 
         try {
-            console.log('Activating account:', associate.email);
-            const response = await DataStore.save(
-                Associate.copyOf(associate, updated => {
+            const original = await DataStore.query(Associate, associate.id);
+            await DataStore.save(
+                Associate.copyOf(original, updated => {
                     updated.is_account_activated = true;
                 })
             );
-            console.log('Account activated:', response);
         } catch (err) {
             console.error('Error activating account:', err);
         }
@@ -225,12 +224,12 @@ function AccountPage() {
 
         const updateProfileVisiblitySettings = async () => {
             try {
+                const original = await DataStore.query(Associate, associate.id);
                 await DataStore.save(
-                    Associate.copyOf(associate, updated => {
-                        Object.assign(updated, { is_public_profile: !associate.is_public_profile });
+                    Associate.copyOf(original, updated => {
+                        updated.is_public_profile = !original.is_public_profile;
                     })
                 );
-                console.log('Public profile updated:', associate.email);
                 fetchAssociate(user.attributes.email);
             } catch (err) {
                 console.error('Error updating public profile:', err);
@@ -255,9 +254,10 @@ function AccountPage() {
 
         const updatePhoneVisiblitySettings = async () => {
             try {
+                const original = await DataStore.query(Associate, associate.id);
                 await DataStore.save(
-                    Associate.copyOf(associate, updated => {
-                        Object.assign(updated, { share_phone: !associate.share_phone });
+                    Associate.copyOf(original, updated => {
+                        updated.share_phone = !original.share_phone;
                     })
                 );
                 fetchAssociate(user.attributes.email);
@@ -284,9 +284,10 @@ function AccountPage() {
 
         const updateEmailVisiblitySettings = async () => {
             try {
+                const original = await DataStore.query(Associate, associate.id);
                 await DataStore.save(
-                    Associate.copyOf(associate, updated => {
-                        Object.assign(updated, { share_email: !associate.share_email });
+                    Associate.copyOf(original, updated => {
+                        updated.share_email = !original.share_email;
                     })
                 );
                 fetchAssociate(user.attributes.email);
@@ -339,9 +340,10 @@ function AccountPage() {
 
         const updateAssociateUsername = async () => {
             try {
+                const original = await DataStore.query(Associate, associate.id);
                 await DataStore.save(
-                    Associate.copyOf(associate, updated => {
-                        Object.assign(updated, { username: username });
+                    Associate.copyOf(original, updated => {
+                        updated.username = username;
                     })
                 );
                 console.log('Username updated:', associate.email);

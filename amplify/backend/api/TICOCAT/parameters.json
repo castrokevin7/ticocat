@@ -2,5 +2,11 @@
   "AppSyncApiName": "TICOCAT",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-06-18T17:54:23.051Z"
+  "AuthModeLastUpdated": "2023-06-18T17:54:23.051Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authTICOCAT",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

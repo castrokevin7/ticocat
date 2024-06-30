@@ -6,7 +6,12 @@
     "defaultAuthType": {
       "mode": "AWS_IAM"
     },
-    "additionalAuthTypes": [],
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authTICOCAT"
+      }
+    ],
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
