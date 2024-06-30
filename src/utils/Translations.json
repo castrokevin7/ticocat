@@ -507,6 +507,10 @@
         "es": "Términos y Condiciones para la Gestión de Datos de Asociados",
         "cat": "Termes i Condicions per a la Gestió de Dades d'Associats"
     },
+    "account_page_username_already_exists": {
+        "es": "El nombre de usuario ya existe",
+        "cat": "El nom d'usuari ja existeix"
+    },
     "terms_last_update": {
         "es": "Última actualización",
         "cat": "Última actualització"

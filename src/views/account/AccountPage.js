@@ -18,6 +18,9 @@ import MKButton from "components/MKButton";
 import { Link } from "react-router-dom";
 import Switch from "@mui/material/Switch";
 import { Benefit } from "models";
+import Grid from "@mui/material/Grid";
+import MKInput from "components/MKInput";
+import Icon from "@mui/material/Icon";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -26,6 +29,8 @@ function AccountPage() {
     const [isLoadingBenefits, setIsLoadingBenefits] = useState(false);
     const { route } = useAuthenticator(context => [context.route]);
     const { user, signOut } = useAuthenticator((context) => [context.user]);
+    const [username, setUsername] = useState();
+    const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
 
     const fetchAssociate = async (email) => {
         try {
@@ -71,7 +76,9 @@ function AccountPage() {
         if (associate) {
             markAccountAsActivated(associate);
             fetchAssociateOfferedBenefits(associate);
+            setUsername(associate.username);
         }
+        // eslint-disable-next-line
     }, [associate]);
 
     if (!user || route !== 'authenticated') {
@@ -303,6 +310,97 @@ function AccountPage() {
             )
         }
 
+        const updateUsername = async (event) => {
+            const newUsername = event.target.value;
+
+            if (newUsername === associate.username) {
+                return;
+            }
+
+            if (newUsername === '') {
+                console.log('Username set to empty string');
+                setUsername(newUsername);
+                setUsernameAlreadyExists(false);
+                return;
+            }
+
+            if (/^[a-zA-Z0-9_]*$/.test(newUsername)) {
+                console.log('Checking if username exists already:', newUsername);
+                const otherAssociate = await DataStore.query(Associate, a => a.username("eq", newUsername));
+                console.log('User?:', otherAssociate);
+                if (otherAssociate.length > 0) {
+                    console.error('Error: Username already exists');
+                    setUsernameAlreadyExists(true);
+                } else {
+                    setUsernameAlreadyExists(false);
+                }
+
+                setUsername(newUsername);
+            }
+        }
+
+        const updateAssociateUsername = async () => {
+            try {
+                await DataStore.save(
+                    Associate.copyOf(associate, updated => {
+                        Object.assign(updated, { username: username });
+                    })
+                );
+                console.log('Username updated:', associate.email);
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating username:', err);
+            }
+        }
+
+        const getUpdateUsernameControls = () => {
+            if (username === associate.username || usernameAlreadyExists) {
+                return;
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '5px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateUsername}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setUsername(associate.username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        const getUsernameField = () => {
+            return (
+                <Container ml={2} mt={2}>
+                    <Grid container item xs={12} lg={4} py={1}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <MKInput
+                            variant="standard"
+                            label="Nombre de usuario"
+                            placeholder="usuariocool123"
+                            InputLabelProps={{ shrink: true }}
+                            onChange={updateUsername}
+                            value={username}
+                        />
+                        {getUpdateUsernameControls()}
+                        {usernameAlreadyExists && (
+                            <MKTypography variant="caption" color="error">
+                                {Translator.instance.translate("account_page_username_already_exists")}
+                            </MKTypography>
+                        )}
+                    </Grid>
+                </Container>
+            )
+        }
+
         const getSocialInformation = () => {
             return (
                 <>
@@ -315,16 +413,17 @@ function AccountPage() {
                     {getPublicAccountToggle()}
                     {getPublicPhoneToggle()}
                     {getPublicEmailToggle()}
+                    {getUsernameField()}
                 </>
             );
         }
 
         return (
-            <div>
+            <>
                 {getAccountHeaderControls()}
                 {getRegistryInformation()}
                 {getSocialInformation()}
-            </div>
+            </>
         );
     }
 
