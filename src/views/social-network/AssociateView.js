@@ -30,7 +30,11 @@ function AssociateView() {
 
     const fetchAssociate = async () => {
         try {
-            let response = await DataStore.query(Associate, associate => associate.id('eq', associateId) && associate.is_account_activated('eq', true));
+            let response = await DataStore.query(Associate, associate => associate.username('eq', associateId) && associate.is_account_activated('eq', true));
+            if (response.length === 0) {
+                response = await DataStore.query(Associate, associate => associate.id('eq', associateId) && associate.is_account_activated('eq', true));
+            }
+
             if (response.length > 0) {
                 response = response[0];
                 setAssociate(response);

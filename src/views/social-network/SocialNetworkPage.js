@@ -86,7 +86,7 @@ function SocialNetworkPage() {
                 {associates.map((associate, index) => (
                     <Grid key={index} item xs={12} lg={4}>
                         <MKBox mb={1}>
-                            <Link to={`/${getLang()}/social/usuario/${associate.id}`}>
+                            <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
                                 <AssociateCard
                                     image={thumbnail}
                                     name={associate.name}
