@@ -93,16 +93,6 @@ function LoginPage() {
                 return Auth.signUp({});
             }
         },
-
-        async handleForgotPassword(formData) {
-            let { username } = formData;
-            const isRegistered = await isRegisteredAssociate(username);
-            if (isRegistered) {
-                return Auth.forgotPassword({ username });
-            } else {
-                return Auth.forgotPassword({});
-            }
-        },
     };
 
     return (
