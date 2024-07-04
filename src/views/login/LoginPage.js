@@ -98,7 +98,7 @@ function LoginPage() {
             let { username } = formData;
             const isRegistered = await isRegisteredAssociate(username);
             if (isRegistered) {
-                return Auth.forgotPassword(username);
+                return Auth.forgotPassword({ username });
             } else {
                 return Auth.forgotPassword({});
             }
