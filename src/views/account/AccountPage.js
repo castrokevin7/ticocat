@@ -406,7 +406,7 @@ function AccountPage() {
             )
         }
 
-        const MAX_BIO_LENGTH = 250;
+        const MAX_BIO_LENGTH = 512;
         const updateBio = async (event) => {
             const newBio = event.target.value;
 
@@ -419,7 +419,7 @@ function AccountPage() {
                 return;
             }
 
-            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"'áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙ]*$/.test(newBio)) {
+            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"'áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newBio)) {
                 setBio(newBio);
             }
         }
