@@ -149,11 +149,11 @@ export declare const Event: (new (init: ModelInit<Event, EventMetaData>) => Even
 type EagerAssociate = {
   readonly id: string;
   readonly name?: string | null;
-  readonly birthday?: string | null;
+  readonly custom_name?: string | null;
   readonly address?: string | null;
   readonly email?: string | null;
   readonly inscription_date?: string | null;
-  readonly phone?: string | null;
+  readonly birthday?: string | null;
   readonly nationality?: string | null;
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
@@ -166,6 +166,10 @@ type EagerAssociate = {
   readonly username?: string | null;
   readonly share_email?: boolean | null;
   readonly share_phone?: boolean | null;
+  readonly instagram_username?: string | null;
+  readonly facebook_username?: string | null;
+  readonly linkedin_username?: string | null;
+  readonly phone?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -173,11 +177,11 @@ type EagerAssociate = {
 type LazyAssociate = {
   readonly id: string;
   readonly name?: string | null;
-  readonly birthday?: string | null;
+  readonly custom_name?: string | null;
   readonly address?: string | null;
   readonly email?: string | null;
   readonly inscription_date?: string | null;
-  readonly phone?: string | null;
+  readonly birthday?: string | null;
   readonly nationality?: string | null;
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
@@ -190,6 +194,10 @@ type LazyAssociate = {
   readonly username?: string | null;
   readonly share_email?: boolean | null;
   readonly share_phone?: boolean | null;
+  readonly instagram_username?: string | null;
+  readonly facebook_username?: string | null;
+  readonly linkedin_username?: string | null;
+  readonly phone?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

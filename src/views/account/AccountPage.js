@@ -21,6 +21,7 @@ import { Benefit } from "models";
 import Grid from "@mui/material/Grid";
 import MKInput from "components/MKInput";
 import Icon from "@mui/material/Icon";
+import Tooltip from "@mui/material/Tooltip";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -35,7 +36,7 @@ function AccountPage() {
 
     const fetchAssociate = async (email) => {
         try {
-            let response = await DataStore.query(Associate, c => c.email("eq", email));
+            let response = await DataStore.query(Associate, a => a.email("eq", email));
             if (response.length > 0) {
                 setAssociate(response[0]);
                 setState('success');
@@ -120,27 +121,28 @@ function AccountPage() {
 
         const getAccountHeaderControls = () => {
             return (
-                <div style={{ float: 'right' }}>
-                    <MKButton
-                        color="secondary"
-                        onClick={() => {
-                            signOut();
-                            setState('signingOut');
-                        }}
-                    >
-                        {Translator.instance.translate("account_page_sign_out_button")}
-                    </MKButton>
-                    {' '}
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px', justifyContent: 'flex-end' }}>
+                    <span>
+                        <Tooltip title="Salir" placement="top">
+                            <Icon fontSize="large"
+                                onClick={() => {
+                                    signOut();
+                                    setState('signingOut');
+                                }}
+                            >
+                                logout_rounded
+                            </Icon>
+                        </Tooltip>
+                    </span>
                     <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
-                        <MKButton color="info">
-                            {Translator.instance.translate("account_page_my_profile_button")}
-                        </MKButton>
+                        <Tooltip title="Ver Perfil" placement="top">
+                            <Icon fontSize="large">account_box_rounded</Icon>
+                        </Tooltip>
                     </Link>
-                    {' '}
                     <Link to={`/${getLang()}/social`}>
-                        <MKButton color="info">
-                            TICOCAT Social
-                        </MKButton>
+                        <Tooltip title="TICOCAT Social" placement="top">
+                            <Icon fontSize="large">connect_without_contact_rounded</Icon>
+                        </Tooltip>
                     </Link>
                 </div>
             );
