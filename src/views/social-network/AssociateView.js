@@ -19,6 +19,7 @@ import { getBenefitTitle, getBenefitDescription } from '../benefits/Utils';
 import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
+import MKSocialButton from "components/MKSocialButton";
 
 function AssociateView() {
     const [state, setState] = useState("");
@@ -165,6 +166,38 @@ function AssociateView() {
         );
     }
 
+    const getSocialMedia = () => {
+        if (!associate.instagram_username && !associate.facebook_username && !associate.linkedin_username) {
+            return;
+        }
+
+        return (
+            <MKBox display="flex" flexWrap="wrap" gap={1} mb={2}>
+                {associate.facebook_username && (
+                    <a href={`https://www.facebook.com/${associate.facebook_username}`} target="_blank" rel="noreferrer">
+                        <MKSocialButton color="instagram" iconOnly>
+                            <MKBox component="i" color="inherit" className="fab fa-instagram" />
+                        </MKSocialButton>
+                    </a>
+                )}
+                {associate.linkedin_username && (
+                    <a href={`https://www.linkedin.com/in/${associate.linkedin_username}`} target="_blank" rel="noreferrer">
+                        <MKSocialButton color="linkedin" iconOnly>
+                            <MKBox component="i" color="inherit" className="fab fa-linkedin" />
+                        </MKSocialButton>
+                    </a>
+                )}
+                {associate.instagram_username && (
+                    <a href={`https://www.instagram.com/${associate.instagram_username}`} target="_blank" rel="noreferrer">
+                        <MKSocialButton color="facebook" iconOnly>
+                            <MKBox component="i" color="inherit" className="fab fa-facebook" />
+                        </MKSocialButton>
+                    </a>
+                )}
+            </MKBox>
+        );
+    }
+
     const getAssociateInformation = () => {
         if (!user && !associate.is_public_profile) {
             return <div>
@@ -196,6 +229,7 @@ function AssociateView() {
                     <h3>{associate.custom_name || associate.name}</h3>
                     {associate.username && <p style={{ marginLeft: '5px' }}>@{associate.username}</p>}
                 </div>
+                {getSocialMedia()}
                 {associate.bio && <p><i>"{associate.bio}"</i></p>}
                 {getContactInformation()}
                 {getOfferedBenefits()}
