@@ -46,7 +46,7 @@ function AssociateView() {
             if (response.length > 0) {
                 response = response[0];
                 if (response.profile_picture) {
-                    const image = await Storage.get(response.profile_picture);
+                    const image = await Storage.get(response.profile_picture, { level: 'protected' });
                     response = Associate.copyOf(response, updated => {
                         updated.profile_picture = image;
                     });

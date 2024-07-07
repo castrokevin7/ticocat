@@ -54,7 +54,7 @@ function SocialNetworkPage() {
                         });
                     }
 
-                    const image = await Storage.get(associate.profile_picture);
+                    const image = await Storage.get(associate.profile_picture, { level: 'protected' });
                     return Associate.copyOf(associate, updated => {
                         updated.profile_picture = image;
                     });
