@@ -16,7 +16,7 @@ import bgImage from "assets/images/examples/city.jpg";
 import thumbnail from "assets/images/profile.png";
 import { Associate } from 'models';
 import { Spinner } from "components/Spinner";
-import { DataStore } from 'aws-amplify';
+import { DataStore, Storage } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import { getLang } from 'utils/Translator';
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ import { Navigate } from 'react-router-dom';
 
 function SocialNetworkPage() {
     const [state, setState] = useState('');
-    const [associates, setAssociates] = useState(null);    
+    const [associates, setAssociates] = useState(null);
     const { route } = useAuthenticator(context => [context.route]);
 
     useEffect(() => {
@@ -47,6 +47,19 @@ function SocialNetworkPage() {
                 associate.is_account_activated('eq', true)
             ]));
             if (response.length > 0) {
+                response = await Promise.all(response.map(async (associate, i) => {
+                    if (!associate.profile_picture) {
+                        return Associate.copyOf(associate, updated => {
+                            updated.profile_picture = thumbnail;
+                        });
+                    }
+
+                    const image = await Storage.get(associate.profile_picture, { level: 'protected' });
+                    return Associate.copyOf(associate, updated => {
+                        updated.profile_picture = image;
+                    });
+                }));
+                console.log(response);
                 setAssociates(response);
             }
             setState('success');
@@ -90,7 +103,7 @@ function SocialNetworkPage() {
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
                                 <AssociateCard
-                                    image={thumbnail}
+                                    image={associate.profile_picture}
                                     name={associate.name}
                                     username={associate.username}
                                     customName={associate.custom_name}

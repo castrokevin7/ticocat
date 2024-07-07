@@ -20,6 +20,7 @@ import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
 import MKSocialButton from "components/MKSocialButton";
+import Icon from "@mui/material/Icon";
 
 function AssociateView() {
     const [state, setState] = useState("");
@@ -44,6 +45,12 @@ function AssociateView() {
 
             if (response.length > 0) {
                 response = response[0];
+                if (response.profile_picture) {
+                    const image = await Storage.get(response.profile_picture, { level: 'protected' });
+                    response = Associate.copyOf(response, updated => {
+                        updated.profile_picture = image;
+                    });
+                }
                 setAssociate(response);
             } else {
                 setAssociate(null);
@@ -66,17 +73,8 @@ function AssociateView() {
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (benefit, i) => {
                     const image = await Storage.get(benefit.image);
-                    return new Benefit({
-                        image,
-                        benefit_id: benefit.benefit_id,
-                        title: benefit.title,
-                        title_cat: benefit.title_cat,
-                        description: benefit.description,
-                        description_cat: benefit.description_cat,
-                        contact: benefit.contact,
-                        url: benefit.url,
-                        about_provider: benefit.about_provider,
-                        about_provider_cat: benefit.about_provider_cat,
+                    return Benefit.copyOf(benefit, updated => {
+                        updated.image = image;
                     });
                 }));
                 setAssociateOfferedBenefits(response);
@@ -214,16 +212,16 @@ function AssociateView() {
 
         return (
             <>
-                {user && user.attributes.email === associate.email &&
-                    <Link to={`/${getLang()}/cuenta`}>
-                        <MKButton
-                            sx={{ float: 'right', marginBottom: '15px' }}
-                            mt={2}
-                            color="info"
-                        >
-                            {Translator.instance.translate("associate_account_access")}
-                        </MKButton>
-                    </Link>
+                {user?.attributes?.email === associate.email &&
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/cuenta`}>
+                            <Icon fontSize="large">edit_note_rounded</Icon>
+                            <MKTypography variant="caption" color="text">Editar</MKTypography>
+                        </Link>
+                    </div>
+                }
+                {associate.profile_picture &&
+                    <img src={associate.profile_picture} alt="Profile" style={{ width: '250px', height: '250px', display: 'block', borderRadius: '5px' }} />
                 }
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <h3>{associate.custom_name || associate.name}</h3>

@@ -10,7 +10,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import Card from "@mui/material/Card";
 import { Associate } from 'models';
-import { DataStore } from 'aws-amplify';
+import { DataStore, Storage } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
 import { Spinner } from "components/Spinner";
@@ -35,12 +35,21 @@ function AccountPage() {
     const [facebookUsername, setFacebookUsername] = useState();
     const [linkedinUsername, setLinkedinUsername] = useState();
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
+    const [profilePicture, setProfilePicture] = useState();
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
 
     const fetchAssociate = async (email) => {
         try {
             let response = await DataStore.query(Associate, a => a.email("eq", email));
             if (response.length > 0) {
-                setAssociate(response[0]);
+                response = response[0];
+                if (response.profile_picture) {
+                    const image = await Storage.get(response.profile_picture, { level: 'protected' });
+                    response = Associate.copyOf(response, updated => {
+                        updated.profile_picture = image;
+                    });
+                }
+                setAssociate(response);
                 setState('success');
             } else {
                 console.error('Error: Associate not found');
@@ -86,6 +95,7 @@ function AccountPage() {
             setInstagramUsername(associate.instagram_username);
             setFacebookUsername(associate.facebook_username);
             setLinkedinUsername(associate.linkedin_username);
+            setProfilePicture(associate.profile_picture);
         }
         // eslint-disable-next-line
     }, [associate]);
@@ -110,131 +120,117 @@ function AccountPage() {
         }
     }
 
-    const getAccountContent = () => {
-        if (state === 'loading') {
-            return (
-                <Spinner />
-            )
-        }
 
-        if (state === 'error') {
+    const getAccountHeaderControls = () => {
+        return (
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px', justifyContent: 'flex-end' }}>
+                <span style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Icon fontSize="large"
+                        onClick={() => {
+                            signOut();
+                            setState('signingOut');
+                        }}
+                    >
+                        logout_rounded
+                    </Icon>
+                    <MKTypography variant="caption" color="text">Salir</MKTypography>
+                </span>
+                <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
+                    <Icon fontSize="large">account_box_rounded</Icon>
+                    <MKTypography variant="caption" color="text">Perfil</MKTypography>
+                </Link>
+                <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social`}>
+                    <Icon fontSize="large">connect_without_contact_rounded</Icon>
+                    <MKTypography variant="caption" color="text">Social</MKTypography>
+                </Link>
+            </div>
+        );
+    }
+
+    const getBenefitsOffered = () => {
+        if (isLoadingBenefits) {
             return (
-                <MKTypography ml={1} mt={1} variant="h4">
-                    {Translator.instance.translate("login_page_email_not_found")}
+                <MKTypography
+                    sx={{ mx: 'auto', display: 'flex', alignItems: 'center' }}
+                    variant="body2"
+                    color="text"
+                    mt={2}
+                >
+                    <Spinner /> {Translator.instance.translate("account_page_loading_benefits_offered")}
                 </MKTypography>
             );
         }
 
-        const getAccountHeaderControls = () => {
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px', justifyContent: 'flex-end' }}>
-                    <span style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <Icon fontSize="large"
-                            onClick={() => {
-                                signOut();
-                                setState('signingOut');
-                            }}
-                        >
-                            logout_rounded
-                        </Icon>
-                        <MKTypography variant="caption" color="text">Salir</MKTypography>
-                    </span>
-                    <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
-                        <Icon fontSize="large">account_box_rounded</Icon>
-                        <MKTypography variant="caption" color="text">Perfil</MKTypography>
-                    </Link>
-                    <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social`}>
-                        <Icon fontSize="large">connect_without_contact_rounded</Icon>
-                        <MKTypography variant="caption" color="text">Social</MKTypography>
-                    </Link>
-                </div>
-            );
+        if (!associateOfferedBenefits || associateOfferedBenefits.length === 0) {
+            return;
         }
 
-        const getBenefitsOffered = () => {
-            if (isLoadingBenefits) {
-                return (
+        return (
+            <>
+                <MKTypography variant="body2" color="text">
+                    <b>{Translator.instance.translate("account_page_benefits_offered")}</b>:
+                </MKTypography>
+                <ul style={{ marginLeft: '30px' }}>
+                    {associateOfferedBenefits && associateOfferedBenefits.map(benefit => (
+                        <li key={benefit.id}>
+                            <Link target="_blank" to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
+                                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text">
+                                    {benefit.title}
+                                </MKTypography>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </>
+        );
+    }
+
+    const getRegistryInformation = () => {
+        return (
+            <>
+                <MKTypography variant="body1" color="text">
+                    {Translator.instance.translate("account_page_inscription_information_header")}
+                </MKTypography>
+                <MKTypography variant="body2" color="text" mb={1}>
+                    {Translator.instance.translate("account_page_about_updating_information")}
+                    {' '}
                     <MKTypography
-                        sx={{ mx: 'auto', display: 'flex', alignItems: 'center' }}
+                        component="a"
+                        target="_blank"
+                        href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
                         variant="body2"
-                        color="text"
-                        mt={2}
+                        color="info"
+                        fontWeight="regular"
                     >
-                        <Spinner /> {Translator.instance.translate("account_page_loading_benefits_offered")}
+                        {Translator.instance.translate("account_page_about_updating_information_link")}
                     </MKTypography>
-                );
-            }
-
-            if (!associateOfferedBenefits || associateOfferedBenefits.length === 0) {
-                return;
-            }
-
-            return (
-                <>
-                    <MKTypography variant="body2" color="text">
-                        <b>{Translator.instance.translate("account_page_benefits_offered")}</b>:
-                    </MKTypography>
-                    <ul style={{ marginLeft: '30px' }}>
-                        {associateOfferedBenefits && associateOfferedBenefits.map(benefit => (
-                            <li key={benefit.id}>
-                                <Link target="_blank" to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
-                                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text">
-                                        {benefit.title}
-                                    </MKTypography>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            );
-        }
-
-
-        const getRegistryInformation = () => {
-            return (
-                <>
-                    <MKTypography variant="body1" color="text">
-                        {Translator.instance.translate("account_page_inscription_information_header")}
-                    </MKTypography>
-                    <MKTypography variant="body2" color="text" mb={1}>
-                        {Translator.instance.translate("account_page_about_updating_information")}
-                        {' '}
-                        <MKTypography
-                            component="a"
-                            target="_blank"
-                            href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
-                            variant="body2"
-                            color="info"
-                            fontWeight="regular"
-                        >
-                            {Translator.instance.translate("account_page_about_updating_information_link")}
-                        </MKTypography>
-                        .
-                    </MKTypography>
+                    .
+                </MKTypography>
+                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                    <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
+                </MKTypography>
+                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1} mb={1}>
+                    <b>{Translator.instance.translate("account_page_name_label")}</b>: {associate.name}
+                </MKTypography>
+                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
+                    <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
+                </MKTypography>
+                {associate.phone && (
                     <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>{Translator.instance.translate("account_page_number_label")}</b>: {associate.associate_id}
+                        <b>{Translator.instance.translate("account_page_phone_label")}</b>: {associate.phone}
                     </MKTypography>
-                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1} mb={1}>
-                        <b>{Translator.instance.translate("account_page_name_label")}</b>: {associate.name}
-                    </MKTypography>
+                )}
+                {associate.identification && (
                     <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                        <b>{Translator.instance.translate("account_page_email_label")}</b>: {associate.email}
+                        <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
                     </MKTypography>
-                    {associate.phone && (
-                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                            <b>{Translator.instance.translate("account_page_phone_label")}</b>: {associate.phone}
-                        </MKTypography>
-                    )}
-                    {associate.identification && (
-                        <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mb={1}>
-                            <b>{Translator.instance.translate("account_page_id_label")}</b>: {associate.identification}
-                        </MKTypography>
-                    )}
-                    {getBenefitsOffered()}
-                </>
-            );
-        }
+                )}
+                {getBenefitsOffered()}
+            </>
+        );
+    }
 
+    const getPublicAccountToggle = () => {
         const updateProfileVisiblitySettings = async () => {
             try {
                 const original = await DataStore.query(Associate, associate.id);
@@ -249,22 +245,22 @@ function AccountPage() {
             }
         }
 
-        const getPublicAccountToggle = () => {
-            return (
-                <MKBox display="flex" alignItems="center" mb={2}>
-                    <Switch checked={associate.is_public_profile} onChange={updateProfileVisiblitySettings} />
-                    <MKBox ml={2} lineHeight={0.5}>
-                        <MKTypography display="block" variant="button" fontWeight="bold">
-                            {Translator.instance.translate("account_page_social_public_account_label")}
-                        </MKTypography>
-                        <MKTypography variant="caption" color="text" fontWeight="regular">
-                            {Translator.instance.translate("account_page_social_public_account_description")}.
-                        </MKTypography>
-                    </MKBox>
+        return (
+            <MKBox display="flex" alignItems="center" mb={2}>
+                <Switch checked={associate.is_public_profile} onChange={updateProfileVisiblitySettings} />
+                <MKBox ml={2} lineHeight={0.5}>
+                    <MKTypography display="block" variant="button" fontWeight="bold">
+                        {Translator.instance.translate("account_page_social_public_account_label")}
+                    </MKTypography>
+                    <MKTypography variant="caption" color="text" fontWeight="regular">
+                        {Translator.instance.translate("account_page_social_public_account_description")}.
+                    </MKTypography>
                 </MKBox>
-            )
-        }
+            </MKBox>
+        )
+    }
 
+    const getPublicPhoneToggle = () => {
         const updatePhoneVisiblitySettings = async () => {
             try {
                 const original = await DataStore.query(Associate, associate.id);
@@ -279,22 +275,22 @@ function AccountPage() {
             }
         }
 
-        const getPublicPhoneToggle = () => {
-            return (
-                <MKBox display="flex" alignItems="center" mb={2}>
-                    <Switch checked={associate.share_phone} onChange={updatePhoneVisiblitySettings} />
-                    <MKBox ml={2} lineHeight={0.5}>
-                        <MKTypography display="block" variant="button" fontWeight="bold">
-                            {Translator.instance.translate("account_page_social_public_phone_label")}
-                        </MKTypography>
-                        <MKTypography variant="caption" color="text" fontWeight="regular">
-                            {Translator.instance.translate("account_page_social_public_phone_description")}.
-                        </MKTypography>
-                    </MKBox>
+        return (
+            <MKBox display="flex" alignItems="center" mb={2}>
+                <Switch checked={associate.share_phone} onChange={updatePhoneVisiblitySettings} />
+                <MKBox ml={2} lineHeight={0.5}>
+                    <MKTypography display="block" variant="button" fontWeight="bold">
+                        {Translator.instance.translate("account_page_social_public_phone_label")}
+                    </MKTypography>
+                    <MKTypography variant="caption" color="text" fontWeight="regular">
+                        {Translator.instance.translate("account_page_social_public_phone_description")}.
+                    </MKTypography>
                 </MKBox>
-            )
-        }
+            </MKBox>
+        )
+    }
 
+    const getPublicEmailToggle = () => {
         const updateEmailVisiblitySettings = async () => {
             try {
                 const original = await DataStore.query(Associate, associate.id);
@@ -309,23 +305,23 @@ function AccountPage() {
             }
         }
 
-        const getPublicEmailToggle = () => {
-            return (
-                <MKBox display="flex" alignItems="center" mb={2}>
-                    <Switch checked={associate.share_email} onChange={updateEmailVisiblitySettings} />
-                    <MKBox ml={2} lineHeight={0.5}>
-                        <MKTypography display="block" variant="button" fontWeight="bold">
-                            {Translator.instance.translate("account_page_social_public_email_label")}
-                        </MKTypography>
-                        <MKTypography variant="caption" color="text" fontWeight="regular">
-                            {Translator.instance.translate("account_page_social_public_email_description")}.
-                        </MKTypography>
-                    </MKBox>
+        return (
+            <MKBox display="flex" alignItems="center" mb={2}>
+                <Switch checked={associate.share_email} onChange={updateEmailVisiblitySettings} />
+                <MKBox ml={2} lineHeight={0.5}>
+                    <MKTypography display="block" variant="button" fontWeight="bold">
+                        {Translator.instance.translate("account_page_social_public_email_label")}
+                    </MKTypography>
+                    <MKTypography variant="caption" color="text" fontWeight="regular">
+                        {Translator.instance.translate("account_page_social_public_email_description")}.
+                    </MKTypography>
                 </MKBox>
-            )
-        }
+            </MKBox>
+        )
+    }
 
-        const MAX_USERNAME_LENGTH = 32;
+    const MAX_USERNAME_LENGTH = 32;
+    const getUsernameField = () => {
         const updateUsername = async (event) => {
             const newUsername = event.target.value;
 
@@ -352,95 +348,21 @@ function AccountPage() {
             }
         }
 
-        const MAX_CUSTOM_NAME_LENGTH = 64;
-        const updateCustomName = async (event) => {
-            const newCustomName = event.target.value;
-
-            if (newCustomName.length > MAX_CUSTOM_NAME_LENGTH) {
-                return;
-            }
-
-            if (newCustomName === '' || newCustomName === associate.custom_name) {
-                setCustomName(newCustomName);
-                return;
-            }
-
-            if (/^[a-zA-Z áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newCustomName)) {
-                setCustomName(newCustomName);
-            }
-        }
-
-        const updateAssociateUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.username = username;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating username:', err);
-            }
-        }
-
-        const updateAssociateInstagramUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.instagram_username = instagramUsername;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating instagram_username:', err);
-            }
-        }
-
-        const updateAssociateFacebookUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.facebook_username = facebookUsername;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating facebook_username:', err);
-            }
-        }
-
-        const updateAssociateLinkedinUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.linkedin_username = linkedinUsername;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating linkedin_username:', err);
-            }
-        }
-
-        const updateAssociateCustomName = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.custom_name = customName.trim();
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating customName:', err);
-            }
-        }
-
         const getUpdateUsernameControls = () => {
+            const updateAssociateUsername = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.username = username;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating username:', err);
+                }
+            }
+
             if (username === associate.username || usernameAlreadyExists) {
                 return;
             }
@@ -463,78 +385,200 @@ function AccountPage() {
             )
         }
 
-        const getUpdateInstagramUsernameControls = () => {
-            if (instagramUsername === associate.instagram_username) {
+        return (
+            <div style={{ marginTop: '5px' }}>
+                <Grid container item xs={12} lg={6} py={1}
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                    <MKInput
+                        variant="standard"
+                        label="Nombre de usuario"
+                        placeholder="usuariocool123"
+                        InputLabelProps={{ shrink: true }}
+                        onChange={updateUsername}
+                        value={username}
+                        fullWidth
+                    />
+                    <MKTypography variant="caption" color="info">
+                        {username ? username.length : 0}/{MAX_USERNAME_LENGTH}
+                    </MKTypography>
+                    {getUpdateUsernameControls()}
+                    {usernameAlreadyExists && (
+                        <MKTypography variant="caption" color="error">
+                            {Translator.instance.translate("account_page_username_already_exists")}
+                        </MKTypography>
+                    )}
+                </Grid>
+            </div>
+        )
+    }
+
+    const getProfilePictureField = () => {
+        const updateProfilePicture = (event) => {
+            const file = event.target.files[0];
+            setProfilePicture(file);
+        };
+
+        const getUpdateProfilePictureControls = () => {
+            if (!profilePicture || profilePicture === associate.profile_picture) {
                 return;
+            }
+
+            const updateAssociateProfilePicture = async () => {
+                setIsUploadingImage(true);
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    /* if (original.profile_picture) {
+                        await Storage.remove(original.profile_picture, { level: 'protected' });
+                    } */
+
+                    const profilePictureKey = `associates/${associate.id}/profile_picture/${profilePicture.name}`;
+                    await Storage.put(profilePictureKey, profilePicture, {
+                        contentType: profilePicture.type,
+                        level: 'protected'
+                    });
+
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.profile_picture = profilePictureKey;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating profile picture:', err);
+                }
+                setIsUploadingImage(false);
             }
 
             return (
                 <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateInstagramUsername}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setInstagramUsername(associate.instagram_username)}
-                    >
-                        close
-                    </Icon>
+                    {isUploadingImage ? <Spinner /> : (
+                        <>
+                            <Icon
+                                sx={{ mr: 1 }}
+                                onClick={updateAssociateProfilePicture}
+                            >
+                                check
+                            </Icon>
+                            <Icon
+                                sx={{ mr: 1 }}
+                                onClick={() => setProfilePicture(associate.profile_picture)}
+                            >
+                                close
+                            </Icon>
+                        </>
+                    )}
                 </div >
+            )
+        };
+
+        const getProfilePicture = () => {
+            if (profilePicture && profilePicture !== associate.profile_picture) {
+                return URL.createObjectURL(profilePicture);
+            }
+
+            return associate.profile_picture;
+        }
+
+        const displayProfilePicture = () => {
+            if (!associate.profile_picture && !profilePicture) {
+                return (
+                    <MKTypography variant="caption" color="text">
+                        No hay imagen de perfil
+                    </MKTypography>
+                )
+            }
+
+            const removeProfilePicture = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    /* await Storage.remove(original.profile_picture, { level: 'protected' }); */
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.profile_picture = null;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                }
+                catch (err) {
+                    console.error('Error removing profile picture:', err);
+                }
+            }
+
+            const ableToDeleteProfilePicture = () => {
+                return associate.profile_picture && !isUploadingImage;
+            }
+
+            return (
+                <div>
+                    <img
+                        src={getProfilePicture()}
+                        alt="profile_picture"
+                        style={{ width: '200px', height: '200px' }}
+                    />
+                    {ableToDeleteProfilePicture() && (
+                        <Icon
+                            sx={{ ml: 1, cursor: 'pointer' }}
+                            onClick={removeProfilePicture}
+                        >
+                            delete_outline_rounded
+                        </Icon>
+
+                    )}
+                </div>
             )
         }
 
-        const getUpdateFacebookUsernameControls = () => {
-            if (facebookUsername === associate.facebook_username) {
+        return (
+            <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                <MKTypography variant="body2" color="text">
+                    Imagen de Perfil
+                </MKTypography>
+                {displayProfilePicture()}
+                <div>
+                    <input type="file" accept="image/*" onChange={updateProfilePicture} />
+                </div>
+                {getUpdateProfilePictureControls()}
+            </div>
+        )
+    }
+
+    const MAX_CUSTOM_NAME_LENGTH = 64;
+    const getCustomNameField = () => {
+        const updateCustomName = async (event) => {
+            const newCustomName = event.target.value;
+
+            if (newCustomName.length > MAX_CUSTOM_NAME_LENGTH) {
                 return;
             }
 
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateFacebookUsername}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setFacebookUsername(associate.facebook_username)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
-        }
-
-        const getUpdateLinkedinUsernameControls = () => {
-            if (linkedinUsername === associate.linkedin_username) {
+            if (newCustomName === '' || newCustomName === associate.custom_name) {
+                setCustomName(newCustomName);
                 return;
             }
 
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateLinkedinUsername}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setLinkedinUsername(associate.linkedin_username)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
+            if (/^[a-zA-Z áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newCustomName)) {
+                setCustomName(newCustomName);
+            }
         }
 
         const getUpdateCustomNameControls = () => {
             if (customName === associate.custom_name) {
                 return;
+            }
+
+            const updateAssociateCustomName = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.custom_name = customName.trim();
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating customName:', err);
+                }
             }
 
             return (
@@ -555,60 +599,31 @@ function AccountPage() {
             )
         }
 
-        const getUsernameField = () => {
-            return (
-                <div style={{ marginTop: '5px' }}>
-                    <Grid container item xs={12} lg={6} py={1}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <MKInput
-                            variant="standard"
-                            label="Nombre de usuario"
-                            placeholder="usuariocool123"
-                            InputLabelProps={{ shrink: true }}
-                            onChange={updateUsername}
-                            value={username}
-                            fullWidth
-                        />
-                        <MKTypography variant="caption" color="info">
-                            {username ? username.length : 0}/{MAX_USERNAME_LENGTH}
-                        </MKTypography>
-                        {getUpdateUsernameControls()}
-                        {usernameAlreadyExists && (
-                            <MKTypography variant="caption" color="error">
-                                {Translator.instance.translate("account_page_username_already_exists")}
-                            </MKTypography>
-                        )}
-                    </Grid>
-                </div>
-            )
-        }
+        return (
+            <div style={{ marginTop: '5px' }}>
+                <Grid container item xs={12} lg={6} py={1}
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                    <MKInput
+                        variant="standard"
+                        label="Nombre a mostrar"
+                        placeholder="Pedro Sánchez"
+                        InputLabelProps={{ shrink: true }}
+                        onChange={updateCustomName}
+                        value={customName}
+                        fullWidth
+                    />
+                    <MKTypography variant="caption" color="info">
+                        {customName ? customName.length : 0}/{MAX_CUSTOM_NAME_LENGTH}
+                    </MKTypography>
+                    {getUpdateCustomNameControls()}
+                </Grid>
+            </div>
+        )
+    }
 
-        const getCustomNameField = () => {
-            return (
-                <div style={{ marginTop: '5px' }}>
-                    <Grid container item xs={12} lg={6} py={1}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <MKInput
-                            variant="standard"
-                            label="Nombre a mostrar"
-                            placeholder="Pedro Sánchez"
-                            InputLabelProps={{ shrink: true }}
-                            onChange={updateCustomName}
-                            value={customName}
-                            fullWidth
-                        />
-                        <MKTypography variant="caption" color="info">
-                            {customName ? customName.length : 0}/{MAX_CUSTOM_NAME_LENGTH}
-                        </MKTypography>
-                        {getUpdateCustomNameControls()}
-                    </Grid>
-                </div>
-            )
-        }
-
-        const MAX_BIO_LENGTH = 512;
+    const MAX_BIO_LENGTH = 512;
+    const getBioField = () => {
         const updateBio = async (event) => {
             const newBio = event.target.value;
 
@@ -626,23 +641,23 @@ function AccountPage() {
             }
         }
 
-        const updateAssociateBio = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.bio = bio.trim();
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating bio:', err);
-            }
-        }
-
         const getUpdateBioControls = () => {
             if (bio === associate.bio) {
                 return;
+            }
+
+            const updateAssociateBio = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.bio = bio.trim();
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating bio:', err);
+                }
             }
 
             return (
@@ -663,128 +678,33 @@ function AccountPage() {
             )
         }
 
-        const getBioField = () => {
-            return (
-                <div style={{ marginTop: '15px' }}>
-                    <Grid container item xs={12} lg={6} py={1}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <MKInput
-                            variant="standard"
-                            label="Biografía"
-                            placeholder="Escribe algo sobre ti"
-                            InputLabelProps={{ shrink: true }}
-                            multiline
-                            rows={4}
-                            value={bio}
-                            onChange={updateBio}
-                            fullWidth
-                        />
-                        <MKTypography variant="caption" color="info">
-                            {bio ? bio.length : 0}/{MAX_BIO_LENGTH}
-                        </MKTypography>
-                        {getUpdateBioControls()}
-                    </Grid>
-                </div>
-            )
-        }
+        return (
+            <div style={{ marginTop: '15px' }}>
+                <Grid container item xs={12} lg={6} py={1}
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                    <MKInput
+                        variant="standard"
+                        label="Biografía"
+                        placeholder="Escribe algo sobre ti"
+                        InputLabelProps={{ shrink: true }}
+                        multiline
+                        rows={4}
+                        value={bio}
+                        onChange={updateBio}
+                        fullWidth
+                    />
+                    <MKTypography variant="caption" color="info">
+                        {bio ? bio.length : 0}/{MAX_BIO_LENGTH}
+                    </MKTypography>
+                    {getUpdateBioControls()}
+                </Grid>
+            </div>
+        )
+    }
 
-        const MAX_INSTAGRAM_USERNAME_LENGTH = 29;
-        const getInstagramField = () => {
-            return (
-                <div style={{ marginTop: '20px', display: 'flex' }}>
-                    <Grid container item xs={12} lg={6} py={1}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <MKInput
-                            variant="standard"
-                            label="Usuario de Instagram"
-                            placeholder="usuariocool123"
-                            InputLabelProps={{ shrink: true }}
-                            onChange={updateInstagramUsername}
-                            value={instagramUsername}
-                            fullWidth
-                        />
-                        <MKTypography variant="caption" color="info">
-                            {instagramUsername ? instagramUsername.length : 0}/{MAX_INSTAGRAM_USERNAME_LENGTH}
-                        </MKTypography>
-                        {getUpdateInstagramUsernameControls()}
-                    </Grid>
-                    {
-                        associate.instagram_username && (
-                            <a href={`https://www.instagram.com/${associate.instagram_username}/`} target='_blank' rel="noreferrer">
-                                <Icon fontSize="small">open_in_new_rounded</Icon>
-                            </a>
-                        )
-                    }
-                </div>
-            )
-        }
-
-        const MAX_FACEBOOK_USERNAME_LENGTH = 29;
-        const getFacebookField = () => {
-            return (
-                <div style={{ marginTop: '20px', display: 'flex' }}>
-                    <Grid container item xs={12} lg={6} py={1}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <MKInput
-                            variant="standard"
-                            label="Usuario de Facebook"
-                            placeholder="usuariocool123"
-                            InputLabelProps={{ shrink: true }}
-                            onChange={updateFacebookUsername}
-                            value={facebookUsername}
-                            fullWidth
-                        />
-                        <MKTypography variant="caption" color="info">
-                            {facebookUsername ? facebookUsername.length : 0}/{MAX_FACEBOOK_USERNAME_LENGTH}
-                        </MKTypography>
-                        {getUpdateFacebookUsernameControls()}
-                    </Grid>
-                    {
-                        associate.facebook_username && (
-                            <a href={`https://www.facebook.com/${associate.facebook_username}/`} target='_blank' rel="noreferrer">
-                                <Icon fontSize="small">open_in_new_rounded</Icon>
-                            </a>
-                        )
-                    }
-                </div>
-            )
-        }
-
-        const MAX_LINKEDIN_USERNAME_LENGTH = 29;
-        const getLinkedinField = () => {
-            return (
-                <div style={{ marginTop: '20px', display: 'flex' }}>
-                    <Grid container item xs={12} lg={6} py={1}
-                        sx={{ display: 'flex', alignItems: 'center' }}
-                    >
-                        <MKInput
-                            variant="standard"
-                            label="Usuario de Linkedin"
-                            placeholder="usuariocool123"
-                            InputLabelProps={{ shrink: true }}
-                            onChange={updateLinkedinUsername}
-                            value={linkedinUsername}
-                            fullWidth
-                        />
-                        <MKTypography variant="caption" color="info">
-                            {linkedinUsername ? linkedinUsername.length : 0}/{MAX_LINKEDIN_USERNAME_LENGTH}
-                        </MKTypography>
-                        {getUpdateLinkedinUsernameControls()}
-                    </Grid>
-                    {
-                        associate.linkedin_username && (
-                            <a href={`https://www.linkedin.com/in/${associate.linkedin_username}/`} target='_blank' rel="noreferrer">
-                                <Icon fontSize="small">open_in_new_rounded</Icon>
-                            </a>
-                        )
-                    }
-                </div>
-            )
-        }
-
+    const MAX_INSTAGRAM_USERNAME_LENGTH = 29;
+    const getInstagramField = () => {
         const updateInstagramUsername = async (event) => {
             const instagramUsername = event.target.value;
 
@@ -802,6 +722,75 @@ function AccountPage() {
             }
         }
 
+        const getUpdateInstagramUsernameControls = () => {
+            if (instagramUsername === associate.instagram_username) {
+                return;
+            }
+
+            const updateAssociateInstagramUsername = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.instagram_username = instagramUsername;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating instagram_username:', err);
+                }
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateInstagramUsername}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setInstagramUsername(associate.instagram_username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        return (
+            <div style={{ marginTop: '20px', display: 'flex' }}>
+                <Grid container item xs={12} lg={6} py={1}
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                    <MKInput
+                        variant="standard"
+                        label="Usuario de Instagram"
+                        placeholder="usuariocool123"
+                        InputLabelProps={{ shrink: true }}
+                        onChange={updateInstagramUsername}
+                        value={instagramUsername}
+                        fullWidth
+                    />
+                    <MKTypography variant="caption" color="info">
+                        {instagramUsername ? instagramUsername.length : 0}/{MAX_INSTAGRAM_USERNAME_LENGTH}
+                    </MKTypography>
+                    {getUpdateInstagramUsernameControls()}
+                </Grid>
+                {
+                    associate.instagram_username && (
+                        <a href={`https://www.instagram.com/${associate.instagram_username}/`} target='_blank' rel="noreferrer">
+                            <Icon fontSize="small">open_in_new_rounded</Icon>
+                        </a>
+                    )
+                }
+            </div>
+        )
+    }
+
+    const MAX_FACEBOOK_USERNAME_LENGTH = 29;
+    const getFacebookField = () => {
         const updateFacebookUsername = async (event) => {
             const facebookUsername = event.target.value;
 
@@ -819,6 +808,75 @@ function AccountPage() {
             }
         }
 
+        const getUpdateFacebookUsernameControls = () => {
+            if (facebookUsername === associate.facebook_username) {
+                return;
+            }
+
+            const updateAssociateFacebookUsername = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.facebook_username = facebookUsername;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating facebook_username:', err);
+                }
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateFacebookUsername}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setFacebookUsername(associate.facebook_username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        return (
+            <div style={{ marginTop: '20px', display: 'flex' }}>
+                <Grid container item xs={12} lg={6} py={1}
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                    <MKInput
+                        variant="standard"
+                        label="Usuario de Facebook"
+                        placeholder="usuariocool123"
+                        InputLabelProps={{ shrink: true }}
+                        onChange={updateFacebookUsername}
+                        value={facebookUsername}
+                        fullWidth
+                    />
+                    <MKTypography variant="caption" color="info">
+                        {facebookUsername ? facebookUsername.length : 0}/{MAX_FACEBOOK_USERNAME_LENGTH}
+                    </MKTypography>
+                    {getUpdateFacebookUsernameControls()}
+                </Grid>
+                {
+                    associate.facebook_username && (
+                        <a href={`https://www.facebook.com/${associate.facebook_username}/`} target='_blank' rel="noreferrer">
+                            <Icon fontSize="small">open_in_new_rounded</Icon>
+                        </a>
+                    )
+                }
+            </div>
+        )
+    }
+
+    const MAX_LINKEDIN_USERNAME_LENGTH = 29;
+    const getLinkedinField = () => {
         const updateLinkedinUsername = async (event) => {
             const linkedinUsername = event.target.value;
 
@@ -836,36 +894,119 @@ function AccountPage() {
             }
         }
 
-        const getSocialInformation = () => {
+        const getUpdateLinkedinUsernameControls = () => {
+            if (linkedinUsername === associate.linkedin_username) {
+                return;
+            }
+
+            const updateAssociateLinkedinUsername = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.linkedin_username = linkedinUsername;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating linkedin_username:', err);
+                }
+            }
+
             return (
-                <>
-                    <MKTypography mt={5} variant="body1" color="text">
-                        {Translator.instance.translate("account_page_social_information_header")}
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateLinkedinUsername}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setLinkedinUsername(associate.linkedin_username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        return (
+            <div style={{ marginTop: '20px', display: 'flex' }}>
+                <Grid container item xs={12} lg={6} py={1}
+                    sx={{ display: 'flex', alignItems: 'center' }}
+                >
+                    <MKInput
+                        variant="standard"
+                        label="Usuario de Linkedin"
+                        placeholder="usuariocool123"
+                        InputLabelProps={{ shrink: true }}
+                        onChange={updateLinkedinUsername}
+                        value={linkedinUsername}
+                        fullWidth
+                    />
+                    <MKTypography variant="caption" color="info">
+                        {linkedinUsername ? linkedinUsername.length : 0}/{MAX_LINKEDIN_USERNAME_LENGTH}
                     </MKTypography>
-                    <MKTypography variant="body2" color="text" mb={1}>
-                        {Translator.instance.translate("account_page_social_information_description")}.
-                    </MKTypography>
-                    {getPublicAccountToggle()}
-                    {getPublicPhoneToggle()}
-                    {getPublicEmailToggle()}
-                    <div style={{ marginTop: '5px', marginLeft: '5px' }}>
-                        {getCustomNameField()}
-                        {getUsernameField()}
-                        {getBioField()}
-                        {getInstagramField()}
-                        {getFacebookField()}
-                        {getLinkedinField()}
-                    </div>
-                </>
+                    {getUpdateLinkedinUsernameControls()}
+                </Grid>
+                {
+                    associate.linkedin_username && (
+                        <a href={`https://www.linkedin.com/in/${associate.linkedin_username}/`} target='_blank' rel="noreferrer">
+                            <Icon fontSize="small">open_in_new_rounded</Icon>
+                        </a>
+                    )
+                }
+            </div>
+        )
+    }
+
+    const getSocialInformation = () => {
+        return (
+            <>
+                <MKTypography mt={5} variant="body1" color="text">
+                    {Translator.instance.translate("account_page_social_information_header")}
+                </MKTypography>
+                <MKTypography variant="body2" color="text" mb={1}>
+                    {Translator.instance.translate("account_page_social_information_description")}.
+                </MKTypography>
+                {getPublicAccountToggle()}
+                {getPublicPhoneToggle()}
+                {getPublicEmailToggle()}
+                <div style={{ marginTop: '5px', marginLeft: '5px' }}>
+                    {getProfilePictureField()}
+                    {getCustomNameField()}
+                    {getUsernameField()}
+                    {getBioField()}
+                    {getInstagramField()}
+                    {getFacebookField()}
+                    {getLinkedinField()}
+                </div>
+            </>
+        );
+    }
+
+    const getAccountContent = () => {
+        if (state === 'loading') {
+            return (
+                <Spinner />
+            )
+        }
+
+        if (state === 'error') {
+            return (
+                <MKTypography ml={1} mt={1} variant="h4">
+                    {Translator.instance.translate("login_page_email_not_found")}
+                </MKTypography>
             );
         }
 
         return (
-            <>
+            <div>
                 {getAccountHeaderControls()}
                 {getRegistryInformation()}
                 {getSocialInformation()}
-            </>
+            </div>
         );
     }
 
