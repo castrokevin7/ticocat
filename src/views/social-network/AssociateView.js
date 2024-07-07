@@ -173,8 +173,8 @@ function AssociateView() {
 
         return (
             <MKBox display="flex" flexWrap="wrap" gap={1} mb={2}>
-                {associate.facebook_username && (
-                    <a href={`https://www.facebook.com/${associate.facebook_username}`} target="_blank" rel="noreferrer">
+                {associate.instagram_username && (
+                    <a href={`https://www.instagram.com/${associate.instagram_username}`} target="_blank" rel="noreferrer">
                         <MKSocialButton color="instagram" iconOnly>
                             <MKBox component="i" color="inherit" className="fab fa-instagram" />
                         </MKSocialButton>
@@ -187,8 +187,8 @@ function AssociateView() {
                         </MKSocialButton>
                     </a>
                 )}
-                {associate.instagram_username && (
-                    <a href={`https://www.instagram.com/${associate.instagram_username}`} target="_blank" rel="noreferrer">
+                {associate.facebook_username && (
+                    <a href={`https://www.facebook.com/${associate.facebook_username}`} target="_blank" rel="noreferrer">
                         <MKSocialButton color="facebook" iconOnly>
                             <MKBox component="i" color="inherit" className="fab fa-facebook" />
                         </MKSocialButton>
