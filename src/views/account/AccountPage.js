@@ -428,9 +428,9 @@ function AccountPage() {
                 setIsUploadingImage(true);
                 try {
                     const original = await DataStore.query(Associate, associate.id);
-                    if (original.profile_picture) {
+                    /* if (original.profile_picture) {
                         await Storage.remove(original.profile_picture, { level: 'protected' });
-                    }
+                    } */
 
                     const profilePictureKey = `associates/${associate.id}/profile_picture/${profilePicture.name}`;
                     await Storage.put(profilePictureKey, profilePicture, {
@@ -492,7 +492,7 @@ function AccountPage() {
             const removeProfilePicture = async () => {
                 try {
                     const original = await DataStore.query(Associate, associate.id);
-                    await Storage.remove(original.profile_picture, { level: 'protected' });
+                    /* await Storage.remove(original.profile_picture, { level: 'protected' }); */
                     await DataStore.save(
                         Associate.copyOf(original, updated => {
                             updated.profile_picture = null;
