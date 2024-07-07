@@ -10,7 +10,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import Card from "@mui/material/Card";
 import { Associate } from 'models';
-import { DataStore } from 'aws-amplify';
+import { DataStore, Storage } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
 import { Spinner } from "components/Spinner";
@@ -35,12 +35,20 @@ function AccountPage() {
     const [facebookUsername, setFacebookUsername] = useState();
     const [linkedinUsername, setLinkedinUsername] = useState();
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
+    const [profilePicture, setProfilePicture] = useState();
 
     const fetchAssociate = async (email) => {
         try {
             let response = await DataStore.query(Associate, a => a.email("eq", email));
             if (response.length > 0) {
-                setAssociate(response[0]);
+                response = response[0];
+                if (response.profile_picture) {
+                    const image = await Storage.get(response.profile_picture);
+                    response = Associate.copyOf(response, updated => {
+                        updated.profile_picture = image;
+                    });
+                }
+                setAssociate(response);
                 setState('success');
             } else {
                 console.error('Error: Associate not found');
@@ -86,6 +94,7 @@ function AccountPage() {
             setInstagramUsername(associate.instagram_username);
             setFacebookUsername(associate.facebook_username);
             setLinkedinUsername(associate.linkedin_username);
+            setProfilePicture(associate.profile_picture);
         }
         // eslint-disable-next-line
     }, [associate]);
@@ -188,7 +197,6 @@ function AccountPage() {
                 </>
             );
         }
-
 
         const getRegistryInformation = () => {
             return (
@@ -584,6 +592,78 @@ function AccountPage() {
             )
         }
 
+        const getProfilePictureField = () => {
+            const updateProfilePicture = (event) => {
+                const file = event.target.files[0];
+                setProfilePicture(file);
+            };
+
+            const getUpdateProfilePictureControls = () => {
+                if (!profilePicture) {
+                    return;
+                }
+
+                const updateAssociateProfilePicture = async () => {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        const profilePictureKey = `associates/${associate.id}/profile_picture/${profilePicture.name}`;
+                        await Storage.put(profilePictureKey, profilePicture, {
+                            contentType: profilePicture.type
+                        });
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.profile_picture = profilePictureKey;
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                    } catch (err) {
+                        console.error('Error updating profile picture:', err);
+                    }
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={updateAssociateProfilePicture}
+                        >
+                            check
+                        </Icon>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={() => setProfilePicture(null)}
+                        >
+                            close
+                        </Icon>
+                    </div >
+                )
+            };
+
+
+            return (
+                <div style={{ marginTop: '5px' }}>
+                    <MKTypography variant="body2" color="text">
+                        Imagen de Perfil
+                    </MKTypography>
+                    {
+                        associate.profile_picture ? (
+                            <img
+                                src={associate.profile_picture}
+                                alt="profile_picture"
+                                style={{ width: '100px', height: '100px' }}
+                            />
+                        ) : (
+                            <MKTypography variant="caption" color="text">
+                                No hay imagen de perfil
+                            </MKTypography>
+                        )
+                    }
+                    <input type="file" accept="image/*" onChange={updateProfilePicture} />
+                    {getUpdateProfilePictureControls()}
+                </div>
+            )
+        }
+
         const getCustomNameField = () => {
             return (
                 <div style={{ marginTop: '5px' }}>
@@ -849,6 +929,7 @@ function AccountPage() {
                     {getPublicPhoneToggle()}
                     {getPublicEmailToggle()}
                     <div style={{ marginTop: '5px', marginLeft: '5px' }}>
+                        {getProfilePictureField()}
                         {getCustomNameField()}
                         {getUsernameField()}
                         {getBioField()}
