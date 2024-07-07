@@ -27,6 +27,7 @@ function SocialNetworkPage() {
     const [state, setState] = useState('');
     const [associates, setAssociates] = useState(null);    
     const { route } = useAuthenticator(context => [context.route]);
+    const { user } = useAuthenticator((context) => [context.user]);
 
     useEffect(() => {
         if (route !== 'authenticated')
@@ -42,9 +43,11 @@ function SocialNetworkPage() {
 
     const fetchAssociates = async () => {
         try {
-            let response = await DataStore.query(Associate, a => a.is_account_activated("eq", true));
+            let response = await DataStore.query(Associate, associate => associate.and(associate => [
+                /* associate.email('ne', user?.attributes?.email), */
+                associate.is_account_activated('eq', true)
+            ]));
             if (response.length > 0) {
-                response = response.sort(() => Math.random() - 0.5);
                 setAssociates(response);
             }
             setState('success');
