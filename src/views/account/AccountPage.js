@@ -122,27 +122,24 @@ function AccountPage() {
         const getAccountHeaderControls = () => {
             return (
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px', justifyContent: 'flex-end' }}>
-                    <span>
-                        <Tooltip title="Salir" placement="top">
-                            <Icon fontSize="large"
-                                onClick={() => {
-                                    signOut();
-                                    setState('signingOut');
-                                }}
-                            >
-                                logout_rounded
-                            </Icon>
-                        </Tooltip>
+                    <span style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Icon fontSize="large"
+                            onClick={() => {
+                                signOut();
+                                setState('signingOut');
+                            }}
+                        >
+                            logout_rounded
+                        </Icon>
+                        <MKTypography variant="caption" color="text">Salir</MKTypography>
                     </span>
-                    <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
-                        <Tooltip title="Ver Perfil" placement="top">
-                            <Icon fontSize="large">account_box_rounded</Icon>
-                        </Tooltip>
+                    <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
+                        <Icon fontSize="large">account_box_rounded</Icon>
+                        <MKTypography variant="caption" color="text">Perfil</MKTypography>
                     </Link>
-                    <Link to={`/${getLang()}/social`}>
-                        <Tooltip title="TICOCAT Social" placement="top">
-                            <Icon fontSize="large">connect_without_contact_rounded</Icon>
-                        </Tooltip>
+                    <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social`}>
+                        <Icon fontSize="large">connect_without_contact_rounded</Icon>
+                        <MKTypography variant="caption" color="text">Social</MKTypography>
                     </Link>
                 </div>
             );
