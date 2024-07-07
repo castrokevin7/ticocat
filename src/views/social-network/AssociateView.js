@@ -20,6 +20,7 @@ import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
 import MKSocialButton from "components/MKSocialButton";
+import Icon from "@mui/material/Icon";
 
 function AssociateView() {
     const [state, setState] = useState("");
@@ -211,16 +212,13 @@ function AssociateView() {
 
         return (
             <>
-                {user && user.attributes.email === associate.email &&
-                    <Link to={`/${getLang()}/cuenta`}>
-                        <MKButton
-                            sx={{ float: 'right', marginBottom: '15px' }}
-                            mt={2}
-                            color="info"
-                        >
-                            {Translator.instance.translate("associate_account_access")}
-                        </MKButton>
-                    </Link>
+                {user?.attributes?.email === associate.email &&
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/cuenta`}>
+                            <Icon fontSize="large">edit_note_rounded</Icon>
+                            <MKTypography variant="caption" color="text">Editar</MKTypography>
+                        </Link>
+                    </div>
                 }
                 {associate.profile_picture &&
                     <img src={associate.profile_picture} alt="Profile" style={{ width: '250px', height: '250px', display: 'block', borderRadius: '5px' }} />
