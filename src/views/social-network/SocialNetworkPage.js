@@ -27,7 +27,6 @@ function SocialNetworkPage() {
     const [state, setState] = useState('');
     const [associates, setAssociates] = useState(null);    
     const { route } = useAuthenticator(context => [context.route]);
-    const { user } = useAuthenticator((context) => [context.user]);
 
     useEffect(() => {
         if (route !== 'authenticated')

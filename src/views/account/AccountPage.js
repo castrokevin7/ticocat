@@ -14,14 +14,12 @@ import { DataStore } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
 import { Spinner } from "components/Spinner";
-import MKButton from "components/MKButton";
 import { Link } from "react-router-dom";
 import Switch from "@mui/material/Switch";
 import { Benefit } from "models";
 import Grid from "@mui/material/Grid";
 import MKInput from "components/MKInput";
 import Icon from "@mui/material/Icon";
-import Tooltip from "@mui/material/Tooltip";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -32,6 +30,7 @@ function AccountPage() {
     const { user, signOut } = useAuthenticator((context) => [context.user]);
     const [username, setUsername] = useState();
     const [bio, setBio] = useState();
+    const [customName, setCustomName] = useState();
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
 
     const fetchAssociate = async (email) => {
@@ -80,6 +79,7 @@ function AccountPage() {
             fetchAssociateOfferedBenefits(associate);
             setUsername(associate.username);
             setBio(associate.bio);
+            setCustomName(associate.custom_name || associate.name);
         }
         // eslint-disable-next-line
     }, [associate]);
@@ -319,8 +319,13 @@ function AccountPage() {
             )
         }
 
+        const MAX_USERNAME_LENGTH = 32;
         const updateUsername = async (event) => {
             const newUsername = event.target.value;
+
+            if (newUsername.length > MAX_USERNAME_LENGTH) {
+                return;
+            }
 
             if (newUsername === '' || newUsername === associate.username) {
                 setUsername(newUsername);
@@ -341,6 +346,24 @@ function AccountPage() {
             }
         }
 
+        const MAX_CUSTOM_NAME_LENGTH = 64;
+        const updateCustomName = async (event) => {
+            const newCustomName = event.target.value;
+
+            if (newCustomName.length > MAX_CUSTOM_NAME_LENGTH) {
+                return;
+            }
+
+            if (newCustomName === '' || newCustomName === associate.custom_name) {
+                setCustomName(newCustomName);
+                return;
+            }
+
+            if (/^[a-zA-Z áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newCustomName)) {
+                setCustomName(newCustomName);
+            }
+        }
+
         const updateAssociateUsername = async () => {
             try {
                 const original = await DataStore.query(Associate, associate.id);
@@ -349,10 +372,23 @@ function AccountPage() {
                         updated.username = username;
                     })
                 );
-                console.log('Username updated:', associate.email);
                 fetchAssociate(user.attributes.email);
             } catch (err) {
                 console.error('Error updating username:', err);
+            }
+        }
+
+        const updateAssociateCustomName = async () => {
+            try {
+                const original = await DataStore.query(Associate, associate.id);
+                await DataStore.save(
+                    Associate.copyOf(original, updated => {
+                        updated.custom_name = customName.trim();
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating customName:', err);
             }
         }
 
@@ -362,7 +398,7 @@ function AccountPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateUsername}
@@ -372,6 +408,29 @@ function AccountPage() {
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={() => setUsername(associate.username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        const getUpdateCustomNameControls = () => {
+            if (customName === associate.custom_name) {
+                return;
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateCustomName}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setCustomName(associate.custom_name || associate.name)}
                     >
                         close
                     </Icon>
@@ -394,12 +453,39 @@ function AccountPage() {
                             value={username}
                             fullWidth
                         />
+                        <MKTypography variant="caption" color="info">
+                            {username ? username.length : 0}/{MAX_USERNAME_LENGTH}
+                        </MKTypography>
                         {getUpdateUsernameControls()}
                         {usernameAlreadyExists && (
                             <MKTypography variant="caption" color="error">
                                 {Translator.instance.translate("account_page_username_already_exists")}
                             </MKTypography>
                         )}
+                    </Grid>
+                </div>
+            )
+        }
+
+        const getCustomNameField = () => {
+            return (
+                <div style={{ marginTop: '5px' }}>
+                    <Grid container item xs={12} lg={6} py={1}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <MKInput
+                            variant="standard"
+                            label="Nombre a mostrar"
+                            placeholder="Pedro Sánchez"
+                            InputLabelProps={{ shrink: true }}
+                            onChange={updateCustomName}
+                            value={customName}
+                            fullWidth
+                        />
+                        <MKTypography variant="caption" color="info">
+                            {customName ? customName.length : 0}/{MAX_CUSTOM_NAME_LENGTH}
+                        </MKTypography>
+                        {getUpdateCustomNameControls()}
                     </Grid>
                 </div>
             )
@@ -443,7 +529,7 @@ function AccountPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '5px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateBio}
@@ -499,6 +585,7 @@ function AccountPage() {
                     {getPublicPhoneToggle()}
                     {getPublicEmailToggle()}
                     <div style={{ marginTop: '5px', marginLeft: '5px' }}>
+                        {getCustomNameField()}
                         {getUsernameField()}
                         {getBioField()}
                     </div>
