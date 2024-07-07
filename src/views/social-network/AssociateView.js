@@ -184,7 +184,7 @@ function AssociateView() {
                 {user && user.attributes.email === associate.email &&
                     <Link to={`/${getLang()}/cuenta`}>
                         <MKButton
-                            sx={{ float: 'right' }}
+                            sx={{ float: 'right', marginBottom: '15px' }}
                             mt={2}
                             color="info"
                         >
@@ -193,7 +193,7 @@ function AssociateView() {
                     </Link>
                 }
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <h3>{associate.name}</h3>
+                    <h3>{associate.custom_name || associate.name}</h3>
                     {associate.username && <p style={{ marginLeft: '5px' }}>@{associate.username}</p>}
                 </div>
                 {associate.bio && <p><i>"{associate.bio}"</i></p>}

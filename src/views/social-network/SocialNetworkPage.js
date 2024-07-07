@@ -92,6 +92,8 @@ function SocialNetworkPage() {
                                 <AssociateCard
                                     image={thumbnail}
                                     name={associate.name}
+                                    username={associate.username}
+                                    customName={associate.custom_name}
                                     bio={associate.bio}
                                 />
                             </Link>
