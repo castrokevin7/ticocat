@@ -31,6 +31,9 @@ function AccountPage() {
     const [username, setUsername] = useState();
     const [bio, setBio] = useState();
     const [customName, setCustomName] = useState();
+    const [instagramUsername, setInstagramUsername] = useState();
+    const [facebookUsername, setFacebookUsername] = useState();
+    const [linkedinUsername, setLinkedinUsername] = useState();
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
 
     const fetchAssociate = async (email) => {
@@ -80,6 +83,9 @@ function AccountPage() {
             setUsername(associate.username);
             setBio(associate.bio);
             setCustomName(associate.custom_name || associate.name);
+            setInstagramUsername(associate.instagram_username);
+            setFacebookUsername(associate.facebook_username);
+            setLinkedinUsername(associate.linkedin_username);
         }
         // eslint-disable-next-line
     }, [associate]);
@@ -378,6 +384,48 @@ function AccountPage() {
             }
         }
 
+        const updateAssociateInstagramUsername = async () => {
+            try {
+                const original = await DataStore.query(Associate, associate.id);
+                await DataStore.save(
+                    Associate.copyOf(original, updated => {
+                        updated.instagram_username = instagramUsername;
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating instagram_username:', err);
+            }
+        }
+
+        const updateAssociateFacebookUsername = async () => {
+            try {
+                const original = await DataStore.query(Associate, associate.id);
+                await DataStore.save(
+                    Associate.copyOf(original, updated => {
+                        updated.facebook_username = facebookUsername;
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating facebook_username:', err);
+            }
+        }
+
+        const updateAssociateLinkedinUsername = async () => {
+            try {
+                const original = await DataStore.query(Associate, associate.id);
+                await DataStore.save(
+                    Associate.copyOf(original, updated => {
+                        updated.linkedin_username = linkedinUsername;
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating linkedin_username:', err);
+            }
+        }
+
         const updateAssociateCustomName = async () => {
             try {
                 const original = await DataStore.query(Associate, associate.id);
@@ -408,6 +456,75 @@ function AccountPage() {
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={() => setUsername(associate.username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        const getUpdateInstagramUsernameControls = () => {
+            if (instagramUsername === associate.instagram_username) {
+                return;
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateInstagramUsername}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setInstagramUsername(associate.instagram_username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        const getUpdateFacebookUsernameControls = () => {
+            if (facebookUsername === associate.facebook_username) {
+                return;
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateFacebookUsername}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setFacebookUsername(associate.facebook_username)}
+                    >
+                        close
+                    </Icon>
+                </div >
+            )
+        }
+
+        const getUpdateLinkedinUsernameControls = () => {
+            if (linkedinUsername === associate.linkedin_username) {
+                return;
+            }
+
+            return (
+                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={updateAssociateLinkedinUsername}
+                    >
+                        check
+                    </Icon>
+                    <Icon
+                        sx={{ mr: 1 }}
+                        onClick={() => setLinkedinUsername(associate.linkedin_username)}
                     >
                         close
                     </Icon>
@@ -572,6 +689,153 @@ function AccountPage() {
             )
         }
 
+        const MAX_INSTAGRAM_USERNAME_LENGTH = 29;
+        const getInstagramField = () => {
+            return (
+                <div style={{ marginTop: '20px', display: 'flex' }}>
+                    <Grid container item xs={12} lg={6} py={1}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <MKInput
+                            variant="standard"
+                            label="Usuario de Instagram"
+                            placeholder="usuariocool123"
+                            InputLabelProps={{ shrink: true }}
+                            onChange={updateInstagramUsername}
+                            value={instagramUsername}
+                            fullWidth
+                        />
+                        <MKTypography variant="caption" color="info">
+                            {instagramUsername ? instagramUsername.length : 0}/{MAX_INSTAGRAM_USERNAME_LENGTH}
+                        </MKTypography>
+                        {getUpdateInstagramUsernameControls()}
+                    </Grid>
+                    {
+                        associate.instagram_username && (
+                            <a href={`https://www.instagram.com/${associate.instagram_username}/`} target='_blank'>
+                                <Icon fontSize="small">open_in_new_rounded</Icon>
+                            </a>
+                        )
+                    }
+                </div>
+            )
+        }
+
+        const MAX_FACEBOOK_USERNAME_LENGTH = 29;
+        const getFacebookField = () => {
+            return (
+                <div style={{ marginTop: '20px', display: 'flex' }}>
+                    <Grid container item xs={12} lg={6} py={1}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <MKInput
+                            variant="standard"
+                            label="Usuario de Facebook"
+                            placeholder="usuariocool123"
+                            InputLabelProps={{ shrink: true }}
+                            onChange={updateFacebookUsername}
+                            value={facebookUsername}
+                            fullWidth
+                        />
+                        <MKTypography variant="caption" color="info">
+                            {facebookUsername ? facebookUsername.length : 0}/{MAX_FACEBOOK_USERNAME_LENGTH}
+                        </MKTypography>
+                        {getUpdateFacebookUsernameControls()}
+                    </Grid>
+                    {
+                        associate.facebook_username && (
+                            <a href={`https://www.facebook.com/${associate.facebook_username}/`} target='_blank'>
+                                <Icon fontSize="small">open_in_new_rounded</Icon>
+                            </a>
+                        )
+                    }
+                </div>
+            )
+        }
+
+        const MAX_LINKEDIN_USERNAME_LENGTH = 29;
+        const getLinkedinField = () => {
+            return (
+                <div style={{ marginTop: '20px', display: 'flex' }}>
+                    <Grid container item xs={12} lg={6} py={1}
+                        sx={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <MKInput
+                            variant="standard"
+                            label="Usuario de Linkedin"
+                            placeholder="usuariocool123"
+                            InputLabelProps={{ shrink: true }}
+                            onChange={updateLinkedinUsername}
+                            value={linkedinUsername}
+                            fullWidth
+                        />
+                        <MKTypography variant="caption" color="info">
+                            {linkedinUsername ? linkedinUsername.length : 0}/{MAX_LINKEDIN_USERNAME_LENGTH}
+                        </MKTypography>
+                        {getUpdateLinkedinUsernameControls()}
+                    </Grid>
+                    {
+                        associate.linkedin_username && (
+                            <a href={`https://www.linkedin.com/in/${associate.linkedin_username}/`} target='_blank'>
+                                <Icon fontSize="small">open_in_new_rounded</Icon>
+                            </a>
+                        )
+                    }
+                </div>
+            )
+        }
+
+        const updateInstagramUsername = async (event) => {
+            const instagramUsername = event.target.value;
+
+            if (instagramUsername.length > MAX_INSTAGRAM_USERNAME_LENGTH) {
+                return;
+            }
+
+            if (instagramUsername === '' || instagramUsername === associate.instagram_username) {
+                setInstagramUsername(instagramUsername);
+                return;
+            }
+
+            if (/^[a-zA-Z0-9_.]*$/.test(instagramUsername)) {
+                setInstagramUsername(instagramUsername);
+            }
+        }
+
+        const updateFacebookUsername = async (event) => {
+            const facebookUsername = event.target.value;
+
+            if (facebookUsername.length > MAX_FACEBOOK_USERNAME_LENGTH) {
+                return;
+            }
+
+            if (facebookUsername === '' || facebookUsername === associate.facebook_username) {
+                setFacebookUsername(facebookUsername);
+                return;
+            }
+
+            if (/^[a-zA-Z0-9_]*$/.test(facebookUsername)) {
+                setFacebookUsername(facebookUsername);
+            }
+        }
+
+        const updateLinkedinUsername = async (event) => {
+            const linkedinUsername = event.target.value;
+
+            if (linkedinUsername.length > MAX_LINKEDIN_USERNAME_LENGTH) {
+                return;
+            }
+
+            if (linkedinUsername === '' || linkedinUsername === associate.linkedin_username) {
+                setLinkedinUsername(linkedinUsername);
+                return;
+            }
+
+            if (/^[a-zA-Z0-9_]*$/.test(linkedinUsername)) {
+                setLinkedinUsername(linkedinUsername);
+            }
+        }
+
         const getSocialInformation = () => {
             return (
                 <>
@@ -588,6 +852,9 @@ function AccountPage() {
                         {getCustomNameField()}
                         {getUsernameField()}
                         {getBioField()}
+                        {getInstagramField()}
+                        {getFacebookField()}
+                        {getLinkedinField()}
                     </div>
                 </>
             );
@@ -643,7 +910,7 @@ function AccountPage() {
                                 overflowY: auto
                             }}
                         >
-                            <MKBox component="section" py={6}>
+                            <MKBox component="section">
                                 <Container>
                                     {getAccountContent()}
                                 </Container>
