@@ -36,6 +36,7 @@ function AccountPage() {
     const [linkedinUsername, setLinkedinUsername] = useState();
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
     const [profilePicture, setProfilePicture] = useState();
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
 
     const fetchAssociate = async (email) => {
         try {
@@ -599,11 +600,12 @@ function AccountPage() {
             };
 
             const getUpdateProfilePictureControls = () => {
-                if (!profilePicture) {
+                if (!profilePicture || profilePicture == associate.profile_picture) {
                     return;
                 }
 
                 const updateAssociateProfilePicture = async () => {
+                    setIsUploadingImage(true);
                     try {
                         const original = await DataStore.query(Associate, associate.id);
                         const profilePictureKey = `associates/${associate.id}/profile_picture/${profilePicture.name}`;
@@ -619,46 +621,90 @@ function AccountPage() {
                     } catch (err) {
                         console.error('Error updating profile picture:', err);
                     }
+                    setIsUploadingImage(false);
                 }
 
                 return (
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                        <Icon
-                            sx={{ mr: 1 }}
-                            onClick={updateAssociateProfilePicture}
-                        >
-                            check
-                        </Icon>
-                        <Icon
-                            sx={{ mr: 1 }}
-                            onClick={() => setProfilePicture(null)}
-                        >
-                            close
-                        </Icon>
+                        {isUploadingImage ? <Spinner /> : (
+                            <>
+                                <Icon
+                                    sx={{ mr: 1 }}
+                                    onClick={updateAssociateProfilePicture}
+                                >
+                                    check
+                                </Icon>
+                                <Icon
+                                    sx={{ mr: 1 }}
+                                    onClick={() => setProfilePicture(associate.profile_picture)}
+                                >
+                                    close
+                                </Icon>
+                            </>
+                        )}
                     </div >
                 )
             };
 
+            const removeProfilePicture = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.profile_picture = null;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                }
+                catch (err) {
+                    console.error('Error removing profile picture:', err);
+                }
+            }
+
+            const getProfilePicture = () => {
+                if (profilePicture && profilePicture !== associate.profile_picture) {
+                    return URL.createObjectURL(profilePicture);
+                }
+
+                return associate.profile_picture;
+            }
+
+            const ableToDeleteProfilePicture = () => {
+                return associate.profile_picture && !isUploadingImage;
+            }
 
             return (
-                <div style={{ marginTop: '5px' }}>
+                <div style={{ marginTop: '10px', marginBottom: '10px' }}>
                     <MKTypography variant="body2" color="text">
                         Imagen de Perfil
                     </MKTypography>
                     {
-                        associate.profile_picture ? (
-                            <img
-                                src={associate.profile_picture}
-                                alt="profile_picture"
-                                style={{ width: '100px', height: '100px' }}
-                            />
+                        associate.profile_picture || profilePicture ? (
+                            <div>
+                                <img
+                                    src={getProfilePicture()}
+                                    alt="profile_picture"
+                                    style={{ width: '200px', height: '200px' }}
+                                />
+                                {ableToDeleteProfilePicture() && (
+                                    <Icon
+                                        sx={{ ml: 1, cursor: 'pointer' }}
+                                        onClick={removeProfilePicture}
+                                    >
+                                        delete_outline_rounded
+                                    </Icon>
+
+                                )}
+                            </div>
                         ) : (
                             <MKTypography variant="caption" color="text">
                                 No hay imagen de perfil
                             </MKTypography>
                         )
                     }
-                    <input type="file" accept="image/*" onChange={updateProfilePicture} />
+                    <div>
+                        <input type="file" accept="image/*" onChange={updateProfilePicture} />
+                    </div>
                     {getUpdateProfilePictureControls()}
                 </div>
             )
