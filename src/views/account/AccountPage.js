@@ -712,7 +712,7 @@ function AccountPage() {
                     </Grid>
                     {
                         associate.instagram_username && (
-                            <a href={`https://www.instagram.com/${associate.instagram_username}/`} target='_blank'>
+                            <a href={`https://www.instagram.com/${associate.instagram_username}/`} target='_blank' rel="noreferrer">
                                 <Icon fontSize="small">open_in_new_rounded</Icon>
                             </a>
                         )
@@ -744,7 +744,7 @@ function AccountPage() {
                     </Grid>
                     {
                         associate.facebook_username && (
-                            <a href={`https://www.facebook.com/${associate.facebook_username}/`} target='_blank'>
+                            <a href={`https://www.facebook.com/${associate.facebook_username}/`} target='_blank' rel="noreferrer">
                                 <Icon fontSize="small">open_in_new_rounded</Icon>
                             </a>
                         )
@@ -776,7 +776,7 @@ function AccountPage() {
                     </Grid>
                     {
                         associate.linkedin_username && (
-                            <a href={`https://www.linkedin.com/in/${associate.linkedin_username}/`} target='_blank'>
+                            <a href={`https://www.linkedin.com/in/${associate.linkedin_username}/`} target='_blank' rel="noreferrer">
                                 <Icon fontSize="small">open_in_new_rounded</Icon>
                             </a>
                         )
@@ -814,7 +814,7 @@ function AccountPage() {
                 return;
             }
 
-            if (/^[a-zA-Z0-9_]*$/.test(facebookUsername)) {
+            if (/^[a-zA-Z0-9_.]*$/.test(facebookUsername)) {
                 setFacebookUsername(facebookUsername);
             }
         }
@@ -831,7 +831,7 @@ function AccountPage() {
                 return;
             }
 
-            if (/^[a-zA-Z0-9_]*$/.test(linkedinUsername)) {
+            if (/^[a-zA-Z0-9_.]*$/.test(linkedinUsername)) {
                 setLinkedinUsername(linkedinUsername);
             }
         }
