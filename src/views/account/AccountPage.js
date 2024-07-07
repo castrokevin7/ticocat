@@ -244,21 +244,21 @@ function AccountPage() {
             );
         }
 
-        const updateProfileVisiblitySettings = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.is_public_profile = !original.is_public_profile;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating public profile:', err);
-            }
-        }
-
         const getPublicAccountToggle = () => {
+            const updateProfileVisiblitySettings = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.is_public_profile = !original.is_public_profile;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating public profile:', err);
+                }
+            }
+
             return (
                 <MKBox display="flex" alignItems="center" mb={2}>
                     <Switch checked={associate.is_public_profile} onChange={updateProfileVisiblitySettings} />
@@ -274,21 +274,21 @@ function AccountPage() {
             )
         }
 
-        const updatePhoneVisiblitySettings = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.share_phone = !original.share_phone;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating public phone:', err);
-            }
-        }
-
         const getPublicPhoneToggle = () => {
+            const updatePhoneVisiblitySettings = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.share_phone = !original.share_phone;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating public phone:', err);
+                }
+            }
+
             return (
                 <MKBox display="flex" alignItems="center" mb={2}>
                     <Switch checked={associate.share_phone} onChange={updatePhoneVisiblitySettings} />
@@ -304,21 +304,21 @@ function AccountPage() {
             )
         }
 
-        const updateEmailVisiblitySettings = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.share_email = !original.share_email;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating public email:', err);
-            }
-        }
-
         const getPublicEmailToggle = () => {
+            const updateEmailVisiblitySettings = async () => {
+                try {
+                    const original = await DataStore.query(Associate, associate.id);
+                    await DataStore.save(
+                        Associate.copyOf(original, updated => {
+                            updated.share_email = !original.share_email;
+                        })
+                    );
+                    fetchAssociate(user.attributes.email);
+                } catch (err) {
+                    console.error('Error updating public email:', err);
+                }
+            }
+
             return (
                 <MKBox display="flex" alignItems="center" mb={2}>
                     <Switch checked={associate.share_email} onChange={updateEmailVisiblitySettings} />
@@ -335,236 +335,70 @@ function AccountPage() {
         }
 
         const MAX_USERNAME_LENGTH = 32;
-        const updateUsername = async (event) => {
-            const newUsername = event.target.value;
+        const getUsernameField = () => {
+            const updateUsername = async (event) => {
+                const newUsername = event.target.value;
 
-            if (newUsername.length > MAX_USERNAME_LENGTH) {
-                return;
-            }
-
-            if (newUsername === '' || newUsername === associate.username) {
-                setUsername(newUsername);
-                setUsernameAlreadyExists(false);
-                return;
-            }
-
-            if (/^[a-zA-Z0-9_]*$/.test(newUsername)) {
-                const otherAssociate = await DataStore.query(Associate, a => a.username("eq", newUsername));
-                if (otherAssociate.length > 0) {
-                    console.error('Error: Username already exists');
-                    setUsernameAlreadyExists(true);
-                } else {
-                    setUsernameAlreadyExists(false);
+                if (newUsername.length > MAX_USERNAME_LENGTH) {
+                    return;
                 }
 
-                setUsername(newUsername);
-            }
-        }
+                if (newUsername === '' || newUsername === associate.username) {
+                    setUsername(newUsername);
+                    setUsernameAlreadyExists(false);
+                    return;
+                }
 
-        const MAX_CUSTOM_NAME_LENGTH = 64;
-        const updateCustomName = async (event) => {
-            const newCustomName = event.target.value;
+                if (/^[a-zA-Z0-9_]*$/.test(newUsername)) {
+                    const otherAssociate = await DataStore.query(Associate, a => a.username("eq", newUsername));
+                    if (otherAssociate.length > 0) {
+                        console.error('Error: Username already exists');
+                        setUsernameAlreadyExists(true);
+                    } else {
+                        setUsernameAlreadyExists(false);
+                    }
 
-            if (newCustomName.length > MAX_CUSTOM_NAME_LENGTH) {
-                return;
-            }
-
-            if (newCustomName === '' || newCustomName === associate.custom_name) {
-                setCustomName(newCustomName);
-                return;
-            }
-
-            if (/^[a-zA-Z áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newCustomName)) {
-                setCustomName(newCustomName);
-            }
-        }
-
-        const updateAssociateUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.username = username;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating username:', err);
-            }
-        }
-
-        const updateAssociateInstagramUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.instagram_username = instagramUsername;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating instagram_username:', err);
-            }
-        }
-
-        const updateAssociateFacebookUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.facebook_username = facebookUsername;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating facebook_username:', err);
-            }
-        }
-
-        const updateAssociateLinkedinUsername = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.linkedin_username = linkedinUsername;
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating linkedin_username:', err);
-            }
-        }
-
-        const updateAssociateCustomName = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.custom_name = customName.trim();
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating customName:', err);
-            }
-        }
-
-        const getUpdateUsernameControls = () => {
-            if (username === associate.username || usernameAlreadyExists) {
-                return;
+                    setUsername(newUsername);
+                }
             }
 
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateUsername}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setUsername(associate.username)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
-        }
+            const getUpdateUsernameControls = () => {
+                const updateAssociateUsername = async () => {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.username = username;
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                    } catch (err) {
+                        console.error('Error updating username:', err);
+                    }
+                }
 
-        const getUpdateInstagramUsernameControls = () => {
-            if (instagramUsername === associate.instagram_username) {
-                return;
+                if (username === associate.username || usernameAlreadyExists) {
+                    return;
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={updateAssociateUsername}
+                        >
+                            check
+                        </Icon>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={() => setUsername(associate.username)}
+                        >
+                            close
+                        </Icon>
+                    </div >
+                )
             }
 
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateInstagramUsername}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setInstagramUsername(associate.instagram_username)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
-        }
-
-        const getUpdateFacebookUsernameControls = () => {
-            if (facebookUsername === associate.facebook_username) {
-                return;
-            }
-
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateFacebookUsername}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setFacebookUsername(associate.facebook_username)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
-        }
-
-        const getUpdateLinkedinUsernameControls = () => {
-            if (linkedinUsername === associate.linkedin_username) {
-                return;
-            }
-
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateLinkedinUsername}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setLinkedinUsername(associate.linkedin_username)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
-        }
-
-        const getUpdateCustomNameControls = () => {
-            if (customName === associate.custom_name) {
-                return;
-            }
-
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateCustomName}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setCustomName(associate.custom_name || associate.name)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
-        }
-
-        const getUsernameField = () => {
             return (
                 <div style={{ marginTop: '5px' }}>
                     <Grid container item xs={12} lg={6} py={1}
@@ -600,7 +434,7 @@ function AccountPage() {
             };
 
             const getUpdateProfilePictureControls = () => {
-                if (!profilePicture || profilePicture == associate.profile_picture) {
+                if (!profilePicture || profilePicture === associate.profile_picture) {
                     return;
                 }
 
@@ -673,35 +507,41 @@ function AccountPage() {
                 return associate.profile_picture && !isUploadingImage;
             }
 
+            const displayProfilePicture = () => {
+                if (!associate.profile_picture && !profilePicture) {
+                    return (
+                        <MKTypography variant="caption" color="text">
+                            No hay imagen de perfil
+                        </MKTypography>
+                    )
+                }
+
+                return (
+                    <div>
+                        <img
+                            src={getProfilePicture()}
+                            alt="profile_picture"
+                            style={{ width: '200px', height: '200px' }}
+                        />
+                        {ableToDeleteProfilePicture() && (
+                            <Icon
+                                sx={{ ml: 1, cursor: 'pointer' }}
+                                onClick={removeProfilePicture}
+                            >
+                                delete_outline_rounded
+                            </Icon>
+
+                        )}
+                    </div>
+                )
+            }
+
             return (
                 <div style={{ marginTop: '10px', marginBottom: '10px' }}>
                     <MKTypography variant="body2" color="text">
                         Imagen de Perfil
                     </MKTypography>
-                    {
-                        associate.profile_picture || profilePicture ? (
-                            <div>
-                                <img
-                                    src={getProfilePicture()}
-                                    alt="profile_picture"
-                                    style={{ width: '200px', height: '200px' }}
-                                />
-                                {ableToDeleteProfilePicture() && (
-                                    <Icon
-                                        sx={{ ml: 1, cursor: 'pointer' }}
-                                        onClick={removeProfilePicture}
-                                    >
-                                        delete_outline_rounded
-                                    </Icon>
-
-                                )}
-                            </div>
-                        ) : (
-                            <MKTypography variant="caption" color="text">
-                                No hay imagen de perfil
-                            </MKTypography>
-                        )
-                    }
+                    {displayProfilePicture()}
                     <div>
                         <input type="file" accept="image/*" onChange={updateProfilePicture} />
                     </div>
@@ -710,7 +550,62 @@ function AccountPage() {
             )
         }
 
+        const MAX_CUSTOM_NAME_LENGTH = 64;
         const getCustomNameField = () => {
+            const updateCustomName = async (event) => {
+                const newCustomName = event.target.value;
+
+                if (newCustomName.length > MAX_CUSTOM_NAME_LENGTH) {
+                    return;
+                }
+
+                if (newCustomName === '' || newCustomName === associate.custom_name) {
+                    setCustomName(newCustomName);
+                    return;
+                }
+
+                if (/^[a-zA-Z áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newCustomName)) {
+                    setCustomName(newCustomName);
+                }
+            }
+
+            const getUpdateCustomNameControls = () => {
+                const updateAssociateCustomName = async () => {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.custom_name = customName.trim();
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                    } catch (err) {
+                        console.error('Error updating customName:', err);
+                    }
+                }
+
+                if (customName === associate.custom_name) {
+                    return;
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={updateAssociateCustomName}
+                        >
+                            check
+                        </Icon>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={() => setCustomName(associate.custom_name || associate.name)}
+                        >
+                            close
+                        </Icon>
+                    </div >
+                )
+            }
+
             return (
                 <div style={{ marginTop: '5px' }}>
                     <Grid container item xs={12} lg={6} py={1}
@@ -735,61 +630,61 @@ function AccountPage() {
         }
 
         const MAX_BIO_LENGTH = 512;
-        const updateBio = async (event) => {
-            const newBio = event.target.value;
-
-            if (newBio.length > MAX_BIO_LENGTH) {
-                return;
-            }
-
-            if (newBio === '') {
-                setBio(newBio);
-                return;
-            }
-
-            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"'áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newBio)) {
-                setBio(newBio);
-            }
-        }
-
-        const updateAssociateBio = async () => {
-            try {
-                const original = await DataStore.query(Associate, associate.id);
-                await DataStore.save(
-                    Associate.copyOf(original, updated => {
-                        updated.bio = bio.trim();
-                    })
-                );
-                fetchAssociate(user.attributes.email);
-            } catch (err) {
-                console.error('Error updating bio:', err);
-            }
-        }
-
-        const getUpdateBioControls = () => {
-            if (bio === associate.bio) {
-                return;
-            }
-
-            return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={updateAssociateBio}
-                    >
-                        check
-                    </Icon>
-                    <Icon
-                        sx={{ mr: 1 }}
-                        onClick={() => setBio(associate.bio)}
-                    >
-                        close
-                    </Icon>
-                </div >
-            )
-        }
-
         const getBioField = () => {
+            const updateBio = async (event) => {
+                const newBio = event.target.value;
+
+                if (newBio.length > MAX_BIO_LENGTH) {
+                    return;
+                }
+
+                if (newBio === '') {
+                    setBio(newBio);
+                    return;
+                }
+
+                if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"'áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newBio)) {
+                    setBio(newBio);
+                }
+            }
+
+            const getUpdateBioControls = () => {
+                const updateAssociateBio = async () => {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.bio = bio.trim();
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                    } catch (err) {
+                        console.error('Error updating bio:', err);
+                    }
+                }
+
+                if (bio === associate.bio) {
+                    return;
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={updateAssociateBio}
+                        >
+                            check
+                        </Icon>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={() => setBio(associate.bio)}
+                        >
+                            close
+                        </Icon>
+                    </div >
+                )
+            }
+
             return (
                 <div style={{ marginTop: '15px' }}>
                     <Grid container item xs={12} lg={6} py={1}
@@ -817,6 +712,60 @@ function AccountPage() {
 
         const MAX_INSTAGRAM_USERNAME_LENGTH = 29;
         const getInstagramField = () => {
+            const updateInstagramUsername = async (event) => {
+                const instagramUsername = event.target.value;
+
+                if (instagramUsername.length > MAX_INSTAGRAM_USERNAME_LENGTH) {
+                    return;
+                }
+
+                if (instagramUsername === '' || instagramUsername === associate.instagram_username) {
+                    setInstagramUsername(instagramUsername);
+                    return;
+                }
+
+                if (/^[a-zA-Z0-9_.]*$/.test(instagramUsername)) {
+                    setInstagramUsername(instagramUsername);
+                }
+            }
+
+            const getUpdateInstagramUsernameControls = () => {
+                const updateAssociateInstagramUsername = async () => {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.instagram_username = instagramUsername;
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                    } catch (err) {
+                        console.error('Error updating instagram_username:', err);
+                    }
+                }
+
+                if (instagramUsername === associate.instagram_username) {
+                    return;
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={updateAssociateInstagramUsername}
+                        >
+                            check
+                        </Icon>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={() => setInstagramUsername(associate.instagram_username)}
+                        >
+                            close
+                        </Icon>
+                    </div >
+                )
+            }
+
             return (
                 <div style={{ marginTop: '20px', display: 'flex' }}>
                     <Grid container item xs={12} lg={6} py={1}
@@ -849,6 +798,60 @@ function AccountPage() {
 
         const MAX_FACEBOOK_USERNAME_LENGTH = 29;
         const getFacebookField = () => {
+            const updateFacebookUsername = async (event) => {
+                const facebookUsername = event.target.value;
+
+                if (facebookUsername.length > MAX_FACEBOOK_USERNAME_LENGTH) {
+                    return;
+                }
+
+                if (facebookUsername === '' || facebookUsername === associate.facebook_username) {
+                    setFacebookUsername(facebookUsername);
+                    return;
+                }
+
+                if (/^[a-zA-Z0-9_.]*$/.test(facebookUsername)) {
+                    setFacebookUsername(facebookUsername);
+                }
+            }
+
+            const getUpdateFacebookUsernameControls = () => {
+                const updateAssociateFacebookUsername = async () => {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.facebook_username = facebookUsername;
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                    } catch (err) {
+                        console.error('Error updating facebook_username:', err);
+                    }
+                }
+
+                if (facebookUsername === associate.facebook_username) {
+                    return;
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={updateAssociateFacebookUsername}
+                        >
+                            check
+                        </Icon>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={() => setFacebookUsername(associate.facebook_username)}
+                        >
+                            close
+                        </Icon>
+                    </div >
+                )
+            }
+
             return (
                 <div style={{ marginTop: '20px', display: 'flex' }}>
                     <Grid container item xs={12} lg={6} py={1}
@@ -881,6 +884,60 @@ function AccountPage() {
 
         const MAX_LINKEDIN_USERNAME_LENGTH = 29;
         const getLinkedinField = () => {
+            const updateLinkedinUsername = async (event) => {
+                const linkedinUsername = event.target.value;
+
+                if (linkedinUsername.length > MAX_LINKEDIN_USERNAME_LENGTH) {
+                    return;
+                }
+
+                if (linkedinUsername === '' || linkedinUsername === associate.linkedin_username) {
+                    setLinkedinUsername(linkedinUsername);
+                    return;
+                }
+
+                if (/^[a-zA-Z0-9_.]*$/.test(linkedinUsername)) {
+                    setLinkedinUsername(linkedinUsername);
+                }
+            }
+
+            const getUpdateLinkedinUsernameControls = () => {
+                const updateAssociateLinkedinUsername = async () => {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.linkedin_username = linkedinUsername;
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                    } catch (err) {
+                        console.error('Error updating linkedin_username:', err);
+                    }
+                }
+
+                if (linkedinUsername === associate.linkedin_username) {
+                    return;
+                }
+
+                return (
+                    <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={updateAssociateLinkedinUsername}
+                        >
+                            check
+                        </Icon>
+                        <Icon
+                            sx={{ mr: 1 }}
+                            onClick={() => setLinkedinUsername(associate.linkedin_username)}
+                        >
+                            close
+                        </Icon>
+                    </div >
+                )
+            }
+
             return (
                 <div style={{ marginTop: '20px', display: 'flex' }}>
                     <Grid container item xs={12} lg={6} py={1}
@@ -909,57 +966,6 @@ function AccountPage() {
                     }
                 </div>
             )
-        }
-
-        const updateInstagramUsername = async (event) => {
-            const instagramUsername = event.target.value;
-
-            if (instagramUsername.length > MAX_INSTAGRAM_USERNAME_LENGTH) {
-                return;
-            }
-
-            if (instagramUsername === '' || instagramUsername === associate.instagram_username) {
-                setInstagramUsername(instagramUsername);
-                return;
-            }
-
-            if (/^[a-zA-Z0-9_.]*$/.test(instagramUsername)) {
-                setInstagramUsername(instagramUsername);
-            }
-        }
-
-        const updateFacebookUsername = async (event) => {
-            const facebookUsername = event.target.value;
-
-            if (facebookUsername.length > MAX_FACEBOOK_USERNAME_LENGTH) {
-                return;
-            }
-
-            if (facebookUsername === '' || facebookUsername === associate.facebook_username) {
-                setFacebookUsername(facebookUsername);
-                return;
-            }
-
-            if (/^[a-zA-Z0-9_.]*$/.test(facebookUsername)) {
-                setFacebookUsername(facebookUsername);
-            }
-        }
-
-        const updateLinkedinUsername = async (event) => {
-            const linkedinUsername = event.target.value;
-
-            if (linkedinUsername.length > MAX_LINKEDIN_USERNAME_LENGTH) {
-                return;
-            }
-
-            if (linkedinUsername === '' || linkedinUsername === associate.linkedin_username) {
-                setLinkedinUsername(linkedinUsername);
-                return;
-            }
-
-            if (/^[a-zA-Z0-9_.]*$/.test(linkedinUsername)) {
-                setLinkedinUsername(linkedinUsername);
-            }
         }
 
         const getSocialInformation = () => {
