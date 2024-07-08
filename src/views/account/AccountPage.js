@@ -44,7 +44,7 @@ function AccountPage() {
             if (response.length > 0) {
                 response = response[0];
                 if (response.profile_picture) {
-                    const image = await Storage.get(response.profile_picture, { level: 'protected' });
+                    const image = await Storage.get(response.profile_picture, { level: 'public' });
                     response = Associate.copyOf(response, updated => {
                         updated.profile_picture = image;
                     });
@@ -429,13 +429,13 @@ function AccountPage() {
                 try {
                     const original = await DataStore.query(Associate, associate.id);
                     /* if (original.profile_picture) {
-                        await Storage.remove(original.profile_picture, { level: 'protected' });
+                        await Storage.remove(original.profile_picture, { level: 'public' });
                     } */
 
                     const profilePictureKey = `associates/${associate.id}/profile_picture/${profilePicture.name}`;
                     await Storage.put(profilePictureKey, profilePicture, {
                         contentType: profilePicture.type,
-                        level: 'protected'
+                        level: 'public'
                     });
 
                     await DataStore.save(
@@ -492,7 +492,7 @@ function AccountPage() {
             const removeProfilePicture = async () => {
                 try {
                     const original = await DataStore.query(Associate, associate.id);
-                    /* await Storage.remove(original.profile_picture, { level: 'protected' }); */
+                    /* await Storage.remove(original.profile_picture, { level: 'public' }); */
                     await DataStore.save(
                         Associate.copyOf(original, updated => {
                             updated.profile_picture = null;
