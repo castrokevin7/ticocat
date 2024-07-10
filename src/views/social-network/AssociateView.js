@@ -21,6 +21,9 @@ import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
 import MKSocialButton from "components/MKSocialButton";
 import Icon from "@mui/material/Icon";
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import MuiLink from "@mui/material/Link";
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 
 function AssociateView() {
     const [state, setState] = useState("");
@@ -148,18 +151,20 @@ function AssociateView() {
         return (
             <>
                 <MKTypography variant="body1" color="text" mt={2}>
-                    {Translator.instance.translate("associate_view_contact_information_label")}:
+                    {Translator.instance.translate("associate_view_contact_information_label")}
                 </MKTypography>
-                {associate.share_phone &&
-                    <MKTypography variant="body2" color="text">
-                        <b>{Translator.instance.translate("account_page_phone_label")}:</b> {associate.phone}
-                    </MKTypography>
-                }
-                {associate.share_email &&
-                    <MKTypography variant="body2" color="text">
-                        <b>{Translator.instance.translate("account_page_email_label")}:</b> {associate.email}
-                    </MKTypography>
-                }
+                <div style={{ display: 'flex' }}>
+                    {associate.share_phone && associate.phone &&
+                        <MuiLink style={{ margin: '3px' }} href={`https://wa.me/${associate.phone}`} target="_blank" rel="noreferrer">
+                            <ContactPhoneIcon fontSize="large" />
+                        </MuiLink>
+                    }
+                    {associate.share_email && associate.email &&
+                        <MuiLink style={{ margin: '3px' }} href={`mailto:${associate.email}`} target="_blank" rel="noreferrer">
+                            <AlternateEmailIcon fontSize="large" />
+                        </MuiLink>
+                    }
+                </div>
             </>
         );
     }
