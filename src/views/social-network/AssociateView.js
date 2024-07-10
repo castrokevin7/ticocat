@@ -24,6 +24,7 @@ import Icon from "@mui/material/Icon";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import MuiLink from "@mui/material/Link";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+import thumbnail from "assets/images/profile.png";
 
 function AssociateView() {
     const [state, setState] = useState("");
@@ -218,22 +219,26 @@ function AssociateView() {
         return (
             <>
                 {user?.attributes?.email === associate.email &&
-                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
                         <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/cuenta`}>
                             <Icon fontSize="large">edit_note_rounded</Icon>
                             <MKTypography variant="caption" color="text">Editar</MKTypography>
                         </Link>
                     </div>
                 }
-                {associate.profile_picture &&
-                    <img src={associate.profile_picture} alt="Profile" style={{ width: '250px', height: '250px', display: 'block', borderRadius: '5px' }} />
-                }
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <h3>{associate.custom_name || associate.name}</h3>
-                    {associate.username && <p style={{ marginLeft: '5px' }}>@{associate.username}</p>}
-                </div>
-                {getSocialMedia()}
-                {associate.bio && <p><i>"{associate.bio}"</i></p>}
+                <Grid container>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <img src={associate.profile_picture || thumbnail} alt="Profile" style={{ width: '250px', height: '250px', display: 'block', borderRadius: '5px' }} />
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                            <h3>{associate.custom_name || associate.name}</h3>
+                            {associate.username && <p style={{ marginLeft: '5px' }}>@{associate.username}</p>}
+                        </div>
+                        {getSocialMedia()}
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={8} mt={{ md: 4, sm: 1 }}>
+                        {associate.bio && <p><i>"{associate.bio}"</i></p>}
+                    </Grid>
+                </Grid>
                 {getContactInformation()}
                 {getOfferedBenefits()}
             </>
