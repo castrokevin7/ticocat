@@ -10,7 +10,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import Card from "@mui/material/Card";
 import { Associate } from 'models';
-import { DataStore, Storage } from 'aws-amplify';
+import { DataStore, Storage, a } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
 import { Spinner } from "components/Spinner";
@@ -473,7 +473,7 @@ function AccountPage() {
         };
 
         const getProfilePicture = () => {
-            if (profilePicture && profilePicture !== associate.profile_picture) {
+            if (profilePicture instanceof File) {
                 return URL.createObjectURL(profilePicture);
             }
 
