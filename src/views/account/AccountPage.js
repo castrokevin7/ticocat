@@ -335,7 +335,7 @@ function AccountPage() {
                 return;
             }
 
-            if (/^[a-zA-Z0-9_]*$/.test(newUsername)) {
+            if (/^[a-z0-9_]*$/.test(newUsername)) {
                 const otherAssociate = await DataStore.query(Associate, a => a.username("eq", newUsername));
                 if (otherAssociate.length > 0) {
                     console.error('Error: Username already exists');
