@@ -229,10 +229,8 @@ function AssociateView() {
                 <Grid container>
                     <Grid item xs={12} md={6} lg={4}>
                         <img src={associate.profile_picture || thumbnail} alt="Profile" style={{ width: '250px', height: '250px', display: 'block', borderRadius: '5px' }} />
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <h3>{associate.custom_name || associate.name}</h3>
-                            {associate.username && <p style={{ marginLeft: '5px' }}>@{associate.username}</p>}
-                        </div>
+                        <h3>{associate.custom_name || associate.name}</h3>
+                        {associate.username && <p>@{associate.username}</p>}
                         {getSocialMedia()}
                     </Grid>
                     <Grid item xs={12} md={6} lg={8} mt={{ md: 4, sm: 1 }}>
