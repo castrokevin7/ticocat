@@ -15,6 +15,10 @@
         "es": "Error cargando Evento '{0}'",
         "cat": "Error carregant Esdeveniment '{0}'"
     },
+    "event_date_time_prefix":{
+        "es": "a las",
+        "cat": "a les"
+    },
     "faq_error_tag": {
         "es": "Error cargando Pregunta Frecuente '{0}'",
         "cat": "Error carregant Pregunta Freqüent '{0}'"

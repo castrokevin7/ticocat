@@ -148,7 +148,7 @@ function EventView() {
 
     const getDateTime = (event) => {
         if (event.time) {
-            return `${getFormattedDate(event.date)}  |  ${getTime(event.time)}`;
+            return `${getFormattedDate(event.date)}  ${Translator.instance.translate("event_date_time_prefix")}  ${getTime(event.time)}`;
         } else {
             return getFormattedDate(event.date);
         }
