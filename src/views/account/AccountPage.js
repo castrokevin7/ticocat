@@ -89,13 +89,27 @@ function AccountPage() {
         if (associate) {
             markAccountAsActivated(associate);
             fetchAssociateOfferedBenefits(associate);
-            setUsername(associate.username);
-            setBio(associate.bio);
-            setCustomName(associate.custom_name || associate.name);
-            setInstagramUsername(associate.instagram_username);
-            setFacebookUsername(associate.facebook_username);
-            setLinkedinUsername(associate.linkedin_username);
-            setProfilePicture(associate.profile_picture);
+            if (!username) {
+                setUsername(associate.username);
+            }
+            if (!bio) {
+                setBio(associate.bio);
+            }
+            if (!customName) {
+                setCustomName(associate.custom_name || associate.name);
+            }
+            if (!instagramUsername) {
+                setInstagramUsername(associate.instagram_username);
+            }
+            if (!facebookUsername) {
+                setFacebookUsername(associate.facebook_username);
+            }
+            if (!linkedinUsername) {
+                setLinkedinUsername(associate.linkedin_username);
+            }
+            if (!profilePicture) {
+                setProfilePicture(associate.profile_picture);
+            }
         }
         // eslint-disable-next-line
     }, [associate]);
