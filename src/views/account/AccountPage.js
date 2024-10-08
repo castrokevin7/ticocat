@@ -20,6 +20,7 @@ import { Benefit } from "models";
 import Grid from "@mui/material/Grid";
 import MKInput from "components/MKInput";
 import Icon from "@mui/material/Icon";
+import "./AccountPage.css";
 
 function AccountPage() {
     const [state, setState] = useState("loading");
@@ -525,10 +526,9 @@ function AccountPage() {
 
             return (
                 <div>
-                    <img
-                        src={getProfilePicture()}
-                        alt="profile_picture"
-                        style={{ width: '200px', height: '200px' }}
+                    <div
+                        id="display-profile-picture"
+                        style={{ backgroundImage: `url(${getProfilePicture()})` }}
                     />
                     {ableToDeleteProfilePicture() && (
                         <Icon

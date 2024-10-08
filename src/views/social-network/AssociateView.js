@@ -25,6 +25,7 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import MuiLink from "@mui/material/Link";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import thumbnail from "assets/images/profile.png";
+import "./AssociateView.css";
 
 function AssociateView() {
     const [state, setState] = useState("");
@@ -228,7 +229,10 @@ function AssociateView() {
                 }
                 <Grid container>
                     <Grid item xs={12} md={6} lg={4}>
-                        <img src={associate.profile_picture || thumbnail} alt="Profile" style={{ width: '250px', height: '250px', display: 'block', borderRadius: '5px' }} />
+                        <div
+                            id="display-profile-picture"
+                            style={{ backgroundImage: `url(${associate.profile_picture || thumbnail})` }}
+                        />
                         <h3>{associate.custom_name || associate.name}</h3>
                         {associate.username && <p>@{associate.username}</p>}
                         {getSocialMedia()}
