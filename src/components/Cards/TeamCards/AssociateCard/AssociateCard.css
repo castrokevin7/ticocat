@@ -1,0 +1,7 @@
+#associate-profile-picture {
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
