@@ -459,6 +459,7 @@ function AccountPage() {
                         })
                     );
                     fetchAssociate(user.attributes.email);
+                    setProfilePicture(null);
                 } catch (err) {
                     console.error('Error updating profile picture:', err);
                 }
@@ -505,18 +506,21 @@ function AccountPage() {
             }
 
             const removeProfilePicture = async () => {
-                try {
-                    const original = await DataStore.query(Associate, associate.id);
-                    /* await Storage.remove(original.profile_picture, { level: 'public' }); */
-                    await DataStore.save(
-                        Associate.copyOf(original, updated => {
-                            updated.profile_picture = null;
-                        })
-                    );
-                    fetchAssociate(user.attributes.email);
-                }
-                catch (err) {
-                    console.error('Error removing profile picture:', err);
+                if (window.confirm('¿Estás seguro de que quieres eliminar la imagen de perfil?')) {
+                    try {
+                        const original = await DataStore.query(Associate, associate.id);
+                        /* await Storage.remove(original.profile_picture, { level: 'public' }); */
+                        await DataStore.save(
+                            Associate.copyOf(original, updated => {
+                                updated.profile_picture = null;
+                            })
+                        );
+                        fetchAssociate(user.attributes.email);
+                        setProfilePicture(null);
+                    }
+                    catch (err) {
+                        console.error('Error removing profile picture:', err);
+                    }
                 }
             }
 
@@ -525,7 +529,7 @@ function AccountPage() {
             }
 
             return (
-                <div>
+                <div style={{ display: 'flex' }}>
                     <div
                         id="display-profile-picture"
                         style={{ backgroundImage: `url(${getProfilePicture()})` }}
