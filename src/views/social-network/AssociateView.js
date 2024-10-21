@@ -21,9 +21,6 @@ import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
 import MKSocialButton from "components/MKSocialButton";
 import Icon from "@mui/material/Icon";
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import MuiLink from "@mui/material/Link";
-import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import thumbnail from "assets/images/profile.png";
 import "./AssociateView.css";
 
@@ -145,60 +142,44 @@ function AssociateView() {
         );
     }
 
-    const getContactInformation = () => {
-        if (!associate.share_phone && !associate.share_email) {
-            return;
-        }
-
-        return (
-            <>
-                <MKTypography variant="body1" color="text" mt={2}>
-                    {Translator.instance.translate("associate_view_contact_information_label")}
-                </MKTypography>
-                <div style={{ display: 'flex' }}>
-                    {associate.share_phone && associate.phone &&
-                        <MuiLink style={{ margin: '3px' }} href={`https://wa.me/${associate.phone}`} target="_blank" rel="noreferrer">
-                            <ContactPhoneIcon fontSize="large" />
-                        </MuiLink>
-                    }
-                    {associate.share_email && associate.email &&
-                        <MuiLink style={{ margin: '3px' }} href={`mailto:${associate.email}`} target="_blank" rel="noreferrer">
-                            <AlternateEmailIcon fontSize="large" />
-                        </MuiLink>
-                    }
-                </div>
-            </>
-        );
-    }
-
     const getSocialMedia = () => {
-        if (!associate.instagram_username && !associate.facebook_username && !associate.linkedin_username) {
-            return;
-        }
-
         return (
             <MKBox display="flex" flexWrap="wrap" gap={1} mb={2}>
                 {associate.instagram_username && (
                     <a href={`https://www.instagram.com/${associate.instagram_username}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton color="instagram" iconOnly>
+                        <MKSocialButton size="medium" iconOnly>
                             <MKBox component="i" color="inherit" className="fab fa-instagram" />
                         </MKSocialButton>
                     </a>
                 )}
                 {associate.linkedin_username && (
                     <a href={`https://www.linkedin.com/in/${associate.linkedin_username}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton color="linkedin" iconOnly>
+                        <MKSocialButton size="medium" iconOnly>
                             <MKBox component="i" color="inherit" className="fab fa-linkedin" />
                         </MKSocialButton>
                     </a>
                 )}
                 {associate.facebook_username && (
                     <a href={`https://www.facebook.com/${associate.facebook_username}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton color="facebook" iconOnly>
+                        <MKSocialButton size="medium" iconOnly>
                             <MKBox component="i" color="inherit" className="fab fa-facebook" />
                         </MKSocialButton>
                     </a>
                 )}
+                {associate.share_phone && associate.phone &&
+                    <a href={`https://wa.me/${associate.phone}`} target="_blank" rel="noreferrer">
+                        <MKSocialButton size="medium" iconOnly>
+                            <MKBox component="i" color="inherit" className="fab fa-whatsapp" />
+                        </MKSocialButton>
+                    </a>
+                }
+                {associate.share_email && associate.email &&
+                    <a href={`mailto:${associate.email}`} target="_blank" rel="noreferrer">
+                        <MKSocialButton size="medium" iconOnly>
+                            <MKBox component="i" color="inherit" className="fa fa-envelope-o" />
+                        </MKSocialButton>
+                    </a>
+                }
             </MKBox>
         );
     }
@@ -241,7 +222,6 @@ function AssociateView() {
                         {associate.bio && <p><i>"{associate.bio}"</i></p>}
                     </Grid>
                 </Grid>
-                {getContactInformation()}
                 {getOfferedBenefits()}
             </>
         )
