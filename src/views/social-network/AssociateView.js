@@ -200,14 +200,18 @@ function AssociateView() {
 
         return (
             <>
-                {user?.attributes?.email === associate.email &&
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
+                    {user?.attributes?.email === associate.email &&
                         <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/cuenta`}>
                             <Icon fontSize="large">edit_note_rounded</Icon>
                             <MKTypography variant="caption" color="text">Editar</MKTypography>
                         </Link>
-                    </div>
-                }
+                    }
+                    <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social`}>
+                        <Icon fontSize="large">connect_without_contact_rounded</Icon>
+                        <MKTypography variant="caption" color="text">Social</MKTypography>
+                    </Link>
+                </div>
                 <Grid container>
                     <Grid item xs={12} md={6} lg={4}>
                         <div
