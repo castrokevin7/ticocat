@@ -654,7 +654,7 @@ function AccountPage() {
                 return;
             }
 
-            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"'áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ]*$/.test(newBio)) {
+            if (/^[a-zA-Z0-9_.,!¡¿?() -$€@"'áÁàÀéÉèÈüÜóÓòÒíÍìÌúÚùÙñÑ\n\r]*$/.test(newBio)) {
                 setBio(newBio);
             }
         }
