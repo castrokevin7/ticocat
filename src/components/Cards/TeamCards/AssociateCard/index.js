@@ -28,7 +28,11 @@ import './AssociateCard.css'
 
 function AssociateCard({ image, name, username, customName, bio }) {
   return (
-    <Card sx={{ mt: '15px', minHeight: '175px', maxHeight: '175px' }}>
+    <Card sx={{
+      mt: '15px',
+      minHeight: { lg: '175px' },
+      maxHeight: { lg: '175px' },
+    }}>
       <Grid container>
         <Grid item xs={12} md={6} lg={4} sx={{ mt: -6 }}>
           <MKBox width="100%" pt={2} pb={1} px={2}>
