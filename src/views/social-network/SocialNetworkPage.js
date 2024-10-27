@@ -99,16 +99,18 @@ function SocialNetworkPage() {
         return (
             <Grid container spacing={4}>
                 {associates.map((associate, index) => (
-                    <Grid key={index} item xs={12} lg={4}>
-                        <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
-                            <AssociateCard
-                                image={associate.profile_picture}
-                                name={associate.name}
-                                username={associate.username}
-                                customName={associate.custom_name}
-                                bio={associate.bio}
-                            />
-                        </Link>
+                    <Grid key={index} item xs={2} lg={4}>
+                        <MKBox mb={1}>
+                            <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
+                                <AssociateCard
+                                    image={associate.profile_picture}
+                                    name={associate.name}
+                                    username={associate.username}
+                                    customName={associate.custom_name}
+                                    bio={associate.bio}
+                                />
+                            </Link>
+                        </MKBox>
                     </Grid>
                 ))}
             </Grid>
