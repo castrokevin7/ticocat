@@ -67,7 +67,7 @@ function LoginPage() {
     const { route } = useAuthenticator(context => [context.route]);
 
     if (route === 'authenticated') {
-        return <Navigate to={`/${getLang()}/cuenta`} />;
+        return <Navigate to={`/${getLang()}/social/configuracion`} />;
     }
 
     const isRegisteredAssociate = async (email) => {

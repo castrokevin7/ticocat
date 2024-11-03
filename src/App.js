@@ -19,9 +19,9 @@ import AssociateVerificationPage from 'views/associate-verification/AssociateVer
 import AssociateConfirmationView from 'views/associate-verification/AssociateConfirmationView';
 import TermsAndConditionsPage from 'views/terms-and-conditions/TermsAndConditionsPage';
 import LoginPage from 'views/login/LoginPage';
-import AccountPage from 'views/account/AccountPage';
-import SocialNetworkPage from 'views/social-network/SocialNetworkPage';
-import AssociateView from 'views/social-network/AssociateView';
+import AccountConfigurationPage from 'views/social-network/account-configuration/AccountConfigurationPage';
+import CommunityPage from 'views/social-network/community/CommunityPage';
+import ProfileViewPage from 'views/social-network/profile/ProfileViewPage';
 import { Authenticator } from '@aws-amplify/ui-react';
 
 
@@ -92,14 +92,17 @@ function App() {
         <Route exact path={"/es/acceso"} element={<LoginPage />} />;
         <Route exact path={"/cat/acceso"} element={<LoginPage />} />;
 
-        <Route exact path={"/es/cuenta"} element={<AccountPage />} />;
-        <Route exact path={"/cat/cuenta"} element={<AccountPage />} />;
+        {/* TICOCAT Social */}
+        <Route exact path={"/es/social/comunidad"} element={<CommunityPage />} />;
+        <Route exact path={"/cat/social/comunidad"} element={<CommunityPage />} />;
 
-        <Route exact path={"/es/social"} element={<SocialNetworkPage />} />;
-        <Route exact path={"/cat/social"} element={<SocialNetworkPage />} />;
+        <Route exact path={"/es/social/configuracion"} element={<AccountConfigurationPage />} />;
+        <Route exact path={"/cat/social/configuracion"} element={<AccountConfigurationPage />} />;
 
-        <Route exact path={"/es/social/usuario/:associateId"} element={<AssociateView />} />;
-        <Route exact path={"/cat/social/usuario/:associateId"} element={<AssociateView />} />;
+        <Route exact path={"/es/social/perfil/:associateId"} element={<ProfileViewPage />} />;
+        <Route exact path={"/cat/social/perfil/:associateId"} element={<ProfileViewPage />} />;
+        <Route exact path={"/es/social/perfil"} element={<ProfileViewPage />} />;
+        <Route exact path={"/cat/social/perfil"} element={<ProfileViewPage />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />

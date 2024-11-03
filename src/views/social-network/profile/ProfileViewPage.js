@@ -5,7 +5,7 @@ import { getLang } from 'utils/Translator';
 import Container from "@mui/material/Container";
 import MKBox from "components/MKBox";
 import bgImage from "assets/images/associates.jpg";
-import { Associate, Benefit } from "../../models";
+import { Associate, Benefit } from "../../../models";
 import { Spinner } from "components/Spinner";
 import { useParams } from "react-router";
 import { DataStore, Storage } from "aws-amplify";
@@ -15,16 +15,19 @@ import Translator from 'utils/Translator';
 import MKButton from "components/MKButton";
 import { Link } from "react-router-dom";
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { getBenefitTitle, getBenefitDescription } from '../benefits/Utils';
+import { getBenefitTitle, getBenefitDescription } from '../../benefits/Utils';
 import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
 import MKSocialButton from "components/MKSocialButton";
 import Icon from "@mui/material/Icon";
 import thumbnail from "assets/images/profile.png";
-import "./AssociateView.css";
+import "./ProfileViewPage.css";
 
-function AssociateView() {
+import routes from "../routes";
+import Footer from '../Footer';
+
+function ProfileViewPage() {
     const [state, setState] = useState("");
     const [associate, setAssociate] = useState();
     const [associateOfferedBenefits, setAssociateOfferedBenefits] = useState();
@@ -34,15 +37,20 @@ function AssociateView() {
 
     const fetchAssociate = async () => {
         try {
-            let response = await DataStore.query(Associate, associate => associate.and(associate => [
-                associate.username('eq', associateId),
-                associate.is_account_activated('eq', true)
-            ]));
-            if (response.length === 0) {
+            let response;
+            if (associateId) {
                 response = await DataStore.query(Associate, associate => associate.and(associate => [
-                    associate.id('eq', associateId),
+                    associate.username('eq', associateId),
                     associate.is_account_activated('eq', true)
                 ]));
+                if (response.length === 0) {
+                    response = await DataStore.query(Associate, associate => associate.and(associate => [
+                        associate.id('eq', associateId),
+                        associate.is_account_activated('eq', true)
+                    ]));
+                }
+            } else {
+                response = await DataStore.query(Associate, associate => associate.email('eq', user.attributes.email));
             }
 
             if (response.length > 0) {
@@ -200,18 +208,6 @@ function AssociateView() {
 
         return (
             <>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px' }}>
-                    {user?.attributes?.email === associate.email &&
-                        <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/cuenta`}>
-                            <Icon fontSize="large">edit_note_rounded</Icon>
-                            <MKTypography variant="caption" color="text">Editar</MKTypography>
-                        </Link>
-                    }
-                    <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social`}>
-                        <Icon fontSize="large">connect_without_contact_rounded</Icon>
-                        <MKTypography variant="caption" color="text">Social</MKTypography>
-                    </Link>
-                </div>
                 <Grid container>
                     <Grid item xs={12} md={6} lg={4}>
                         <div
@@ -250,7 +246,7 @@ function AssociateView() {
     return (
         <>
             <DefaultNavbar
-                routes={[]}
+                routes={routes}
                 center
                 sticky
                 brand="asoticocat"
@@ -293,9 +289,10 @@ function AssociateView() {
                     </Container>
                 </MKBox>
             </MKBox>
+            <Footer />
         </>
     );
 }
 
 
-export default AssociateView;
+export default ProfileViewPage;

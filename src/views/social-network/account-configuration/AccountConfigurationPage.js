@@ -20,9 +20,12 @@ import { Benefit } from "models";
 import Grid from "@mui/material/Grid";
 import MKInput from "components/MKInput";
 import Icon from "@mui/material/Icon";
-import "./AccountPage.css";
+import "./AccountConfigurationPage.css";
 
-function AccountPage() {
+import routes from "../routes";
+import Footer from "../Footer";
+
+function AccountConfigurationPage() {
     const [state, setState] = useState("loading");
     const [associate, setAssociate] = useState();
     const [associateOfferedBenefits, setAssociateOfferedBenefits] = useState();
@@ -150,14 +153,6 @@ function AccountPage() {
                     </Icon>
                     <MKTypography variant="caption" color="text">Salir</MKTypography>
                 </span>
-                <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
-                    <Icon fontSize="large">account_box_rounded</Icon>
-                    <MKTypography variant="caption" color="text">Perfil</MKTypography>
-                </Link>
-                <Link style={{ margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }} to={`/${getLang()}/social`}>
-                    <Icon fontSize="large">connect_without_contact_rounded</Icon>
-                    <MKTypography variant="caption" color="text">Social</MKTypography>
-                </Link>
             </div>
         );
     }
@@ -1031,7 +1026,7 @@ function AccountPage() {
     return (
         <>
             <DefaultNavbar
-                routes={[]}
+                routes={routes}
                 center
                 sticky
                 brand="asoticocatcat"
@@ -1078,9 +1073,10 @@ function AccountPage() {
                     </Container>
                 </MKBox>
             </MKBox>
+            <Footer />
         </>
     );
 }
 
 
-export default AccountPage;
+export default AccountConfigurationPage;

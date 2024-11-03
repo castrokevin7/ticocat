@@ -3,7 +3,7 @@ import { getLang } from 'utils/Translator';
 export function getUserProfileAction() {
     if (getLang() === "es") {
         return {
-            route: "/es/cuenta",
+            route: "/es/social/configuracion",
             label: "Cuenta",
             color: "info",
             icon: "account_circle_rounded",
@@ -13,7 +13,7 @@ export function getUserProfileAction() {
         }
     } else {
         return {
-            route: "/cat/cuenta",
+            route: "/cat/social/configuracion",
             label: "Compte",
             color: "info",
             icon: "account_circle_rounded",

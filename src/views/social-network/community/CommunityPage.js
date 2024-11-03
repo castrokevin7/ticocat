@@ -22,8 +22,13 @@ import { getLang } from 'utils/Translator';
 import { Link } from "react-router-dom";
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
+import DefaultNavbar from "components/Navbars/DefaultNavbar";
+import { getTranslateAction } from 'utils/TranslateAction';
 
-function SocialNetworkPage() {
+import routes from "../routes";
+import Footer from '../Footer';
+
+function CommunityPage() {
     const [state, setState] = useState('');
     const [associates, setAssociates] = useState(null);
     const { route } = useAuthenticator(context => [context.route]);
@@ -37,7 +42,7 @@ function SocialNetworkPage() {
     }, [route]);
 
     if (route !== 'authenticated') {
-        return <Navigate to={`/${getLang()}/cuenta`} />;
+        return <Navigate to={`/${getLang()}/social/configuracion`} />;
     }
 
     const fetchAssociates = async () => {
@@ -101,7 +106,7 @@ function SocialNetworkPage() {
                 {associates.map((associate, index) => (
                     <Grid key={index} item xs={2} lg={4}>
                         <MKBox mb={1}>
-                            <Link to={`/${getLang()}/social/usuario/${associate.username || associate.id}`}>
+                            <Link to={`/${getLang()}/social/perfil/${associate.username || associate.id}`}>
                                 <AssociateCard
                                     image={associate.profile_picture}
                                     name={associate.name}
@@ -118,19 +123,29 @@ function SocialNetworkPage() {
     };
 
     return (
-        <MKBox
-            component="section"
-            position="relative"
-            py={12}
-            sx={{
-                backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.8), rgba(gradients.dark.state, 0.8))}, url(${bgImage})`,
-            }}
-        >
-            <Container>
-                {getAssociates()}
-            </Container>
-        </MKBox>
+        <>
+            <DefaultNavbar
+                routes={routes}
+                center
+                sticky
+                brand="asoticocat"
+                action={getTranslateAction()}
+            />
+            <MKBox
+                component="section"
+                position="relative"
+                py={20}
+                sx={{
+                    backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.8), rgba(gradients.dark.state, 0.8))}, url(${bgImage})`,
+                }}
+            >
+                <Container>
+                    {getAssociates()}
+                </Container>
+            </MKBox>
+            <Footer />
+        </>
     );
 }
 
-export default SocialNetworkPage;
+export default CommunityPage;
