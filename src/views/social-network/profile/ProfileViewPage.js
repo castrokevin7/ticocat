@@ -20,7 +20,6 @@ import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
 import MKSocialButton from "components/MKSocialButton";
-import Icon from "@mui/material/Icon";
 import thumbnail from "assets/images/profile.png";
 import "./ProfileViewPage.css";
 
@@ -251,14 +250,6 @@ function ProfileViewPage() {
                 sticky
                 brand="asoticocat"
                 action={getTranslateAction()}
-                secondaryAction={{
-                    route: `/${getLang()}/social`,
-                    color: "info",
-                    icon: "arrow_circle_left_rounded",
-                    variant: "text",
-                    size: "large",
-                    minimal: true
-                }}
             />
 
             <MKBox component="header" position="relative">

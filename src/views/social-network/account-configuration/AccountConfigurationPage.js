@@ -198,7 +198,7 @@ function AccountConfigurationPage() {
     const getRegistryInformation = () => {
         return (
             <>
-                <MKTypography variant="body1" color="text">
+                <MKTypography variant="h4" mb={2}>
                     {Translator.instance.translate("account_page_inscription_information_header")}
                 </MKTypography>
                 <MKTypography variant="body2" color="text" mb={1}>
@@ -397,7 +397,7 @@ function AccountConfigurationPage() {
 
         return (
             <div style={{ marginTop: '5px' }}>
-                <Grid container item xs={12} lg={6} py={1}
+                <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
                     <MKInput
@@ -614,7 +614,7 @@ function AccountConfigurationPage() {
 
         return (
             <div style={{ marginTop: '5px' }}>
-                <Grid container item xs={12} lg={6} py={1}
+                <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
                     <MKInput
@@ -693,7 +693,7 @@ function AccountConfigurationPage() {
 
         return (
             <div style={{ marginTop: '15px' }}>
-                <Grid container item xs={12} lg={6} py={1}
+                <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
                     <MKInput
@@ -774,7 +774,7 @@ function AccountConfigurationPage() {
 
         return (
             <div style={{ marginTop: '20px', display: 'flex' }}>
-                <Grid container item xs={12} lg={6} py={1}
+                <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
                     <MKInput
@@ -860,7 +860,7 @@ function AccountConfigurationPage() {
 
         return (
             <div style={{ marginTop: '20px', display: 'flex' }}>
-                <Grid container item xs={12} lg={6} py={1}
+                <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
                     <MKInput
@@ -946,7 +946,7 @@ function AccountConfigurationPage() {
 
         return (
             <div style={{ marginTop: '20px', display: 'flex' }}>
-                <Grid container item xs={12} lg={6} py={1}
+                <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
                     <MKInput
@@ -977,7 +977,7 @@ function AccountConfigurationPage() {
     const getSocialInformation = () => {
         return (
             <>
-                <MKTypography mt={5} variant="body1" color="text">
+                <MKTypography variant="h4" mt={4} mb={2}>
                     {Translator.instance.translate("account_page_social_information_header")}
                 </MKTypography>
                 <MKTypography variant="body2" color="text" mb={1}>
@@ -1031,14 +1031,6 @@ function AccountConfigurationPage() {
                 sticky
                 brand="asoticocatcat"
                 action={getTranslateAction()}
-                secondaryAction={{
-                    route: `/${getLang()}`,
-                    color: "info",
-                    icon: "arrow_circle_left_rounded",
-                    variant: "text",
-                    size: "large",
-                    minimal: true
-                }}
             />
 
             <MKBox component="header" position="relative">
