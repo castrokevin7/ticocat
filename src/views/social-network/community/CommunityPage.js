@@ -104,7 +104,7 @@ function CommunityPage() {
         return (
             <Grid container spacing={4}>
                 {associates.map((associate, index) => (
-                    <Grid key={index} item xs={2} lg={4}>
+                    <Grid key={index} item xs={12} lg={4}>
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/perfil/${associate.username || associate.id}`}>
                                 <AssociateCard
