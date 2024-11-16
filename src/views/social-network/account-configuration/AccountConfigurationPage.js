@@ -259,10 +259,10 @@ function AccountConfigurationPage() {
             <MKBox display="flex" alignItems="center" mb={2}>
                 <Switch checked={associate.is_public_profile} onChange={updateProfileVisiblitySettings} />
                 <MKBox ml={2} lineHeight={0.5}>
-                    <MKTypography display="block" variant="button" fontWeight="bold">
+                    <MKTypography variant="h6">
                         {Translator.instance.translate("account_page_social_public_account_label")}
                     </MKTypography>
-                    <MKTypography variant="caption" color="text" fontWeight="regular">
+                    <MKTypography variant="body2" color="text">
                         {Translator.instance.translate("account_page_social_public_account_description")}.
                     </MKTypography>
                 </MKBox>
@@ -289,10 +289,10 @@ function AccountConfigurationPage() {
             <MKBox display="flex" alignItems="center" mb={2}>
                 <Switch checked={associate.share_phone} onChange={updatePhoneVisiblitySettings} />
                 <MKBox ml={2} lineHeight={0.5}>
-                    <MKTypography display="block" variant="button" fontWeight="bold">
+                    <MKTypography variant="h6">
                         {Translator.instance.translate("account_page_social_public_phone_label")}
                     </MKTypography>
-                    <MKTypography variant="caption" color="text" fontWeight="regular">
+                    <MKTypography variant="body2" color="text">
                         {Translator.instance.translate("account_page_social_public_phone_description")}.
                     </MKTypography>
                 </MKBox>
@@ -319,10 +319,10 @@ function AccountConfigurationPage() {
             <MKBox display="flex" alignItems="center" mb={2}>
                 <Switch checked={associate.share_email} onChange={updateEmailVisiblitySettings} />
                 <MKBox ml={2} lineHeight={0.5}>
-                    <MKTypography display="block" variant="button" fontWeight="bold">
+                    <MKTypography variant="h6">
                         {Translator.instance.translate("account_page_social_public_email_label")}
                     </MKTypography>
-                    <MKTypography variant="caption" color="text" fontWeight="regular">
+                    <MKTypography variant="body2" color="text">
                         {Translator.instance.translate("account_page_social_public_email_description")}.
                     </MKTypography>
                 </MKBox>
@@ -400,9 +400,14 @@ function AccountConfigurationPage() {
                 <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
+                    <div className="form-label-field-container">
+                        <MKTypography variant="h5" color="secondary">
+                            Nombre de usuario
+                        </MKTypography>
+                        {getUpdateUsernameControls()}
+                    </div>
                     <MKInput
                         variant="standard"
-                        label="Nombre de usuario"
                         placeholder="usuariocool123"
                         InputLabelProps={{ shrink: true }}
                         onChange={updateUsername}
@@ -412,7 +417,6 @@ function AccountConfigurationPage() {
                     <MKTypography variant="caption" color="info">
                         {username ? username.length : 0}/{MAX_USERNAME_LENGTH}
                     </MKTypography>
-                    {getUpdateUsernameControls()}
                     {usernameAlreadyExists && (
                         <MKTypography variant="caption" color="error">
                             {Translator.instance.translate("account_page_username_already_exists")}
@@ -544,7 +548,7 @@ function AccountConfigurationPage() {
 
         return (
             <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-                <MKTypography variant="body2" color="text">
+                <MKTypography variant="h5" color="secondary">
                     Imagen de Perfil
                 </MKTypography>
                 {displayProfilePicture()}
@@ -617,9 +621,14 @@ function AccountConfigurationPage() {
                 <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
+                    <div className="form-label-field-container">
+                        <MKTypography variant="h5" color="secondary">
+                            Nombre a mostrar
+                        </MKTypography>
+                        {getUpdateCustomNameControls()}
+                    </div>
                     <MKInput
                         variant="standard"
-                        label="Nombre a mostrar"
                         placeholder="Pedro Sánchez"
                         InputLabelProps={{ shrink: true }}
                         onChange={updateCustomName}
@@ -629,7 +638,6 @@ function AccountConfigurationPage() {
                     <MKTypography variant="caption" color="info">
                         {customName ? customName.length : 0}/{MAX_CUSTOM_NAME_LENGTH}
                     </MKTypography>
-                    {getUpdateCustomNameControls()}
                 </Grid>
             </div>
         )
@@ -696,9 +704,14 @@ function AccountConfigurationPage() {
                 <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
+                    <div className="form-label-field-container">
+                        <MKTypography variant="h5" color="secondary">
+                            Biografía
+                        </MKTypography>
+                        {getUpdateBioControls()}
+                    </div>
                     <MKInput
                         variant="standard"
-                        label="Biografía"
                         placeholder="Escribe algo sobre ti"
                         InputLabelProps={{ shrink: true }}
                         multiline
@@ -710,7 +723,6 @@ function AccountConfigurationPage() {
                     <MKTypography variant="caption" color="info">
                         {bio ? bio.length : 0}/{MAX_BIO_LENGTH}
                     </MKTypography>
-                    {getUpdateBioControls()}
                 </Grid>
             </div>
         )
@@ -777,9 +789,23 @@ function AccountConfigurationPage() {
                 <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
+                    <div className="form-label-field-container">
+                        <div className="form-label-field-social-media-container">
+                            <MKTypography variant="h5" color="secondary">
+                                Usuario de Instagram
+                            </MKTypography>
+                            {
+                                associate.instagram_username && (
+                                    <a className="social-media-link" href={`https://www.instagram.com/${associate.instagram_username}/`} target='_blank' rel="noreferrer">
+                                        <Icon fontSize="small">open_in_new_rounded</Icon>
+                                    </a>
+                                )
+                            }
+                        </div>
+                        {getUpdateInstagramUsernameControls()}
+                    </div>
                     <MKInput
                         variant="standard"
-                        label="Usuario de Instagram"
                         placeholder="usuariocool123"
                         InputLabelProps={{ shrink: true }}
                         onChange={updateInstagramUsername}
@@ -789,15 +815,7 @@ function AccountConfigurationPage() {
                     <MKTypography variant="caption" color="info">
                         {instagramUsername ? instagramUsername.length : 0}/{MAX_INSTAGRAM_USERNAME_LENGTH}
                     </MKTypography>
-                    {getUpdateInstagramUsernameControls()}
                 </Grid>
-                {
-                    associate.instagram_username && (
-                        <a href={`https://www.instagram.com/${associate.instagram_username}/`} target='_blank' rel="noreferrer">
-                            <Icon fontSize="small">open_in_new_rounded</Icon>
-                        </a>
-                    )
-                }
             </div>
         )
     }
@@ -863,9 +881,23 @@ function AccountConfigurationPage() {
                 <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
+                    <div className="form-label-field-container">
+                        <div className="form-label-field-social-media-container">
+                            <MKTypography variant="h5" color="secondary">
+                                Usuario de Facebook
+                            </MKTypography>
+                            {
+                                associate.facebook_username && (
+                                    <a className="social-media-link" href={`https://www.facebook.com/${associate.facebook_username}/`} target='_blank' rel="noreferrer">
+                                        <Icon fontSize="small">open_in_new_rounded</Icon>
+                                    </a>
+                                )
+                            }
+                        </div>
+                        {getUpdateFacebookUsernameControls()}
+                    </div>
                     <MKInput
                         variant="standard"
-                        label="Usuario de Facebook"
                         placeholder="usuariocool123"
                         InputLabelProps={{ shrink: true }}
                         onChange={updateFacebookUsername}
@@ -875,16 +907,8 @@ function AccountConfigurationPage() {
                     <MKTypography variant="caption" color="info">
                         {facebookUsername ? facebookUsername.length : 0}/{MAX_FACEBOOK_USERNAME_LENGTH}
                     </MKTypography>
-                    {getUpdateFacebookUsernameControls()}
-                </Grid>
-                {
-                    associate.facebook_username && (
-                        <a href={`https://www.facebook.com/${associate.facebook_username}/`} target='_blank' rel="noreferrer">
-                            <Icon fontSize="small">open_in_new_rounded</Icon>
-                        </a>
-                    )
-                }
-            </div>
+                </Grid >
+            </div >
         )
     }
 
@@ -949,9 +973,23 @@ function AccountConfigurationPage() {
                 <Grid container item xs={12} py={1}
                     sx={{ display: 'flex', alignItems: 'center' }}
                 >
+                    <div className="form-label-field-container">
+                        <div className="form-label-field-social-media-container">
+                            <MKTypography variant="h5" color="secondary">
+                                Usuario de Linkedin
+                            </MKTypography>
+                            {
+                                associate.linkedin_username && (
+                                    <a className="social-media-link" href={`https://www.linkedin.com/in/${associate.linkedin_username}/`} target='_blank' rel="noreferrer">
+                                        <Icon fontSize="small">open_in_new_rounded</Icon>
+                                    </a>
+                                )
+                            }
+                        </div>
+                        {getUpdateLinkedinUsernameControls()}
+                    </div>
                     <MKInput
                         variant="standard"
-                        label="Usuario de Linkedin"
                         placeholder="usuariocool123"
                         InputLabelProps={{ shrink: true }}
                         onChange={updateLinkedinUsername}
@@ -961,15 +999,7 @@ function AccountConfigurationPage() {
                     <MKTypography variant="caption" color="info">
                         {linkedinUsername ? linkedinUsername.length : 0}/{MAX_LINKEDIN_USERNAME_LENGTH}
                     </MKTypography>
-                    {getUpdateLinkedinUsernameControls()}
                 </Grid>
-                {
-                    associate.linkedin_username && (
-                        <a href={`https://www.linkedin.com/in/${associate.linkedin_username}/`} target='_blank' rel="noreferrer">
-                            <Icon fontSize="small">open_in_new_rounded</Icon>
-                        </a>
-                    )
-                }
             </div>
         )
     }
@@ -983,9 +1013,14 @@ function AccountConfigurationPage() {
                 <MKTypography variant="body2" color="text" mb={1}>
                     {Translator.instance.translate("account_page_social_information_description")}.
                 </MKTypography>
-                {getPublicAccountToggle()}
-                {getPublicPhoneToggle()}
-                {getPublicEmailToggle()}
+                <div style={{ marginBottom: '30px' }}>
+                    <MKTypography variant="h5" mb={1} color="secondary">
+                        Configuración de Privacidad
+                    </MKTypography>
+                    {getPublicAccountToggle()}
+                    {getPublicPhoneToggle()}
+                    {getPublicEmailToggle()}
+                </div>
                 <div style={{ marginTop: '5px', marginLeft: '5px' }}>
                     {getProfilePictureField()}
                     {getCustomNameField()}

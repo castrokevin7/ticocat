@@ -5,3 +5,12 @@
     background-size: cover;
     border-radius: 10px;
 }
+
+.form-label-field-container, .form-label-field-social-media-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.social-media-link {
+    margin-left: 5px;
+}
