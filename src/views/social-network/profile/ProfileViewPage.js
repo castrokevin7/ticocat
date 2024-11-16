@@ -33,6 +33,7 @@ function ProfileViewPage() {
     const [isLoadingBenefits, setIsLoadingBenefits] = useState(false);
     const { associateId } = useParams();
     const { user } = useAuthenticator((context) => [context.user]);
+    const { route } = useAuthenticator(context => [context.route]);
 
     const fetchAssociate = async () => {
         try {
@@ -242,10 +243,15 @@ function ProfileViewPage() {
             <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_not_found")}</p>;
     }
 
+
+    const getRoutes = () => {
+        return route !== 'authenticated' ? [] : routes;
+    }
+
     return (
         <>
             <DefaultNavbar
-                routes={routes}
+                routes={getRoutes()}
                 center
                 sticky
                 brand="asoticocat"
