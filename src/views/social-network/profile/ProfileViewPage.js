@@ -248,6 +248,10 @@ function ProfileViewPage() {
         return route !== 'authenticated' ? [] : routes;
     }
 
+    const getFooter = () => {
+        return route !== 'authenticated' ? null : <Footer />;
+    }
+
     return (
         <>
             <DefaultNavbar
@@ -286,7 +290,7 @@ function ProfileViewPage() {
                     </Container>
                 </MKBox>
             </MKBox>
-            <Footer />
+            {getFooter()}
         </>
     );
 }
