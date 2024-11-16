@@ -46,19 +46,19 @@ import { getLang } from 'utils/Translator';
 const routes = [
   {
     name: "Configuración",
-    icon: <Icon>volunteer_activism</Icon>,
+    icon: <Icon>manage_accounts</Icon>,
     href: `/${getLang()}/social/configuracion`,
     target: "_self"
   },
   {
     name: "Mi Perfil",
-    icon: <Icon>supervisor_account</Icon>,
+    icon: <Icon>person</Icon>,
     href: `/${getLang()}/social/perfil`,
     target: "_self"
   },
   {
     name: "Comunidad",
-    icon: <Icon>celebration_rounded</Icon>,
+    icon: <Icon>diversity_3</Icon>,
     href: `/${getLang()}/social/comunidad`,	
     target: "_self"
   }
