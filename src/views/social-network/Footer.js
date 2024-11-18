@@ -16,7 +16,6 @@ function Footer() {
     name: "TICOCAT",
   };
   const links = [
-    { href: "#", name: Translator.instance.translate("route_home") },
     { href: `/${getLang()}/social/configuracion`, name: "Configuración" },
     { href: `/${getLang()}/social/perfil`, name: "Mi Perfil" },
     { href: `/${getLang()}/social/comunidad`, name: "Comunidad" },
