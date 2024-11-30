@@ -22,6 +22,9 @@ import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgro
 import MKSocialButton from "components/MKSocialButton";
 import thumbnail from "assets/images/profile.png";
 import "./ProfileViewPage.css";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import routes from "../routes";
 import Footer from '../Footer';
@@ -108,7 +111,7 @@ function ProfileViewPage() {
         // eslint-disable-next-line
     }, [associate]);
 
-    const getOfferedBenefits = () => {
+    const getOfferedBenefitsSection = () => {
         if (isLoadingBenefits) {
             return (
                 <MKTypography
@@ -127,8 +130,8 @@ function ProfileViewPage() {
         }
 
         return (
-            <>
-                <MKTypography variant="body1" color="text" mt={2}>
+            <MKBox sx={{ margin: '25px' }}>
+                <MKTypography variant="h3" mt={4}>
                     {Translator.instance.translate("account_page_benefits_offered")}:
                 </MKTypography>
                 <Grid container spacing={3}>
@@ -146,7 +149,7 @@ function ProfileViewPage() {
                             </Grid>
                         )}
                 </Grid>
-            </>
+            </MKBox>
         );
     }
 
@@ -155,39 +158,19 @@ function ProfileViewPage() {
             <MKBox display="flex" flexWrap="wrap" gap={1} mb={2}>
                 {associate.instagram_username && (
                     <a href={`https://www.instagram.com/${associate.instagram_username}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton size="medium" iconOnly>
-                            <MKBox component="i" color="inherit" className="fab fa-instagram" />
-                        </MKSocialButton>
+                        <InstagramIcon />
                     </a>
                 )}
                 {associate.linkedin_username && (
                     <a href={`https://www.linkedin.com/in/${associate.linkedin_username}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton size="medium" iconOnly>
-                            <MKBox component="i" color="inherit" className="fab fa-linkedin" />
-                        </MKSocialButton>
+                        <LinkedInIcon />
                     </a>
                 )}
                 {associate.facebook_username && (
                     <a href={`https://www.facebook.com/${associate.facebook_username}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton size="medium" iconOnly>
-                            <MKBox component="i" color="inherit" className="fab fa-facebook" />
-                        </MKSocialButton>
+                        <FacebookIcon />
                     </a>
                 )}
-                {associate.share_phone && associate.phone &&
-                    <a href={`https://wa.me/${associate.phone}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton size="medium" iconOnly>
-                            <MKBox component="i" color="inherit" className="fab fa-whatsapp" />
-                        </MKSocialButton>
-                    </a>
-                }
-                {associate.share_email && associate.email &&
-                    <a href={`mailto:${associate.email}`} target="_blank" rel="noreferrer">
-                        <MKSocialButton size="medium" iconOnly>
-                            <MKBox component="i" color="inherit" className="fa fa-envelope-o" />
-                        </MKSocialButton>
-                    </a>
-                }
             </MKBox>
         );
     }
@@ -206,24 +189,80 @@ function ProfileViewPage() {
             </div>;
         }
 
-        return (
-            <>
-                <Grid container>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <div
-                            id="display-profile-picture"
-                            style={{ backgroundImage: `url(${associate.profile_picture || thumbnail})` }}
-                        />
-                        <h3>{associate.custom_name || associate.name}</h3>
-                        {associate.username && <p>@{associate.username}</p>}
+        const getBioSection = () => {
+            if (!associate.bio) {
+                return;
+            }
+
+            return (
+                <MKBox mt={2}>
+                    <MKTypography variant="body1" color="text">
+                        {associate.bio}
+                    </MKTypography>
+                </MKBox>
+            );
+        }
+
+        const getContactSection = () => {
+            if (!associate.email && !associate.phone_number) {
+                return;
+            }
+
+            return (
+                <MKBox mt={2}>
+                    <MKTypography variant="h4">
+                        {Translator.instance.translate("account_page_contact")}
+                    </MKTypography>
+                    <MKTypography variant="body1" color="text">
+                        {associate.email && <span>{associate.email}</span>}
+                        {associate.phone_number && <span>{associate.email ? " | " : ""}{associate.phone_number}</span>}
+                    </MKTypography>
+                </MKBox>
+            );
+        }
+
+        const getInterestsSection = () => {
+            /* TODO: add this */
+            return;
+        }
+
+        const getHeaderSection = () => {
+            return (
+                <MKBox mb={3} display="flex" alignItems="center" justifyContent="space-between">
+                    <MKBox>
+                        <MKTypography variant="h3">
+                            {associate.custom_name || associate.name}
+                        </MKTypography>
+                        {associate.username &&
+                            <MKTypography variant="body2" color="text">
+                                <b>@{associate.username}</b>
+                            </MKTypography>
+                        }
+                        <MKTypography variant="body1" color="text">
+                            {associate.position}
+                        </MKTypography>
+                    </MKBox>
+                    <MKBox>
                         {getSocialMedia()}
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={8} mt={{ md: 4, sm: 1 }}>
-                        {associate.bio && <p><i>"{associate.bio}"</i></p>}
-                    </Grid>
-                </Grid>
-                {getOfferedBenefits()}
-            </>
+                    </MKBox>
+                </MKBox>
+            );
+        }
+
+        return (
+            <div>
+                <MKBox sx={{ width: '80%', margin: 'auto' }}>
+                    <div
+                        id="display-profile-picture"
+                        style={{ backgroundImage: `url(${associate.profile_picture || thumbnail})` }}
+                    />
+                    {getHeaderSection()}
+                    {getBioSection()}
+                    {getInterestsSection()}
+                    {getContactSection()}
+                </MKBox>
+                {getOfferedBenefitsSection()}
+            </div>
         )
     }
 

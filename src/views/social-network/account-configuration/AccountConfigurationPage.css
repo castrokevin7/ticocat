@@ -11,6 +11,17 @@
     justify-content: space-between;
 }
 
+.form-label-field-social-media-container {
+    display: flex;
+}
+
+
 .social-media-link {
     margin-left: 5px;
+}
+
+.controls-container { 
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
 }

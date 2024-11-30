@@ -67,6 +67,10 @@
         "es": "Conecta con nosotros en",
         "cat": "Connecta amb nosaltres a"
     },
+    "account_page_contact": {
+        "es": "Contacto",
+        "cat": "Contacte"
+    },
     "about_context_title": {
         "es": "TICOCAT: promoviendo la cultura costarricense en Cataluña",
         "cat": "TICOCAT: promovent la cultura Costa-riquenya a Catalunya"
@@ -464,8 +468,8 @@
         "cat": "Carregant beneficis oferts pel soci..."
     },
     "account_page_benefits_offered": {
-        "es": "Beneficios ofrecidos a la comunidad TICOCAT",
-        "cat": "Beneficis oferts a la comunitat TICOCAT"
+        "es": "Beneficios ofrecidos",
+        "cat": "Beneficis oferts"
     },
     "account_page_social_public_account_label": {
         "es": "Perfil Público",

@@ -178,7 +178,7 @@ function AccountConfigurationPage() {
         return (
             <>
                 <MKTypography variant="body2" color="text">
-                    <b>{Translator.instance.translate("account_page_benefits_offered")}</b>:
+                    {Translator.instance.translate("account_page_benefits_offered")}:
                 </MKTypography>
                 <ul style={{ marginLeft: '30px' }}>
                     {associateOfferedBenefits && associateOfferedBenefits.map(benefit => (
@@ -378,7 +378,7 @@ function AccountConfigurationPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                <div className="controls-container">
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateUsername}
@@ -466,7 +466,7 @@ function AccountConfigurationPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                <div className="controls-container">
                     {isUploadingImage ? <Spinner /> : (
                         <>
                             <Icon
@@ -599,7 +599,7 @@ function AccountConfigurationPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                <div className="controls-container">
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateCustomName}
@@ -682,7 +682,7 @@ function AccountConfigurationPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                <div className="controls-container">
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateBio}
@@ -767,7 +767,7 @@ function AccountConfigurationPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                <div className="controls-container">
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateInstagramUsername}
@@ -859,7 +859,7 @@ function AccountConfigurationPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                <div className="controls-container">
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateFacebookUsername}
@@ -951,7 +951,7 @@ function AccountConfigurationPage() {
             }
 
             return (
-                <div style={{ display: 'flex', alignItems: 'center', marginLeft: '3px', marginTop: '3px' }}>
+                <div className="controls-container">
                     <Icon
                         sx={{ mr: 1 }}
                         onClick={updateAssociateLinkedinUsername}
