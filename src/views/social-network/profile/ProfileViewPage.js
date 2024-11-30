@@ -13,7 +13,7 @@ import Card from "@mui/material/Card";
 import { auto } from "@popperjs/core";
 import Translator from 'utils/Translator';
 import MKButton from "components/MKButton";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { getBenefitTitle, getBenefitDescription } from '../../benefits/Utils';
 import MKTypography from "components/MKTypography";
@@ -157,19 +157,40 @@ function ProfileViewPage() {
         return (
             <MKBox display="flex" flexWrap="wrap" gap={1} mb={2}>
                 {associate.instagram_username && (
-                    <a href={`https://www.instagram.com/${associate.instagram_username}`} target="_blank" rel="noreferrer">
-                        <InstagramIcon />
-                    </a>
+                    <MKTypography
+                        component={Link}
+                        href={`https://www.instagram.com/${associate.instagram_username}`}
+                        target="_blank"
+                        variant="body1"
+                    >
+                        <MKBox component="i">
+                            <InstagramIcon fontSize="small" />
+                        </MKBox>
+                    </MKTypography>
                 )}
                 {associate.linkedin_username && (
-                    <a href={`https://www.linkedin.com/in/${associate.linkedin_username}`} target="_blank" rel="noreferrer">
-                        <LinkedInIcon />
-                    </a>
+                    <MKTypography
+                        component={Link}
+                        href={`https://www.linkedin.com/in/${associate.linkedin_username}`}
+                        target="_blank"
+                        variant="body1"
+                    >
+                        <MKBox component="i">
+                            <LinkedInIcon fontSize="small" />
+                        </MKBox>
+                    </MKTypography>
                 )}
                 {associate.facebook_username && (
-                    <a href={`https://www.facebook.com/${associate.facebook_username}`} target="_blank" rel="noreferrer">
-                        <FacebookIcon />
-                    </a>
+                    <MKTypography
+                        component={Link}
+                        href={`https://www.facebook.com/${associate.facebook_username}`}
+                        target="_blank"
+                        variant="body1"
+                    >
+                        <MKBox component="i">
+                            <FacebookIcon fontSize="small" />
+                        </MKBox>
+                    </MKTypography>
                 )}
             </MKBox>
         );
