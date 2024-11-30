@@ -3,6 +3,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import EmailIcon from "@mui/icons-material/Email";
 
 // Otis Kit PRO components
 import MKBox from "components/MKBox";
@@ -75,7 +78,9 @@ function Home() {
                 target="_blank"
                 variant="body1"
               >
-                <MKBox component="i" color="white" className="fa fa-facebook" />
+                <MKBox component="i" color="white">
+                  <FacebookIcon fontSize="small" />
+                </MKBox>
               </MKTypography>
               <MKTypography
                 component={Link}
@@ -83,7 +88,9 @@ function Home() {
                 target="_blank"
                 variant="body1"
               >
-                <MKBox component="i" color="white" className="fa fa-instagram" />
+                <MKBox component="i" color="white">
+                  <InstagramIcon fontSize="small" />
+                </MKBox>
               </MKTypography>
               <MKTypography
                 component={Link}
@@ -91,7 +98,9 @@ function Home() {
                 target="_blank"
                 variant="body1"
               >
-                <MKBox component="i" color="white" className="fa fa-envelope-o" />
+                <MKBox component="i" color="white">
+                  <EmailIcon fontSize="small" />
+                </MKBox>
               </MKTypography>
             </Stack>
           </Grid>
