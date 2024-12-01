@@ -5,20 +5,20 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from 'assets/theme';
 import { Hub, DataStore } from 'aws-amplify';
 
-import Main from 'views/main/Main';
+import Main from 'views/informative/main/Main';
 
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
-import EventsPage from 'views/events/EventsPage';
-import EventView from 'views/events/EventView';
-import BenefitsPage from 'views/benefits/BenefitsPage';
-import BenefitView from 'views/benefits/BenefitView';
-import FAQsPage from 'views/faqs/FAQsPage';
-import FAQView from 'views/faqs/FAQView';
-import AssociateVerificationPage from 'views/associate-verification/AssociateVerificationPage';
-import AssociateConfirmationView from 'views/associate-verification/AssociateConfirmationView';
-import TermsAndConditionsPage from 'views/terms-and-conditions/TermsAndConditionsPage';
-import LoginPage from 'views/login/LoginPage';
+import EventsPage from 'views/informative/events/EventsPage';
+import EventView from 'views/informative/events/EventView';
+import BenefitsPage from 'views/informative/benefits/BenefitsPage';
+import BenefitView from 'views/informative/benefits/BenefitView';
+import FAQsPage from 'views/informative/faqs/FAQsPage';
+import FAQView from 'views/informative/faqs/FAQView';
+import AssociateVerificationPage from 'views/informative/associate-verification/AssociateVerificationPage';
+import AssociateConfirmationView from 'views/informative/associate-verification/AssociateConfirmationView';
+import TermsAndConditionsPage from 'views/informative/terms-and-conditions/TermsAndConditionsPage';
+import LoginPage from 'views/social-network/login/LoginPage';
 import AccountConfigurationPage from 'views/social-network/account-configuration/AccountConfigurationPage';
 import CommunityPage from 'views/social-network/community/CommunityPage';
 import ProfileViewPage from 'views/social-network/profile/ProfileViewPage';

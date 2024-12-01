@@ -15,7 +15,7 @@ import Translator from 'utils/Translator';
 import MKButton from "components/MKButton";
 import Link from "@mui/material/Link";
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { getBenefitTitle, getBenefitDescription } from '../../benefits/Utils';
+import { getBenefitTitle, getBenefitDescription } from '../../informative/benefits/Utils';
 import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
