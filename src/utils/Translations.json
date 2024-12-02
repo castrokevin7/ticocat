@@ -810,5 +810,65 @@
     "account_page_name_label": {
         "es": "Nombre",
         "cat": "Nom"
+    },
+    "interest_label_hiking": {
+        "es": "Senderismo",
+        "cat": "Senderisme"
+    },
+    "interest_label_foodie": {
+        "es": "Gastronomía",
+        "cat": "Gastronomia"
+    },
+    "interest_label_travel": {
+        "es": "Viajar",
+        "cat": "Viatjar"
+    },
+    "interest_label_cinema": {
+        "es": "Cine",
+        "cat": "Cinema"
+    },
+    "interest_label_music": {
+        "es": "Música",
+        "cat": "Música"
+    },
+    "interest_label_board_games": {
+        "es": "Juegos de Mesa",
+        "cat": "Jocs de Taula"
+    },
+    "interest_label_literature": {
+        "es": "Literatura",
+        "cat": "Literatura"
+    },
+    "interest_label_dance": {
+        "es": "Baile",
+        "cat": "Ball"
+    },
+    "interest_label_sports": {
+        "es": "Deportes",
+        "cat": "Esports"
+    },
+    "interest_label_karaoke": {
+        "es": "Karaoke",
+        "cat": "Karaoke"
+    },
+    "interest_label_finance": {
+        "es": "Finanzas",
+        "cat": "Finances"
+    },
+    "interest_label_science": {
+        "es": "Ciencia",
+        "cat": "Ciència"
+    },
+    "interest_label_catalonia": {
+        "es": "Cataluña",
+        "cat": "Catalunya"
+    },
+    "interest_label_art": {
+        "es": "Arte",
+        "cat": "Art"
+    },
+    "interest_label_nature": {
+        "es": "Naturaleza",
+        "cat": "Natura"
     }
 }

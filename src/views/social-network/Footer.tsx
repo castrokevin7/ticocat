@@ -1,14 +1,16 @@
+import React from "react";
+
 // @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
 
 // Otis Kit PRO examples
-import CenteredFooter from "components/Footers/CenteredFooter";
+import CenteredFooter from "../../components/Footers/CenteredFooter";
 
-import Translator from 'utils/Translator';
 
-import { getLang } from 'utils/Translator';
+import { getLang } from '../../utils/Translator';
+
 
 function Footer() {
   const company = {
