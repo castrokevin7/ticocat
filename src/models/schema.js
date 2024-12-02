@@ -596,6 +596,16 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "interests": {
+                    "name": "interests",
+                    "isArray": true,
+                    "type": {
+                        "enum": "Interests"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -660,6 +670,26 @@ export const schema = {
         }
     },
     "enums": {
+        "Interests": {
+            "name": "Interests",
+            "values": [
+                "HIKING",
+                "FOODIE",
+                "TRAVEL",
+                "CINEMA",
+                "MUSIC",
+                "BOARD_GAMES",
+                "LITERATURE",
+                "DANCE",
+                "SPORTS",
+                "KARAOKE",
+                "FINANCE",
+                "SCIENCE",
+                "CATALONIA",
+                "ART",
+                "NATURE"
+            ]
+        },
         "IdentificationType": {
             "name": "IdentificationType",
             "values": [
@@ -681,5 +711,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "e384bb912ac05b40d644074f0831ddf1"
+    "version": "359d5473b3df5afdfea93d5d03ede5a2"
 };

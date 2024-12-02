@@ -2,6 +2,24 @@ import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
+export enum Interests {
+  HIKING = "HIKING",
+  FOODIE = "FOODIE",
+  TRAVEL = "TRAVEL",
+  CINEMA = "CINEMA",
+  MUSIC = "MUSIC",
+  BOARD_GAMES = "BOARD_GAMES",
+  LITERATURE = "LITERATURE",
+  DANCE = "DANCE",
+  SPORTS = "SPORTS",
+  KARAOKE = "KARAOKE",
+  FINANCE = "FINANCE",
+  SCIENCE = "SCIENCE",
+  CATALONIA = "CATALONIA",
+  ART = "ART",
+  NATURE = "NATURE"
+}
+
 export enum IdentificationType {
   NIE = "NIE",
   DNI = "DNI",
@@ -170,6 +188,7 @@ type EagerAssociate = {
   readonly facebook_username?: string | null;
   readonly linkedin_username?: string | null;
   readonly phone?: string | null;
+  readonly interests?: (Interests | null)[] | keyof typeof Interests | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -198,6 +217,7 @@ type LazyAssociate = {
   readonly facebook_username?: string | null;
   readonly linkedin_username?: string | null;
   readonly phone?: string | null;
+  readonly interests?: (Interests | null)[] | keyof typeof Interests | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

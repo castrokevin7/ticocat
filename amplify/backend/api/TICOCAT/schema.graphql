@@ -1,3 +1,21 @@
+enum Interests {
+  HIKING
+  FOODIE
+  TRAVEL
+  CINEMA
+  MUSIC
+  BOARD_GAMES
+  LITERATURE
+  DANCE
+  SPORTS
+  KARAOKE
+  FINANCE
+  SCIENCE
+  CATALONIA
+  ART
+  NATURE
+}
+
 type FAQ @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
   id: ID!
   question: String!
@@ -78,5 +96,6 @@ type Associate @model @auth(rules: [{allow: public, provider: iam}, {allow: priv
   facebook_username: String
   linkedin_username: String
   phone: AWSPhone
+  interests: [Interests]
 }
  
