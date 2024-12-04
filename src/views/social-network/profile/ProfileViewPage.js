@@ -25,6 +25,8 @@ import "./ProfileViewPage.css";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { getInterestTranslationKey } from "../utils";
+import Chip from "@mui/material/Chip";
 
 import routes from "../routes";
 import Footer from '../Footer';
@@ -243,8 +245,26 @@ function ProfileViewPage() {
         }
 
         const getInterestsSection = () => {
-            /* TODO: add this */
-            return;
+            if (!associate.interests || associate.interests.length === 0) {
+                return;
+            }
+
+            return (
+                <MKBox mt={2}>
+                    <MKTypography variant="h4">
+                        Intereses
+                    </MKTypography>
+                    <div>
+                        {associate.interests.map(interest => (
+                            <Chip
+                                sx={{ margin: '2px' }}
+                                label={Translator.instance.translate(getInterestTranslationKey(interest))} 
+                                variant="outlined" 
+                            />
+                        ))}
+                    </div>
+                </MKBox>
+            );
         }
 
         const getHeaderSection = () => {
