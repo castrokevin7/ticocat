@@ -27,6 +27,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { getInterestTranslationKey } from "../utils";
 import Chip from "@mui/material/Chip";
+import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
+import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 
 import routes from "../routes";
 import Footer from '../Footer';
@@ -227,7 +229,11 @@ function ProfileViewPage() {
         }
 
         const getContactSection = () => {
-            if (!associate.email && !associate.phone_number) {
+            if (!associate.share_email && !associate.share_phone) {
+                return;
+            }
+
+            if (!associate.email && !associate.phone) {
                 return;
             }
 
@@ -237,8 +243,28 @@ function ProfileViewPage() {
                         {Translator.instance.translate("account_page_contact")}
                     </MKTypography>
                     <MKTypography variant="body1" color="text">
-                        {associate.email && <span>{associate.email}</span>}
-                        {associate.phone_number && <span>{associate.email ? " | " : ""}{associate.phone_number}</span>}
+                        {associate.email && associate.share_email && (
+                            <MKTypography
+                                component={Link}
+                                href={`mailto:${associate.email}`}
+                                variant="body1"
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <MailOutlineRoundedIcon sx={{ marginRight: '3px' }} fontSize="small" />{associate.email}
+                                </div>
+                            </MKTypography>
+                        )}
+                        {associate.phone && associate.share_phone && (
+                            <MKTypography
+                                component={Link}
+                                href={`https://wa.me/${associate.phone}`}
+                                variant="body1"
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <MailOutlineRoundedIcon sx={{ marginRight: '3px' }} fontSize="small" />{associate.phone}
+                                </div>
+                            </MKTypography>
+                        )}
                     </MKTypography>
                 </MKBox>
             );
@@ -258,7 +284,7 @@ function ProfileViewPage() {
                         {associate.interests.map(interest => (
                             <Chip
                                 sx={{ margin: '2px' }}
-                                label={Translator.instance.translate(getInterestTranslationKey(interest))} 
+                                label={Translator.instance.translate(getInterestTranslationKey(interest))}
                             />
                         ))}
                     </div>
