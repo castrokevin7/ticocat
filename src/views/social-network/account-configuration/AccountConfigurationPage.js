@@ -24,8 +24,7 @@ import "./AccountConfigurationPage.css";
 import { getInterestTranslationKey } from "../utils";
 import routes from "../routes";
 import Footer from "../Footer";
-import Button from "@mui/material/Button";
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
+import Chip from "@mui/material/Chip";
 
 function AccountConfigurationPage() {
     const [state, setState] = useState("loading");
@@ -1037,14 +1036,12 @@ function AccountConfigurationPage() {
             return (
                 <div>
                     {Object.keys(Interests).map(interest => (
-                        <Button 
-                            sx={{ margin: '2px' }} 
-                            variant="contained"
-                            startIcon={associate.interests.includes(interest) && <CheckRoundedIcon />}
+                        <Chip
+                            sx={{ margin: '2px' }}
+                            label={Translator.instance.translate(getInterestTranslationKey(interest))}
+                            variant={associate.interests.includes(interest) ? undefined : "outlined"}
                             onClick={() => updateInterests(interest)}
-                        >
-                            {Translator.instance.translate(getInterestTranslationKey(interest))}
-                        </Button>
+                        />
                     ))}
                 </div>
             );

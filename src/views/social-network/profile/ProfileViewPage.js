@@ -259,7 +259,6 @@ function ProfileViewPage() {
                             <Chip
                                 sx={{ margin: '2px' }}
                                 label={Translator.instance.translate(getInterestTranslationKey(interest))} 
-                                variant="outlined" 
                             />
                         ))}
                     </div>
