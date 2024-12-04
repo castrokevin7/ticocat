@@ -1039,7 +1039,7 @@ function AccountConfigurationPage() {
                         <Chip
                             sx={{ margin: '2px' }}
                             label={Translator.instance.translate(getInterestTranslationKey(interest))}
-                            variant={associate.interests.includes(interest) ? undefined : "outlined"}
+                            variant={associate.interests && associate.interests.includes(interest) ? undefined : "outlined"}
                             onClick={() => updateInterests(interest)}
                         />
                     ))}
