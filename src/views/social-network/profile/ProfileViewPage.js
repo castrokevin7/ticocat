@@ -238,7 +238,7 @@ function ProfileViewPage() {
             }
 
             return (
-                <MKBox mt={2}>
+                <MKBox mt={5}>
                     <MKTypography variant="h4">
                         {Translator.instance.translate("account_page_contact")}
                     </MKTypography>
@@ -248,6 +248,7 @@ function ProfileViewPage() {
                                 component={Link}
                                 href={`mailto:${associate.email}`}
                                 variant="body1"
+                                target="_blank"
                             >
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <MailOutlineRoundedIcon sx={{ marginRight: '3px' }} fontSize="small" />{associate.email}
@@ -259,6 +260,7 @@ function ProfileViewPage() {
                                 component={Link}
                                 href={`https://wa.me/${associate.phone}`}
                                 variant="body1"
+                                target="_blank"
                             >
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
                                     <MailOutlineRoundedIcon sx={{ marginRight: '3px' }} fontSize="small" />{associate.phone}
@@ -276,7 +278,7 @@ function ProfileViewPage() {
             }
 
             return (
-                <MKBox mt={2}>
+                <MKBox mt={5}>
                     <MKTypography variant="h4">
                         Intereses
                     </MKTypography>
