@@ -1011,8 +1011,8 @@ function AccountConfigurationPage() {
 
     const getInterestsField = () => {
         const updateInterests = async (interest) => {
-            let newInterests = interests || [];
-            if (interests.includes(interest)) {
+            let newInterests = associate.interests || [];
+            if (newInterests.includes(interest)) {
                 newInterests = newInterests.filter(i => i !== interest);
             } else {
                 newInterests = [...new Set(newInterests), interest];
