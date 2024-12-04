@@ -9,7 +9,7 @@ import { getTranslateAction } from 'utils/TranslateAction';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import Card from "@mui/material/Card";
-import { Associate } from 'models';
+import { Associate, Interests } from 'models';
 import { DataStore, Storage } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import MKTypography from "components/MKTypography";
@@ -21,9 +21,11 @@ import Grid from "@mui/material/Grid";
 import MKInput from "components/MKInput";
 import Icon from "@mui/material/Icon";
 import "./AccountConfigurationPage.css";
-
+import { getInterestTranslationKey } from "../utils";
 import routes from "../routes";
 import Footer from "../Footer";
+import Button from "@mui/material/Button";
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
 function AccountConfigurationPage() {
     const [state, setState] = useState("loading");
@@ -41,6 +43,7 @@ function AccountConfigurationPage() {
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
     const [profilePicture, setProfilePicture] = useState();
     const [isUploadingImage, setIsUploadingImage] = useState(false);
+    const [interests, setInterests] = useState();
 
     const fetchAssociate = async (email) => {
         try {
@@ -113,6 +116,9 @@ function AccountConfigurationPage() {
             }
             if (!profilePicture) {
                 setProfilePicture(associate.profile_picture);
+            }
+            if (!interests) {
+                setInterests(associate.interests);
             }
         }
         // eslint-disable-next-line
@@ -1004,6 +1010,59 @@ function AccountConfigurationPage() {
         )
     }
 
+    const getInterestsField = () => {
+        const updateInterests = async (interest) => {
+            let newInterests = interests || [];
+            if (interests.includes(interest)) {
+                newInterests = newInterests.filter(i => i !== interest);
+            } else {
+                newInterests = [...new Set(newInterests), interest];
+            }
+
+            setInterests(newInterests);
+            try {
+                const original = await DataStore.query(Associate, associate.id);
+                await DataStore.save(
+                    Associate.copyOf(original, updated => {
+                        updated.interests = newInterests;
+                    })
+                );
+                fetchAssociate(user.attributes.email);
+            } catch (err) {
+                console.error('Error updating interests:', err);
+            }
+        }
+
+        const getAvailableInterests = () => {
+            return (
+                <div>
+                    {Object.keys(Interests).map(interest => (
+                        <Button 
+                            sx={{ margin: '2px' }} 
+                            variant="contained"
+                            startIcon={associate.interests.includes(interest) && <CheckRoundedIcon />}
+                            onClick={() => updateInterests(interest)}
+                        >
+                            {Translator.instance.translate(getInterestTranslationKey(interest))}
+                        </Button>
+                    ))}
+                </div>
+            );
+        }
+
+        return (
+            <div style={{ marginTop: '20px' }}>
+                <MKTypography variant="h5" color="secondary">
+                    Intereses
+                </MKTypography>
+                <MKTypography variant="body2" color="text" mb={1}>
+                    Seleccionar tus interes permitirá a otros usuarios encontrar tu perfil más fácilmente.
+                </MKTypography>
+                {getAvailableInterests()}
+            </div>
+        )
+    }
+
     const getSocialInformation = () => {
         return (
             <>
@@ -1029,6 +1088,7 @@ function AccountConfigurationPage() {
                     {getInstagramField()}
                     {getFacebookField()}
                     {getLinkedinField()}
+                    {getInterestsField()}
                 </div>
             </>
         );
