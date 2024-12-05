@@ -64,7 +64,7 @@ function CommunityPage() {
             return true;
         });
         setShownAssociates(filteredAssociates);
-    }, [associateSearch, interestsFilter]);
+    }, [associateSearch, interestsFilter, associates]);
 
     if (route !== 'authenticated') {
         return <Navigate to={`/${getLang()}/social/configuracion`} />;
