@@ -146,12 +146,12 @@ function CommunityPage() {
         )
     };
 
-    const getSearchBox = () => {
+    const getFiltersBox = () => {
         return (
             <MKBox
                 component="form"
                 position="relative"
-                mb={1}
+                mb={5}
                 p={2}
                 borderRadius={5}
                 sx={{
@@ -159,26 +159,37 @@ function CommunityPage() {
                     boxShadow: ({ shadows }) => shadows[1],
                 }}
             >
-                <MKBox
-                    component="input"
-                    type="text"
-                    value={associateSearch}
-                    onChange={(e) => setAssociateSearch(e.target.value)}
-                    placeholder="Busca..."
-                    p={1}
-                    width="100%"
-                    borderRadius={5}
-                    sx={{
-                        border: ({ palette }) => `1px solid ${palette.divider}`,
-                        backgroundColor: ({ palette }) => palette.background.paper,
-                        color: ({ palette }) => palette.text.primary,
-                    }}
-                />
+                <MKTypography variant="h4" mb={1}>
+                    Buscador de la comunidad
+                </MKTypography>
+                {getTextSearchField()}
+                {getInterestsField()}
             </MKBox>
         );
     };
 
-    const getInterestsBox = () => {
+    const getTextSearchField = () => {
+        return (
+            <MKBox
+                component="input"
+                type="text"
+                value={associateSearch}
+                onChange={(e) => setAssociateSearch(e.target.value)}
+                placeholder="Busca por nombre, usuario o bio..."
+                mb={2}
+                p={1}
+                width="100%"
+                borderRadius={10}
+                sx={{
+                    border: ({ palette }) => `1px solid ${palette.divider}`,
+                    backgroundColor: ({ palette }) => palette.background.paper,
+                    color: ({ palette }) => palette.text.primary,
+                }}
+            />
+        );
+    };
+
+    const getInterestsField = () => {
         const updateInterestsFilter = (interest) => {
             if (interestsFilter.includes(interest)) {
                 setInterestsFilter(interestsFilter.filter(i => i !== interest));
@@ -188,18 +199,7 @@ function CommunityPage() {
         }
 
         return (
-            <MKBox
-                mb={5}
-                p={2}
-                borderRadius={5}
-                sx={{
-                    backgroundColor: ({ palette }) => palette.background.paper,
-                    boxShadow: ({ shadows }) => shadows[1],
-                }}
-            >
-                <MKTypography variant="h5" mb={1} color="secondary">
-                    Intereses
-                </MKTypography>
+            <MKBox>
                 {Object.keys(Interests).map(interest => (
                     <Chip
                         sx={{ margin: '2px' }}
@@ -230,8 +230,7 @@ function CommunityPage() {
                 }}
             >
                 <Container>
-                    {getSearchBox()}
-                    {getInterestsBox()}
+                    {getFiltersBox()}
                     {getAssociates()}
                 </Container>
             </MKBox>
