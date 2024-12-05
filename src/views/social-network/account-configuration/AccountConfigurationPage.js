@@ -163,39 +163,65 @@ function AccountConfigurationPage() {
     }
 
     const getBenefitsOffered = () => {
-        if (isLoadingBenefits) {
-            return (
-                <MKTypography
-                    sx={{ mx: 'auto', display: 'flex', alignItems: 'center' }}
-                    variant="body2"
-                    color="text"
-                    mt={2}
-                >
-                    <Spinner /> {Translator.instance.translate("account_page_loading_benefits_offered")}
-                </MKTypography>
-            );
-        }
+        const displayBenefitsOffered = () => {
+            if (isLoadingBenefits) {
+                return (
+                    <MKTypography
+                        sx={{ mx: 'auto', display: 'flex', alignItems: 'center' }}
+                        variant="body2"
+                        color="text"
+                        mt={2}
+                    >
+                        <Spinner /> {Translator.instance.translate("account_page_loading_benefits_offered")}
+                    </MKTypography>
+                );
+            }
 
-        if (!associateOfferedBenefits || associateOfferedBenefits.length === 0) {
-            return;
+            if (!associateOfferedBenefits || associateOfferedBenefits.length === 0) {
+                return (
+                    <MKTypography
+                        variant="body2"
+                        color="text"
+                    >
+                        Aún no ofreces beneficios a la comunidad TICOCAT. Si deseas ofrecer beneficios, por favor comunícate con nosotros a través de nuestro correo electrónico
+                        {' '}
+                        <MKTypography
+                            component="a"
+                            target="_blank"
+                            href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
+                            variant="body2"
+                            color="info"
+                            fontWeight="regular"
+                        >
+                            {Translator.instance.translate("account_page_about_updating_information_link")}
+                        </MKTypography>
+                        .
+                    </MKTypography>
+                );
+            } else {
+                return (
+                    <ul style={{ marginLeft: '30px' }}>
+                        {associateOfferedBenefits && associateOfferedBenefits.map(benefit => (
+                            <li key={benefit.id}>
+                                <Link target="_blank" to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
+                                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text">
+                                        {benefit.title}
+                                    </MKTypography>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                );
+            }
+
         }
 
         return (
             <>
                 <MKTypography variant="body2" color="text">
-                    {Translator.instance.translate("account_page_benefits_offered")}:
+                    <b>{Translator.instance.translate("account_page_benefits_offered")}</b>:
                 </MKTypography>
-                <ul style={{ marginLeft: '30px' }}>
-                    {associateOfferedBenefits && associateOfferedBenefits.map(benefit => (
-                        <li key={benefit.id}>
-                            <Link target="_blank" to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
-                                <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text">
-                                    {benefit.title}
-                                </MKTypography>
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
+                {displayBenefitsOffered()}
             </>
         );
     }
