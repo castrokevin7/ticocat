@@ -30,7 +30,9 @@ import Footer from '../Footer';
 
 function CommunityPage() {
     const [state, setState] = useState('');
-    const [associates, setAssociates] = useState(null);
+    const [associateSearch, setAssociateSearch] = useState('');
+    const [associates, setAssociates] = useState([]);
+    const [shownAssociates, setShownAssociates] = useState([]);
     const { route } = useAuthenticator(context => [context.route]);
 
     useEffect(() => {
@@ -41,6 +43,24 @@ function CommunityPage() {
         fetchAssociates();
     }, [route]);
 
+    useEffect(() => {
+        if (associates.length === 0) return;
+
+        if (associateSearch === '') {
+            setShownAssociates(associates);
+            return;
+        }
+
+        const filteredAssociates = associates.filter(associate => {
+            return associate.name?.toLowerCase().includes(associateSearch?.toLowerCase()) ||
+                associate.username?.toLowerCase().includes(associateSearch?.toLowerCase()) ||
+                associate.custom_name?.toLowerCase().includes(associateSearch?.toLowerCase()) ||
+                associate.bio?.toLowerCase().includes(associateSearch?.toLowerCase());
+        });
+
+        setShownAssociates(filteredAssociates);
+    }, [associateSearch]);
+
     if (route !== 'authenticated') {
         return <Navigate to={`/${getLang()}/social/configuracion`} />;
     }
@@ -48,7 +68,6 @@ function CommunityPage() {
     const fetchAssociates = async () => {
         try {
             let response = await DataStore.query(Associate, associate => associate.and(associate => [
-                /* associate.email('ne', user?.attributes?.email), */
                 associate.is_account_activated('eq', true)
             ]));
             if (response.length > 0) {
@@ -64,8 +83,8 @@ function CommunityPage() {
                         updated.profile_picture = image;
                     });
                 }));
-                console.log(response);
                 setAssociates(response);
+                setShownAssociates(response);
             }
             setState('success');
         } catch (err) {
@@ -91,7 +110,7 @@ function CommunityPage() {
             );
         }
 
-        if (associates === null || associates.length === 0) {
+        if (shownAssociates.length === 0) {
             return (
                 <Grid container spacing={3} mt={2}>
                     <MKTypography ml={3} mt={2} variant="body2" color="text">
@@ -103,7 +122,7 @@ function CommunityPage() {
 
         return (
             <Grid container spacing={4}>
-                {associates.map((associate, index) => (
+                {shownAssociates.map((associate, index) => (
                     <Grid key={index} item xs={12} lg={4}>
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/perfil/${associate.username || associate.id}`}>
@@ -120,6 +139,40 @@ function CommunityPage() {
                 ))}
             </Grid>
         )
+    };
+
+    const getSearchBox = () => {
+        return (
+            <MKBox
+                component="form"
+                position="relative"
+                mb={5}
+                p={2}
+                borderRadius={5}
+                sx={{
+                    backgroundColor: ({ palette }) => palette.background.paper,
+                    boxShadow: ({ shadows }) => shadows[1],
+                }}
+            >
+                <MKBox
+                    component="input"
+                    type="text"
+                    value={associateSearch}
+                    onChange={(e) => setAssociateSearch(e.target.value)}
+                    placeholder="Busca..."
+                    p={1}
+                    width="100%"
+                    mt={2}
+                    mb={2}
+                    borderRadius={5}
+                    sx={{
+                        border: ({ palette }) => `1px solid ${palette.divider}`,
+                        backgroundColor: ({ palette }) => palette.background.paper,
+                        color: ({ palette }) => palette.text.primary,
+                    }}
+                />
+            </MKBox>
+        );
     };
 
     return (
@@ -140,6 +193,7 @@ function CommunityPage() {
                 }}
             >
                 <Container>
+                    {getSearchBox()}
                     {getAssociates()}
                 </Container>
             </MKBox>
