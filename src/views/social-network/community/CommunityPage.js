@@ -149,7 +149,6 @@ function CommunityPage() {
     const getFiltersBox = () => {
         return (
             <MKBox
-                component="form"
                 position="relative"
                 mb={5}
                 p={2}
