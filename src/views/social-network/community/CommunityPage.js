@@ -24,6 +24,9 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import DefaultNavbar from "components/Navbars/DefaultNavbar";
 import { getTranslateAction } from 'utils/TranslateAction';
+import { getInterestTranslationKey } from "../utils";
+import Chip from "@mui/material/Chip";
+import { Interests } from 'models';
 
 import routes from "../routes";
 import Footer from '../Footer';
@@ -31,6 +34,7 @@ import Footer from '../Footer';
 function CommunityPage() {
     const [state, setState] = useState('');
     const [associateSearch, setAssociateSearch] = useState('');
+    const [interestsFilter, setInterestsFilter] = useState([]);
     const [associates, setAssociates] = useState([]);
     const [shownAssociates, setShownAssociates] = useState([]);
     const { route } = useAuthenticator(context => [context.route]);
@@ -46,20 +50,21 @@ function CommunityPage() {
     useEffect(() => {
         if (associates.length === 0) return;
 
-        if (associateSearch === '') {
-            setShownAssociates(associates);
-            return;
-        }
+        let filteredAssociates = associates.filter(associate => {
+            if (associateSearch.length > 0) {
+                return associate.name?.toLowerCase().includes(associateSearch.toLowerCase()) ||
+                    associate.custom_name?.toLowerCase().includes(associateSearch.toLowerCase()) ||
+                    associate.username?.toLowerCase().includes(associateSearch.toLowerCase());
+            }
 
-        const filteredAssociates = associates.filter(associate => {
-            return associate.name?.toLowerCase().includes(associateSearch?.toLowerCase()) ||
-                associate.username?.toLowerCase().includes(associateSearch?.toLowerCase()) ||
-                associate.custom_name?.toLowerCase().includes(associateSearch?.toLowerCase()) ||
-                associate.bio?.toLowerCase().includes(associateSearch?.toLowerCase());
+            if (interestsFilter.length > 0) {
+                return interestsFilter.some(interest => associate.interests?.includes(interest));
+            }
+
+            return true;
         });
-
         setShownAssociates(filteredAssociates);
-    }, [associateSearch]);
+    }, [associateSearch, interestsFilter]);
 
     if (route !== 'authenticated') {
         return <Navigate to={`/${getLang()}/social/configuracion`} />;
@@ -146,7 +151,7 @@ function CommunityPage() {
             <MKBox
                 component="form"
                 position="relative"
-                mb={5}
+                mb={1}
                 p={2}
                 borderRadius={5}
                 sx={{
@@ -162,8 +167,6 @@ function CommunityPage() {
                     placeholder="Busca..."
                     p={1}
                     width="100%"
-                    mt={2}
-                    mb={2}
                     borderRadius={5}
                     sx={{
                         border: ({ palette }) => `1px solid ${palette.divider}`,
@@ -174,6 +177,40 @@ function CommunityPage() {
             </MKBox>
         );
     };
+
+    const getInterestsBox = () => {
+        const updateInterestsFilter = (interest) => {
+            if (interestsFilter.includes(interest)) {
+                setInterestsFilter(interestsFilter.filter(i => i !== interest));
+            } else {
+                setInterestsFilter([...interestsFilter, interest]);
+            }
+        }
+
+        return (
+            <MKBox
+                mb={5}
+                p={2}
+                borderRadius={5}
+                sx={{
+                    backgroundColor: ({ palette }) => palette.background.paper,
+                    boxShadow: ({ shadows }) => shadows[1],
+                }}
+            >
+                <MKTypography variant="h5" mb={1} color="secondary">
+                    Intereses
+                </MKTypography>
+                {Object.keys(Interests).map(interest => (
+                    <Chip
+                        sx={{ margin: '2px' }}
+                        label={Translator.instance.translate(getInterestTranslationKey(interest))}
+                        variant={interestsFilter.includes(interest) ? undefined : "outlined"}
+                        onClick={() => updateInterestsFilter(interest)}
+                    />
+                ))}
+            </MKBox>
+        );
+    }
 
     return (
         <>
@@ -194,6 +231,7 @@ function CommunityPage() {
             >
                 <Container>
                     {getSearchBox()}
+                    {getInterestsBox()}
                     {getAssociates()}
                 </Container>
             </MKBox>
