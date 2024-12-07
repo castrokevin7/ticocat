@@ -93,7 +93,7 @@ function AssociateCard({ associate }) {
       </MKBox>
       <MKBox p={2}>
         <MKBox>
-          <MKTypography variant="h5">{associate.customName || associate.name}</MKTypography>
+          <MKTypography variant="h5">{associate.custom_name || associate.name}</MKTypography>
           {associate.username && (
             <MKTypography variant="body2" color="text">
               @{associate.username}
