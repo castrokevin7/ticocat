@@ -9,7 +9,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Otis Kit PRO examples
-import AssociateCard from "../AssociateCard";
+import AssociateCard from "./AssociateCard";
 
 // Images
 import bgImage from "assets/images/examples/city.jpg";
@@ -132,11 +132,7 @@ function CommunityPage() {
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/perfil/${associate.username || associate.id}`}>
                                 <AssociateCard
-                                    image={associate.profile_picture}
-                                    name={associate.name}
-                                    username={associate.username}
-                                    customName={associate.custom_name}
-                                    bio={associate.bio}
+                                    associate={associate}
                                 />
                             </Link>
                         </MKBox>
