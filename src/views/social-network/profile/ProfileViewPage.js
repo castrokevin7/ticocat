@@ -19,7 +19,6 @@ import { getBenefitTitle, getBenefitDescription } from '../../informative/benefi
 import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 import SimpleBackgroundCard from "components/Cards/BackgroundCards/SimpleBackgroundCard";
-import MKSocialButton from "components/MKSocialButton";
 import thumbnail from "assets/images/profile.png";
 import "./ProfileViewPage.css";
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -263,7 +262,7 @@ function ProfileViewPage() {
                                 target="_blank"
                             >
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <MailOutlineRoundedIcon sx={{ marginRight: '3px' }} fontSize="small" />{associate.phone}
+                                    <LocalPhoneRoundedIcon sx={{ marginRight: '3px' }} fontSize="small" />{associate.phone}
                                 </div>
                             </MKTypography>
                         )}
