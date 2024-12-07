@@ -7,7 +7,7 @@ import Icon from "@mui/material/Icon";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-import TicoCatTeamMemberCard from "components/Cards/TeamCards/TicoCatTeamMemberCard";
+import TicoCatTeamMemberCard from "./TicoCatTeamMemberCard";
 
 // Images
 import jordiPhoto from "assets/images/team/jordi.jpg";

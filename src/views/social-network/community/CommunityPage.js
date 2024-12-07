@@ -9,7 +9,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Otis Kit PRO examples
-import AssociateCard from "components/Cards/TeamCards/AssociateCard";
+import AssociateCard from "../AssociateCard";
 
 // Images
 import bgImage from "assets/images/examples/city.jpg";
