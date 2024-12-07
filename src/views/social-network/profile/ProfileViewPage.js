@@ -158,7 +158,7 @@ function ProfileViewPage() {
 
     const getSocialMedia = () => {
         return (
-            <MKBox display="flex" flexWrap="wrap" gap={1} mb={2}>
+            <MKBox display="flex" flexWrap="wrap" gap={0.1}>
                 {associate.instagram_username && (
                     <MKTypography
                         component={Link}
