@@ -305,9 +305,6 @@ function ProfileViewPage() {
                                 @{associate.username}
                             </MKTypography>
                         }
-                        <MKTypography variant="body1" color="text">
-                            {associate.position}
-                        </MKTypography>
                     </MKBox>
                     <MKBox>
                         {getSocialMedia()}
