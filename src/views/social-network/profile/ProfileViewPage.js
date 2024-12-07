@@ -301,8 +301,8 @@ function ProfileViewPage() {
                             {associate.custom_name || associate.name}
                         </MKTypography>
                         {associate.username &&
-                            <MKTypography variant="body2" color="text">
-                                <b>@{associate.username}</b>
+                            <MKTypography variant="body3" color="text">
+                                @{associate.username}
                             </MKTypography>
                         }
                         <MKTypography variant="body1" color="text">

@@ -79,7 +79,7 @@ function AssociateCard({ associate }) {
   }
 
   return (
-    <Card sx={{ mt: 2 }}>
+    <Card sx={{ mt: 5 }}>
       <MKBox container display="flex" alignItems="center" justifyContent="space-between">
         <Grid sx={{ mt: -6 }}>
           <MKBox width="100%" pt={2} pb={1} px={2}>
@@ -93,9 +93,9 @@ function AssociateCard({ associate }) {
       </MKBox>
       <MKBox p={2}>
         <MKBox>
-          <MKTypography variant="h4">{associate.customName || associate.name}</MKTypography>
+          <MKTypography variant="h5">{associate.customName || associate.name}</MKTypography>
           {associate.username && (
-            <MKTypography variant="h5" color="text">
+            <MKTypography variant="body2" color="text">
               @{associate.username}
             </MKTypography>
           )}
