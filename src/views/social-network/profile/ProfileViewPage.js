@@ -297,7 +297,7 @@ function ProfileViewPage() {
             return (
                 <MKBox mb={3} display="flex" alignItems="center" justifyContent="space-between">
                     <MKBox>
-                        <MKTypography variant="h3">
+                        <MKTypography variant="h4">
                             {associate.custom_name || associate.name}
                         </MKTypography>
                         {associate.username &&
@@ -306,16 +306,14 @@ function ProfileViewPage() {
                             </MKTypography>
                         }
                     </MKBox>
-                    <MKBox>
-                        {getSocialMedia()}
-                    </MKBox>
+                    {getSocialMedia()}
                 </MKBox>
             );
         }
 
         return (
             <div>
-                <MKBox sx={{ width: '80%', margin: 'auto' }}>
+                <MKBox sx={{ width: {xs: '90%', md: '80%'}, margin: 'auto' }}>
                     <div
                         id="display-profile-picture"
                         style={{ backgroundImage: `url(${associate.profile_picture || thumbnail})` }}
