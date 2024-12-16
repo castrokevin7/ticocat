@@ -141,14 +141,14 @@ function ProfileViewPage() {
                     {
                         associateOfferedBenefits.map((benefit, i) =>
                             <Grid key={i} item xs={12} lg={4}>
-                                <Link target="_blank" to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
+                                <a target="_blank" href={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
                                     <SimpleBackgroundCard
                                         image={benefit.image}
                                         title={getBenefitTitle(benefit)}
                                         date={benefit.date}
                                         description={`${getBenefitDescription(benefit).substring(0, 31)}... ${Translator.instance.translate("benefits_page_see_more_from_benefit")}`}
                                     />
-                                </Link>
+                                </a>
                             </Grid>
                         )}
                 </Grid>
