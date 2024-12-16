@@ -4,11 +4,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from 'assets/theme';
 import { Hub, DataStore } from 'aws-amplify';
-
 import Main from 'views/informative/main/Main';
-
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import EventsPage from 'views/informative/events/EventsPage';
 import EventView from 'views/informative/events/EventView';
 import BenefitsPage from 'views/informative/benefits/BenefitsPage';
@@ -23,7 +20,22 @@ import AccountConfigurationPage from 'views/social-network/account-configuration
 import CommunityPage from 'views/social-network/community/CommunityPage';
 import ProfileViewPage from 'views/social-network/profile/ProfileViewPage';
 import { Authenticator } from '@aws-amplify/ui-react';
+import { getLang } from 'utils/Translator';
+import MKButton from 'components/MKButton';
+import Icon from '@mui/material/Icon';
 
+function getLangUrl() {
+  const origin = window.location.origin;
+
+  let pathnameParts = window.location.pathname.split("/");
+  if (pathnameParts.length > 0 && pathnameParts[0] === "") {
+    pathnameParts = pathnameParts.slice(1);
+  }
+
+  pathnameParts = pathnameParts.slice(1);
+  const destinationLanguage = getLang() === "es" ? "cat" : "es";
+  return [origin, destinationLanguage].concat(pathnameParts).join("/");
+}
 
 function App() {
   const { pathname } = useLocation();
@@ -109,6 +121,20 @@ function App() {
         <Route path="/es" element={<Main />} />
         <Route path="/cat" element={<Main />} />
       </Routes>
+
+      <div style={{ position: "fixed", bottom: "10px", right: "10px" }}>
+        <a href={
+          getLangUrl()
+        }>
+          <MKButton 
+            color="info" 
+            size="small"
+          >
+            <Icon sx={{ mr: 1 }}>translate_rounded</Icon>
+            {getLang() === "es" ? "CAT" : "ESP"}
+          </MKButton>
+        </a>
+      </div>
     </ThemeProvider>
   );
 }
