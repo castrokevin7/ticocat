@@ -122,11 +122,12 @@ function App() {
         <Route path="/cat" element={<Main />} />
       </Routes>
 
-      <div style={{ position: "fixed", bottom: "10px", right: "10px" }}>
+      <div style={{ position: "fixed", bottom: "25px", right: "25px" }}>
         <a href={
           getLangUrl()
         }>
           <MKButton 
+            sx={{ borderRadius: '50%', width: '40px', height: '60px' }}
             color="info" 
             size="small"
           >

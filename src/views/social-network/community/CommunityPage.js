@@ -214,7 +214,6 @@ function CommunityPage() {
                 center
                 sticky
                 brand="asoticocat"
-                action={getTranslateAction()}
             />
             <MKBox
                 component="section"

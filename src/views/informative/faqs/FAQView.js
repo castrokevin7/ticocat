@@ -106,8 +106,7 @@ function FAQView() {
                 center
                 sticky
                 brand="asoticocat"
-                action={getTranslateAction()}
-                secondaryAction={{
+                action={{
                     route: `/${getLang()}/faqs`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",

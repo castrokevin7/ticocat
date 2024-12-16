@@ -17,8 +17,7 @@ function TermsAndConditionsPage() {
                 center
                 sticky
                 brand="asoticocatcat"
-                action={getTranslateAction()}
-                secondaryAction={{
+                action={{
                     route: `/${getLang()}`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",

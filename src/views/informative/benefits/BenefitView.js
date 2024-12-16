@@ -160,8 +160,7 @@ function BenefitView() {
                 center
                 sticky
                 brand="asoticocat"
-                action={getTranslateAction()}
-                secondaryAction={{
+                action={{
                     route: `/${getLang()}/beneficios`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",

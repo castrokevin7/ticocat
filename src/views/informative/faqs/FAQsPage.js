@@ -140,8 +140,7 @@ function FAQsPage() {
                 center
                 sticky
                 brand="asoticocat"
-                action={getTranslateAction()}
-                secondaryAction={{
+                action={{
                     route: `/${getLang()}`,
                     color: "info",
                     icon: "arrow_circle_left_rounded",

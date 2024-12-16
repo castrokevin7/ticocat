@@ -360,7 +360,6 @@ function ProfileViewPage() {
                 center
                 sticky
                 brand="asoticocat"
-                action={getTranslateAction()}
             />
 
             <MKBox component="header" position="relative">

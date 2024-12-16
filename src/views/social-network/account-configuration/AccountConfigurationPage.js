@@ -1148,7 +1148,6 @@ function AccountConfigurationPage() {
                 center
                 sticky
                 brand="asoticocatcat"
-                action={getTranslateAction()}
             />
 
             <MKBox component="header" position="relative">

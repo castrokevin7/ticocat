@@ -22,8 +22,7 @@ function Navbar() {
             center
             sticky
             brand="asoticocat"
-            action={getTranslateAction()}
-            secondaryAction={secondaryAction}
+            action={secondaryAction}
         />
     );
 }
