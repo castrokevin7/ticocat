@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 // Otis Kit PRO components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
+import MKBox from 'components/MKBox';
+import MKTypography from 'components/MKTypography';
 
 // Otis Kit PRO examples
-import AssociateCard from "./AssociateCard";
+import AssociateCard from './AssociateCard';
 
 // Images
-import bgImage from "assets/images/examples/city.jpg";
-import thumbnail from "assets/images/profile.png";
+import bgImage from 'assets/images/bg-community.jpg';
+import thumbnail from 'assets/images/profile.png';
 import { Associate } from 'models';
-import { Spinner } from "components/Spinner";
+import { Spinner } from 'components/Spinner';
 import { DataStore, Storage } from 'aws-amplify';
 import Translator from 'utils/Translator';
 import { getLang } from 'utils/Translator';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
-import DefaultNavbar from "components/Navbars/DefaultNavbar";
+import DefaultNavbar from 'components/Navbars/DefaultNavbar';
 import { getTranslateAction } from 'utils/TranslateAction';
-import { getInterestTranslationKey } from "../utils";
-import Chip from "@mui/material/Chip";
+import { getInterestTranslationKey } from '../utils';
+import Chip from '@mui/material/Chip';
 import { Interests } from 'models';
 
-import routes from "../routes";
+import routes from '../routes';
 import Footer from '../Footer';
 
 function CommunityPage() {
@@ -221,7 +221,7 @@ function CommunityPage() {
                 position="relative"
                 py={20}
                 sx={{
-                    backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.8), rgba(gradients.dark.state, 0.8))}, url(${bgImage})`,
+                    backgroundImage: ({ palette: { gradients }, functions: { linearGradient, rgba } }) => `${linearGradient(rgba(gradients.dark.main, 0.3), rgba(gradients.dark.state, 0.3))}, url(${bgImage})`,
                 }}
             >
                 <Container>

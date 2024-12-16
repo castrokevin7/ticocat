@@ -1,10 +1,10 @@
-import DefaultNavbar from "components/Navbars/DefaultNavbar";
+import DefaultNavbar from 'components/Navbars/DefaultNavbar';
 import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
-import MKBox from "components/MKBox";
-import bgImage from "assets/images/associates.jpg";
+import MKBox from 'components/MKBox';
+import bgImage from 'assets/images/bg-login.jpg';
 import Translator from 'utils/Translator';
-import Container from "@mui/material/Container";
+import Container from '@mui/material/Container';
 import { Associate } from 'models';
 import { DataStore, Auth } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
