@@ -58,6 +58,10 @@ function ProfileViewPage() {
                 }
             } else {
                 response = await DataStore.query(Associate, associate => associate.email('eq', user.attributes.email));
+                if (response.length > 0) {
+                    const loggedUser = response[0];
+                    window.history.pushState({}, '', `/${getLang()}/social/perfil/${loggedUser.username || loggedUser.id}`);
+                }
             }
 
             if (response.length > 0) {
