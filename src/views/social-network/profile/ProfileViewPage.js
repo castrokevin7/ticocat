@@ -348,7 +348,7 @@ function ProfileViewPage() {
 
         return associate ?
             getAssociateInformation() :
-            <p style={{ textAlign: 'center', fontWeight: 'bold' }}>{Translator.instance.translate("associate_not_found")}</p>;
+            null;
     }
 
 
