@@ -5,7 +5,6 @@ import MKBox from 'components/MKBox';
 import bgImage from 'assets/images/bg-configuration.jpg';
 import { auto } from '@popperjs/core';
 import Container from '@mui/material/Container';
-import { getTranslateAction } from 'utils/TranslateAction';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Navigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
@@ -40,7 +39,7 @@ function AccountConfigurationPage() {
     const [facebookUsername, setFacebookUsername] = useState();
     const [linkedinUsername, setLinkedinUsername] = useState();
     const [usernameAlreadyExists, setUsernameAlreadyExists] = useState(false);
-    const [profilePicture, setProfilePicture] = useState();
+    const [profilePictureToUpload, setProfilePictureToUpload] = useState();
     const [isUploadingImage, setIsUploadingImage] = useState(false);
     const [interests, setInterests] = useState();
 
@@ -112,9 +111,6 @@ function AccountConfigurationPage() {
             }
             if (!linkedinUsername) {
                 setLinkedinUsername(associate.linkedin_username);
-            }
-            if (!profilePicture) {
-                setProfilePicture(associate.profile_picture);
             }
             if (!interests) {
                 setInterests(associate.interests);
@@ -461,11 +457,11 @@ function AccountConfigurationPage() {
     const getProfilePictureField = () => {
         const updateProfilePicture = (event) => {
             const file = event.target.files[0];
-            setProfilePicture(file);
+            setProfilePictureToUpload(file);
         };
 
         const getUpdateProfilePictureControls = () => {
-            if (!profilePicture || profilePicture === associate.profile_picture) {
+            if (!profilePictureToUpload) {
                 return;
             }
 
@@ -477,9 +473,9 @@ function AccountConfigurationPage() {
                         await Storage.remove(original.profile_picture, { level: 'public' });
                     } */
 
-                    const profilePictureKey = `associates/${associate.id}/profile_picture/${profilePicture.name}`;
-                    await Storage.put(profilePictureKey, profilePicture, {
-                        contentType: profilePicture.type,
+                    const profilePictureKey = `associates/${associate.id}/profile_picture/${profilePictureToUpload.name}`;
+                    await Storage.put(profilePictureKey, profilePictureToUpload, {
+                        contentType: profilePictureToUpload.type,
                         level: 'public'
                     });
 
@@ -489,7 +485,7 @@ function AccountConfigurationPage() {
                         })
                     );
                     fetchAssociate(user.attributes.email);
-                    setProfilePicture(null);
+                    setProfilePictureToUpload(null);
                 } catch (err) {
                     console.error('Error updating profile picture:', err);
                 }
@@ -508,7 +504,7 @@ function AccountConfigurationPage() {
                             </Icon>
                             <Icon
                                 sx={{ mr: 1 }}
-                                onClick={() => setProfilePicture(associate.profile_picture)}
+                                onClick={() => setProfilePictureToUpload(null)}
                             >
                                 close
                             </Icon>
@@ -519,15 +515,15 @@ function AccountConfigurationPage() {
         };
 
         const getProfilePicture = () => {
-            if (profilePicture instanceof File) {
-                return URL.createObjectURL(profilePicture);
+            if (profilePictureToUpload && profilePictureToUpload instanceof File) {
+                return URL.createObjectURL(profilePictureToUpload);
             }
 
             return associate.profile_picture;
         }
 
         const displayProfilePicture = () => {
-            if (!associate.profile_picture && !profilePicture) {
+            if (!associate.profile_picture && !profilePictureToUpload) {
                 return (
                     <MKTypography variant="caption" color="text">
                         No hay imagen de perfil
@@ -546,7 +542,7 @@ function AccountConfigurationPage() {
                             })
                         );
                         fetchAssociate(user.attributes.email);
-                        setProfilePicture(null);
+                        setProfilePictureToUpload(null);
                     }
                     catch (err) {
                         console.error('Error removing profile picture:', err);

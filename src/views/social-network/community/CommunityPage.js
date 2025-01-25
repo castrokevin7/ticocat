@@ -21,9 +21,7 @@ import Translator from 'utils/Translator';
 import { getLang } from 'utils/Translator';
 import { Link } from 'react-router-dom';
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { Navigate } from 'react-router-dom';
 import DefaultNavbar from 'components/Navbars/DefaultNavbar';
-import { getTranslateAction } from 'utils/TranslateAction';
 import { getInterestTranslationKey } from '../utils';
 import Chip from '@mui/material/Chip';
 import { Interests } from 'models';
@@ -42,6 +40,7 @@ function CommunityPage() {
     useEffect(() => {
         setState('loading');
         fetchAssociates();
+        // eslint-disable-next-line
     }, [route]);
 
     useEffect(() => {
