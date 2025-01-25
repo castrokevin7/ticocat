@@ -40,9 +40,6 @@ function CommunityPage() {
     const { route } = useAuthenticator(context => [context.route]);
 
     useEffect(() => {
-        if (route !== 'authenticated')
-            return;
-
         setState('loading');
         fetchAssociates();
     }, [route]);
@@ -66,16 +63,22 @@ function CommunityPage() {
         setShownAssociates(filteredAssociates);
     }, [associateSearch, interestsFilter, associates]);
 
-    if (route !== 'authenticated') {
-        return <Navigate to={`/${getLang()}/social/configuracion`} />;
-    }
 
     const fetchAssociates = async () => {
         try {
-            let response = await DataStore.query(Associate, associate => associate.and(associate => [
-                associate.is_account_activated('eq', true)
-            ]));
+            let response;
+            if (route === 'authenticated') {
+                response = await DataStore.query(Associate, associate => associate.and(associate => [
+                    associate.is_account_activated('eq', true)
+                ]));
+            } else {
+                response = await DataStore.query(Associate, associate => associate.and(associate => [
+                    associate.is_account_activated('eq', true),
+                    associate.is_public_profile('eq', true)
+                ]));
+            }
             if (response.length > 0) {
+                response = response.sort(() => Math.random() - 0.5);
                 response = await Promise.all(response.map(async (associate, i) => {
                     if (!associate.profile_picture) {
                         return Associate.copyOf(associate, updated => {
@@ -207,10 +210,18 @@ function CommunityPage() {
         );
     }
 
+    const getRoutes = () => {
+        return route !== 'authenticated' ? [] : routes;
+    }
+
+    const getFooter = () => {
+        return route !== 'authenticated' ? null : <Footer />;
+    }
+
     return (
         <>
             <DefaultNavbar
-                routes={routes}
+                routes={getRoutes()}
                 center
                 sticky
                 brand="asoticocat"
@@ -228,7 +239,7 @@ function CommunityPage() {
                     {getAssociates()}
                 </Container>
             </MKBox>
-            <Footer />
+            {getFooter()}
         </>
     );
 }

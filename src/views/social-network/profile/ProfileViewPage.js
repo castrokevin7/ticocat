@@ -28,6 +28,7 @@ import { getInterestTranslationKey } from '../utils';
 import Chip from '@mui/material/Chip';
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
+import MKBadge from "components/MKBadge";
 
 import routes from '../routes';
 import Footer from '../Footer';
@@ -134,7 +135,7 @@ function ProfileViewPage() {
 
         return (
             <MKBox sx={{ margin: '25px' }}>
-                <MKTypography variant="h3" mt={4}>
+                <MKTypography variant="h4" mt={4}>
                     {Translator.instance.translate("account_page_benefits_offered")}:
                 </MKTypography>
                 <Grid container spacing={3}>
@@ -295,25 +296,28 @@ function ProfileViewPage() {
 
         const getHeaderSection = () => {
             return (
-                <MKBox mb={3} display="flex" alignItems="center" justifyContent="space-between">
-                    <MKBox>
-                        <MKTypography variant="h4">
-                            {associate.custom_name || associate.name}
-                        </MKTypography>
-                        {associate.username &&
-                            <MKTypography variant="body3" color="text">
-                                @{associate.username}
+                <>
+                    <MKBox mb={3} display="flex" alignItems="center" justifyContent="space-between">
+                        <MKBox>
+                            <MKTypography variant="h4">
+                                {associate.custom_name || associate.name}
                             </MKTypography>
-                        }
+                            {associate.username &&
+                                <MKTypography variant="body3" color="text">
+                                    @{associate.username}
+                                </MKTypography>
+                            }
+                        </MKBox>
+                        {getSocialMedia()}
                     </MKBox>
-                    {getSocialMedia()}
-                </MKBox>
+                    {associate.is_public_profile && <MKBadge badgeContent="Perfil Público" color="info" container />}
+                </>
             );
         }
 
         return (
             <div>
-                <MKBox sx={{ width: {xs: '90%', md: '80%'}, margin: 'auto' }}>
+                <MKBox sx={{ width: { xs: '90%', md: '80%' }, margin: 'auto' }}>
                     <div
                         id="display-profile-picture"
                         style={{ backgroundImage: `url(${associate.profile_picture || thumbnail})` }}
