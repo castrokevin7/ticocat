@@ -222,48 +222,10 @@ function AssociatesView() {
                         />
                         <TextField
                             id='outlined-required'
-                            label='Fecha de nacimiento'
-                            InputLabelProps={{ shrink: true }}
-                            type='date'
-                            defaultValue={associate.birthday}
-                            onChange={(event) => {
-                                associateToUpdate.birthday = event.target.value;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
-                            label='Nacionalidad'
-                            placeholder="CRI"
-                            defaultValue={associate.nationality}
-                            onChange={(event) => {
-                                associateToUpdate.nationality = event.target.value;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
-                            label='Tipo de Identificación'
-                            placeholder="NIE, DNI o Pasaporte"
-                            defaultValue={displayIdType(associate.identification_type)}
-                            onChange={(event) => {
-                                const indexOf = Object.values(IdentificationType).indexOf(event.target.value.toUpperCase() as unknown as IdentificationType);
-                                associateToUpdate.identification_type = Object.keys(IdentificationType)[indexOf] as IdentificationType;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
                             label='Identificación'
                             defaultValue={associate.identification}
                             onChange={(event) => {
                                 associateToUpdate.identification = event.target.value;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
-                            label='Dirección'
-                            placeholder="Carrer de Provençals, 231, 1º, 3º"
-                            defaultValue={associate.address}
-                            onChange={(event) => {
-                                associateToUpdate.address = event.target.value;
                             }}
                         />
                         <TextField
@@ -418,43 +380,9 @@ function AssociatesView() {
                         />
                         <TextField
                             id='outlined-required'
-                            label='Fecha de nacimiento'
-                            type='date'
-                            InputLabelProps={{ shrink: true }}
-                            onChange={(event) => {
-                                associateToCreate.birthday = event.target.value;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
-                            label='Nacionalidad'
-                            placeholder="CRI"
-                            onChange={(event) => {
-                                associateToCreate.nationality = event.target.value;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
-                            label='Tipo de Identificación'
-                            placeholder="NIE, DNI o Pasaporte"
-                            onChange={(event) => {
-                                const indexOf = Object.values(IdentificationType).indexOf(event.target.value.toUpperCase() as unknown as IdentificationType);
-                                associateToCreate.identification_type = Object.keys(IdentificationType)[indexOf] as IdentificationType;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
                             label='Identificación'
                             onChange={(event) => {
                                 associateToCreate.identification = event.target.value;
-                            }}
-                        />
-                        <TextField
-                            id='outlined-required'
-                            label='Dirección'
-                            placeholder="Carrer de Provençals, 231, 1º, 3º"
-                            onChange={(event) => {
-                                associateToCreate.address = event.target.value;
                             }}
                         />
                         <TextField
