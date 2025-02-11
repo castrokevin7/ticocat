@@ -59,7 +59,7 @@ function Home() {
             </MKTypography>
             <MKButton
               component="a"
-              href="mailto:asoticocat@gmail.com?Subject=Quiero asociarme"
+              href="https://forms.gle/RK4BLbsTSQyM4u1x8"
               target="_blank"
               rel="noreferrer"
               color="white"
