@@ -77,7 +77,7 @@ function CommunityPage() {
                 ]));
             }
             if (response.length > 0) {
-                response = response.sort(() => Math.random() - 0.5);
+                response = response.sort((a, b) => a.name.localeCompare(b.name));
                 response = await Promise.all(response.map(async (associate, i) => {
                     if (!associate.profile_picture) {
                         return Associate.copyOf(associate, updated => {
