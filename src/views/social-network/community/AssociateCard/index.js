@@ -11,15 +11,17 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import './AssociateCard.css'
 
+const MAX_INTERESTS = 3;
+const MAX_BIO = 100;
+
 function AssociateCard({ associate }) {
   const getInterestsSection = () => {
     if (!associate.interests || associate.interests.length === 0) {
       return;
     }
 
-    const randomInterests = [...associate.interests].sort(() => 0.5 - Math.random());
-    let interestsToShow = randomInterests.slice(0, 3);
-    if (associate.interests.length > 3) {
+    let interestsToShow = associate.interests.slice(0, MAX_INTERESTS);
+    if (associate.interests.length > MAX_INTERESTS) {
       interestsToShow.push('...');
     }
 
@@ -97,6 +99,11 @@ function AssociateCard({ associate }) {
           {associate.username && (
             <MKTypography variant="body2" color="text">
               @{associate.username}
+            </MKTypography>
+          )}          
+          {associate.bio && (
+            <MKTypography mt={1} variant="body2" color="text">
+              {associate.bio.substring(0, MAX_BIO)} {associate.bio.length > MAX_BIO && '...'}
             </MKTypography>
           )}
         </MKBox>
