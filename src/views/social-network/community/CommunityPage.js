@@ -25,9 +25,13 @@ import DefaultNavbar from 'components/Navbars/DefaultNavbar';
 import { getInterestTranslationKey } from '../utils';
 import Chip from '@mui/material/Chip';
 import { Interests } from 'models';
+import { Card } from '@mui/material';
 
 import routes from '../routes';
 import Footer from '../Footer';
+import Pagination from '@mui/material/Pagination';
+
+const ITEMS_PER_PAGE = 9;
 
 function CommunityPage() {
     const [state, setState] = useState('');
@@ -36,6 +40,9 @@ function CommunityPage() {
     const [associates, setAssociates] = useState([]);
     const [shownAssociates, setShownAssociates] = useState([]);
     const { route } = useAuthenticator(context => [context.route]);
+    const [activePage, setActivePage] = useState(1);
+    const [numbersOfPages, setNumbersOfPages] = useState();
+    const [pageAssociates, setPageAssociates] = useState([]);
 
     useEffect(() => {
         setState('loading');
@@ -61,8 +68,15 @@ function CommunityPage() {
             return true;
         });
         setShownAssociates(filteredAssociates);
+        setNumbersOfPages(Math.ceil(filteredAssociates.length / ITEMS_PER_PAGE));
+        setActivePage(1);
+        setPageAssociates(filteredAssociates.slice(0, ITEMS_PER_PAGE));
     }, [associateSearch, interestsFilter, associates]);
 
+    const handleChange = (event, value) => {
+        setActivePage(value);
+        setPageAssociates(shownAssociates.slice((value - 1) * ITEMS_PER_PAGE, value * ITEMS_PER_PAGE));
+    };
 
     const fetchAssociates = async () => {
         try {
@@ -93,6 +107,9 @@ function CommunityPage() {
                 }));
                 setAssociates(response);
                 setShownAssociates(response);
+                setNumbersOfPages(Math.ceil(response.length / ITEMS_PER_PAGE));
+                setActivePage(1);
+                setPageAssociates(response.slice(0, ITEMS_PER_PAGE));
             }
             setState('success');
         } catch (err) {
@@ -118,7 +135,7 @@ function CommunityPage() {
             );
         }
 
-        if (shownAssociates.length === 0) {
+        if (pageAssociates.length === 0) {
             return (
                 <Grid container spacing={3} mt={2}>
                     <MKTypography ml={3} mt={2} variant="body2" color="text">
@@ -130,7 +147,7 @@ function CommunityPage() {
 
         return (
             <Grid container spacing={4}>
-                {shownAssociates.map((associate, index) => (
+                {pageAssociates.map((associate, index) => (
                     <Grid key={index} item xs={12} lg={4}>
                         <MKBox mb={1}>
                             <Link to={`/${getLang()}/social/perfil/${associate.username || associate.id}`}>
@@ -198,8 +215,9 @@ function CommunityPage() {
 
         return (
             <MKBox>
-                {Object.keys(Interests).map(interest => (
+                {Object.keys(Interests).map((interest, i) => (
                     <Chip
+                        key={i}
                         sx={{ margin: '2px' }}
                         label={Translator.instance.translate(getInterestTranslationKey(interest))}
                         variant={interestsFilter.includes(interest) ? undefined : "outlined"}
@@ -237,6 +255,14 @@ function CommunityPage() {
                 <Container>
                     {getFiltersBox()}
                     {getAssociates()}
+                    <Card sx={{ mt: 5, p: 1 }}>
+                        <Pagination
+                            sx={{ display: 'flex', justifyContent: 'center' }}
+                            size="large"
+                            count={numbersOfPages}
+                            page={activePage} onChange={handleChange}
+                        />
+                    </Card>
                 </Container>
             </MKBox>
             {getFooter()}
