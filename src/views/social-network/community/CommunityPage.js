@@ -50,6 +50,7 @@ function CommunityPage() {
             if (associateSearch.length > 0) {
                 return associate.name?.toLowerCase().includes(associateSearch.toLowerCase()) ||
                     associate.custom_name?.toLowerCase().includes(associateSearch.toLowerCase()) ||
+                    associate.bio?.toLowerCase().includes(associateSearch.toLowerCase()) ||
                     associate.username?.toLowerCase().includes(associateSearch.toLowerCase());
             }
 
