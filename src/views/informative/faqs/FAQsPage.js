@@ -26,7 +26,6 @@ import { getFAQQuestion, getFAQAnswer, getLinkText } from './Utils';
 
 import Translator from 'utils/Translator';
 
-import { getTranslateAction } from 'utils/TranslateAction';
 import { Spinner } from "components/Spinner";
 import { getLang } from 'utils/Translator';
 

@@ -39,8 +39,6 @@ Coded by www.creative-tim.com
 // @mui material components
 import Icon from "@mui/material/Icon";
 
-import Translator from 'utils/Translator';
-
 import { getLang } from 'utils/Translator';
 
 const routes = [

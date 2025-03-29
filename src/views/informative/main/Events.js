@@ -32,24 +32,13 @@ function Events() {
     const fetchEvents = async () => {
         try {
             let response = await DataStore.query(Event, Predicates.ALL, {
-                useCache: false,
                 sort: e => e.date(SortDirection.DESCENDING)
             });
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (event, i) => {
                     const image = await Storage.get(event.image);
-                    return new Event({
-                        image,
-                        event_id: event.event_id,
-                        title: event.title,
-                        title_cat: event.title_cat,
-                        description: event.description,
-                        description_cat: event.description_cat,
-                        date: event.date,
-                        time: event.time,
-                        contact: event.contact,
-                        location_url: event.location_url,
-                        gallery: event.gallery
+                    return Event.copyOf(event, updated => {
+                        updated.image = image;
                     });
                 }));
                 setEvents(response.slice(0, 3));
@@ -97,7 +86,7 @@ function Events() {
             <>
                 {events.map((event, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/${getLang()}/evento/${event.event_id}`}>
+                        <Link to={`/${getLang()}/evento/${event.id}`}>
                             <SimpleBackgroundCard
                                 image={event.image}
                                 title={getEventTitle(event)}

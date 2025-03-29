@@ -10,7 +10,6 @@ import MKTypography from "components/MKTypography";
 import DefaultNavbar from "components/Navbars/DefaultNavbar";
 import { getBenefitTitle, getBenefitDescription, getBenefitAboutProvider } from "./Utils";
 import Translator from "utils/Translator";
-import { getTranslateAction } from 'utils/TranslateAction';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -27,25 +26,13 @@ function BenefitView() {
 
     const fetchBenefit = async () => {
         try {
-            let response = await DataStore.query(Benefit, e => e.benefit_id('eq', benefitId), { useCache: false });
+            let response = await DataStore.query(Benefit, benefit => benefit.id('eq', benefitId));
             if (response.length > 0) {
                 response = response[0];
                 if (response.image) {
                     const image = await Storage.get(response.image);
                     response = Benefit.copyOf(response, updated => {
-                        updated.benefit_id = response.benefit_id;
                         updated.image = image;
-                        updated.title = response.title;
-                        updated.title_cat = response.title_cat;
-                        updated.description = response.description;
-                        updated.description_cat = response.description_cat;
-                        updated.about_provider = response.about_provider;
-                        updated.about_provider_cat = response.about_provider_cat;
-                        updated.phone = response.phone;
-                        updated.email = response.email;
-                        updated.websiteUrl = response.websiteUrl;
-                        updated.instagramUrl = response.instagramUrl;
-                        updated.facebookUrl = response.facebookUrl;
                     });
                 }
 

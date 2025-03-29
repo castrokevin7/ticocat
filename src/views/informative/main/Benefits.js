@@ -35,17 +35,8 @@ function Benefits() {
             if (response.length > 0) {
                 response = await Promise.all(response.map(async (benefit, i) => {
                     const image = await Storage.get(benefit.image);
-                    return new Benefit({
-                        image,
-                        benefit_id: benefit.benefit_id,
-                        title: benefit.title,
-                        title_cat: benefit.title_cat,
-                        description: benefit.description,
-                        description_cat: benefit.description_cat,
-                        about_provider: benefit.about_provider,
-                        about_provider_cat: benefit.about_provider_cat,
-                        contact: benefit.contact,
-                        url: benefit.url
+                    return Benefit.copyOf(benefit, (updated) => {
+                        updated.image = image;
                     });
                 }));
                 response = response.sort(() => Math.random() - 0.5);
@@ -94,7 +85,7 @@ function Benefits() {
             <>
                 {benefits.map((benefit, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/${getLang()}/beneficio/${benefit.benefit_id}`}>
+                        <Link to={`/${getLang()}/beneficio/${benefit.id}`}>
                             <SimpleBackgroundCard
                                 image={benefit.image}
                                 title={getBenefitTitle(benefit)}

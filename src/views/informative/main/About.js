@@ -40,6 +40,7 @@ function About() {
               {Translator.instance.translate("about_context_title")}
             </MKTypography>
             <iframe
+              title="Spotify Player"
               style={{ borderRadius: "12px", marginBottom: "20px" }}
               src="https://open.spotify.com/embed/episode/6FzLsELhfLPm4CGWDzoyjf?utm_source=generator&theme=0"
               width="100%"

@@ -1,5 +1,4 @@
 import DefaultNavbar from 'components/Navbars/DefaultNavbar';
-import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
 import MKBox from 'components/MKBox';
 import bgImage from 'assets/images/bg-login.jpg';

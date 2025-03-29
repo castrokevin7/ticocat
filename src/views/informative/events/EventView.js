@@ -13,7 +13,6 @@ import Stack from "@mui/material/Stack";
 import AboutUsOption from "components/AboutUsOption";
 import { getEventTitle, getEventDescription } from "./Utils";
 import Translator from "utils/Translator";
-import { getTranslateAction } from 'utils/TranslateAction';
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Box from "@mui/material/Box";
@@ -27,23 +26,13 @@ function EventView() {
 
     const fetchEvent = async () => {
         try {
-            let response = await DataStore.query(Event, e => e.event_id('eq', eventId), { useCache: false });
+            let response = await DataStore.query(Event, event => event.id('eq', eventId));
             if (response.length > 0) {
                 response = response[0];
                 if (response.image) {
                     const image = await Storage.get(response.image);
                     response = Event.copyOf(response, updated => {
                         updated.image = image;
-                        updated.event_id = response.event_id;
-                        updated.title = response.title;
-                        updated.title_cat = response.title_cat;
-                        updated.description = response.description;
-                        updated.description_cat = response.description_cat;
-                        updated.date = response.date;
-                        updated.time = response.time;
-                        updated.contact = response.contact;
-                        updated.location_url = response.location_url;
-                        updated.gallery = response.gallery;
                     });
                 }
 
@@ -56,16 +45,6 @@ function EventView() {
                     );
                     response = Event.copyOf(response, updated => {
                         updated.gallery = gallery;
-                        updated.event_id = response.event_id;
-                        updated.image = response.image;
-                        updated.title = response.title;
-                        updated.title_cat = response.title_cat;
-                        updated.description = response.description;
-                        updated.description_cat = response.description_cat;
-                        updated.date = response.date;
-                        updated.time = response.time;
-                        updated.contact = response.contact;
-                        updated.location_url = response.location_url;
                     });
                 }
 

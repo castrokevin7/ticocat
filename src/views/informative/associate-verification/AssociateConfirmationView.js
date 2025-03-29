@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import DefaultNavbar from "components/Navbars/DefaultNavbar";
-import { getTranslateAction } from 'utils/TranslateAction';
 import { getLang } from 'utils/Translator';
 import Container from "@mui/material/Container";
 import MKBox from "components/MKBox";
