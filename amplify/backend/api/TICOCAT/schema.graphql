@@ -1,4 +1,22 @@
-type FAQ @model @auth(rules: [{allow: public, provider: iam}]) {
+enum Interests {
+  HIKING
+  FOODIE
+  TRAVEL
+  CINEMA
+  MUSIC
+  BOARD_GAMES
+  LITERATURE
+  DANCE
+  SPORTS
+  KARAOKE
+  FINANCE
+  SCIENCE
+  CATALONIA
+  ART
+  NATURE
+}
+
+type FAQ @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
   id: ID!
   question: String!
   question_cat: String!
@@ -7,7 +25,7 @@ type FAQ @model @auth(rules: [{allow: public, provider: iam}]) {
   links: [AWSURL]
 }
 
-type Benefit @model @auth(rules: [{allow: public, provider: iam}]) {
+type Benefit @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
   id: ID!
   benefit_id: String
   title: String
@@ -22,9 +40,10 @@ type Benefit @model @auth(rules: [{allow: public, provider: iam}]) {
   instagramUrl: AWSURL
   facebookUrl: AWSURL
   websiteUrl: AWSURL
+  associate_id: String
 }
 
-type Event @model @auth(rules: [{allow: public, provider: iam}]) {
+type Event @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
   id: ID!
   event_id: String
   title: String
@@ -53,18 +72,30 @@ enum BoardPosition {
   VOCAL
 }
 
-type Associate @model @auth(rules: [{allow: public, provider: iam}]) {
+type Associate @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
   id: ID!
   name: String
-  birthday: String
+  custom_name: String
   address: String
   email: AWSEmail
   inscription_date: String
-  phone: AWSPhone
+  birthday: String
   nationality: String
   identification: String
   identification_type: IdentificationType
   board_position: BoardPosition
   associate_id: String
+  bio: String
+  profile_picture: String
+  is_account_activated: Boolean
+  is_public_profile: Boolean
+  username: String
+  share_email: Boolean
+  share_phone: Boolean
+  instagram_username: String
+  facebook_username: String
+  linkedin_username: String
+  phone: AWSPhone
+  interests: [Interests]
 }
  

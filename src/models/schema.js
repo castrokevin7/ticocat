@@ -83,6 +83,25 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -190,6 +209,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "associate_id": {
+                    "name": "associate_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -221,6 +247,25 @@ export const schema = {
                             {
                                 "allow": "public",
                                 "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
                                 "operations": [
                                     "create",
                                     "update",
@@ -358,6 +403,25 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -381,8 +445,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "birthday": {
-                    "name": "birthday",
+                "custom_name": {
+                    "name": "custom_name",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -409,10 +473,10 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "phone": {
-                    "name": "phone",
+                "birthday": {
+                    "name": "birthday",
                     "isArray": false,
-                    "type": "AWSPhone",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -455,6 +519,93 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "bio": {
+                    "name": "bio",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "profile_picture": {
+                    "name": "profile_picture",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "is_account_activated": {
+                    "name": "is_account_activated",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "is_public_profile": {
+                    "name": "is_public_profile",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "username": {
+                    "name": "username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "share_email": {
+                    "name": "share_email",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "share_phone": {
+                    "name": "share_phone",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "instagram_username": {
+                    "name": "instagram_username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "facebook_username": {
+                    "name": "facebook_username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "linkedin_username": {
+                    "name": "linkedin_username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "phone": {
+                    "name": "phone",
+                    "isArray": false,
+                    "type": "AWSPhone",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "interests": {
+                    "name": "interests",
+                    "isArray": true,
+                    "type": {
+                        "enum": "Interests"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -492,6 +643,25 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -500,6 +670,26 @@ export const schema = {
         }
     },
     "enums": {
+        "Interests": {
+            "name": "Interests",
+            "values": [
+                "HIKING",
+                "FOODIE",
+                "TRAVEL",
+                "CINEMA",
+                "MUSIC",
+                "BOARD_GAMES",
+                "LITERATURE",
+                "DANCE",
+                "SPORTS",
+                "KARAOKE",
+                "FINANCE",
+                "SCIENCE",
+                "CATALONIA",
+                "ART",
+                "NATURE"
+            ]
+        },
         "IdentificationType": {
             "name": "IdentificationType",
             "values": [
@@ -521,5 +711,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "48004d1b6327e4eaa9773a3063c23c4f"
+    "version": "359d5473b3df5afdfea93d5d03ede5a2"
 };

@@ -2,6 +2,24 @@ import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
+export enum Interests {
+  HIKING = "HIKING",
+  FOODIE = "FOODIE",
+  TRAVEL = "TRAVEL",
+  CINEMA = "CINEMA",
+  MUSIC = "MUSIC",
+  BOARD_GAMES = "BOARD_GAMES",
+  LITERATURE = "LITERATURE",
+  DANCE = "DANCE",
+  SPORTS = "SPORTS",
+  KARAOKE = "KARAOKE",
+  FINANCE = "FINANCE",
+  SCIENCE = "SCIENCE",
+  CATALONIA = "CATALONIA",
+  ART = "ART",
+  NATURE = "NATURE"
+}
+
 export enum IdentificationType {
   NIE = "NIE",
   DNI = "DNI",
@@ -75,6 +93,7 @@ type EagerBenefit = {
   readonly instagramUrl?: string | null;
   readonly facebookUrl?: string | null;
   readonly websiteUrl?: string | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -94,6 +113,7 @@ type LazyBenefit = {
   readonly instagramUrl?: string | null;
   readonly facebookUrl?: string | null;
   readonly websiteUrl?: string | null;
+  readonly associate_id?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -147,16 +167,28 @@ export declare const Event: (new (init: ModelInit<Event, EventMetaData>) => Even
 type EagerAssociate = {
   readonly id: string;
   readonly name?: string | null;
-  readonly birthday?: string | null;
+  readonly custom_name?: string | null;
   readonly address?: string | null;
   readonly email?: string | null;
   readonly inscription_date?: string | null;
-  readonly phone?: string | null;
+  readonly birthday?: string | null;
   readonly nationality?: string | null;
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
   readonly board_position?: BoardPosition | keyof typeof BoardPosition | null;
   readonly associate_id?: string | null;
+  readonly bio?: string | null;
+  readonly profile_picture?: string | null;
+  readonly is_account_activated?: boolean | null;
+  readonly is_public_profile?: boolean | null;
+  readonly username?: string | null;
+  readonly share_email?: boolean | null;
+  readonly share_phone?: boolean | null;
+  readonly instagram_username?: string | null;
+  readonly facebook_username?: string | null;
+  readonly linkedin_username?: string | null;
+  readonly phone?: string | null;
+  readonly interests?: (Interests | null)[] | keyof typeof Interests | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -164,16 +196,28 @@ type EagerAssociate = {
 type LazyAssociate = {
   readonly id: string;
   readonly name?: string | null;
-  readonly birthday?: string | null;
+  readonly custom_name?: string | null;
   readonly address?: string | null;
   readonly email?: string | null;
   readonly inscription_date?: string | null;
-  readonly phone?: string | null;
+  readonly birthday?: string | null;
   readonly nationality?: string | null;
   readonly identification?: string | null;
   readonly identification_type?: IdentificationType | keyof typeof IdentificationType | null;
   readonly board_position?: BoardPosition | keyof typeof BoardPosition | null;
   readonly associate_id?: string | null;
+  readonly bio?: string | null;
+  readonly profile_picture?: string | null;
+  readonly is_account_activated?: boolean | null;
+  readonly is_public_profile?: boolean | null;
+  readonly username?: string | null;
+  readonly share_email?: boolean | null;
+  readonly share_phone?: boolean | null;
+  readonly instagram_username?: string | null;
+  readonly facebook_username?: string | null;
+  readonly linkedin_username?: string | null;
+  readonly phone?: string | null;
+  readonly interests?: (Interests | null)[] | keyof typeof Interests | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

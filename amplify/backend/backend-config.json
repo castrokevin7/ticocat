@@ -1,10 +1,25 @@
 {
   "api": {
     "TICOCAT": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "TICOCAT"
+        }
+      ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [],
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authTICOCAT"
+              }
+            }
+          ],
           "defaultAuthentication": {
             "authenticationType": "AWS_IAM"
           }
