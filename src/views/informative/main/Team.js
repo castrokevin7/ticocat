@@ -12,9 +12,9 @@ import TicoCatTeamMemberCard from "./TicoCatTeamMemberCard";
 // Images
 import jordiPhoto from "assets/images/team/jordi.jpg";
 import belenyPhoto from "assets/images/team/beleny.jpg";
-import kevinPhoto from "assets/images/team/kevin.jpg";
+import jairoPhoto from "assets/images/team/jairo.jpg";
 import nathaliePhoto from "assets/images/team/nathalie.jpg";
-import michaelPhoto from "assets/images/team/michael.jpg";
+import danielaPhoto from "assets/images/team/daniela.jpg";
 import erickPhoto from "assets/images/team/erick.jpg";
 
 import Translator from 'utils/Translator';
@@ -90,10 +90,10 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={kevinPhoto}
-                name="Kevin Castro"
+                image={jairoPhoto}
+                name="Jairo Javier Sánchez Mejías"
                 position={{ color: "dark", label: "team_secretary_position" }}
-                from="Cariari, Pococí, Limón"
+                from="Alajuela"
                 arrivalTime={Translator.instance.translate("team_secretary_arrival")}
                 occupation={Translator.instance.translate("team_secretary_occupation")}
                 contributions={Translator.instance.translate("team_secretary_contributions")}
@@ -118,10 +118,10 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={michaelPhoto}
-                name="Michael Salazar"
+                image={danielaPhoto}
+                name="Daniela Guzmán Rivera"
                 position={{ color: "dark", label: "team_vocal_position" }}
-                from="Puntarenas / Los Angeles, California"
+                from="Cartago"
                 arrivalTime={Translator.instance.translate("team_vocal_one_arrival")}
                 occupation={Translator.instance.translate("team_vocal_one_occupation")}
                 contributions={Translator.instance.translate("team_vocal_one_contributions")}
