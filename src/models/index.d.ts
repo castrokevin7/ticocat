@@ -52,6 +52,7 @@ type AssociateMetaData = {
 
 type EagerFAQ = {
   readonly id: string;
+  readonly faq_id?: string | null;
   readonly question: string;
   readonly question_cat: string;
   readonly answer: string;
@@ -63,6 +64,7 @@ type EagerFAQ = {
 
 type LazyFAQ = {
   readonly id: string;
+  readonly faq_id?: string | null;
   readonly question: string;
   readonly question_cat: string;
   readonly answer: string;
