@@ -180,10 +180,6 @@ function FAQsView() {
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
                                     updated.question = event.target.value;
-                                    updated.question_cat = faqToUpdate.question_cat;
-                                    updated.answer = faqToUpdate.answer;
-                                    updated.answer_cat = faqToUpdate.answer_cat;
-                                    updated.links = faqToUpdate.links;
                                 }));
                             }}
                         />
@@ -193,11 +189,7 @@ function FAQsView() {
                             defaultValue={faq.question_cat}
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
-                                    updated.question = faqToUpdate.question;
                                     updated.question_cat = event.target.value;
-                                    updated.answer = faqToUpdate.answer;
-                                    updated.answer_cat = faqToUpdate.answer_cat;
-                                    updated.links = faqToUpdate.links;
                                 }));
                             }}
                         />
@@ -207,11 +199,7 @@ function FAQsView() {
                             defaultValue={faq.answer}
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
-                                    updated.question = faqToUpdate.question;
-                                    updated.question_cat = faqToUpdate.question_cat;
                                     updated.answer = event.target.value;
-                                    updated.answer_cat = faqToUpdate.answer_cat;
-                                    updated.links = faqToUpdate.links;
                                 }));
                             }}
                             multiline
@@ -223,11 +211,7 @@ function FAQsView() {
                             defaultValue={faq.answer_cat}
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
-                                    updated.question = faqToUpdate.question;
-                                    updated.question_cat = faqToUpdate.question_cat;
-                                    updated.answer = faqToUpdate.answer;
                                     updated.answer_cat = event.target.value;
-                                    updated.links = faqToUpdate.links;
                                 }));
                             }}
                             multiline
@@ -252,10 +236,6 @@ function FAQsView() {
                                                         }
                                                     });
                                                     setFAQ(FAQ.copyOf(faqToUpdate, updated => {
-                                                        updated.question = faqToUpdate.question;
-                                                        updated.question_cat = faqToUpdate.question_cat;
-                                                        updated.answer = faqToUpdate.answer;
-                                                        updated.answer_cat = faqToUpdate.answer_cat;
                                                         updated.links = updateLinks;
                                                     }));
                                                 }}
@@ -270,10 +250,6 @@ function FAQsView() {
                                                         return index !== i;
                                                     });
                                                     setFAQ(FAQ.copyOf(faqToUpdate, updated => {
-                                                        updated.question = faqToUpdate.question;
-                                                        updated.question_cat = faqToUpdate.question_cat;
-                                                        updated.answer = faqToUpdate.answer;
-                                                        updated.answer_cat = faqToUpdate.answer_cat;
                                                         updated.links = updateLinks;
                                                     }));
                                                 }}
@@ -302,10 +278,6 @@ function FAQsView() {
                                     onClick={() => {
                                         console.log("newLink", newLink);
                                         setFAQ(FAQ.copyOf(faqToUpdate, updated => {
-                                            updated.question = faqToUpdate.question;
-                                            updated.question_cat = faqToUpdate.question_cat;
-                                            updated.answer = faqToUpdate.answer;
-                                            updated.answer_cat = faqToUpdate.answer_cat;
                                             updated.links = [...faqToUpdate.links, newLink];
                                         }));
                                         setNewLink('');
@@ -385,10 +357,6 @@ function FAQsView() {
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToCreate, updated => {
                                     updated.question = event.target.value;
-                                    updated.question_cat = faqToCreate.question_cat;
-                                    updated.answer = faqToCreate.answer;
-                                    updated.answer_cat = faqToCreate.answer_cat;
-                                    updated.links = faqToCreate.links;
                                 }));
                             }}
                         />
@@ -397,11 +365,7 @@ function FAQsView() {
                             label='Pregunta (CAT)'
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToCreate, updated => {
-                                    updated.question = faqToCreate.question;
                                     updated.question_cat = event.target.value;
-                                    updated.answer = faqToCreate.answer;
-                                    updated.answer_cat = faqToCreate.answer_cat;
-                                    updated.links = faqToCreate.links;
                                 }));
                             }}
                         />
@@ -410,11 +374,7 @@ function FAQsView() {
                             label='Respuest (ESP)'
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToCreate, updated => {
-                                    updated.question = faqToCreate.question;
-                                    updated.question_cat = faqToCreate.question_cat;
                                     updated.answer = event.target.value;
-                                    updated.answer_cat = faqToCreate.answer_cat;
-                                    updated.links = faqToCreate.links;
                                 }));
                             }}
                             multiline
@@ -425,11 +385,7 @@ function FAQsView() {
                             label='Respuest (CAT)'
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToCreate, updated => {
-                                    updated.question = faqToCreate.question;
-                                    updated.question_cat = faqToCreate.question_cat;
-                                    updated.answer = faqToCreate.answer;
                                     updated.answer_cat = event.target.value;
-                                    updated.links = faqToCreate.links;
                                 }));
                             }}
                             multiline
@@ -454,10 +410,6 @@ function FAQsView() {
                                                         }
                                                     });
                                                     setFAQ(FAQ.copyOf(faqToCreate, updated => {
-                                                        updated.question = faqToCreate.question;
-                                                        updated.question_cat = faqToCreate.question_cat;
-                                                        updated.answer = faqToCreate.answer;
-                                                        updated.answer_cat = faqToCreate.answer_cat;
                                                         updated.links = updateLinks;
                                                     }));
                                                 }}
@@ -472,10 +424,6 @@ function FAQsView() {
                                                         return index !== i;
                                                     });
                                                     setFAQ(FAQ.copyOf(faqToCreate, updated => {
-                                                        updated.question = faqToCreate.question;
-                                                        updated.question_cat = faqToCreate.question_cat;
-                                                        updated.answer = faqToCreate.answer;
-                                                        updated.answer_cat = faqToCreate.answer_cat;
                                                         updated.links = updateLinks;
                                                     }));
                                                 }}
@@ -503,12 +451,7 @@ function FAQsView() {
                                     sx={{ width: '1px', height: '50px' }}
                                     disabled={newLink === '' ? true : false}
                                     onClick={() => {
-                                        console.log("newLink", newLink);
                                         setFAQ(FAQ.copyOf(faqToCreate, updated => {
-                                            updated.question = faqToCreate.question;
-                                            updated.question_cat = faqToCreate.question_cat;
-                                            updated.answer = faqToCreate.answer;
-                                            updated.answer_cat = faqToCreate.answer_cat;
                                             updated.links = [...faqToCreate.links, newLink];
                                         }));
                                         setNewLink('');

@@ -9,6 +9,7 @@ import './EventsView.css';
 import { modalStyle, formStyle } from '../styles';
 import CloseIcon from '@mui/icons-material/Close';
 import Input from '@mui/material/Input';
+import { createEventIdFromTitle } from '../utils';
 
 type QueryExpressionsMap = {
     [searchKey: string]: (searchValue: string) => Promise<Event[]>;
@@ -222,10 +223,6 @@ function EventsView() {
             return false;
         }
         return true;
-    }
-
-    const createEventIdFromTitle = (title: string) => {
-        return `${title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '')}`;
     }
 
     const eventView = (eventToUpdate: Event) => {

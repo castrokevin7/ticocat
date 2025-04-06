@@ -8,8 +8,8 @@ import { Search } from '@mui/icons-material';
 import './BenefitsView.css';
 import { modalStyle, formStyle } from '../styles';
 import CloseIcon from '@mui/icons-material/Close';
-import { v4 as uuidv4 } from 'uuid';
 import Input from '@mui/material/Input';
+import { createEventIdFromTitle } from '../utils';
 
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -36,8 +36,8 @@ function BenefitsView() {
     const fetchBenefits = (searchValue?: string) => {
         setState('loading');
         if (searchValue) {
-            DataStore.query(Benefit, e => e.title('contains', searchValue), {
-                sort: e => e.createdAt(SortDirection.ASCENDING)
+            DataStore.query(Benefit, benefit => benefit.title('contains', searchValue), {
+                sort: benefit => benefit.createdAt(SortDirection.ASCENDING)
             }).then((response) => {
                 setBenefits(response);
                 setState('success');
@@ -85,9 +85,7 @@ function BenefitsView() {
                         variant='contained'
                         onClick={() => {
                             setMainImage(null);
-                            setBenefit(new Benefit({
-                                benefit_id: uuidv4()
-                            }))
+                            setBenefit(new Benefit({}));
                             setOpenCreateBenefit(true);
                         }}
                     >
@@ -192,18 +190,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.title}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
                                     updated.title = benefit.target.value;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -214,18 +201,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.title_cat}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title
                                     updated.title_cat = benefit.target.value;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -236,18 +212,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.description}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
                                     updated.description = benefit.target.value;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -260,18 +225,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.description_cat}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
                                     updated.description_cat = benefit.target.value;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -284,18 +238,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.about_provider}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
                                     updated.about_provider = benefit.target.value;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -308,18 +251,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.about_provider_cat}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
                                     updated.about_provider_cat = benefit.target.value;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                             multiline
@@ -332,18 +264,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.phone}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
                                     updated.phone = benefit.target.value;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -354,17 +275,6 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.email}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
                                     updated.email = benefit.target.value;
                                 }));
                             }}
@@ -377,18 +287,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.websiteUrl}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
                                     updated.websiteUrl = benefit.target.value;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -400,18 +299,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.instagramUrl}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
                                     updated.instagramUrl = benefit.target.value;
-                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -423,18 +311,7 @@ function BenefitsView() {
                             defaultValue={benefitToUpdate.facebookUrl}
                             onChange={(benefit) => {
                                 setBenefit(Benefit.copyOf(benefitToUpdate, updated => {
-                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                    updated.title = benefitToUpdate.title;
-                                    updated.title_cat = benefitToUpdate.title_cat;
-                                    updated.description = benefitToUpdate.description;
-                                    updated.description_cat = benefitToUpdate.description_cat;
-                                    updated.about_provider = benefitToUpdate.about_provider;
-                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                    updated.phone = benefitToUpdate.phone;
-                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
                                     updated.facebookUrl = benefit.target.value;
-                                    updated.email = benefitToUpdate.email;
                                 }));
                             }}
                         />
@@ -454,19 +331,7 @@ function BenefitsView() {
                                         try {
                                             await DataStore.save(
                                                 Benefit.copyOf(benefitToUpdate, updated => {
-                                                    updated.benefit_id = benefitToUpdate.benefit_id;
-                                                    updated.title = benefitToUpdate.title;
-                                                    updated.title_cat = benefitToUpdate.title_cat;
-                                                    updated.description = benefitToUpdate.description;
-                                                    updated.description_cat = benefitToUpdate.description_cat;
-                                                    updated.about_provider = benefitToUpdate.about_provider;
-                                                    updated.about_provider_cat = benefitToUpdate.about_provider_cat;
-                                                    updated.phone = benefitToUpdate.phone;
-                                                    updated.websiteUrl = benefitToUpdate.websiteUrl;
-                                                    updated.image = benefitToUpdate.image;
-                                                    updated.instagramUrl = benefitToUpdate.instagramUrl;
-                                                    updated.facebookUrl = benefitToUpdate.facebookUrl;
-                                                    updated.email = benefitToUpdate.email;
+                                                    updated.title = createEventIdFromTitle(benefitToUpdate.title);
                                                 })
                                             );
                                             fetchBenefits();
