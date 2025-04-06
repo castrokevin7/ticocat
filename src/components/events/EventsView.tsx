@@ -8,7 +8,6 @@ import { Search } from '@mui/icons-material';
 import './EventsView.css';
 import { modalStyle, formStyle } from '../styles';
 import CloseIcon from '@mui/icons-material/Close';
-import { v4 as uuidv4 } from 'uuid';
 import Input from '@mui/material/Input';
 
 type QueryExpressionsMap = {
@@ -122,9 +121,7 @@ function EventsView() {
                         onClick={() => {
                             setGalleryImages([]);
                             setMainImage(null);
-                            setEvent(new Event({
-                                event_id: uuidv4()
-                            }))
+                            setEvent(new Event({}));
                             setOpenCreateEvent(true);
                         }}
                     >
@@ -227,6 +224,10 @@ function EventsView() {
         return true;
     }
 
+    const createEventIdFromTitle = (title: string) => {
+        return `${title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '')}`;
+    }
+
     const eventView = (eventToUpdate: Event) => {
         return (
             <Modal
@@ -248,15 +249,7 @@ function EventsView() {
                             defaultValue={eventToUpdate.title}
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToUpdate, updated => {
-                                    updated.event_id = eventToUpdate.event_id;
                                     updated.title = event.target.value;
-                                    updated.title_cat = eventToUpdate.title_cat;
-                                    updated.description = eventToUpdate.description;
-                                    updated.description_cat = eventToUpdate.description_cat;
-                                    updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.time;
-                                    updated.contact = eventToUpdate.contact;
-                                    updated.location_url = eventToUpdate.location_url;
                                 }));
                             }}
                         />
@@ -267,15 +260,7 @@ function EventsView() {
                             defaultValue={eventToUpdate.title_cat}
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToUpdate, updated => {
-                                    updated.event_id = eventToUpdate.event_id;
-                                    updated.title = eventToUpdate.title
                                     updated.title_cat = event.target.value;
-                                    updated.description = eventToUpdate.description;
-                                    updated.description_cat = eventToUpdate.description_cat;
-                                    updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.time;
-                                    updated.contact = eventToUpdate.contact;
-                                    updated.location_url = eventToUpdate.location_url;
                                 }));
                             }}
                         />
@@ -286,15 +271,7 @@ function EventsView() {
                             defaultValue={eventToUpdate.description}
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToUpdate, updated => {
-                                    updated.event_id = eventToUpdate.event_id;
-                                    updated.title = eventToUpdate.title;
-                                    updated.title_cat = eventToUpdate.title_cat;
                                     updated.description = event.target.value;
-                                    updated.description_cat = eventToUpdate.description_cat;
-                                    updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.time;
-                                    updated.contact = eventToUpdate.contact;
-                                    updated.location_url = eventToUpdate.location_url;
                                 }));
                             }}
                             multiline
@@ -307,15 +284,7 @@ function EventsView() {
                             defaultValue={eventToUpdate.description_cat}
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToUpdate, updated => {
-                                    updated.event_id = eventToUpdate.event_id;
-                                    updated.title = eventToUpdate.title;
-                                    updated.title_cat = eventToUpdate.title_cat;
-                                    updated.description = eventToUpdate.description;
                                     updated.description_cat = event.target.value;
-                                    updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.time;
-                                    updated.contact = eventToUpdate.contact;
-                                    updated.location_url = eventToUpdate.location_url;
                                 }));
                             }}
                             multiline
@@ -331,15 +300,7 @@ function EventsView() {
                                 defaultValue={eventToUpdate.date}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToUpdate, updated => {
-                                        updated.event_id = eventToUpdate.event_id;
-                                        updated.title = eventToUpdate.title;
-                                        updated.title_cat = eventToUpdate.title_cat;
-                                        updated.description = eventToUpdate.description;
-                                        updated.description_cat = eventToUpdate.description_cat;
                                         updated.date = event.target.value;
-                                        updated.time = eventToUpdate.time;
-                                        updated.contact = eventToUpdate.contact;
-                                        updated.location_url = eventToUpdate.location_url;
                                     }));
                                 }}
                             />
@@ -352,15 +313,7 @@ function EventsView() {
                                 defaultValue={eventToUpdate.time}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToUpdate, updated => {
-                                        updated.event_id = eventToUpdate.event_id;
-                                        updated.title = eventToUpdate.title;
-                                        updated.title_cat = eventToUpdate.title_cat;
-                                        updated.description = eventToUpdate.description;
-                                        updated.description_cat = eventToUpdate.description_cat;
-                                        updated.date = eventToUpdate.date;
                                         updated.time = event.target.value;
-                                        updated.contact = eventToUpdate.contact;
-                                        updated.location_url = eventToUpdate.location_url;
                                     }));
                                 }}
                             />
@@ -372,15 +325,7 @@ function EventsView() {
                             defaultValue={eventToUpdate.contact}
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToUpdate, updated => {
-                                    updated.event_id = eventToUpdate.event_id;
-                                    updated.title = eventToUpdate.title;
-                                    updated.title_cat = eventToUpdate.title_cat;
-                                    updated.description = eventToUpdate.description;
-                                    updated.description_cat = eventToUpdate.description_cat;
-                                    updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.time;
                                     updated.contact = event.target.value;
-                                    updated.location_url = eventToUpdate.location_url;
                                 }));
                             }}
                         />
@@ -391,14 +336,6 @@ function EventsView() {
                             defaultValue={eventToUpdate.location_url}
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToUpdate, updated => {
-                                    updated.event_id = eventToUpdate.event_id;
-                                    updated.title = eventToUpdate.title;
-                                    updated.title_cat = eventToUpdate.title_cat;
-                                    updated.description = eventToUpdate.description;
-                                    updated.description_cat = eventToUpdate.description_cat;
-                                    updated.date = eventToUpdate.date;
-                                    updated.time = eventToUpdate.time;
-                                    updated.contact = eventToUpdate.contact;
                                     updated.location_url = event.target.value;
                                 }));
                             }}
@@ -426,17 +363,7 @@ function EventsView() {
                                         try {
                                             await DataStore.save(
                                                 Event.copyOf(eventToUpdate, updated => {
-                                                    updated.event_id = eventToUpdate.event_id;
-                                                    updated.title = eventToUpdate.title;
-                                                    updated.title_cat = eventToUpdate.title_cat;
-                                                    updated.description = eventToUpdate.description;
-                                                    updated.description_cat = eventToUpdate.description_cat;
-                                                    updated.date = eventToUpdate.date;
-                                                    updated.time = eventToUpdate.time;
-                                                    updated.contact = eventToUpdate.contact;
-                                                    updated.location_url = eventToUpdate.location_url;
-                                                    updated.image = eventToUpdate.image;
-                                                    updated.gallery = eventToUpdate.gallery;
+                                                    updated.event_id = createEventIdFromTitle(eventToUpdate.title);
                                                 })
                                             );
                                             fetchEvents();
@@ -490,15 +417,7 @@ function EventsView() {
                             label='Título (ESP)'
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToCreate, updated => {
-                                    updated.event_id = eventToCreate.event_id;
                                     updated.title = event.target.value;
-                                    updated.title_cat = eventToCreate.title_cat;
-                                    updated.description = eventToCreate.description;
-                                    updated.description_cat = eventToCreate.description_cat;
-                                    updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.time;
-                                    updated.contact = eventToCreate.contact;
-                                    updated.location_url = eventToCreate.location_url;
                                 }))
                             }}
                         />
@@ -508,15 +427,7 @@ function EventsView() {
                             label='Título (CAT)'
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToCreate, updated => {
-                                    updated.event_id = eventToCreate.event_id;
-                                    updated.title = eventToCreate.title
                                     updated.title_cat = event.target.value;
-                                    updated.description = eventToCreate.description;
-                                    updated.description_cat = eventToCreate.description_cat;
-                                    updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.time;
-                                    updated.contact = eventToCreate.contact;
-                                    updated.location_url = eventToCreate.location_url;
                                 }))
                             }}
                         />
@@ -526,15 +437,7 @@ function EventsView() {
                             label='Descripción (ESP)'
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToCreate, updated => {
-                                    updated.event_id = eventToCreate.event_id;
-                                    updated.title = eventToCreate.title;
-                                    updated.title_cat = eventToCreate.title_cat;
                                     updated.description = event.target.value;
-                                    updated.description_cat = eventToCreate.description_cat;
-                                    updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.time;
-                                    updated.contact = eventToCreate.contact;
-                                    updated.location_url = eventToCreate.location_url;
                                 }))
                             }}
                             multiline
@@ -546,15 +449,7 @@ function EventsView() {
                             label='Descripción (CAT)'
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToCreate, updated => {
-                                    updated.event_id = eventToCreate.event_id;
-                                    updated.title = eventToCreate.title;
-                                    updated.title_cat = eventToCreate.title_cat;
-                                    updated.description = eventToCreate.description;
                                     updated.description_cat = event.target.value;
-                                    updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.time;
-                                    updated.contact = eventToCreate.contact;
-                                    updated.location_url = eventToCreate.location_url;
                                 }))
                             }}
                             multiline
@@ -569,15 +464,7 @@ function EventsView() {
                                 InputLabelProps={{ shrink: true }}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToCreate, updated => {
-                                        updated.event_id = eventToCreate.event_id;
-                                        updated.title = eventToCreate.title;
-                                        updated.title_cat = eventToCreate.title_cat;
-                                        updated.description = eventToCreate.description;
-                                        updated.description_cat = eventToCreate.description_cat;
                                         updated.date = event.target.value;
-                                        updated.time = eventToCreate.time;
-                                        updated.contact = eventToCreate.contact;
-                                        updated.location_url = eventToCreate.location_url;
                                     }))
                                 }}
                             />
@@ -588,15 +475,7 @@ function EventsView() {
                                 InputLabelProps={{ shrink: true }}
                                 onChange={(event) => {
                                     setEvent(Event.copyOf(eventToCreate, updated => {
-                                        updated.event_id = eventToCreate.event_id;
-                                        updated.title = eventToCreate.title;
-                                        updated.title_cat = eventToCreate.title_cat;
-                                        updated.description = eventToCreate.description;
-                                        updated.description_cat = eventToCreate.description_cat;
-                                        updated.date = eventToCreate.date;
                                         updated.time = event.target.value;
-                                        updated.contact = eventToCreate.contact;
-                                        updated.location_url = eventToCreate.location_url;
                                     }))
                                 }}
                             />
@@ -607,15 +486,7 @@ function EventsView() {
                             placeholder="+34602040598"
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToCreate, updated => {
-                                    updated.event_id = eventToCreate.event_id;
-                                    updated.title = eventToCreate.title;
-                                    updated.title_cat = eventToCreate.title_cat;
-                                    updated.description = eventToCreate.description;
-                                    updated.description_cat = eventToCreate.description_cat;
-                                    updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.time;
                                     updated.contact = event.target.value;
-                                    updated.location_url = eventToCreate.location_url;
                                 }))
                             }}
                         />
@@ -625,14 +496,6 @@ function EventsView() {
                             type="url"
                             onChange={(event) => {
                                 setEvent(Event.copyOf(eventToCreate, updated => {
-                                    updated.event_id = eventToCreate.event_id;
-                                    updated.title = eventToCreate.title;
-                                    updated.title_cat = eventToCreate.title_cat;
-                                    updated.description = eventToCreate.description;
-                                    updated.description_cat = eventToCreate.description_cat;
-                                    updated.date = eventToCreate.date;
-                                    updated.time = eventToCreate.time;
-                                    updated.contact = eventToCreate.contact;
                                     updated.location_url = event.target.value;
                                 }));
                             }}
@@ -659,7 +522,7 @@ function EventsView() {
                                         try {
                                             await DataStore.save(
                                                 new Event({
-                                                    event_id: eventToCreate.event_id,
+                                                    event_id: createEventIdFromTitle(eventToCreate.title),
                                                     title: eventToCreate.title,
                                                     title_cat: eventToCreate.title_cat,
                                                     description: eventToCreate.description,
