@@ -523,7 +523,7 @@ function BenefitsView() {
                                                     about_provider_cat: benefitToCreate.about_provider_cat,
                                                     phone: benefitToCreate.phone ? benefitToCreate.phone : null,
                                                     websiteUrl: benefitToCreate.websiteUrl ? benefitToCreate.websiteUrl : null,
-                                                    image: mainImage ? `${benefitToCreate.benefit_id}/main/${mainImage.name}` : null,
+                                                    image: mainImage ? `${benefitToCreate.id}/main/${mainImage.name}` : null,
                                                     instagramUrl: benefitToCreate.instagramUrl ? benefitToCreate.instagramUrl : null,
                                                     facebookUrl: benefitToCreate.facebookUrl ? benefitToCreate.facebookUrl : null,
                                                     email: benefitToCreate.email ? benefitToCreate.email : null,
@@ -536,7 +536,7 @@ function BenefitsView() {
                                         }
 
                                         if (mainImage) {
-                                            uploadImage(`${benefitToCreate.benefit_id}/main/${mainImage.name}`, mainImage);
+                                            uploadImage(`${benefitToCreate.id}/main/${mainImage.name}`, mainImage);
                                         }
                                     }
                                 }

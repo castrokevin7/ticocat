@@ -528,8 +528,8 @@ function EventsView() {
                                                     time: eventToCreate.time ? eventToCreate.time : null,
                                                     contact: eventToCreate.contact ? eventToCreate.contact : null,
                                                     location_url: eventToCreate.location_url ? eventToCreate.location_url : null,
-                                                    image: mainImage ? `${eventToCreate.event_id}/main/${mainImage.name}` : null,
-                                                    gallery: galleryImages ? galleryImages.map((image) => `${eventToCreate.event_id}/gallery/${image.name}`) : null,
+                                                    image: mainImage ? `${eventToCreate.id}/main/${mainImage.name}` : null,
+                                                    gallery: galleryImages ? galleryImages.map((image) => `${eventToCreate.id}/gallery/${image.name}`) : null,
                                                 })
                                             );
                                             fetchEvents();
@@ -539,12 +539,12 @@ function EventsView() {
                                         }
 
                                         if (mainImage) {
-                                            uploadImage(`${eventToCreate.event_id}/main/${mainImage.name}`, mainImage);
+                                            uploadImage(`${eventToCreate.id}/main/${mainImage.name}`, mainImage);
                                         }
 
                                         if (galleryImages) {
                                             galleryImages.forEach((image) => {
-                                                const imageLocation = `${eventToCreate.event_id}/gallery/${image.name}`;
+                                                const imageLocation = `${eventToCreate.id}/gallery/${image.name}`;
                                                 uploadImage(imageLocation, image);
                                             });
                                         }
