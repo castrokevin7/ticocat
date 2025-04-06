@@ -18,6 +18,7 @@ enum Interests {
 
 type FAQ @model @auth(rules: [{allow: public, provider: iam}, {allow: private, provider: iam}, {allow: private}]) {
   id: ID!
+  faq_id: String
   question: String!
   question_cat: String!
   answer: String!
