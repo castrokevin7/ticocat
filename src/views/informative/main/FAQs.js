@@ -82,7 +82,7 @@ function FAQs() {
                     {faqs.map((faq, i) =>
                         <FaqCollapse
                             key={i}
-                            id={faq.id}
+                            faq_id={faq.faq_id}
                             title={getFAQQuestion(faq)}
                             open={collapse === i}
                             onClick={() => (collapse === i ? setCollapse(false) : setCollapse(i))}

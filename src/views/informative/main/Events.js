@@ -86,7 +86,7 @@ function Events() {
             <>
                 {events.map((event, i) =>
                     <Grid key={i} item xs={12} lg={4}>
-                        <Link to={`/${getLang()}/evento/${event.id}`}>
+                        <Link to={`/${getLang()}/evento/${event.event_id}`}>
                             <SimpleBackgroundCard
                                 image={event.image}
                                 title={getEventTitle(event)}

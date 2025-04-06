@@ -26,7 +26,7 @@ import MKTypography from "components/MKTypography";
 import { Link } from "react-router-dom";
 import { getLang } from 'utils/Translator';
 
-function FaqCollapse({ id, title, open, children, ...rest }) {
+function FaqCollapse({ faqId, title, open, children, ...rest }) {
   return (
     <MKBox mb={2}>
       <MKBox
@@ -42,7 +42,7 @@ function FaqCollapse({ id, title, open, children, ...rest }) {
         }}
       >
         <MKBox sx={{ overflowX: 'auto' }} display="flex" alignItems="center" color={open ? "dark" : "text"}>
-          <Link target="_blank" to={`/${getLang()}/faq/${id}`}>
+          <Link target="_blank" to={`/${getLang()}/faq/${faqId}`}>
             <Icon sx={{ fontWeight: "bold", marginRight: 1, marginTop: 1 }} fontSize="small">
               open_in_new_rounded
             </Icon>
@@ -70,7 +70,7 @@ function FaqCollapse({ id, title, open, children, ...rest }) {
 
 // Typechecking props for the FaqCollapse
 FaqCollapse.propTypes = {
-  id: PropTypes.string.isRequired,
+  faqId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,

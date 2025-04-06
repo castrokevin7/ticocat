@@ -26,7 +26,7 @@ function BenefitView() {
 
     const fetchBenefit = async () => {
         try {
-            let response = await DataStore.query(Benefit, benefit => benefit.id('eq', benefitId));
+            let response = await DataStore.query(Benefit, benefit => benefit.faq_id('eq', benefitId));
             if (response.length > 0) {
                 response = response[0];
                 if (response.image) {
