@@ -21,7 +21,7 @@ function FAQView() {
 
     const fetchFAQ = async () => {
         try {
-            let response = await DataStore.query(FAQ, faq => faq.faq_id('eq', faqId));
+            let response = await DataStore.query(FAQ, faq => faq.id('eq', faqId));
             if (response.length > 0) {
                 response = response[0];
                 setFAQ(response);

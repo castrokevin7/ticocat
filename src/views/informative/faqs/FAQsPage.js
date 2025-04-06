@@ -87,7 +87,7 @@ function FAQsPage() {
             <Grid item xs={12} md={10} mt={4}>
                 {filteredFAQs.map((faq, i) =>
                     <FaqCollapse
-                        faqId={faq.faq_id}
+                        faqId={faq.id}
                         key={i}
                         title={getFAQQuestion(faq)}
                         open={collapse === i}
