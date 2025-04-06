@@ -8,6 +8,7 @@ import PageviewIcon from '@mui/icons-material/Pageview';
 import CloseIcon from '@mui/icons-material/Close';
 import { RemoveCircleOutline, Search } from '@mui/icons-material';
 import { modalStyle, formStyle } from '../styles';
+import { createEventIdFromTitle } from '../utils';
 
 const useConstructor = (callBack = () => { }) => {
     const [hasBeenCalled, setHasBeenCalled] = useState(false);
@@ -176,7 +177,7 @@ function FAQsView() {
                         <TextField
                             id='outlined-required'
                             label='Pregunta (ESP)'
-                            defaultValue={faq.question}
+                            defaultValue={faqToUpdate.question}
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
                                     updated.question = event.target.value;
@@ -186,7 +187,7 @@ function FAQsView() {
                         <TextField
                             id='outlined-required'
                             label='Pregunta (CAT)'
-                            defaultValue={faq.question_cat}
+                            defaultValue={faqToUpdate.question_cat}
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
                                     updated.question_cat = event.target.value;
@@ -196,7 +197,7 @@ function FAQsView() {
                         <TextField
                             id='outlined-required'
                             label='Respuesta (ESP)'
-                            defaultValue={faq.answer}
+                            defaultValue={faqToUpdate.answer}
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
                                     updated.answer = event.target.value;
@@ -208,7 +209,7 @@ function FAQsView() {
                         <TextField
                             id='outlined-required'
                             label='Respuesta (CAT)'
-                            defaultValue={faq.answer_cat}
+                            defaultValue={faqToUpdate.answer_cat}
                             onChange={(event) => {
                                 setFAQ(FAQ.copyOf(faqToUpdate, updated => {
                                     updated.answer_cat = event.target.value;
@@ -276,7 +277,6 @@ function FAQsView() {
                                     sx={{ width: '1px', height: '50px' }}
                                     disabled={newLink === '' ? true : false}
                                     onClick={() => {
-                                        console.log("newLink", newLink);
                                         setFAQ(FAQ.copyOf(faqToUpdate, updated => {
                                             updated.links = [...faqToUpdate.links, newLink];
                                         }));
@@ -297,6 +297,7 @@ function FAQsView() {
                                         try {
                                             await DataStore.save(
                                                 FAQ.copyOf(faq, updated => {
+                                                    updated.faq_id= createEventIdFromTitle(faq.question);
                                                     updated.question = faqToUpdate.question;
                                                     updated.question_cat = faqToUpdate.question_cat;
                                                     updated.answer = faqToUpdate.answer;
@@ -470,6 +471,7 @@ function FAQsView() {
                                         try {
                                             await DataStore.save(
                                                 new FAQ({
+                                                    faq_id: createEventIdFromTitle(faq.question),
                                                     question: faqToCreate.question,
                                                     question_cat: faqToCreate.question_cat,
                                                     answer: faqToCreate.answer,
