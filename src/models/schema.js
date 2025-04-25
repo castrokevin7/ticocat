@@ -10,6 +10,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "faq_id": {
+                    "name": "faq_id",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "question": {
                     "name": "question",
                     "isArray": false,
@@ -711,5 +718,5 @@ export const schema = {
     },
     "nonModels": {},
     "codegenVersion": "3.3.5",
-    "version": "359d5473b3df5afdfea93d5d03ede5a2"
+    "version": "3a8152ad55a5645b91f7cb2a966f839c"
 };
