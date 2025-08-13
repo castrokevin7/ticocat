@@ -23,7 +23,7 @@ function About() {
   }, []);
 
   const getStatutesUrl = async () => {
-    const url = await Storage.get('Estatutos.pdf', { expires: 60 });
+    const url = await Storage.get('Recursos/Estatutos.pdf', { expires: 60 });
     return url;
   }
 
