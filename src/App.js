@@ -18,6 +18,7 @@ import TermsAndConditionsPage from 'views/informative/terms-and-conditions/Terms
 import LoginPage from 'views/social-network/login/LoginPage';
 import AccountConfigurationPage from 'views/social-network/account-configuration/AccountConfigurationPage';
 import CommunityPage from 'views/social-network/community/CommunityPage';
+import ResourcesPage from 'views/social-network/resources/ResourcesPage';
 import ProfileViewPage from 'views/social-network/profile/ProfileViewPage';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { getLang } from 'utils/Translator';
@@ -107,14 +108,14 @@ function App() {
         {/* TICOCAT Social */}
         <Route exact path={"/es/social/comunidad"} element={<CommunityPage />} />;
         <Route exact path={"/cat/social/comunidad"} element={<CommunityPage />} />;
-
         <Route exact path={"/es/social/configuracion"} element={<AccountConfigurationPage />} />;
         <Route exact path={"/cat/social/configuracion"} element={<AccountConfigurationPage />} />;
-
         <Route exact path={"/es/social/perfil/:associateId"} element={<ProfileViewPage />} />;
         <Route exact path={"/cat/social/perfil/:associateId"} element={<ProfileViewPage />} />;
         <Route exact path={"/es/social/perfil"} element={<ProfileViewPage />} />;
         <Route exact path={"/cat/social/perfil"} element={<ProfileViewPage />} />;
+        <Route exact path={"/es/social/recursos"} element={<ResourcesPage />} />;
+        <Route exact path={"/cat/social/recursos"} element={<ResourcesPage />} />;
 
         <Route path="*" element={<Navigate to="/" />} />
         <Route exact path="/" element={<Navigate to="/es" />} />

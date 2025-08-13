@@ -59,6 +59,12 @@ const routes = [
     icon: <Icon>diversity_3</Icon>,
     href: `/${getLang()}/social/comunidad`,	
     target: "_self"
+  },
+  {
+    name: "Recursos",
+    icon: <Icon>library_books</Icon>,
+    href: `/${getLang()}/social/recursos`,	
+    target: "_self"
   }
 ];
 
