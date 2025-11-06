@@ -22,17 +22,20 @@ import MKTypography from "components/MKTypography";
 // Otis Kit PRO components
 import InfoBackgroundCard from "components/Cards/BackgroundCards/InfoBackgroundCard";
 import { Spinner } from "components/Spinner";
+import destinoCatalunyaImg from 'assets/images/destino_catalunya.png';
 
 function ResourcesPage() {
     const { route } = useAuthenticator(context => [context.route]);
     const [welcomeGuideUrl, setWelcomeGuideUrl] = useState(null);
     const [statutesUrl, setStatutesUrl] = useState(null);
+    const [destinoCatalunyaUrl, setDestinoCatalunyaUrl] = useState(null);
     const [loadingResources, setLoadingResources] = useState(false);
 
     useEffect(() => {
         setLoadingResources(true);
         getWelcomeGuideUrl().then(url => setWelcomeGuideUrl(url));
         getStatutesUrl().then(url => setStatutesUrl(url));
+        getDestinoCatalunyaUrl().then(url => setDestinoCatalunyaUrl(url));
         setLoadingResources(false);
     }, []);
 
@@ -43,6 +46,11 @@ function ResourcesPage() {
 
     const getWelcomeGuideUrl = async () => {
         const url = await Storage.get('Recursos/Bienvenida TICOCAT.pdf', { expires: 60 });
+        return url;
+    }
+
+    const getDestinoCatalunyaUrl = async () => {
+        const url = await Storage.get('Recursos/Destino Catalunya 2025.pdf', { expires: 60 });
         return url;
     }
 
@@ -58,22 +66,34 @@ function ResourcesPage() {
         if (loadingResources) return <Spinner />;
 
         return (
-            <Grid container spacing={3} item xs={12} md={6} lg={8}>
-                <Grid item xs={12} md={6}>
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6} md={4}>
                     <a href={welcomeGuideUrl} target="_blank" rel="noreferrer">
                         <InfoBackgroundCard
                             image="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/laught.jpg"
                             icon="import_contacts"
                             title="Guía de Bienvenida"
+                            label="Información útil para nuevos miembros"
                         />
                     </a>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} sm={6} md={4}>
                     <a href={statutesUrl} target="_blank" rel="noreferrer">
                         <InfoBackgroundCard
                             image="https://derechovirtual.org/wp-content/uploads/2023/06/elaboracio%CC%81n-de-leyes-en-Espan%CC%83a.jpg"
                             icon="import_contacts"
                             title="Estatutos"
+                            label="Normativa que rige la asociación"
+                        />
+                    </a>
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                    <a href={destinoCatalunyaUrl} target="_blank" rel="noreferrer">
+                        <InfoBackgroundCard
+                            image={destinoCatalunyaImg}
+                            icon="import_contacts"
+                            title="Destino Cataluña 2025"
+                            label="Guía informativa sobre trámites y vida en Cataluña"
                         />
                     </a>
                 </Grid>
