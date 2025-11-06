@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { DataStore } from 'aws-amplify';
+import { DataStore, Storage } from 'aws-amplify';
 
 import { FAQ } from '../../../models';
 
@@ -9,6 +9,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import MKInput from "components/MKInput";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
 
 // Otis Kit PRO components
 import MKBox from "components/MKBox";
@@ -28,12 +31,16 @@ import Translator from 'utils/Translator';
 
 import { Spinner } from "components/Spinner";
 import { getLang } from 'utils/Translator';
+import destinoCatalunyaImg from 'assets/images/destino_catalunya.png';
+import InfoBackgroundCard from "components/Cards/BackgroundCards/InfoBackgroundCard";
 
 function FAQsPage() {
     const [collapse, setCollapse] = useState(false);
     const [state, setState] = useState('');
     const [faqs, setFAQs] = useState(null);
+    const [destinoCatalunyaUrl, setDestinoCatalunyaUrl] = useState(null);
     const [filteredFAQs, setFilteredFAQs] = useState(null);
+    const [activeTab, setActiveTab] = useState(0);
 
     const fetchFAQs = async () => {
         try {
@@ -52,8 +59,14 @@ function FAQsPage() {
 
     useEffect(() => {
         setState('loading');
+        getDestinoCatalunyaUrl().then(url => setDestinoCatalunyaUrl(url));
         fetchFAQs();
     }, []);
+
+    const getDestinoCatalunyaUrl = async () => {
+        const url = await Storage.get('Recursos/Destino Catalunya 2025.pdf', { expires: 60 });
+        return url;
+    }
 
     const getFAQs = () => {
         if (state === 'loading' && filteredFAQs === null) {
@@ -132,6 +145,10 @@ function FAQsPage() {
         filterFAQsByText(event.target.value);
     };
 
+    const handleTabChange = (event, newValue) => {
+        setActiveTab(newValue);
+    };
+
     return (
         <>
             <DefaultNavbar
@@ -193,18 +210,49 @@ function FAQsPage() {
             >
                 <MKBox component="section" py={6}>
                     <Container>
-                        <Grid container item xs={12} lg={8} py={1} mx="auto">
-                            <MKInput
-                                label={Translator.instance.translate("faqs_page_look_for_faq")}
-                                fullWidth
-                                onChange={handleSearchCriteriaChange}
-                            />
-                            <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1}>
-                                {Translator.instance.translate("faqs_page_suggestions")} <a rel="noreferrer" target='_blank' href='https://forms.gle/mhvgWoYt1jj1YtUs6'>aquí</a>.
-                            </MKTypography>
-                        </Grid>
+                        <Box>
+                            <Tabs
+                                value={activeTab}
+                                onChange={handleTabChange}
+                                textColor="info"
+                                indicatorColor="info"
+                            >
+                                <Tab label={Translator.instance.translate("faqs_page_title")} />
+                                <Tab label={Translator.instance.translate("faqs_page_resources")} />
+                            </Tabs>
+                        </Box>
 
-                        {getFAQs()}
+                        {activeTab === 0 && (
+                            <>
+                                <Grid container xs={12} lg={8} py={4} mx="auto">
+                                    <MKInput
+                                        label={Translator.instance.translate("faqs_page_look_for_faq")}
+                                        fullWidth
+                                        onChange={handleSearchCriteriaChange}
+                                    />
+                                    <MKTypography sx={{ mx: 'auto' }} variant="body2" color="text" mt={1}>
+                                        {Translator.instance.translate("faqs_page_suggestions")} <a rel="noreferrer" target='_blank' href='https://forms.gle/mhvgWoYt1jj1YtUs6'>aquí</a>.
+                                    </MKTypography>
+                                </Grid>
+
+                                {getFAQs()}
+                            </>
+                        )}
+
+                        {activeTab === 1 && (
+                            <Grid container spacing={3} py={4}>
+                                <Grid item xs={12} sm={6} md={4}>
+                                    <a href={destinoCatalunyaUrl} target="_blank" rel="noreferrer">
+                                        <InfoBackgroundCard
+                                            image={destinoCatalunyaImg}
+                                            icon="import_contacts"
+                                            title="Destino Cataluña 2025"
+                                            label="Guía informativa sobre trámites y vida en Cataluña"
+                                        />
+                                    </a>
+                                </Grid>
+                            </Grid>
+                        )}
                     </Container>
                 </MKBox>
             </Card>
