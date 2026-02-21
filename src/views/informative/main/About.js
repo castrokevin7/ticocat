@@ -38,7 +38,6 @@ function About() {
           <Grid container mb={2}>
             <MKTypography variant="h3" my={1} mb={2}>
               {Translator.instance.translate("about_context_title")}
-              No se esto es una prueba lo que sea
             </MKTypography>
             <iframe
               title="Spotify Player"
