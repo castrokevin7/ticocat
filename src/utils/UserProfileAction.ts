@@ -1,6 +1,7 @@
+import { getLang } from './Translator';
+import { ActionConfig } from './TranslateAction';
 
-import { getLang } from 'utils/Translator';
-export function getUserProfileAction() {
+export function getUserProfileAction(): ActionConfig {
     if (getLang() === "es") {
         return {
             route: "/es/social/configuracion",
