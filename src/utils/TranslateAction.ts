@@ -1,9 +1,11 @@
 import { getLang } from './Translator';
 
+type ColorType = "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "light" | "default" | "white";
+
 export interface ActionConfig {
     route: string;
     label: string;
-    color: string;
+    color: ColorType;
     icon: string;
     variant: string;
     size: string;
