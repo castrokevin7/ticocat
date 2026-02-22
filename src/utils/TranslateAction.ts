@@ -1,8 +1,18 @@
-import { getLang } from 'utils/Translator';
+import { getLang } from './Translator';
 
-export function getTranslateAction() {
+export interface ActionConfig {
+    route: string;
+    label: string;
+    color: string;
+    icon: string;
+    variant: string;
+    size: string;
+    minimal: boolean;
+}
+
+export function getTranslateAction(): ActionConfig {
     const origin = window.location.origin;
-    
+
     let pathnameParts = window.location.pathname.split("/");
     if (pathnameParts.length > 0 && pathnameParts[0] === "") {
         pathnameParts = pathnameParts.slice(1);
