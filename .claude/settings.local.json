@@ -3,7 +3,9 @@
     "allow": [
       "Bash(tree:*)",
       "Bash(cat:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git checkout:*)",
+      "Bash(npm run start:*)"
     ]
   }
 }
