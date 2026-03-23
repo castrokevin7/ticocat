@@ -155,6 +155,10 @@
         "es": "De",
         "cat": "De"
     },
+    "team_in_prefix": {
+        "es": "Viviendo en",
+        "cat": "Vivint a"
+    },
     "team_arrival_prefix": {
         "es": "Llegada a Cataluña",
         "cat": "Arribada a Catalunya"
