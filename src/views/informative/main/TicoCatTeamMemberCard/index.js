@@ -31,6 +31,7 @@ function TicoCatTeamMemberCard({
   name, 
   position, 
   from,
+  nowLiving,
   arrivalTime,
   occupation,
   reasonOfParticipation,
@@ -58,7 +59,10 @@ function TicoCatTeamMemberCard({
               {Translator.instance.translate(position.label)}
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              📍 {Translator.instance.translate("team_from_prefix")}: {from}.
+              🇨🇷 {Translator.instance.translate("team_from_prefix")}: {from}.
+            </MKTypography>
+            <MKTypography variant="body2" color="text">
+              📍 {Translator.instance.translate("team_in_prefix")}: {nowLiving}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
               ⏱️ {Translator.instance.translate("team_arrival_prefix")}: {arrivalTime}.
