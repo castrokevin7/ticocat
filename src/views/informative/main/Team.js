@@ -84,7 +84,7 @@ function Team() {
                 name="Jairo Javier Sánchez Mejías"
                 position={{ color: "dark", label: "team_vicepresident_position" }}
                 from="Alajuela"
-                nowLiving="La Pau, Sant Martí"
+                nowLiving="Sant Martí, Barcelona"
                 arrivalTime={Translator.instance.translate("team_vicepresident_arrival")}
                 occupation={Translator.instance.translate("team_vicepresident_occupation")}
                 contributions={Translator.instance.translate("team_vicepresident_contributions")}
@@ -96,10 +96,10 @@ function Team() {
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
                 image={secretaryPhoto}
-                name="Jairo Javier Sánchez Mejías"
+                name="Ana Laura Jiménez Ortega"
                 position={{ color: "dark", label: "team_secretary_position" }}
-                from="Alajuela"
-                nowLiving="Badalona"
+                from="San Jose, Costa Rica"
+                nowLiving="Gràcia, Barcelona"
                 arrivalTime={Translator.instance.translate("team_secretary_arrival")}
                 occupation={Translator.instance.translate("team_secretary_occupation")}
                 contributions={Translator.instance.translate("team_secretary_contributions")}
@@ -111,10 +111,10 @@ function Team() {
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
                 image={treasurerPhoto}
-                name="Nathalie Horvilleur"
+                name="Fernando Arturo Morales Calvo"
                 position={{ color: "dark", label: "team_treasurer_position" }}
-                from="Curridabat, San José⁣"
-                nowLiving="Badalona"
+                from="Occidente"
+                nowLiving="Eixample, Barcelona"
                 arrivalTime={Translator.instance.translate("team_treasury_arrival")}
                 occupation={Translator.instance.translate("team_treasury_occupation")}
                 contributions={Translator.instance.translate("team_treasury_contributions")}
@@ -126,10 +126,10 @@ function Team() {
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
                 image={member1Photo}
-                name="Daniela Guzmán Rivera"
+                name="Sergio Alberto Ugalde Resenterra"
                 position={{ color: "dark", label: "team_vocal_position" }}
-                from="Cartago"
-                nowLiving="Badalona"
+                from="Barrio México, San José"
+                nowLiving="L'Hospitalet de Llobregat"
                 arrivalTime={Translator.instance.translate("team_vocal_one_arrival")}
                 occupation={Translator.instance.translate("team_vocal_one_occupation")}
                 contributions={Translator.instance.translate("team_vocal_one_contributions")}
@@ -141,10 +141,10 @@ function Team() {
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
                 image={member2Photo}
-                name="Erik Sandoval"
+                name="Carolina Cordero Alfaro"
                 position={{ color: "dark", label: "team_vocal_position" }}
-                from="Paraíso, Cartago"
-                nowLiving="Badalona"
+                from="Ciudad Colón"
+                nowLiving="Sarriá, Barcelona"
                 arrivalTime={Translator.instance.translate("team_vocal_two_arrival")}
                 occupation={Translator.instance.translate("team_vocal_two_occupation")}
                 contributions={Translator.instance.translate("team_vocal_two_contributions")}
@@ -156,10 +156,10 @@ function Team() {
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
                 image={member3Photo}
-                name="Erik Sandoval"
+                name="Montgomery Miralles Mora"
                 position={{ color: "dark", label: "team_vocal_position" }}
-                from="Paraíso, Cartago"
-                nowLiving="Badalona"
+                from="Cedros de Montes de Oca"
+                nowLiving="Sant Quirze del Vallès"
                 arrivalTime={Translator.instance.translate("team_vocal_three_arrival")}
                 occupation={Translator.instance.translate("team_vocal_three_occupation")}
                 contributions={Translator.instance.translate("team_vocal_three_contributions")}
@@ -171,10 +171,10 @@ function Team() {
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
                 image={substitutionPhoto}
-                name="Erik Sandoval"
-                position={{ color: "dark", label: "team_vocal_position" }}
-                from="Paraíso, Cartago"
-                nowLiving="Badalona"
+                name="Karla Marlene Mena Aguilar"
+                position={{ color: "dark", label: "team_substitution_position" }}
+                from="Cartago"
+                nowLiving="Gràcia, Barcelona"
                 arrivalTime={Translator.instance.translate("team_substitution_arrival")}
                 occupation={Translator.instance.translate("team_substitution_occupation")}
                 contributions={Translator.instance.translate("team_substitution_contributions")}
