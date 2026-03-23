@@ -276,16 +276,16 @@
         "cat": "2014"
     },
     "team_vocal_one_occupation": {
-        "es": "Diseñadora de viajes y Veterinaria",
-        "cat": "Dissenyadora de viatges i Veterinària"
+        "es": "Informático",
+        "cat": "Informàtico"
     },
     "team_vocal_one_contributions": {
-        "es": "Voluntaria en varios eventos",
-        "cat": "Voluntària en diversos esdeveniments"
+        "es": "Hasta ahora me he limitado a ser un participante más de las actividades organizadas por la Aso. Y he pensado que quizás pueda poner mi granito de arena para que esas actividades se sigan realizando.",
+        "cat": "Fins ara m'he limitat a ser un participant més de les activitats organitzades per l'Aso. I he pensat que potser puc posar el meu gra de sorra perquè aquestes activitats es continuïn realitzant."
     },
     "team_vocal_one_reasons": {
-        "es": "Querer una comunidad unida, solidaria y con muchas anécdotas para contar",
-        "cat": "Voler una comunitat unida, solidària i amb moltes anècdotes per explicar"
+        "es": "El poder compartir experiencias con personas a las que la vida ha llevado de Tiquicia a Catalunya",
+        "cat": "El poder compartir experiències amb persones a les quals la vida ha portat de Tiquicia a Catalunya"
     },
     "team_vocal_two_arrival": {
         "es": "Mayo, 2016",
@@ -302,6 +302,38 @@
     "team_vocal_two_reasons": {
         "es": "Ofrecer la estructura de mi empresa - Gastro Affair - para poder gestionar y ejecutar eventos para los Ticos y otras personas interesadas en nuestra cultura",
         "cat": "Ofereix la estructura de la meva empresa - Gastro Affair - per poder gestionar i executar esdeveniments per als Ticos i altres persones interessades en la nostra cultura"
+    },
+    "team_vocal_three_arrival": {
+        "es": "2023",
+        "cat": "2023"
+    },
+    "team_vocal_three_occupation": {
+        "es": "Empresario",
+        "cat": "Empresari"
+    },
+    "team_vocal_three_contributions": {
+        "es": "Orden financiero, tesorería clara, presupuestos, control, previsión, procesos transparentes, optimización de costos e ingresos, digitalización contable y gestión",
+        "cat": "Ordre financer, tresoreria clara, presuposts, control, previsió, processos transparents, optimització de costos i ingressos, digitalització comptable i gestió"
+    },
+    "team_vocal_three_reasons": {
+        "es": "Ayudar a otros ticos consolidando su presencia y comunidad en Cataluña, y permitir que los catalanes conozcan la belleza de nuestra cultura e idiosincrasia",
+        "cat": "Ajudar altres ticos consolidant la seva presència i comunitat a Catalunya, i permetre que els catalans coneguin la bellesa de la nostra cultura i idiosincràsia"
+    },
+    "team_substitution_arrival": {
+        "es": "Junio, 2023",
+        "cat": "Juny, 2023"
+    },
+    "team_substitution_occupation": {
+        "es": "Estudiante de Doctorado en Ciencia de Materiales",
+        "cat": "Estudiant de Doctorat en Ciència de Materials"
+    },
+    "team_substitution_contributions": {
+        "es": "Voluntaria en Stand de Sant Jordi 2025, baile típico improvisado en actividades",
+        "cat": "Voluntària en Stand de Sant Jordi 2025, ball típic improvissat en activitats"
+    },
+    "team_substitution_reasons": {
+        "es": "La Aso se ha convertido en un espacio acogedor. Espero ayudar a mantenerlo y mejorarlo para que muchos más se sientan bienvenidos en Barcelona",
+        "cat": "L'Aso s'ha convertit en un espai acollidor. Espero ajudar a mantenir-lo i millorar-lo perquè molts més se sentin benvinguts a Barcelona"
     },
     "events_page_title": {
         "es": "Eventos",
