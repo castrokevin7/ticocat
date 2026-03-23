@@ -16,8 +16,8 @@ import vicepresidentPhoto from "assets/images/team/vicepresident.jpg";
 import treasurerPhoto from "assets/images/team/treasurer.jpg";
 import member1Photo from "assets/images/team/member1.jpg";
 import member2Photo from "assets/images/team/member2.jpg";
-import member3Photo from "assets/images/team/member2.jpg";
-import substitutionPhoto from "assets/images/team/member2.jpg";
+import member3Photo from "assets/images/team/member3.jpg";
+import substitutionPhoto from "assets/images/team/substitution.jpg";
 
 
 import Translator from 'utils/Translator';
@@ -82,7 +82,7 @@ function Team() {
               <TicoCatTeamMemberCard
                 image={vicepresidentPhoto}
                 name="Jairo Javier Sánchez Mejías"
-                position={{ color: "dark", label: "team_secretary_position" }}
+                position={{ color: "dark", label: "team_vicepresident_position" }}
                 from="Alajuela"
                 nowLiving="La Pau, Sant Martí"
                 arrivalTime={Translator.instance.translate("team_vicepresident_arrival")}
@@ -134,21 +134,6 @@ function Team() {
                 occupation={Translator.instance.translate("team_vocal_one_occupation")}
                 contributions={Translator.instance.translate("team_vocal_one_contributions")}
                 reasonOfParticipation={Translator.instance.translate("team_vocal_one_reasons")}
-              />
-            </MKBox>
-          </Grid>
-          <Grid item xs={12} lg={12}>
-            <MKBox mb={1}>
-              <TicoCatTeamMemberCard
-                image={member2Photo}
-                name="Erik Sandoval"
-                position={{ color: "dark", label: "team_vocal_position" }}
-                from="Paraíso, Cartago"
-                nowLiving="Badalona"
-                arrivalTime={Translator.instance.translate("team_vocal_two_arrival")}
-                occupation={Translator.instance.translate("team_vocal_two_occupation")}
-                contributions={Translator.instance.translate("team_vocal_two_contributions")}
-                reasonOfParticipation={Translator.instance.translate("team_vocal_two_reasons")}
               />
             </MKBox>
           </Grid>
