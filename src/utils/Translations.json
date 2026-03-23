@@ -195,6 +195,10 @@
         "es": "Vocal",
         "cat": "Vocal"
     },
+    "team_substitution_position": {
+        "es": "Suplencia",
+        "cat": "Suplència"
+    },
     "team_title": {
         "es": "El Equipo",
         "cat": "L'Equip"
