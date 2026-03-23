@@ -187,7 +187,7 @@
         "es": "Secretariado",
         "cat": "Secretariat"
     },
-    "team_treasurer_position": {
+        "team_treasurer_position": {
         "es": "Tesorería",
         "cat": "Tresoreria"
     },
@@ -220,36 +220,36 @@
         "cat": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, encara unim forces per aconseguir-ho"
     },
     "team_vicepresident_arrival": {
-        "es": "Junio, 2023",
-        "cat": "Juny, 2023"
+        "es": "Junio, 2022",
+        "cat": "Juny, 2022"
     },
     "team_vicepresident_occupation": {
-        "es": "Psicóloga y Escritora",
-        "cat": "Psicòloga i Escriptora"
-    },
-    "team_vicepresident_contributions": {
-        "es": "Proyección, estructura, habilidades sociales y colaboraciones",
-        "cat": "Projecció, estructura, habilitats socials i col·laboracions"
-    },
-    "team_vicepresident_reasons": {
-        "es": "Me mueve el formar parte de una comunidad colaborativa, el ayudar a facilitar la integración de nuevos residentes y promover las relaciones sociales y profesionales",
-        "cat": "Em mou formar part d'una comunitat col·laborativa, el ajudar a facilitar la integració de nous residents i promoure les relacions socials i professionals"
-    },
-    "team_secretary_arrival": {
-        "es": "2022",
-        "cat": "2022"
-    },
-    "team_secretary_occupation": {
         "es": "Ing. Informático",
         "cat": "Enginyer Informàtic"
     },
-    "team_secretary_contributions": {
+    "team_vicepresident_contributions": {
         "es": "Voluntario y organizador de salidas en grupo",
         "cat": "Voluntari i organitzador de sortides en grup"
     },
-    "team_secretary_reasons": {
+    "team_vicepresident_reasons": {
         "es": "Incentivar la unión, cohesión y colaboración entre los costarricenses en Cataluña y apoyar las actividades culturales entre ticos y catalanes",
         "cat": "Incentivar la unió, cohesió i col·laboració entre els costarricencs a Catalunya i donar suport a les activitats culturals entre ticos i catalans"
+    },
+    "team_secretary_arrival": {
+        "es": "Junio, 2022",
+        "cat": "Juny, 2022"
+    },
+    "team_secretary_occupation": {
+        "es": "Psicóloga y Escritora",
+        "cat": "Psicòloga i Escriptora"
+    },
+    "team_secretary_contributions": {
+        "es": "Proyección, estructura, habilidades sociales y colaboraciones",
+        "cat": "Projecció, estructura, habilitats socials i col·laboracions"
+    },
+    "team_secretary_reasons": {
+        "es": "Me mueve el formar parte de una comunidad colaborativa, el ayudar a facilitar la integración de nuevos residentes y promover las relaciones sociales y profesionales",
+        "cat": "Em mou formar part d'una comunitat col·laborativa, el ajudar a facilitar la integració de nous residents i promoure les relacions socials i professionals"
     },
     "team_treasury_arrival": {
         "es": "Febrero, 2024",
