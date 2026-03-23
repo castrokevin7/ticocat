@@ -10,14 +10,14 @@ import MKTypography from "components/MKTypography";
 import TicoCatTeamMemberCard from "./TicoCatTeamMemberCard";
 
 // Images
-import presidentPhoto from "assets/images/team/jordi.jpg";
-import secretaryPhoto from "assets/images/team/beleny.jpg";
-import vicePresidentPhoto from "assets/images/team/jairo.jpg";
-import treasurerPhoto from "assets/images/team/nathalie.jpg";
-import member1Photo from "assets/images/team/daniela.jpg";
-import member2Photo from "assets/images/team/erick.jpg";
-import member3Photo from "assets/images/team/erick.jpg";
-import substitutionPhoto from "assets/images/team/erick.jpg";
+import presidentPhoto from "assets/images/team/president.jpg";
+import secretaryPhoto from "assets/images/team/secretary.jpg";
+import vicepresidentPhoto from "assets/images/team/vicepresident.jpg";
+import treasurerPhoto from "assets/images/team/treasurer.jpg";
+import member1Photo from "assets/images/team/member1.jpg";
+import member2Photo from "assets/images/team/member2.jpg";
+import member3Photo from "assets/images/team/member2.jpg";
+import substitutionPhoto from "assets/images/team/member2.jpg";
 
 
 import Translator from 'utils/Translator';
@@ -80,7 +80,7 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={vicePresidentPhoto}
+                image={vicepresidentPhoto}
                 name="Jairo Javier Sánchez Mejías"
                 position={{ color: "dark", label: "team_secretary_position" }}
                 from="Alajuela"
