@@ -33,6 +33,7 @@ interface TicoCatTeamMemberCardProps {
     label: string;
   };
   from: string;
+  nowLiving: string;
   arrivalTime: string;
   occupation: string;
   reasonOfParticipation: string;
