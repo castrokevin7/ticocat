@@ -187,7 +187,7 @@
         "es": "Secretariado",
         "cat": "Secretariat"
     },
-        "team_treasurer_position": {
+        "team_treasury_position": {
         "es": "Tesorería",
         "cat": "Tresoreria"
     },
@@ -256,20 +256,20 @@
         "cat": "Creixement personal i professional, sentit de comunitat, contribuir al benestar comú"
     },
     "team_treasury_arrival": {
-        "es": "Febrero, 2024",
-        "cat": "Febrer, 2024"
+        "es": "Enero, 2024",
+        "cat": "Gener, 2024"
     },
     "team_treasury_occupation": {
-        "es": "Educadora Física",
-        "cat": "Educadora Física"
+        "es": "Microbiólogo",
+        "cat": "Microbióleg"
     },
     "team_treasury_contributions": {
-        "es": "Empatía, buen ambiente y cercanía",
-        "cat": "Empatia, bon ambient i proximitat"
+        "es": "Cuentas claras, orden en la tesorería y muchas ganas de trabajar para que todos los proyectos se hagan realidad.",
+        "cat": "Comptes clares, ordre en la tresoreria i moltes ganes de treballar perquè tots els projectes es facin realitat."
     },
     "team_treasury_reasons": {
-        "es": "Poder seguir cerca de la cultura Tica y compartir con gente de una tierra en comun. Hacer el esduerzo de crear comunidad y disfrutar de ls mezcla de culturas que aportsmos aquí en Cataluña",
-        "cat": "Poder seguir a prop de la cultura Tica i compartir amb gent d'una terra en comú. Fer l'esforç de crear comunitat i gaudir de la barreja de cultures que aportem aquí a Catalunya"
+        "es": "Me encanta ver cómo Costa Rica se mueve por el mundo y quería aportar mi granito de arena para que la cultura tica se sienta viva en Barcelona.",
+        "cat": "M'encanta veure com Costa Rica es mou pel món i volia aportar el meu gra de sorra perquè la cultura tica es senti viva a Barcelona."
     },
     "team_vocal_one_arrival": {
         "es": "2014",

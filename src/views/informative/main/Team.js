@@ -112,8 +112,8 @@ function Team() {
               <TicoCatTeamMemberCard
                 image={treasurerPhoto}
                 name="Fernando Arturo Morales Calvo"
-                position={{ color: "dark", label: "team_treasurer_position" }}
-                from="Occidente"
+                position={{ color: "dark", label: "team_treasury_position" }}
+                from="Santa Ana"
                 nowLiving="Eixample, Barcelona"
                 arrivalTime={Translator.instance.translate("team_treasury_arrival")}
                 occupation={Translator.instance.translate("team_treasury_occupation")}
