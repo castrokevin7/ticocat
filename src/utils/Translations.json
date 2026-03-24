@@ -155,6 +155,10 @@
         "es": "De",
         "cat": "De"
     },
+    "team_in_prefix": {
+        "es": "Viviendo en",
+        "cat": "Vivint a"
+    },
     "team_arrival_prefix": {
         "es": "Llegada a Cataluña",
         "cat": "Arribada a Catalunya"
@@ -183,7 +187,7 @@
         "es": "Secretariado",
         "cat": "Secretariat"
     },
-    "team_treasurer_position": {
+        "team_treasury_position": {
         "es": "Tesorería",
         "cat": "Tresoreria"
     },
@@ -191,109 +195,145 @@
         "es": "Vocal",
         "cat": "Vocal"
     },
+    "team_substitution_position": {
+        "es": "Suplencia",
+        "cat": "Suplència"
+    },
     "team_title": {
         "es": "El Equipo",
         "cat": "L'Equip"
     },
     "team_description": {
-        "es": "Junta directiva de la asociación período 2024-2026",
-        "cat": "Junta directiva de l'associació període 2024-2026"
+        "es": "Junta directiva de la asociación período 2026-2028",
+        "cat": "Junta directiva de l'associació període 2026-2028"
     },
     "team_president_arrival": {
-        "es": "Octubre, 2013",
-        "cat": "Octubre, 2013"
+        "es": "Sept, 2016",
+        "cat": "Set, 2016"
     },
     "team_president_occupation": {
-        "es": "Cinematografía y Música",
-        "cat": "Cinematografia i Música"
+        "es": "Analista de datos",
+        "cat": "Analista de dades"
     },
     "team_president_contributions": {
-        "es": "Creatividad, entusiasmo y... ¡Comida!",
-        "cat": "Creativitat, entusiasme i... Menjar!"
+        "es": "Dirección, trabajo en equipo, movimiento, buena energía y risas",
+        "cat": "Direcció, treball en equip, moviment, bona energia i rialles"
     },
     "team_president_reasons": {
-        "es": "Después de, por casualidad, haber heredado el grupo de Facebook de \"Ticos en Barcelona\", me encontré con gente maravillosa que tenía la misma inquietud que yo: hacer comunidad con los Ticos y ayudarnos entre nosotros. Unos añitos después, seguimos uniendo fuerzas para lograrlo",
-        "cat": "Després de, per casualitat, haver heretat el grup de Facebook de \"Ticos a Barcelona\", em vaig trobar amb gent meravellosa que tenia la mateixa inquietud que jo: fer comunitat amb els Ticos i ajudar-nos entre nosaltres. Uns anyets després, encara unim forces per aconseguir-ho"
+        "es": "Volver a la junta directiva con energía renovada para continuar impulsando nuestra comunidad y eventos colaborando con más socios interesados, y lograr mayor reconocimiento de TICO CAT",
+        "cat": "Tornar a la junta directiva amb energia renovada per continuar impulsant la nostra comunitat i esdeveniments col·laborant amb més socis interessats, i aconseguir un major reconeixement de TICO CAT"
     },
     "team_vicepresident_arrival": {
-        "es": "Junio, 2023",
-        "cat": "Juny, 2023"
+        "es": "Junio, 2022",
+        "cat": "Juny, 2022"
     },
     "team_vicepresident_occupation": {
-        "es": "Psicóloga y Escritora",
-        "cat": "Psicòloga i Escriptora"
+        "es": "Informático",
+        "cat": "Informàtic"
     },
     "team_vicepresident_contributions": {
-        "es": "Proyección, estructura, habilidades sociales y colaboraciones",
-        "cat": "Projecció, estructura, habilitats socials i col·laboracions"
+        "es": "Experiencia y compromiso con la comunidad, organización de eventos, comunicación y difusión",
+        "cat": "Experiència i compromís amb la comunitat, organització d'events, comunicació i difusió"
     },
     "team_vicepresident_reasons": {
-        "es": "Me mueve el formar parte de una comunidad colaborativa, el ayudar a facilitar la integración de nuevos residentes y promover las relaciones sociales y profesionales",
-        "cat": "Em mou formar part d'una comunitat col·laborativa, el ajudar a facilitar la integració de nous residents i promoure les relacions socials i professionals"
-    },
-    "team_secretary_arrival": {
-        "es": "2022",
-        "cat": "2022"
-    },
-    "team_secretary_occupation": {
-        "es": "Ing. Informático",
-        "cat": "Enginyer Informàtic"
-    },
-    "team_secretary_contributions": {
-        "es": "Voluntario y organizador de salidas en grupo",
-        "cat": "Voluntari i organitzador de sortides en grup"
-    },
-    "team_secretary_reasons": {
         "es": "Incentivar la unión, cohesión y colaboración entre los costarricenses en Cataluña y apoyar las actividades culturales entre ticos y catalanes",
         "cat": "Incentivar la unió, cohesió i col·laboració entre els costarricencs a Catalunya i donar suport a les activitats culturals entre ticos i catalans"
     },
+    "team_secretary_arrival": {
+        "es": "Junio, 2024",
+        "cat": "Juny, 2024"
+    },
+    "team_secretary_occupation": {
+        "es": "Ingeniera en Sistemas",
+        "cat": "Enginyera en Sistemes"
+    },
+    "team_secretary_contributions": {
+        "es": "Vocación de servicio, experiencia multicultural",
+        "cat": "Vocació de servei, experiència multicultural"
+    },
+    "team_secretary_reasons": {
+        "es": "Crecimiento personal y profesional, sentido de comunidad, contribuir al bienestar comun",
+        "cat": "Creixement personal i professional, sentit de comunitat, contribuir al benestar comú"
+    },
     "team_treasury_arrival": {
-        "es": "Febrero, 2024",
-        "cat": "Febrer, 2024"
+        "es": "Enero, 2024",
+        "cat": "Gener, 2024"
     },
     "team_treasury_occupation": {
-        "es": "Educadora Física",
-        "cat": "Educadora Física"
+        "es": "Microbiólogo",
+        "cat": "Microbióleg"
     },
     "team_treasury_contributions": {
-        "es": "Empatía, buen ambiente y cercanía",
-        "cat": "Empatia, bon ambient i proximitat"
+        "es": "Cuentas claras, orden en la tesorería y muchas ganas de trabajar para que todos los proyectos se hagan realidad.",
+        "cat": "Comptes clares, ordre en la tresoreria i moltes ganes de treballar perquè tots els projectes es facin realitat."
     },
     "team_treasury_reasons": {
-        "es": "Poder seguir cerca de la cultura Tica y compartir con gente de una tierra en comun. Hacer el esduerzo de crear comunidad y disfrutar de ls mezcla de culturas que aportsmos aquí en Cataluña",
-        "cat": "Poder seguir a prop de la cultura Tica i compartir amb gent d'una terra en comú. Fer l'esforç de crear comunitat i gaudir de la barreja de cultures que aportem aquí a Catalunya"
+        "es": "Me encanta ver cómo Costa Rica se mueve por el mundo y quería aportar mi granito de arena para que la cultura tica se sienta viva en Barcelona.",
+        "cat": "M'encanta veure com Costa Rica es mou pel món i volia aportar el meu gra de sorra perquè la cultura tica es senti viva a Barcelona."
     },
     "team_vocal_one_arrival": {
         "es": "2014",
         "cat": "2014"
     },
     "team_vocal_one_occupation": {
-        "es": "Diseñadora de viajes y Veterinaria",
-        "cat": "Dissenyadora de viatges i Veterinària"
+        "es": "Informático",
+        "cat": "Informàtico"
     },
     "team_vocal_one_contributions": {
-        "es": "Voluntaria en varios eventos",
-        "cat": "Voluntària en diversos esdeveniments"
+        "es": "Hasta ahora me he limitado a ser un participante más de las actividades organizadas por la Aso. Y he pensado que quizás pueda poner mi granito de arena para que esas actividades se sigan realizando.",
+        "cat": "Fins ara m'he limitat a ser un participant més de les activitats organitzades per l'Aso. I he pensat que potser puc posar el meu gra de sorra perquè aquestes activitats es continuïn realitzant."
     },
     "team_vocal_one_reasons": {
-        "es": "Querer una comunidad unida, solidaria y con muchas anécdotas para contar",
-        "cat": "Voler una comunitat unida, solidària i amb moltes anècdotes per explicar"
+        "es": "El poder compartir experiencias con personas a las que la vida ha llevado de Tiquicia a Catalunya",
+        "cat": "El poder compartir experiències amb persones a les quals la vida ha portat de Tiquicia a Catalunya"
     },
     "team_vocal_two_arrival": {
-        "es": "Mayo, 2016",
-        "cat": "Maig, 2017"
+        "es": "Agosto, 2023",
+        "cat": "Agost, 2023"
     },
     "team_vocal_two_occupation": {
-        "es": "Sommelier, Cocinero & Elaborador de Vino",
-        "cat": "Sommelier, Cuiner & Elaborador de Vi"
+        "es": "Mamá a tiempo completo. Ingeniera Industrial de profesión, con experiencia en mercadeo, especialmente en brand management e investigación de mercados",
+        "cat": "Mamà a temps complet. Enginyera Industrial de professió, amb experiència en màrqueting, especialment en brand management i investigació de mercats"
     },
     "team_vocal_two_contributions": {
-        "es": "Gestión de eventos, creatividad, chifrijo y tamales",
-        "cat": "Comunicació, patriotisme, iniciativa i disseny"
+        "es": "Entusiasmo, compromiso, organización y estructura",
+        "cat": "Entusiasme, compromís, organització i estructura"
     },
     "team_vocal_two_reasons": {
-        "es": "Ofrecer la estructura de mi empresa - Gastro Affair - para poder gestionar y ejecutar eventos para los Ticos y otras personas interesadas en nuestra cultura",
-        "cat": "Ofereix la estructura de la meva empresa - Gastro Affair - per poder gestionar i executar esdeveniments per als Ticos i altres persones interessades en la nostra cultura"
+        "es": "Contribuir a fortalecer la comunidad y volver a participar en proyectos colectivos. Me motiva ayudar a que la asociación siga creciendo y a crear un espacio donde las personas se sientan conectadas y apoyadas, una comunidad cada vez más inclusiva y participativa para familias y personas de todas las edades",
+        "cat": "Contribuir a enfortir la comunitat i tornar a participar en projectes col·lectius. M'anima ajudar que l'associació continuï creixent i crear un espai on les persones se sentin connectades i recolzades, una comunitat cada vegada més inclusiva i participativa per a famílies i persones de totes les edats"
+    },
+    "team_vocal_three_arrival": {
+        "es": "2023",
+        "cat": "2023"
+    },
+    "team_vocal_three_occupation": {
+        "es": "Empresario",
+        "cat": "Empresari"
+    },
+    "team_vocal_three_contributions": {
+        "es": "Orden financiero, tesorería clara, presupuestos, control, previsión, procesos transparentes, optimización de costos e ingresos, digitalización contable y gestión",
+        "cat": "Ordre financer, tresoreria clara, presuposts, control, previsió, processos transparents, optimització de costos i ingressos, digitalització comptable i gestió"
+    },
+    "team_vocal_three_reasons": {
+        "es": "Ayudar a otros ticos consolidando su presencia y comunidad en Cataluña, y permitir que los catalanes conozcan la belleza de nuestra cultura e idiosincrasia",
+        "cat": "Ajudar altres ticos consolidant la seva presència i comunitat a Catalunya, i permetre que els catalans coneguin la bellesa de la nostra cultura i idiosincràsia"
+    },
+    "team_substitution_arrival": {
+        "es": "Junio, 2023",
+        "cat": "Juny, 2023"
+    },
+    "team_substitution_occupation": {
+        "es": "Estudiante de Doctorado en Ciencia de Materiales",
+        "cat": "Estudiant de Doctorat en Ciència de Materials"
+    },
+    "team_substitution_contributions": {
+        "es": "Voluntaria en Stand de Sant Jordi 2025, baile típico improvisado en actividades",
+        "cat": "Voluntària en Stand de Sant Jordi 2025, ball típic improvissat en activitats"
+    },
+    "team_substitution_reasons": {
+        "es": "La Aso se ha convertido en un espacio acogedor. Espero ayudar a mantenerlo y mejorarlo para que muchos más se sientan bienvenidos en Barcelona",
+        "cat": "L'Aso s'ha convertit en un espai acollidor. Espero ajudar a mantenir-lo i millorar-lo perquè molts més se sentin benvinguts a Barcelona"
     },
     "events_page_title": {
         "es": "Eventos",

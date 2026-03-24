@@ -11,12 +11,15 @@ import MKTypography from "../../../components/MKTypography";
 import TicoCatTeamMemberCard from "./TicoCatTeamMemberCard";
 
 // Images
-import jordiPhoto from "../../../assets/images/team/jordi.jpg";
-import belenyPhoto from "../../../assets/images/team/beleny.jpg";
-import jairoPhoto from "../../../assets/images/team/jairo.jpg";
-import nathaliePhoto from "../../../assets/images/team/nathalie.jpg";
-import danielaPhoto from "../../../assets/images/team/daniela.jpg";
-import erickPhoto from "../../../assets/images/team/erick.jpg";
+import presidentPhoto from "assets/images/team/president.jpg";
+import secretaryPhoto from "assets/images/team/secretary.jpg";
+import vicepresidentPhoto from "assets/images/team/vicepresident.jpg";
+import treasurerPhoto from "assets/images/team/treasurer.jpg";
+import member1Photo from "assets/images/team/member1.jpg";
+import member2Photo from "assets/images/team/member2.jpg";
+import member3Photo from "assets/images/team/member3.jpg";
+import substitutionPhoto from "assets/images/team/substitution.jpg";
+
 
 import Translator from '../../../utils/Translator';
 
@@ -63,10 +66,11 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={jordiPhoto}
-                name="Jordi Parés"
+                image={presidentPhoto}
+                name="Raquel Saenz"
                 position={{ color: "dark", label: "team_president_position" }}
-                from="Guadalupe⁣, San José"
+                from="Curridabat, San José"
+                nowLiving="Badalona"
                 arrivalTime={Translator.instance.translate("team_president_arrival")}
                 occupation={Translator.instance.translate("team_president_occupation")}
                 contributions={Translator.instance.translate("team_president_contributions")}
@@ -77,10 +81,11 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={belenyPhoto}
-                name="Beleny Chaves"
+                image={vicepresidentPhoto}
+                name="Jairo Javier Sánchez Mejías"
                 position={{ color: "dark", label: "team_vicepresident_position" }}
-                from="La Guácima, Alajuela"
+                from="Alajuela"
+                nowLiving="Sant Martí, Barcelona"
                 arrivalTime={Translator.instance.translate("team_vicepresident_arrival")}
                 occupation={Translator.instance.translate("team_vicepresident_occupation")}
                 contributions={Translator.instance.translate("team_vicepresident_contributions")}
@@ -91,10 +96,11 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={jairoPhoto}
-                name="Jairo Javier Sánchez Mejías"
+                image={secretaryPhoto}
+                name="Ana Laura Jiménez Ortega"
                 position={{ color: "dark", label: "team_secretary_position" }}
-                from="Alajuela"
+                from="San Jose, Costa Rica"
+                nowLiving="Gràcia, Barcelona"
                 arrivalTime={Translator.instance.translate("team_secretary_arrival")}
                 occupation={Translator.instance.translate("team_secretary_occupation")}
                 contributions={Translator.instance.translate("team_secretary_contributions")}
@@ -105,10 +111,11 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={nathaliePhoto}
-                name="Nathalie Horvilleur"
-                position={{ color: "dark", label: "team_treasurer_position" }}
-                from="Curridabat, San José⁣"
+                image={treasurerPhoto}
+                name="Fernando Arturo Morales Calvo"
+                position={{ color: "dark", label: "team_treasury_position" }}
+                from="Santa Ana"
+                nowLiving="Eixample, Barcelona"
                 arrivalTime={Translator.instance.translate("team_treasury_arrival")}
                 occupation={Translator.instance.translate("team_treasury_occupation")}
                 contributions={Translator.instance.translate("team_treasury_contributions")}
@@ -119,10 +126,11 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={danielaPhoto}
-                name="Daniela Guzmán Rivera"
+                image={member1Photo}
+                name="Sergio Alberto Ugalde Resenterra"
                 position={{ color: "dark", label: "team_vocal_position" }}
-                from="Cartago"
+                from="Barrio México, San José"
+                nowLiving="L'Hospitalet de Llobregat"
                 arrivalTime={Translator.instance.translate("team_vocal_one_arrival")}
                 occupation={Translator.instance.translate("team_vocal_one_occupation")}
                 contributions={Translator.instance.translate("team_vocal_one_contributions")}
@@ -133,14 +141,45 @@ function Team() {
           <Grid item xs={12} lg={12}>
             <MKBox mb={1}>
               <TicoCatTeamMemberCard
-                image={erickPhoto}
-                name="Erik Sandoval"
+                image={member2Photo}
+                name="Carolina Cordero Alfaro"
                 position={{ color: "dark", label: "team_vocal_position" }}
-                from="Paraíso, Cartago"
+                from="Ciudad Colón"
+                nowLiving="Sarriá, Barcelona"
                 arrivalTime={Translator.instance.translate("team_vocal_two_arrival")}
                 occupation={Translator.instance.translate("team_vocal_two_occupation")}
                 contributions={Translator.instance.translate("team_vocal_two_contributions")}
                 reasonOfParticipation={Translator.instance.translate("team_vocal_two_reasons")}
+              />
+            </MKBox>
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <MKBox mb={1}>
+              <TicoCatTeamMemberCard
+                image={member3Photo}
+                name="Montgomery Miralles Mora"
+                position={{ color: "dark", label: "team_vocal_position" }}
+                from="Cedros de Montes de Oca"
+                nowLiving="Sant Quirze del Vallès"
+                arrivalTime={Translator.instance.translate("team_vocal_three_arrival")}
+                occupation={Translator.instance.translate("team_vocal_three_occupation")}
+                contributions={Translator.instance.translate("team_vocal_three_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_vocal_three_reasons")}
+              />
+            </MKBox>
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <MKBox mb={1}>
+              <TicoCatTeamMemberCard
+                image={substitutionPhoto}
+                name="Karla Marlene Mena Aguilar"
+                position={{ color: "dark", label: "team_substitution_position" }}
+                from="Cartago"
+                nowLiving="Gràcia, Barcelona"
+                arrivalTime={Translator.instance.translate("team_substitution_arrival")}
+                occupation={Translator.instance.translate("team_substitution_occupation")}
+                contributions={Translator.instance.translate("team_substitution_contributions")}
+                reasonOfParticipation={Translator.instance.translate("team_substitution_reasons")}
               />
             </MKBox>
           </Grid>
