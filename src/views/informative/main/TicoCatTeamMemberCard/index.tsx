@@ -79,16 +79,16 @@ function TicoCatTeamMemberCard({
               📍 {Translator.instance.translate("team_in_prefix")}: {nowLiving}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              {Translator.instance.translate("team_arrival_prefix")}: {arrivalTime}.
+              ⏱️ {Translator.instance.translate("team_arrival_prefix")}: {arrivalTime}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              {Translator.instance.translate("team_occupation_prefix")}: {occupation}.
+              👩🏼‍💻 {Translator.instance.translate("team_occupation_prefix")}: {occupation}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              {Translator.instance.translate("team_contributions_prefix")}: {contributions}.
+              💡  {Translator.instance.translate("team_contributions_prefix")}: {contributions}.
             </MKTypography>
             <MKTypography variant="body2" color="text">
-              {Translator.instance.translate("team_reasons_prefix")}: "{reasonOfParticipation}."
+              🎟️ {Translator.instance.translate("team_reasons_prefix")}: "{reasonOfParticipation}."
             </MKTypography>
           </MKBox>
         </Grid>
