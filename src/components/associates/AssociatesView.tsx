@@ -144,11 +144,12 @@ function AssociatesView() {
                         className='download-associates'
                         target='_blank'
                         rel="noreferrer"
+                        download={`socios_${new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-')}.csv`}
                         href={getDownloadAssociatesLink(associates)}
                     >
                         <DownloadForOfflineRoundedIcon />
                     </a>
-                    <h3>Socios ({associates.length})</h3>
+                <h3>Socios ({associates.length})</h3>
                 </div>
                 {associates.length === 0 ?
                     <Button
@@ -572,11 +573,18 @@ function displayIdType(id: any): string {
 }
 
 function getDownloadAssociatesLink(associates: Associate[]): string {
-    const emails = associates
-        .map((a) => a.email)
+    const header = "Id,Name,Email\n";
+    const rows = associates
+        .map((a) => {
+            const id = a.associate_id || '';
+            const name = (a.name || '').replace(/"/g, '""');
+            const email = a.email || '';
+            return `${id},"${name}",${email}`;
+        })
         .join('\n');
 
-    var data = new Blob([emails], { type: 'text/plain' });
+    const csvContent = header + rows;
+    var data = new Blob([csvContent], { type: 'text/csv' });
     return window.URL.createObjectURL(data);
 }
 
