@@ -95,7 +95,7 @@ function Home() {
               </MKTypography>
               <MKTypography
                 component={Link}
-                href="mailto:asoticocat@gmail.com"
+                href="mailto:contacto@asoticocat.org"
                 target="_blank"
                 variant="body1"
               >

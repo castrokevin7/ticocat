@@ -34,7 +34,7 @@ function Footer() {
     },
     {
       icon: <EmailIcon fontSize="small" />,
-      link: "mailto:asoticocat@gmail.com",
+      link: "mailto:contacto@asoticocat.org",
     },
   ];
 
