@@ -184,7 +184,7 @@ function AccountConfigurationPage() {
                         <MKTypography
                             component="a"
                             target="_blank"
-                            href="mailto:asoticocat@gmail.com?Subject=Quiero ofertar beneficios"
+                            href="mailto:contacto@asoticocat.org?Subject=Quiero ofertar beneficios"
                             variant="body2"
                             color="info"
                             fontWeight="regular"
@@ -236,7 +236,7 @@ function AccountConfigurationPage() {
                     <MKTypography
                         component="a"
                         target="_blank"
-                        href="mailto:asoticocat@gmail.com?Subject=Quiero actualizar mi información"
+                        href="mailto:contacto@asoticocat.org?Subject=Quiero actualizar mi información"
                         variant="body2"
                         color="info"
                         fontWeight="regular"

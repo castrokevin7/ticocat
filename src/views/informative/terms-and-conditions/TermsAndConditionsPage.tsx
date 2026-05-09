@@ -106,7 +106,7 @@ function TermsAndConditionsPage() {
                                 <li>{Translator.instance.translate("terms_data_subject_rights_description_item_3")}</li>
                                 <li>{Translator.instance.translate("terms_data_subject_rights_description_item_4")}</li>
                             </ul>
-                            <p>{Translator.instance.translate("terms_data_subject_rights_conclusion")}: <a href="mailto:asoticocat@gmail.com?Subject=Mis datos" rel="noreferrer">asoticocat@gmail.com</a>.</p>
+                            <p>{Translator.instance.translate("terms_data_subject_rights_conclusion")}: <a href="mailto:contacto@asoticocat.org?Subject=Mis datos" rel="noreferrer">contacto@asoticocat.org</a>.</p>
 
                             <h3 style={{ marginTop: '15px' }}>{Translator.instance.translate("terms_conditions_changes")}</h3>
                             <p>{Translator.instance.translate("terms_conditions_changes_description")}</p>
@@ -115,7 +115,7 @@ function TermsAndConditionsPage() {
 
                             <p>{Translator.instance.translate("terms_conclusion_thanks")}</p>
 
-                            <p><a href="mailto:asoticocat@gmail.com?Subject=Mis datos" rel="noreferrer">asoticocat@gmail.com</a></p>
+                            <p><a href="mailto:contacto@asoticocat.org?Subject=Mis datos" rel="noreferrer">contacto@asoticocat.org</a></p>
 
                             <p><strong>{Translator.instance.translate("terms_last_update_date")}</strong></p>
                         </Card>
