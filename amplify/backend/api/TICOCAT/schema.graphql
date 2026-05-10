@@ -98,6 +98,5 @@ type Associate @model @auth(rules: [{allow: public, provider: iam}, {allow: priv
   linkedin_username: String
   phone: AWSPhone
   interests: [Interests]
-  is_active: Boolean
 }
  

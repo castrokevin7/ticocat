@@ -190,8 +190,7 @@ type EagerAssociate = {
   readonly facebook_username?: string | null;
   readonly linkedin_username?: string | null;
   readonly phone?: string | null;
-  readonly interests?: (Interests | null)[] | keyof typeof Interests | null;
-  readonly is_active?: boolean | null;
+  readonly interests?: (Interests | null)[] | Array<keyof typeof Interests> | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -220,8 +219,7 @@ type LazyAssociate = {
   readonly facebook_username?: string | null;
   readonly linkedin_username?: string | null;
   readonly phone?: string | null;
-  readonly interests?: (Interests | null)[] | keyof typeof Interests | null;
-  readonly is_active?: boolean | null;
+  readonly interests?: (Interests | null)[] | Array<keyof typeof Interests> | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
