@@ -54,7 +54,7 @@ function CommunityPage() {
             }
 
             if (interestsFilter.length > 0) {
-                return interestsFilter.some(interest => associate.interests?.includes(interest as Interests));
+                return interestsFilter.some(interest => (associate.interests as (Interests | null)[])?.includes(interest as Interests));
             }
 
             return true;

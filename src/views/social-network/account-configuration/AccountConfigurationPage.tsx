@@ -1097,7 +1097,7 @@ function AccountConfigurationPage() {
         if (!associate) return null;
 
         const updateInterests = async (interest: string) => {
-            const currentInterests = Array.isArray(associate.interests) ? associate.interests : [];
+            const currentInterests: (Interests | null)[] = Array.isArray(associate.interests) ? (associate.interests as (Interests | null)[]) : [];
             let newInterests: (Interests | null)[];
             if (currentInterests.includes(interest as Interests)) {
                 newInterests = currentInterests.filter(i => i !== interest);
@@ -1131,7 +1131,7 @@ function AccountConfigurationPage() {
                             key={index}
                             sx={{ margin: '2px' }}
                             label={Translator.instance.translate(getInterestTranslationKey(interest as Interests))}
-                            variant={associate.interests && associate.interests.includes(interest as Interests) ? undefined : "outlined"}
+                            variant={associate.interests && (associate.interests as (Interests | null)[]).includes(interest as Interests) ? undefined : "outlined"}
                             onClick={() => updateInterests(interest)}
                         />
                     ))}
