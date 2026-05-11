@@ -613,6 +613,13 @@ export const schema = {
                     "attributes": [],
                     "isArrayNullable": true
                 },
+                "is_active": {
+                    "name": "is_active",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -717,6 +724,6 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "codegenVersion": "3.4.4",
-    "version": "3a8152ad55a5645b91f7cb2a966f839c"
+    "codegenVersion": "3.3.5",
+    "version": "f239367968001da7890738708492fed3"
 };
